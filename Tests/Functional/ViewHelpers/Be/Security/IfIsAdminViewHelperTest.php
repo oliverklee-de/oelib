@@ -46,7 +46,7 @@ final class IfIsAdminViewHelperTest extends FunctionalTestCase
      */
     public function renderForAdminLoggedInRendersThenChild(): void
     {
-        $user = $this->createStub(BackendUserAuthentication::class);
+        $user = self::createStub(BackendUserAuthentication::class);
         $user->method('isAdmin')->willReturn(true);
         $GLOBALS['BE_USER'] = $user;
         $userAspect = new UserAspect($user);
@@ -63,7 +63,7 @@ final class IfIsAdminViewHelperTest extends FunctionalTestCase
      */
     public function renderForNonAdminLoggedInRendersElseChild(): void
     {
-        $user = $this->createStub(BackendUserAuthentication::class);
+        $user = self::createStub(BackendUserAuthentication::class);
         $user->method('isAdmin')->willReturn(false);
         $GLOBALS['BE_USER'] = $user;
         $userAspect = new UserAspect($user);

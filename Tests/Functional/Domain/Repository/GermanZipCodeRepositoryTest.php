@@ -118,7 +118,7 @@ final class GermanZipCodeRepositoryTest extends FunctionalTestCase
     /**
      * @return string[][]
      */
-    public function nonMatchedZipCodesDataProvider(): array
+    public static function nonMatchedZipCodesDataProvider(): array
     {
         return [
             '5 digits without match' => ['00000'],

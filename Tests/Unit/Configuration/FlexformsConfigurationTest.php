@@ -80,7 +80,7 @@ final class FlexformsConfigurationTest extends UnitTestCase
     /**
      * @return array<string, array<array<string, string|array<string, mixed>|null>>>
      */
-    public function noFlexformsDataDataProvider(): array
+    public static function noFlexformsDataDataProvider(): array
     {
         return [
             'no flexforms data field' => [[]],
@@ -153,7 +153,7 @@ final class FlexformsConfigurationTest extends UnitTestCase
     /**
      * @return array<string, array<array<string, string>>>
      */
-    public function noFieldsDataDataProvider(): array
+    public static function noFieldsDataDataProvider(): array
     {
         return [
             'flexforms without any fields' => [
@@ -222,7 +222,7 @@ final class FlexformsConfigurationTest extends UnitTestCase
     /**
      * @return array<string, array<array<string, string>>>
      */
-    public function emptyFieldDataDataProvider(): array
+    public static function emptyFieldDataDataProvider(): array
     {
         return [
             'flexforms with with empty "flavor" field' => [
@@ -307,7 +307,7 @@ final class FlexformsConfigurationTest extends UnitTestCase
     /**
      * @return array<string, list<array<string, array<string, array<string, array<string, mixed>>>>>>
      */
-    public function stringValueInArrayDataProvider(): array
+    public static function stringValueInArrayDataProvider(): array
     {
         return [
             'default array key names' => [
@@ -357,7 +357,7 @@ final class FlexformsConfigurationTest extends UnitTestCase
     /**
      * @return array<string, list<array<string, array<string, array<string, array<string, mixed>>>>>>
      */
-    public function integerValueInArrayDataProvider(): array
+    public static function integerValueInArrayDataProvider(): array
     {
         return [
             'default array key names with string' => [
@@ -409,7 +409,7 @@ final class FlexformsConfigurationTest extends UnitTestCase
     /**
      * @return array<string, list<array<string, array<string, array<string, array<string, mixed>>>>>>
      */
-    public function booleanValueInArrayDataProvider(): array
+    public static function booleanValueInArrayDataProvider(): array
     {
         return [
             'default array key names with string' => [

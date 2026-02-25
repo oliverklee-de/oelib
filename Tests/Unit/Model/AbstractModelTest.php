@@ -72,7 +72,7 @@ final class AbstractModelTest extends UnitTestCase
     /**
      * @return array<string, array{0: AbstractModel::STATUS_*}>
      */
-    public function cloneableStatusDataProvider(): array
+    public static function cloneableStatusDataProvider(): array
     {
         return [
             'virgin' => [AbstractModel::STATUS_VIRGIN],
@@ -1373,7 +1373,7 @@ final class AbstractModelTest extends UnitTestCase
     /**
      * @return array<string, array{0: AbstractModel::STATUS_*}>
      */
-    public function uncloneableStatusDataProvider(): array
+    public static function uncloneableStatusDataProvider(): array
     {
         return [
             'loading' => [AbstractModel::STATUS_LOADING],

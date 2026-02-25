@@ -1897,7 +1897,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     /**
      * @return array<string, array{0: non-empty-string, 1: non-empty-string|float}>
      */
-    public function floatDataTypeDataProvider(): array
+    public static function floatDataTypeDataProvider(): array
     {
         return [
             'float as float' => ['float_data', 3.5],
@@ -1966,7 +1966,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     /**
      * @return array<string, array{0: non-empty-string, 1: int}>
      */
-    public function boolDataTypeDataProvider(): array
+    public static function boolDataTypeDataProvider(): array
     {
         return [
             'boolean true' => ['bool_data1', 1],

@@ -193,7 +193,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @return bool[][]
      */
-    public function booleanDataProvider(): array
+    public static function booleanDataProvider(): array
     {
         return [
             'false' => [false],
@@ -1205,7 +1205,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @return array<non-empty-string, array{0: non-empty-string, 1: string}>
      */
-    public function serverGlobalsDataProvider(): array
+    public static function serverGlobalsDataProvider(): array
     {
         return [
             'DOCUMENT_ROOT' => ['DOCUMENT_ROOT', '/var/www/html/public'],
@@ -1237,7 +1237,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @return array<non-empty-string, array{0: non-empty-string, 1: string|bool|null}>
      */
-    public function indEnvDataProvider(): array
+    public static function indEnvDataProvider(): array
     {
         return [
             'HTTP_HOST' => ['HTTP_HOST', 'typo3-test.dev'],
@@ -1282,7 +1282,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @return array<non-empty-string, array{0: non-empty-string, 1: non-empty-string}>
      */
-    public function pageSpecificGlobalsWithPageUidDataProvider(): array
+    public static function pageSpecificGlobalsWithPageUidDataProvider(): array
     {
         return [
             'REQUEST_URI' => ['REQUEST_URI', '/%1s'],
@@ -1361,7 +1361,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
      */
     public function createFakeFrontEndReplacesExistingGlobalRequest(): void
     {
-        $previousRequest = $this->createStub(ServerRequestInterface::class);
+        $previousRequest = self::createStub(ServerRequestInterface::class);
         $GLOBALS['TYPO3_REQUEST'] = $previousRequest;
 
         $this->subject->createFakeFrontEnd($this->subject->createFrontEndPage());
