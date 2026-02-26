@@ -425,8 +425,6 @@ final class GeoCalculatorTest extends UnitTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function moveByRandomDistanceWithZeroNotThrowsException(): void
     {
@@ -539,8 +537,6 @@ final class GeoCalculatorTest extends UnitTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function moveInRandomDirectionAndDistanceWithZeroNotThrowsException(): void
     {

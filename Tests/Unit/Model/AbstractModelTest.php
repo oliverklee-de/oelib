@@ -220,8 +220,6 @@ final class AbstractModelTest extends UnitTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function setDataWithEmptyArrayIsAllowed(): void
     {
@@ -288,8 +286,6 @@ final class AbstractModelTest extends UnitTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function resetDataCanBeCalledTwoTimes(): void
     {
@@ -655,8 +651,6 @@ final class AbstractModelTest extends UnitTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function setUidForAModelWithoutUidDoesNotFail(): void
     {
@@ -783,8 +777,6 @@ final class AbstractModelTest extends UnitTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function getUidOnDeadModelDoesNotFail(): void
     {
@@ -1179,8 +1171,6 @@ final class AbstractModelTest extends UnitTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function setDataOnReadOnlyModelDoesNotFail(): void
     {
@@ -1381,8 +1371,6 @@ final class AbstractModelTest extends UnitTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function setPageUidWithZeroPageUidNotThrowsException(): void
     {

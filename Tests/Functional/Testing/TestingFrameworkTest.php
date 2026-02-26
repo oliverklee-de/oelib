@@ -1529,8 +1529,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function logoutFrontEndUserCanBeCalledTwoTimes(): void
     {

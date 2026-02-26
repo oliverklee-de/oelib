@@ -36,8 +36,6 @@ final class AbstractObjectWithPublicAccessorsTest extends UnitTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function checkForNonEmptyKeyWithNonEmptyKeyIsAllowed(): void
     {

@@ -858,8 +858,6 @@ final class CollectionTest extends UnitTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function purgeCurrentWithEmptyListDoesNotFail(): void
     {
@@ -1066,8 +1064,6 @@ final class CollectionTest extends UnitTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function addWithoutParentModelIsNoProblem(): void
     {
