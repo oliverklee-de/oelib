@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="phpList Coding Standard">
-    <description>
-        This standard requires PHP_CodeSniffer >= 3.5.2.
-    </description>
-
+<ruleset name="oliverklee.de">
     <arg name="colors"/>
     <arg name="extensions" value="php"/>
 
-    <!-- The complete PSR-12 ruleset -->
-    <rule ref="PSR12"/>
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="120"/>
+            <property name="absoluteLineLimit" value="120"/>
+        </properties>
+    </rule>
+    <rule ref="Squiz.PHP.Heredoc"/>
 </ruleset>
