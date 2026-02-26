@@ -467,7 +467,7 @@ parameters:
 
 		-
 			message: "#^Cannot access offset 'oelib' on mixed\\.$#"
-			count: 3
+			count: 2
 			path: ../../Tests/Unit/Configuration/ConfigurationProxyTest.php
 
 		-
@@ -487,17 +487,17 @@ parameters:
 
 		-
 			message: "#^Cannot access offset 'MAIL' on mixed\\.$#"
-			count: 14
+			count: 16
 			path: ../../Tests/Unit/Email/SystemEmailFromBuilderTest.php
 
 		-
 			message: "#^Cannot access offset 'defaultMailFromAddr…' on mixed\\.$#"
-			count: 7
+			count: 8
 			path: ../../Tests/Unit/Email/SystemEmailFromBuilderTest.php
 
 		-
 			message: "#^Cannot access offset 'defaultMailFromName' on mixed\\.$#"
-			count: 7
+			count: 8
 			path: ../../Tests/Unit/Email/SystemEmailFromBuilderTest.php
 
 		-
@@ -546,14 +546,9 @@ parameters:
 			path: ../../Tests/Unit/Model/AbstractModelTest.php
 
 		-
-			message: "#^Cannot access offset 'fe_users' on mixed\\.$#"
-			count: 2
-			path: ../../Tests/Unit/Model/FrontEndUserTest.php
-
-		-
-			message: "#^Property OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\FrontEndUserTest\\:\\:\\$tcaBackup \\(array\\<string, mixed\\>\\) does not accept mixed\\.$#"
+			message: "#^Cannot access offset 'EXTCONF' on mixed\\.$#"
 			count: 1
-			path: ../../Tests/Unit/Model/FrontEndUserTest.php
+			path: ../../Tests/Unit/Testing/TestingFrameworkTest.php
 
 		-
 			message: "#^Cannot access an offset on mixed\\.$#"

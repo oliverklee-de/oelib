@@ -22,6 +22,14 @@ final class SystemEmailFromBuilderTest extends UnitTestCase
         $this->subject = new SystemEmailFromBuilder();
     }
 
+    protected function tearDown(): void
+    {
+        $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'] = '';
+        $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromName'] = '';
+
+        parent::tearDown();
+    }
+
     /**
      * @test
      */

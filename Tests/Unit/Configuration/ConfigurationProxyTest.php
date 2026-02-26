@@ -44,7 +44,7 @@ final class ConfigurationProxyTest extends UnitTestCase
 
     protected function tearDown(): void
     {
-        $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['oelib'] = [];
+        $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS'] = [];
         ConfigurationProxy::purgeInstances();
         parent::tearDown();
     }

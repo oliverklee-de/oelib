@@ -19,7 +19,8 @@ final class AbstractConfigurationCheckTest extends UnitTestCase
     protected function tearDown(): void
     {
         ConfigurationProxy::purgeInstances();
-        unset($GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'], $GLOBALS['BE_USER']);
+        $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'] = '';
+        unset($GLOBALS['BE_USER']);
 
         parent::tearDown();
     }

@@ -31,6 +31,8 @@ final class TestingFrameworkTest extends UnitTestCase
 
         GeneralUtility::purgeInstances();
 
+        unset($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']);
+
         parent::tearDown();
     }
 
