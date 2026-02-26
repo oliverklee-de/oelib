@@ -16,7 +16,7 @@ final class LanguageMapperTest extends FunctionalTestCase
 {
     protected array $testExtensionsToLoad = ['oliverklee/oelib', 'sjbr/static-info-tables'];
 
-    protected array $coreExtensionsToLoad = ['typo3/cms-install'];
+    protected array $coreExtensionsToLoad = ['typo3/cms-extensionmanager'];
 
     private LanguageMapper $subject;
 
