@@ -37,9 +37,7 @@ final class AbstractModelTest extends UnitTestCase
     /**
      * Loading function stub.
      */
-    public function load(AbstractModel $model): void
-    {
-    }
+    public function load(AbstractModel $model): void {}
 
     private function getLoadCallback(): \Closure
     {

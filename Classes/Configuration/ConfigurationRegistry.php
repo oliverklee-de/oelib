@@ -26,9 +26,7 @@ class ConfigurationRegistry
     /**
      * The constructor. Use getInstance() instead.
      */
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     /**
      * Destructs a configuration for a given namespace and drops the reference to it.

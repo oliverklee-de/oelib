@@ -34,9 +34,7 @@ class PageFinder
     /**
      * Don't call this constructor; use getInstance instead.
      */
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     /**
      * Returns an instance of this class.

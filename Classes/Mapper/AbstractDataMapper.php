@@ -1112,9 +1112,7 @@ abstract class AbstractDataMapper
      * @param M $model the model to cache
      * @param DatabaseRow $data the data of the model as it is in the DB, may be empty
      */
-    protected function cacheModelByCombinedKeys(AbstractModel $model, array $data): void
-    {
-    }
+    protected function cacheModelByCombinedKeys(AbstractModel $model, array $data): void {}
 
     /**
      * Looks up a model by key.

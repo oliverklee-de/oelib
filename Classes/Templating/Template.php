@@ -636,7 +636,7 @@ class Template
         $template = $this;
         return (string)\preg_replace_callback(
             self::SUBPART_PATTERN,
-            static fn (array $matches): string => $template->getSubpart($matches[1]),
+            static fn(array $matches): string => $template->getSubpart($matches[1]),
             $templateCode,
         );
     }

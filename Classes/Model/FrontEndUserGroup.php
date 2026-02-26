@@ -9,6 +9,4 @@ namespace OliverKlee\Oelib\Model;
  *
  * @deprecated #1928 will be removed in version 7.0
  */
-class FrontEndUserGroup extends AbstractModel
-{
-}
+class FrontEndUserGroup extends AbstractModel {}
