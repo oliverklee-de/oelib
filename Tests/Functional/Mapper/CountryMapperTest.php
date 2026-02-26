@@ -16,6 +16,8 @@ final class CountryMapperTest extends FunctionalTestCase
 {
     protected array $testExtensionsToLoad = ['oliverklee/oelib', 'sjbr/static-info-tables'];
 
+    protected array $coreExtensionsToLoad = ['typo3/cms-install'];
+
     private CountryMapper $subject;
 
     protected function setUp(): void
