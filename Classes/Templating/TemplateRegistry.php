@@ -21,9 +21,7 @@ class TemplateRegistry
     /**
      * The constructor. Use getInstance() instead.
      */
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     /**
      * Returns an instance of this class.

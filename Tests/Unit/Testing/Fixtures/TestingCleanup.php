@@ -9,7 +9,5 @@ namespace OliverKlee\Oelib\Tests\Unit\Testing\Fixtures;
  */
 class TestingCleanup
 {
-    public function cleanUp(): void
-    {
-    }
+    public function cleanUp(): void {}
 }

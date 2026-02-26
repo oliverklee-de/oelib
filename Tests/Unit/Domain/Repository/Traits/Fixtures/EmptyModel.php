@@ -9,6 +9,4 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 /**
  * Testing model without any properties.
  */
-final class EmptyModel extends AbstractEntity
-{
-}
+final class EmptyModel extends AbstractEntity {}
