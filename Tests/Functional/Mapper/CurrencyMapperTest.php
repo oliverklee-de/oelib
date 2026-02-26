@@ -16,6 +16,8 @@ final class CurrencyMapperTest extends FunctionalTestCase
 {
     protected array $testExtensionsToLoad = ['oliverklee/oelib', 'sjbr/static-info-tables'];
 
+    protected array $coreExtensionsToLoad = ['typo3/cms-install'];
+
     private CurrencyMapper $subject;
 
     protected function setUp(): void
