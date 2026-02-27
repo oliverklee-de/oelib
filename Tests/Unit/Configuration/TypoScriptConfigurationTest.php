@@ -53,8 +53,6 @@ final class TypoScriptConfigurationTest extends UnitTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function setDataWithEmptyArrayIsAllowed(): void
     {
@@ -78,8 +76,6 @@ final class TypoScriptConfigurationTest extends UnitTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function setDataCalledTwoTimesDoesNotFail(): void
     {
