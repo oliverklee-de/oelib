@@ -63,7 +63,7 @@ class GeoCalculator implements SingletonInterface
 
         return \acos(
             \sin($latitude1) * \sin($latitude2)
-            + \cos($latitude1) * \cos($latitude2) * \cos($longitude2 - $longitude1),
+                + \cos($latitude1) * \cos($latitude2) * \cos($longitude2 - $longitude1)
         ) * self::EARTH_RADIUS_IN_KILOMETERS;
     }
 
