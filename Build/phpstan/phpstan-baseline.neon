@@ -3,574 +3,574 @@ parameters:
 		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Configuration\\\\AbstractConfigurationCheck\\:\\:getDbColumnNames\\(\\) should return list\\<non\\-empty\\-string\\> but returns list\\<mixed\\>\\.$#"
 			count: 1
-			path: Classes/Configuration/AbstractConfigurationCheck.php
+			path: ../../Classes/Configuration/AbstractConfigurationCheck.php
 
 		-
 			message: "#^Cannot access offset 'EXTENSIONS' on mixed\\.$#"
 			count: 1
-			path: Classes/Configuration/ConfigurationProxy.php
+			path: ../../Classes/Configuration/ConfigurationProxy.php
 
 		-
 			message: "#^Cannot access offset non\\-empty\\-string on mixed\\.$#"
 			count: 1
-			path: Classes/Configuration/ConfigurationProxy.php
+			path: ../../Classes/Configuration/ConfigurationProxy.php
 
 		-
 			message: "#^Property OliverKlee\\\\Oelib\\\\Configuration\\\\ConfigurationProxy\\:\\:\\$configuration \\(array\\<string, mixed\\>\\) does not accept mixed\\.$#"
 			count: 1
-			path: Classes/Configuration/ConfigurationProxy.php
+			path: ../../Classes/Configuration/ConfigurationProxy.php
 
 		-
 			message: "#^Access to property \\$loaded on an unknown class TemplateService\\.$#"
 			count: 1
-			path: Classes/Configuration/ConfigurationRegistry.php
+			path: ../../Classes/Configuration/ConfigurationRegistry.php
 
 		-
 			message: "#^Access to property \\$setup on an unknown class TemplateService\\.$#"
 			count: 1
-			path: Classes/Configuration/ConfigurationRegistry.php
+			path: ../../Classes/Configuration/ConfigurationRegistry.php
 
 		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Configuration\\\\ConfigurationRegistry\\:\\:getFrontEndController\\(\\) should return TYPO3\\\\CMS\\\\Frontend\\\\Controller\\\\TypoScriptFrontendController\\|null but returns mixed\\.$#"
 			count: 1
-			path: Classes/Configuration/ConfigurationRegistry.php
+			path: ../../Classes/Configuration/ConfigurationRegistry.php
 
 		-
 			message: "#^Parameter \\#1 \\$haystack of method OliverKlee\\\\Oelib\\\\Configuration\\\\FlexformsConfiguration\\:\\:getFromArray\\(\\) expects array\\<array\\<int\\|string, mixed\\>\\|int\\|string\\>, array\\<int\\|string, mixed\\> given\\.$#"
 			count: 1
-			path: Classes/Configuration/FlexformsConfiguration.php
+			path: ../../Classes/Configuration/FlexformsConfiguration.php
 
 		-
 			message: "#^Parameter \\#1 \\$haystack of method OliverKlee\\\\Oelib\\\\Configuration\\\\FlexformsConfiguration\\:\\:getFromArray\\(\\) expects array\\<array\\<int\\|string, mixed\\>\\|int\\|string\\>, array\\<string, mixed\\> given\\.$#"
 			count: 1
-			path: Classes/Configuration/FlexformsConfiguration.php
+			path: ../../Classes/Configuration/FlexformsConfiguration.php
 
 		-
 			message: "#^Property OliverKlee\\\\Oelib\\\\Configuration\\\\FlexformsConfiguration\\:\\:\\$data \\(array\\<string, mixed\\>\\|null\\) does not accept array\\.$#"
 			count: 1
-			path: Classes/Configuration/FlexformsConfiguration.php
+			path: ../../Classes/Configuration/FlexformsConfiguration.php
 
 		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 2
-			path: Classes/Configuration/PageFinder.php
+			path: ../../Classes/Configuration/PageFinder.php
 
 		-
 			message: "#^Casting to int something that's already int\\.$#"
 			count: 1
-			path: Classes/Configuration/PageFinder.php
+			path: ../../Classes/Configuration/PageFinder.php
 
 		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Configuration\\\\PageFinder\\:\\:getFrontEndController\\(\\) should return TYPO3\\\\CMS\\\\Frontend\\\\Controller\\\\TypoScriptFrontendController\\|null but returns mixed\\.$#"
 			count: 1
-			path: Classes/Configuration/PageFinder.php
+			path: ../../Classes/Configuration/PageFinder.php
 
 		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Configuration\\\\TypoScriptConfiguration\\:\\:getAsMultidimensionalArray\\(\\) should return array\\<string, array\\<int\\|string, mixed\\>\\|int\\|string\\> but returns array\\.$#"
 			count: 1
-			path: Classes/Configuration/TypoScriptConfiguration.php
+			path: ../../Classes/Configuration/TypoScriptConfiguration.php
 
 		-
 			message: "#^Cannot cast mixed to float\\.$#"
 			count: 1
-			path: Classes/DataStructures/AbstractReadOnlyObjectWithAccessors.php
+			path: ../../Classes/DataStructures/AbstractReadOnlyObjectWithAccessors.php
 
 		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
-			path: Classes/DataStructures/AbstractReadOnlyObjectWithAccessors.php
+			path: ../../Classes/DataStructures/AbstractReadOnlyObjectWithAccessors.php
 
 		-
 			message: "#^Cannot cast mixed to string\\.$#"
 			count: 1
-			path: Classes/DataStructures/AbstractReadOnlyObjectWithAccessors.php
+			path: ../../Classes/DataStructures/AbstractReadOnlyObjectWithAccessors.php
 
 		-
 			message: "#^Parameters should have \"OliverKlee\\\\Oelib\\\\DataStructures\\\\Collection\\<OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingModel\\>\" types as the only types passed to this method$#"
 			count: 1
-			path: Classes/DataStructures/Collection.php
+			path: ../../Classes/DataStructures/Collection.php
 
 		-
 			message: "#^Template type M is declared as covariant, but occurs in contravariant position in parameter model of method OliverKlee\\\\Oelib\\\\DataStructures\\\\Collection\\:\\:add\\(\\)\\.$#"
 			count: 1
-			path: Classes/DataStructures/Collection.php
+			path: ../../Classes/DataStructures/Collection.php
 
 		-
 			message: "#^Template type M is declared as covariant, but occurs in invariant position in extended type SplObjectStorage\\<M of OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel, int\\> of class OliverKlee\\\\Oelib\\\\DataStructures\\\\Collection\\.$#"
 			count: 1
-			path: Classes/DataStructures/Collection.php
+			path: ../../Classes/DataStructures/Collection.php
 
 		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 1
-			path: Classes/Domain/Repository/PageRepository.php
+			path: ../../Classes/Domain/Repository/PageRepository.php
 
 		-
 			message: "#^Trait OliverKlee\\\\Oelib\\\\Domain\\\\Repository\\\\Traits\\\\StoragePageAgnostic is used zero times and is not analysed\\.$#"
 			count: 1
-			path: Classes/Domain/Repository/Traits/StoragePageAgnostic.php
+			path: ../../Classes/Domain/Repository/Traits/StoragePageAgnostic.php
 
 		-
 			message: "#^Cannot access offset 'MAIL' on mixed\\.$#"
 			count: 1
-			path: Classes/Email/SystemEmailFromBuilder.php
+			path: ../../Classes/Email/SystemEmailFromBuilder.php
 
 		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Email\\\\SystemEmailFromBuilder\\:\\:getEmailConfiguration\\(\\) should return array\\{defaultMailFromAddress\\?\\: string\\} but returns mixed\\.$#"
 			count: 1
-			path: Classes/Email/SystemEmailFromBuilder.php
+			path: ../../Classes/Email/SystemEmailFromBuilder.php
 
 		-
 			message: "#^Parameters should have \"OliverKlee\\\\Oelib\\\\DataStructures\\\\Collection\\<OliverKlee\\\\Oelib\\\\Interfaces\\\\Geo&OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\>\\|OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Geocoding\\\\Fixtures\\\\TestingGeo\\|float\" types as the only types passed to this method$#"
 			count: 1
-			path: Classes/Geocoding/GeoCalculator.php
+			path: ../../Classes/Geocoding/GeoCalculator.php
 
 		-
 			message: "#^Parameters should have \"OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Geocoding\\\\Fixtures\\\\TestingGeo\\|float\" types as the only types passed to this method$#"
 			count: 1
-			path: Classes/Geocoding/GeoCalculator.php
+			path: ../../Classes/Geocoding/GeoCalculator.php
 
 		-
 			message: "#^Call to function is_string\\(\\) with class\\-string\\<M of OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\> will always evaluate to true\\.$#"
 			count: 1
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Cannot access offset non\\-empty\\-string on mixed\\.$#"
 			count: 1
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 7
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Cannot cast mixed to string\\.$#"
 			count: 1
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Function str_starts_with not found\\.$#"
 			count: 1
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\:\\:getTcaForTable\\(\\) should return array\\<string, array\\<string, array\\<string, array\\<string, string\\>\\>\\>\\> but returns mixed\\.$#"
 			count: 1
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\:\\:saveManyToManyAndCommaSeparatedRelatedModels\\(\\) has parameter \\$mapper with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper but does not specify its types\\: M$#"
 			count: 1
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\:\\:saveManyToOneRelatedModels\\(\\) has parameter \\$mapper with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper but does not specify its types\\: M$#"
 			count: 1
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Parameter \\#1 \\$data of method OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\<M of OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\>\\:\\:createRelations\\(\\) expects array\\<string, int\\|string\\>, array\\<string, bool\\|float\\|int\\|string\\|null\\> given\\.$#"
 			count: 1
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Parameter \\#1 \\$data of method OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\:\\:setData\\(\\) expects array\\<non\\-empty\\-string, bool\\|float\\|int\\|object\\|string\\|null\\>, array\\<string, int\\|string\\> given\\.$#"
 			count: 1
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Parameter \\#1 \\$dataOfModels of method OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\<M of OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\>\\:\\:getListOfModels\\(\\) expects array\\<array\\<string, bool\\|float\\|int\\|string\\|null\\>\\>, array\\<int, array\\<string, mixed\\>\\> given\\.$#"
 			count: 1
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Parameter &\\$data by\\-ref type of method OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\:\\:createRelations\\(\\) expects array\\<string, int\\|string\\>, array\\<string, mixed\\> given\\.$#"
 			count: 4
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Parameters should have \"M of OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\" types as the only types passed to this method$#"
 			count: 1
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Property OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\:\\:\\$relations with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper does not specify its types\\: M$#"
 			count: 1
-			path: Classes/Mapper/AbstractDataMapper.php
+			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
 			message: "#^Property OliverKlee\\\\Oelib\\\\Mapper\\\\FrontEndUserMapper\\:\\:\\$relations with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper does not specify its types\\: M$#"
 			count: 1
-			path: Classes/Mapper/FrontEndUserMapper.php
+			path: ../../Classes/Mapper/FrontEndUserMapper.php
 
 		-
 			message: "#^Property OliverKlee\\\\Oelib\\\\Mapper\\\\MapperRegistry\\:\\:\\$mappers with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper does not specify its types\\: M$#"
 			count: 1
-			path: Classes/Mapper/MapperRegistry.php
+			path: ../../Classes/Mapper/MapperRegistry.php
 
 		-
 			message: "#^Strict comparison using \\=\\=\\= between class\\-string\\<M of OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper \\(method OliverKlee\\\\Oelib\\\\Mapper\\\\MapperRegistry\\:\\:getByClassName\\(\\), argument\\)\\> and '' will always evaluate to false\\.$#"
 			count: 1
-			path: Classes/Mapper/MapperRegistry.php
+			path: ../../Classes/Mapper/MapperRegistry.php
 
 		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Model\\\\BackEndUser\\:\\:getConfiguration\\(\\) should return array\\<string, string\\> but returns array\\.$#"
 			count: 1
-			path: Classes/Model/BackEndUser.php
+			path: ../../Classes/Model/BackEndUser.php
 
 		-
 			message: "#^Property OliverKlee\\\\Oelib\\\\Model\\\\BackEndUser\\:\\:\\$configuration \\(array\\<string, string\\>\\) does not accept array\\.$#"
 			count: 1
-			path: Classes/Model/BackEndUser.php
+			path: ../../Classes/Model/BackEndUser.php
 
 		-
 			message: "#^Parameters should have \"OliverKlee\\\\Oelib\\\\DataStructures\\\\Collection\\<OliverKlee\\\\Oelib\\\\Model\\\\FrontEndUserGroup\\>\" types as the only types passed to this method$#"
 			count: 1
-			path: Classes/Model/FrontEndUser.php
+			path: ../../Classes/Model/FrontEndUser.php
 
 		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 2
-			path: Classes/Templating/Template.php
+			path: ../../Classes/Templating/Template.php
 
 		-
 			message: "#^Cannot cast mixed to string\\.$#"
 			count: 5
-			path: Classes/Templating/Template.php
+			path: ../../Classes/Templating/Template.php
 
 		-
 			message: "#^Function str_contains not found\\.$#"
 			count: 1
-			path: Classes/Templating/Template.php
+			path: ../../Classes/Templating/Template.php
 
 		-
 			message: "#^Function str_starts_with not found\\.$#"
 			count: 1
-			path: Classes/Templating/Template.php
+			path: ../../Classes/Templating/Template.php
 
 		-
 			message: "#^Parameters should have \"string\\|int\\|string\\|string\" types as the only types passed to this method$#"
 			count: 1
-			path: Classes/Templating/Template.php
+			path: ../../Classes/Templating/Template.php
 
 		-
 			message: "#^Parameters should have \"string\\|string\\|string\\|string\" types as the only types passed to this method$#"
 			count: 1
-			path: Classes/Templating/Template.php
+			path: ../../Classes/Templating/Template.php
 
 		-
 			message: "#^Property OliverKlee\\\\Oelib\\\\Templating\\\\Template\\:\\:\\$subparts \\(array\\<string, string\\>\\) does not accept array\\<string, mixed\\>\\.$#"
 			count: 1
-			path: Classes/Templating/Template.php
+			path: ../../Classes/Templating/Template.php
 
 		-
 			message: "#^Access to property \\$user on an unknown class FrontendUserAuthentication\\.$#"
 			count: 2
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Call to an undefined static method TYPO3\\\\CMS\\\\Core\\\\Utility\\\\RootlineUtility\\:\\:purgeCaches\\(\\)\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Call to method createUserSession\\(\\) on an unknown class FrontendUserAuthentication\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Call to method fetchGroupData\\(\\) on an unknown class FrontendUserAuthentication\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Call to method logoff\\(\\) on an unknown class FrontendUserAuthentication\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Call to protected method unpack_uc\\(\\) of class TYPO3\\\\CMS\\\\Core\\\\Authentication\\\\AbstractUserAuthentication\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Cannot access offset 'EXTCONF' on mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Cannot access offset 'FE' on mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Cannot access offset 'MM' on mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Cannot access offset 'MM_opposite_field' on mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Cannot access offset 'Objects' on mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Cannot access offset 'SYS' on mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Cannot access offset 'TYPO3\\\\\\\\CMS\\\\\\\\Frontend\\\\\\\\Authentication\\\\\\\\FrontendUserAuthentication' on mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Cannot access offset 'config' on mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Cannot access offset 'dontSetCookie' on mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Cannot access offset 'foreign_table' on mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Cannot access offset 'oelib' on mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Cannot access offset 'testingFrameworkCle…' on mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Cannot access offset non\\-empty\\-string on mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Testing\\\\TestingFramework\\:\\:getFrontEndController\\(\\) should return TYPO3\\\\CMS\\\\Frontend\\\\Controller\\\\TypoScriptFrontendController but returns mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Testing\\\\TestingFramework\\:\\:getTcaForTable\\(\\) should return array\\<array\\<string, mixed\\>\\> but returns mixed\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^PHPDoc tag @var with type TYPO3\\\\CMS\\\\Frontend\\\\ContentObject\\\\ContentObjectRenderer is not subtype of type ContentObjectRenderer\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Parameter \\#1 \\$table of method OliverKlee\\\\Oelib\\\\Testing\\\\TestingFramework\\:\\:createRelation\\(\\) expects non\\-empty\\-string, mixed given\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Parameter \\#1 \\$tableName of method OliverKlee\\\\Oelib\\\\Testing\\\\TestingFramework\\:\\:createRelationAndUpdateCounter\\(\\) expects non\\-empty\\-string, mixed given\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Parameter \\#1 \\$user of class TYPO3\\\\CMS\\\\Core\\\\Context\\\\UserAspect constructor expects TYPO3\\\\CMS\\\\Core\\\\Authentication\\\\AbstractUserAuthentication\\|null, FrontendUserAuthentication given\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Parameter \\#4 \\$columnName of method OliverKlee\\\\Oelib\\\\Testing\\\\TestingFramework\\:\\:createRelationAndUpdateCounter\\(\\) expects non\\-empty\\-string, mixed given\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Property TYPO3\\\\CMS\\\\Frontend\\\\Controller\\\\TypoScriptFrontendController\\:\\:\\$fe_user \\(FrontendUserAuthentication\\) does not accept TYPO3\\\\CMS\\\\Frontend\\\\Authentication\\\\FrontendUserAuthentication\\.$#"
 			count: 1
-			path: Classes/Testing/TestingFramework.php
+			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
 			count: 1
-			path: Classes/Validation/AbstractConfigurationDependentValidator.php
+			path: ../../Classes/Validation/AbstractConfigurationDependentValidator.php
 
 		-
 			message: "#^Parameter \\#1 \\$data of class OliverKlee\\\\Oelib\\\\Configuration\\\\ExtbaseConfiguration constructor expects array\\<string, mixed\\>, array given\\.$#"
 			count: 1
-			path: Classes/ViewHelpers/AbstractConfigurationCheckViewHelper.php
+			path: ../../Classes/ViewHelpers/AbstractConfigurationCheckViewHelper.php
 
 		-
 			message: "#^PHPDoc tag @var with type OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingModel is not subtype of type OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingChildModel\\.$#"
 			count: 1
-			path: Tests/Functional/Mapper/AbstractDataMapperTest.php
+			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
 
 		-
 			message: "#^PHPDoc tag @var with type OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingModel is not subtype of type OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingChildModel\\|null\\.$#"
 			count: 2
-			path: Tests/Functional/Mapper/AbstractDataMapperTest.php
+			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
 
 		-
 			message: "#^Parameter \\#1 \\$data of method OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\:\\:setData\\(\\) expects array\\<non\\-empty\\-string, bool\\|float\\|int\\|object\\|string\\|null\\>, array\\<string, int\\|string\\> given\\.$#"
 			count: 7
-			path: Tests/Functional/Mapper/AbstractDataMapperTest.php
+			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
 
 		-
 			message: "#^Call to method typoLink_URL\\(\\) on an unknown class ContentObjectRenderer\\.$#"
 			count: 3
-			path: Tests/Functional/Testing/TestingFrameworkTest.php
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
 			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsArray\\(\\) with array\\<string, mixed\\> will always evaluate to true\\.$#"
 			count: 1
-			path: Tests/Functional/Testing/TestingFrameworkTest.php
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
 			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotSame\\(\\) with 0 and int\\<1, max\\> will always evaluate to true\\.$#"
 			count: 16
-			path: Tests/Functional/Testing/TestingFrameworkTest.php
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
 			message: "#^Casting to int something that's already int\\.$#"
 			count: 1
-			path: Tests/Functional/Testing/TestingFrameworkTest.php
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Tests\\\\Functional\\\\Testing\\\\TestingFrameworkTest\\:\\:getFrontEndController\\(\\) should return TYPO3\\\\CMS\\\\Frontend\\\\Controller\\\\TypoScriptFrontendController but returns mixed\\.$#"
 			count: 1
-			path: Tests/Functional/Testing/TestingFrameworkTest.php
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
 			message: "#^Cannot access offset 'MAIL' on mixed\\.$#"
 			count: 5
-			path: Tests/Unit/Configuration/AbstractConfigurationCheckTest.php
+			path: ../../Tests/Unit/Configuration/AbstractConfigurationCheckTest.php
 
 		-
 			message: "#^Cannot access offset 'defaultMailFromAddr…' on mixed\\.$#"
 			count: 5
-			path: Tests/Unit/Configuration/AbstractConfigurationCheckTest.php
+			path: ../../Tests/Unit/Configuration/AbstractConfigurationCheckTest.php
 
 		-
 			message: "#^Cannot access offset 'EXTENSIONS' on mixed\\.$#"
 			count: 3
-			path: Tests/Unit/Configuration/ConfigurationProxyTest.php
+			path: ../../Tests/Unit/Configuration/ConfigurationProxyTest.php
 
 		-
 			message: "#^Cannot access offset 'oelib' on mixed\\.$#"
 			count: 3
-			path: Tests/Unit/Configuration/ConfigurationProxyTest.php
+			path: ../../Tests/Unit/Configuration/ConfigurationProxyTest.php
 
 		-
 			message: "#^Parameter \\#2 \\$value of method OliverKlee\\\\Oelib\\\\DataStructures\\\\AbstractObjectWithPublicAccessors\\:\\:setAsArray\\(\\) expects array\\<int\\|string\\>, array\\<int, mixed\\> given\\.$#"
 			count: 1
-			path: Tests/Unit/DataStructures/AbstractObjectWithPublicAccessorsTest.php
+			path: ../../Tests/Unit/DataStructures/AbstractObjectWithPublicAccessorsTest.php
 
 		-
 			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\) with true will always evaluate to true\\.$#"
 			count: 3
-			path: Tests/Unit/Domain/Model/GermanZipCodeTest.php
+			path: ../../Tests/Unit/Domain/Model/GermanZipCodeTest.php
 
 		-
 			message: "#^Class OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Domain\\\\Repository\\\\Traits\\\\Fixtures\\\\DirectPersistRepository constructor invoked with 1 parameter, 0 required\\.$#"
 			count: 1
-			path: Tests/Unit/Domain/Repository/Traits/DirectPersistTest.php
+			path: ../../Tests/Unit/Domain/Repository/Traits/DirectPersistTest.php
 
 		-
 			message: "#^Cannot access offset 'MAIL' on mixed\\.$#"
 			count: 14
-			path: Tests/Unit/Email/SystemEmailFromBuilderTest.php
+			path: ../../Tests/Unit/Email/SystemEmailFromBuilderTest.php
 
 		-
 			message: "#^Cannot access offset 'defaultMailFromAddr…' on mixed\\.$#"
 			count: 7
-			path: Tests/Unit/Email/SystemEmailFromBuilderTest.php
+			path: ../../Tests/Unit/Email/SystemEmailFromBuilderTest.php
 
 		-
 			message: "#^Cannot access offset 'defaultMailFromName' on mixed\\.$#"
 			count: 7
-			path: Tests/Unit/Email/SystemEmailFromBuilderTest.php
+			path: ../../Tests/Unit/Email/SystemEmailFromBuilderTest.php
 
 		-
 			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\) with 31536000 and 31536000 will always evaluate to true\\.$#"
 			count: 1
-			path: Tests/Unit/Interfaces/TimeTest.php
+			path: ../../Tests/Unit/Interfaces/TimeTest.php
 
 		-
 			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\) with 3600 and 3600 will always evaluate to true\\.$#"
 			count: 1
-			path: Tests/Unit/Interfaces/TimeTest.php
+			path: ../../Tests/Unit/Interfaces/TimeTest.php
 
 		-
 			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\) with 60 and 60 will always evaluate to true\\.$#"
 			count: 1
-			path: Tests/Unit/Interfaces/TimeTest.php
+			path: ../../Tests/Unit/Interfaces/TimeTest.php
 
 		-
 			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\) with 604800 and 604800 will always evaluate to true\\.$#"
 			count: 1
-			path: Tests/Unit/Interfaces/TimeTest.php
+			path: ../../Tests/Unit/Interfaces/TimeTest.php
 
 		-
 			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\) with 86400 and 86400 will always evaluate to true\\.$#"
 			count: 1
-			path: Tests/Unit/Interfaces/TimeTest.php
+			path: ../../Tests/Unit/Interfaces/TimeTest.php
 
 		-
 			message: "#^Class OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Mapper\\\\Fixtures\\\\ModelLessTestingMapper extends generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper but does not specify its types\\: M$#"
 			count: 1
-			path: Tests/Unit/Mapper/Fixtures/ModelLessTestingMapper.php
+			path: ../../Tests/Unit/Mapper/Fixtures/ModelLessTestingMapper.php
 
 		-
 			message: "#^Property OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Mapper\\\\Fixtures\\\\TestingChildMapper\\:\\:\\$relations with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper does not specify its types\\: M$#"
 			count: 1
-			path: Tests/Unit/Mapper/Fixtures/TestingChildMapper.php
+			path: ../../Tests/Unit/Mapper/Fixtures/TestingChildMapper.php
 
 		-
 			message: "#^Property OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Mapper\\\\Fixtures\\\\TestingMapper\\:\\:\\$relations with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper does not specify its types\\: M$#"
 			count: 1
-			path: Tests/Unit/Mapper/Fixtures/TestingMapper.php
+			path: ../../Tests/Unit/Mapper/Fixtures/TestingMapper.php
 
 		-
 			message: "#^Expression \"clone \\$this\\-\\>subject\" on a separate line does not do anything\\.$#"
 			count: 2
-			path: Tests/Unit/Model/AbstractModelTest.php
+			path: ../../Tests/Unit/Model/AbstractModelTest.php
 
 		-
 			message: "#^Cannot access offset 'fe_users' on mixed\\.$#"
 			count: 2
-			path: Tests/Unit/Model/FrontEndUserTest.php
+			path: ../../Tests/Unit/Model/FrontEndUserTest.php
 
 		-
 			message: "#^Property OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\FrontEndUserTest\\:\\:\\$tcaBackup \\(array\\<string, mixed\\>\\) does not accept mixed\\.$#"
 			count: 1
-			path: Tests/Unit/Model/FrontEndUserTest.php
+			path: ../../Tests/Unit/Model/FrontEndUserTest.php
 
 		-
 			message: "#^Cannot access an offset on mixed\\.$#"
 			count: 1
-			path: ext_localconf.php
+			path: ../../ext_localconf.php
 
 		-
 			message: "#^Cannot access offset 'EXTCONF' on mixed\\.$#"
 			count: 1
-			path: ext_localconf.php
+			path: ../../ext_localconf.php
 
 		-
 			message: "#^Cannot access offset 'oelib' on mixed\\.$#"
 			count: 1
-			path: ext_localconf.php
+			path: ../../ext_localconf.php
 
 		-
 			message: "#^Cannot access offset 'testingFrameworkCle…' on mixed\\.$#"
 			count: 1
-			path: ext_localconf.php
+			path: ../../ext_localconf.php
