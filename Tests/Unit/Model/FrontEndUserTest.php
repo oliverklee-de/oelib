@@ -19,24 +19,18 @@ final class FrontEndUserTest extends UnitTestCase
 {
     private FrontEndUser $subject;
 
-    /**
-     * @var array<string, mixed>
-     */
-    private $tcaBackup = [];
-
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->subject = new FrontEndUser();
-
-        $this->tcaBackup = $GLOBALS['TCA']['fe_users'] ?? [];
     }
 
     protected function tearDown(): void
     {
+        unset($GLOBALS['TCA']);
+
         parent::tearDown();
-        $GLOBALS['TCA']['fe_users'] = $this->tcaBackup;
     }
 
     /**
