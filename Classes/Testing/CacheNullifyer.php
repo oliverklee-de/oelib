@@ -26,9 +26,27 @@ final class CacheNullifyer
      */
     private const CACHE_CONFIGURATIONS = [
         11 => [
+            'assets' => [
+                'backend' => SimpleFileBackend::class,
+                'frontend' => VariableFrontend::class,
+                'groups' => ['system'],
+                'options' => [],
+            ],
             'core' => [
                 'backend' => SimpleFileBackend::class,
                 'frontend' => PhpFrontend::class,
+                'groups' => ['system'],
+                'options' => [],
+            ],
+            'extbase' => [
+                'backend' => SimpleFileBackend::class,
+                'frontend' => VariableFrontend::class,
+                'groups' => ['system'],
+                'options' => [],
+            ],
+            'fluid_template' => [
+                'backend' => SimpleFileBackend::class,
+                'frontend' => FluidTemplateCache::class,
                 'groups' => ['system'],
                 'options' => [],
             ],
@@ -36,6 +54,18 @@ final class CacheNullifyer
                 'backend' => NullBackend::class,
                 'frontend' => VariableFrontend::class,
                 'groups' => ['pages'],
+                'options' => [],
+            ],
+            'imagesizes' => [
+                'backend' => NullBackend::class,
+                'frontend' => VariableFrontend::class,
+                'groups' => ['lowlevel'],
+                'options' => [],
+            ],
+            'l10n' => [
+                'backend' => SimpleFileBackend::class,
+                'frontend' => VariableFrontend::class,
+                'groups' => ['system'],
                 'options' => [],
             ],
             'pages' => [
@@ -50,10 +80,10 @@ final class CacheNullifyer
                 'groups' => ['pages'],
                 'options' => [],
             ],
-            'runtime' => [
-                'backend' => TransientMemoryBackend::class,
+            'ratelimiter' => [
+                'backend' => SimpleFileBackend::class,
                 'frontend' => VariableFrontend::class,
-                'groups' => [],
+                'groups' => ['system'],
                 'options' => [],
             ],
             'rootline' => [
@@ -62,27 +92,29 @@ final class CacheNullifyer
                 'groups' => ['pages'],
                 'options' => [],
             ],
-            'imagesizes' => [
-                'backend' => NullBackend::class,
+            'runtime' => [
+                'backend' => TransientMemoryBackend::class,
                 'frontend' => VariableFrontend::class,
-                'groups' => ['lowlevel'],
+                'groups' => [],
                 'options' => [],
             ],
+        ],
+        12 => [
             'assets' => [
                 'backend' => SimpleFileBackend::class,
                 'frontend' => VariableFrontend::class,
                 'groups' => ['system'],
                 'options' => [],
             ],
-            'l10n' => [
+            'core' => [
                 'backend' => SimpleFileBackend::class,
-                'frontend' => VariableFrontend::class,
+                'frontend' => PhpFrontend::class,
                 'groups' => ['system'],
                 'options' => [],
             ],
-            'fluid_template' => [
+            'database_schema' => [
                 'backend' => SimpleFileBackend::class,
-                'frontend' => FluidTemplateCache::class,
+                'frontend' => VariableFrontend::class,
                 'groups' => ['system'],
                 'options' => [],
             ],
@@ -92,17 +124,9 @@ final class CacheNullifyer
                 'groups' => ['system'],
                 'options' => [],
             ],
-            'ratelimiter' => [
+            'fluid_template' => [
                 'backend' => SimpleFileBackend::class,
-                'frontend' => VariableFrontend::class,
-                'groups' => ['system'],
-                'options' => [],
-            ],
-        ],
-        12 => [
-            'core' => [
-                'backend' => SimpleFileBackend::class,
-                'frontend' => PhpFrontend::class,
+                'frontend' => FluidTemplateCache::class,
                 'groups' => ['system'],
                 'options' => [],
             ],
@@ -112,7 +136,31 @@ final class CacheNullifyer
                 'groups' => ['pages'],
                 'options' => [],
             ],
+            'imagesizes' => [
+                'backend' => NullBackend::class,
+                'frontend' => VariableFrontend::class,
+                'groups' => ['lowlevel'],
+                'options' => [],
+            ],
+            'l10n' => [
+                'backend' => SimpleFileBackend::class,
+                'frontend' => VariableFrontend::class,
+                'groups' => ['system'],
+                'options' => [],
+            ],
             'pages' => [
+                'backend' => NullBackend::class,
+                'frontend' => VariableFrontend::class,
+                'groups' => ['pages'],
+                'options' => [],
+            ],
+            'ratelimiter' => [
+                'backend' => SimpleFileBackend::class,
+                'frontend' => VariableFrontend::class,
+                'groups' => ['system'],
+                'options' => [],
+            ],
+            'rootline' => [
                 'backend' => NullBackend::class,
                 'frontend' => VariableFrontend::class,
                 'groups' => ['pages'],
@@ -124,57 +172,9 @@ final class CacheNullifyer
                 'groups' => [],
                 'options' => [],
             ],
-            'rootline' => [
-                'backend' => NullBackend::class,
-                'frontend' => VariableFrontend::class,
-                'groups' => ['pages'],
-                'options' => [],
-            ],
-            'imagesizes' => [
-                'backend' => NullBackend::class,
-                'frontend' => VariableFrontend::class,
-                'groups' => ['lowlevel'],
-                'options' => [],
-            ],
-            'assets' => [
-                'backend' => SimpleFileBackend::class,
-                'frontend' => VariableFrontend::class,
-                'groups' => ['system'],
-                'options' => [],
-            ],
-            'l10n' => [
-                'backend' => SimpleFileBackend::class,
-                'frontend' => VariableFrontend::class,
-                'groups' => ['system'],
-                'options' => [],
-            ],
-            'fluid_template' => [
-                'backend' => SimpleFileBackend::class,
-                'frontend' => FluidTemplateCache::class,
-                'groups' => ['system'],
-                'options' => [],
-            ],
-            'extbase' => [
-                'backend' => SimpleFileBackend::class,
-                'frontend' => VariableFrontend::class,
-                'groups' => ['system'],
-                'options' => [],
-            ],
-            'ratelimiter' => [
-                'backend' => SimpleFileBackend::class,
-                'frontend' => VariableFrontend::class,
-                'groups' => ['system'],
-                'options' => [],
-            ],
             'typoscript' => [
                 'backend' => SimpleFileBackend::class,
                 'frontend' => NullFrontend::class,
-                'groups' => ['system'],
-                'options' => [],
-            ],
-            'database_schema' => [
-                'backend' => SimpleFileBackend::class,
-                'frontend' => VariableFrontend::class,
                 'groups' => ['system'],
                 'options' => [],
             ],
