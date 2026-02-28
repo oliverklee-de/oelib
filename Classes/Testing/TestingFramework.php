@@ -685,7 +685,6 @@ final class TestingFramework
             throw new \InvalidArgumentException('$pageUid must be > 0.', 1_331_490_786);
         }
 
-        $this->suppressFrontEndCookies();
         $this->discardFakeFrontEnd();
 
         $this->setPageIndependentGlobalsForFakeFrontEnd();
@@ -867,18 +866,6 @@ routes: {  }";
         return $this->hasFakeFrontEnd;
     }
 
-    /**
-     * Makes sure that no FE login cookies will be sent.
-     */
-    private function suppressFrontEndCookies(): void
-    {
-        // avoid cookies from the phpMyAdmin extension
-        $GLOBALS['PHP_UNIT_TEST_RUNNING'] = true;
-
-        $_POST['FE_SESSION_KEY'] = '';
-        $_GET['FE_SESSION_KEY'] = '';
-    }
-
     // FE user activities
 
     /**
@@ -925,8 +912,6 @@ routes: {  }";
             $dataToSet['usergroup'] = $userGroups->getUids();
         }
 
-        $this->suppressFrontEndCookies();
-
         $frontEndUser = $this->getFrontEndController()->fe_user;
         $frontEndUser->createUserSession(['uid' => $userId, 'disableIPlock' => true]);
 
@@ -956,7 +941,6 @@ routes: {  }";
             return;
         }
 
-        $this->suppressFrontEndCookies();
         $frontEndUser = $this->getFrontEndController()->fe_user;
         $frontEndUser->logoff();
 
