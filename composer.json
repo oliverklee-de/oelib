@@ -128,7 +128,7 @@
 		],
 		"check:php:cs-fixer": "php-cs-fixer fix --config ./Build/php-cs-fixer/config.php -v --dry-run --diff",
 		"check:php:lint": "find *.php Classes Configuration Tests -name '*.php' -print0 | xargs -0 -n 1 -P 4 php -l",
-		"check:php:rector": "rector process --dry-run",
+		"check:php:rector": "rector process --config=./Build/rector/config.php --dry-run",
 		"check:php:sniff": "phpcs --standard=./Build/phpcs/config.xml Classes Configuration Tests",
 		"check:php:stan": "phpstan --no-progress --configuration=Build/phpstan/phpstan.neon",
 		"check:static": [
@@ -159,7 +159,7 @@
 			"@fix:php:sniff"
 		],
 		"fix:php:cs-fixer": "php-cs-fixer fix --config ./Build/php-cs-fixer/config.php",
-		"fix:php:rector": "rector process",
+		"fix:php:rector": "rector process --config=./Build/rector/config.php",
 		"fix:php:sniff": "phpcbf --standard=./Build/phpcs/config.xml Classes Configuration Tests",
 		"phpstan:baseline": "phpstan  --generate-baseline=Build/phpstan/phpstan-baseline.neon --allow-empty-baseline --configuration=Build/phpstan/phpstan.neon",
 		"prepare-release": [
@@ -174,8 +174,7 @@
 			"rm .gitignore",
 			"rm Configuration/FunctionalTests.xml",
 			"rm Configuration/UnitTests.xml",
-			"rm crowdin.yml",
-			"rm rector.php"
+			"rm crowdin.yml"
 		]
 	},
 	"scripts-descriptions": {
