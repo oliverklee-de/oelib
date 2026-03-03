@@ -4,7 +4,6 @@
 /.github/ export-ignore
 /.gitignore export-ignore
 /.phive/ export-ignore
-/.php_cs.dist export-ignore
 /Build/ export-ignore
 /CODE_OF_CONDUCT.md export-ignore
 /Configuration/FunctionalTests.xml export-ignore
@@ -12,6 +11,5 @@
 /Resources/Private/Patches/ export-ignore
 /Tests/ export-ignore
 /crowdin.yml export-ignore
-/phpcs.xml.dist export-ignore
 /rector.php export-ignore
 /tools/ export-ignore binary
