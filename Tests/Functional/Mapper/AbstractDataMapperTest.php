@@ -1607,6 +1607,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     /**
      * @test
+     *
+     * @doesNotPerformAssertions
      */
     public function silentlyIgnoresCommaSeparatedOneToManyRelationWithZeroForeignUid(): void
     {
@@ -1650,6 +1652,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     /**
      * @test
+     *
+     * @doesNotPerformAssertions
      */
     public function silentlyIgnoresManyToManyRelationWithZeroForeignUid(): void
     {
@@ -3114,6 +3118,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     /**
      * @test
+     *
+     * @doesNotPerformAssertions
      */
     public function deleteForDeadModelDoesNotThrowException(): void
     {
@@ -3254,6 +3260,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     /**
      * @test
+     *
+     * @doesNotPerformAssertions
      */
     public function deleteForDirtyModelWithOneToManyRelationToDirtyElementDoesNotCrash(): void
     {
