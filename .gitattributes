@@ -11,5 +11,4 @@
 /Resources/Private/Patches/ export-ignore
 /Tests/ export-ignore
 /crowdin.yml export-ignore
-/rector.php export-ignore
 /tools/ export-ignore binary
