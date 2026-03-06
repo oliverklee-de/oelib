@@ -546,11 +546,6 @@ parameters:
 			path: ../../Tests/Unit/Model/AbstractModelTest.php
 
 		-
-			message: "#^Cannot access offset 'EXTCONF' on mixed\\.$#"
-			count: 1
-			path: ../../Tests/Unit/Testing/TestingFrameworkTest.php
-
-		-
 			message: "#^Cannot access an offset on mixed\\.$#"
 			count: 1
 			path: ../../ext_localconf.php

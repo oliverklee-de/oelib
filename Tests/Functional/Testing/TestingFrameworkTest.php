@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Tests\Functional\Testing;
 
 use OliverKlee\Oelib\Testing\TestingFramework;
+use OliverKlee\Oelib\Tests\Functional\Testing\Fixtures\TestingCleanup;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Environment;
@@ -646,6 +647,24 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @test
      */
+    public function cleanUpWithoutDatabaseExecutesCleanUpHook(): void
+    {
+        $this->subject->purgeHooks();
+
+        $cleanUpWithoutDatabaseHookMock = $this->createMock(TestingCleanup::class);
+        $cleanUpWithoutDatabaseHookMock->expects(self::atLeastOnce())->method('cleanUp');
+        $hookClassName = \get_class($cleanUpWithoutDatabaseHookMock);
+
+        // @phpstan-ignore-next-line We know that the necessary array keys exist.
+        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['oelib']['testingFrameworkCleanUp'][$hookClassName] = $hookClassName;
+        GeneralUtility::addInstance($hookClassName, $cleanUpWithoutDatabaseHookMock);
+
+        $this->subject->cleanUpWithoutDatabase();
+    }
+
+    /**
+     * @test
+     */
     public function cleanUpWithoutDatabaseRestoresCurrentScriptAfterCreateFakeFrontEnd(): void
     {
         $previous = Environment::getCurrentScript();
@@ -891,6 +910,50 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @test
      */
+    public function templateMustNotHaveZeroPid(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The column "pid" must not be set in $recordData.');
+
+        $this->subject->createTemplate(42, ['pid' => 0]);
+    }
+
+    /**
+     * @test
+     */
+    public function templateMustNotHaveNonZeroPid(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The column "pid" must not be set in $recordData.');
+
+        $this->subject->createTemplate(42, ['pid' => 99999]);
+    }
+
+    /**
+     * @test
+     */
+    public function templateMustHaveNoZeroUid(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The column "uid" must not be set in $recordData.');
+
+        $this->subject->createTemplate(42, ['uid' => 0]);
+    }
+
+    /**
+     * @test
+     */
+    public function templateMustNotHaveNonZeroUid(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The column "uid" must not be set in $recordData.');
+
+        $this->subject->createTemplate(42, ['uid' => 99999]);
+    }
+
+    /**
+     * @test
+     */
     public function templateCanBeCreatedOnNonRootPage(): void
     {
         $pageId = $this->subject->createFrontEndPage();
@@ -1003,6 +1066,28 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests regarding createFrontEndUserGroup()
+
+    /**
+     * @test
+     */
+    public function frontEndUserGroupMustHaveNoZeroUid(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The column "uid" must not be set in $recordData.');
+
+        $this->subject->createFrontEndUserGroup(['uid' => 0]);
+    }
+
+    /**
+     * @test
+     */
+    public function frontEndUserGroupMustHaveNoNonZeroUid(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The column "uid" must not be set in $recordData.');
+
+        $this->subject->createFrontEndUserGroup(['uid' => 99999]);
+    }
 
     /**
      * @test
@@ -1217,6 +1302,30 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests concerning fakeFrontend
+
+    /**
+     * @test
+     */
+    public function createFakeFrontThrowsExceptionForNegativePageUid(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$pageUid must be > 0.');
+
+        /** @phpstan-ignore-next-line We are explicitly testing a contract violation here */
+        $this->subject->createFakeFrontEnd(-1);
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontThrowsExceptionForZeroPageUid(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$pageUid must be > 0.');
+
+        /** @phpstan-ignore-next-line We are explicitly testing a contract violation here */
+        $this->subject->createFakeFrontEnd(0);
+    }
 
     /**
      * @test
@@ -1511,6 +1620,17 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests regarding user login and logout
+
+    /**
+     * @test
+     */
+    public function logoutFrontEndUserWithoutFrontEndThrowsException(): void
+    {
+        $this->expectException(\BadMethodCallException::class);
+        $this->expectExceptionMessage('Please create a front end before calling logoutFrontEndUser.');
+
+        $this->subject->logoutFrontEndUser();
+    }
 
     /**
      * @test
