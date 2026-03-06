@@ -12,13 +12,13 @@ use TYPO3\CMS\Core\Cache\Frontend\NullFrontend;
 use TYPO3\CMS\Core\Cache\Frontend\PhpFrontend;
 use TYPO3\CMS\Core\Cache\Frontend\VariableFrontend;
 use TYPO3\CMS\Core\Information\Typo3Version;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Fluid\Core\Cache\FluidTemplateCache;
 
 /**
  * This class sets all core caches for tests.
  */
-final class CacheNullifyer
+final class CacheNullifyer implements SingletonInterface
 {
     /**
      * @see https://github.com/TYPO3/typo3/blob/main/typo3/sysext/core/Configuration/DefaultConfiguration.php
@@ -181,6 +181,13 @@ final class CacheNullifyer
         ],
     ];
 
+    private CacheManager $cacheManager;
+
+    public function __construct(CacheManager $cacheManager)
+    {
+        $this->cacheManager = $cacheManager;
+    }
+
     /**
      * Sets all Core caches to make testing easier, either to a null backend (for page, page section, rootline)
      * or a simple file backend.
@@ -192,11 +199,6 @@ final class CacheNullifyer
             throw new \UnexpectedValueException('Unsupported TYPO3 version: ' . $typo3Version, 1_702_811_886);
         }
 
-        $this->getCacheManager()->setCacheConfigurations(self::CACHE_CONFIGURATIONS[$typo3Version]);
-    }
-
-    private function getCacheManager(): CacheManager
-    {
-        return GeneralUtility::makeInstance(CacheManager::class);
+        $this->cacheManager->setCacheConfigurations(self::CACHE_CONFIGURATIONS[$typo3Version]);
     }
 }

@@ -9,6 +9,7 @@ use TYPO3\CMS\Core\Cache\Backend\BackendInterface;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Cache\Frontend\FrontendInterface;
 use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -27,7 +28,15 @@ final class CacheNullifyerTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $this->subject = new CacheNullifyer();
+        $this->subject = $this->get(CacheNullifyer::class);
+    }
+
+    /**
+     * @test
+     */
+    public function isSingleton(): void
+    {
+        self::assertInstanceOf(SingletonInterface::class, $this->subject);
     }
 
     /**

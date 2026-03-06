@@ -132,7 +132,7 @@ final class TestingFramework
     {
         $this->tablePrefix = $tablePrefix;
 
-        (new CacheNullifyer())->setAllCoreCaches();
+        GeneralUtility::makeInstance(CacheNullifyer::class)->setAllCoreCaches();
     }
 
     private function initializeDatabase(): void
