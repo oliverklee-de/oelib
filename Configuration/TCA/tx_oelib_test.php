@@ -21,7 +21,7 @@ return [
         'hidden' => [
             'config' => [
                 'type' => 'check',
-                'default' => '0',
+                'default' => false,
             ],
         ],
         'starttime' => [
