@@ -149,9 +149,6 @@ return [
         ],
     ],
     'types' => [
-        '0' => ['showitem' => ''],
-    ],
-    'palettes' => [
-        '1' => ['showitem' => ''],
+        ['showitem' => ''],
     ],
 ];
