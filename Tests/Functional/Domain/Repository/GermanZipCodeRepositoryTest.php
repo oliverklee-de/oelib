@@ -81,7 +81,6 @@ final class GermanZipCodeRepositoryTest extends FunctionalTestCase
      */
     public function mapsAllModelFields(): void
     {
-        /** @var GermanZipCode $result */
         $result = $this->subject->findByUid(9000);
 
         self::assertInstanceOf(GermanZipCode::class, $result);
@@ -97,7 +96,6 @@ final class GermanZipCodeRepositoryTest extends FunctionalTestCase
     public function findOneByZipCodeWithMatchReturnsMatch(): void
     {
         $zipCode = '01067';
-        /** @var GermanZipCode $result */
         $result = $this->subject->findOneByZipCode($zipCode);
 
         self::assertInstanceOf(GermanZipCode::class, $result);
