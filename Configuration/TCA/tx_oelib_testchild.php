@@ -40,6 +40,6 @@ return [
         ],
     ],
     'types' => [
-        '0' => ['showitem' => ''],
+        ['showitem' => ''],
     ],
 ];

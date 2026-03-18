@@ -52,7 +52,7 @@ $tca = [
         ],
     ],
     'types' => [
-        '0' => ['showitem' => 'zip_code, city_name, longitude, latitude'],
+        ['showitem' => 'zip_code, city_name, longitude, latitude'],
     ],
 ];
 
