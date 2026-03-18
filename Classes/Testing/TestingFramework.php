@@ -1126,8 +1126,7 @@ routes: {  }";
 
         $connection = $this->getConnectionForTable($tableName);
         $query = 'UPDATE ' . $tableName . ' SET ' . $fieldName . '=' . $fieldName . '+1 WHERE uid=' . $uid;
-        $queryResult = $connection->executeQuery($query);
-        $numberOfAffectedRows = $queryResult->rowCount();
+        $numberOfAffectedRows = $connection->executeStatement($query);
         if ($numberOfAffectedRows === 0) {
             throw new \BadMethodCallException(
                 'The table ' . $tableName . ' does not contain a record with UID ' . $uid . '.',

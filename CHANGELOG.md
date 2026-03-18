@@ -19,6 +19,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+- Use `executeStatement()` instead of `executeQuery()` where appropriate (#2237)
+
 ## 6.2.0: View helper improvements and deprecations
 
 ### Added
