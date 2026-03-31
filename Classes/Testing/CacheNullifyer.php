@@ -22,7 +22,10 @@ final class CacheNullifyer implements SingletonInterface
 {
     /**
      * @see https://github.com/TYPO3/typo3/blob/main/typo3/sysext/core/Configuration/DefaultConfiguration.php
-     * @var array<string, array<string, class-string<VariableFrontend>|class-string<TransientMemoryBackend>|mixed[]>|array<string, class-string<VariableFrontend>|class-string<NullBackend>|mixed[]|string[]>|array<string, class-string<VariableFrontend>|class-string<PhpFrontend>|class-string<SimpleFileBackend>|mixed[]|string[]>>[]
+     * @var array<string, array<string,
+     *     class-string<VariableFrontend>|class-string<TransientMemoryBackend>|mixed[]>|array<string,
+     *     class-string<VariableFrontend>|class-string<NullBackend>|mixed[]|string[]>|array<string,
+     *     class-string<VariableFrontend>|class-string<PhpFrontend>|class-string<SimpleFileBackend>|mixed[]|string[]>>[]
      */
     private const CACHE_CONFIGURATIONS = [
         11 => [
