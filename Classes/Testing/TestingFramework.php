@@ -55,20 +55,6 @@ final class TestingFramework
     private const FAKE_FRONTEND_DOMAIN_NAME = 'typo3-test.dev';
     private const SITE_IDENTIFIER = 'testing-framework';
 
-    /**
-     * cache for the results of hasTableColumn with the column names as keys and
-     * the SHOW COLUMNS field information (in an array) as values
-     *
-     * @var array<string, array<string, array<string, string>>>
-     */
-    private static array $tableColumnCache = [];
-
-    /**
-     * @var array<non-empty-string, array<string, string|int|null>> cache for the results of existsTable with the
-     *      table names as keys and the table SHOW STATUS information (in an array) as values
-     */
-    private static array $tableNameCache = [];
-
     private bool $databaseInitialized = false;
 
     /**
@@ -476,11 +462,6 @@ final class TestingFramework
     public function createRelation(string $table, int $uidLocal, int $uidForeign): void
     {
         $this->initializeDatabase();
-        if (!$this->isNoneSystemTableNameAllowed($table)) {
-            $allowedTables = \implode(',', $this->ownAllowedTables);
-            $errorMessage = \sprintf('The table "%1$s" is not allowed. Allowed tables: %2$s', $table, $allowedTables);
-            throw new \InvalidArgumentException($errorMessage, 1_331_490_358);
-        }
 
         // @phpstan-ignore-next-line We're testing for a contract violation here.
         if ($uidLocal <= 0) {
@@ -602,49 +583,6 @@ final class TestingFramework
         if ((new Typo3Version())->getMajorVersion() <= 11) {
             RootlineUtility::purgeCaches();
         }
-    }
-
-    /**
-     * Checks whether a table has a column with a particular name.
-     *
-     * @param non-empty-string $table the name of the table to check
-     * @param string $column the column name to check
-     */
-    private function tableHasColumn(string $table, string $column): bool
-    {
-        if ($column === '') {
-            return false;
-        }
-
-        $this->retrieveColumnsForTable($table);
-
-        return isset(self::$tableColumnCache[$table][$column]);
-    }
-
-    /**
-     * Retrieves and caches the column data for the table $table.
-     *
-     * If the column data for that table already is cached, this function does
-     * nothing.
-     *
-     * @param non-empty-string $table the name of the table for which the column names should be retrieved
-     */
-    private function retrieveColumnsForTable(string $table): void
-    {
-        if (isset(self::$tableColumnCache[$table])) {
-            return;
-        }
-
-        $connection = $this->getConnectionForTable($table);
-        $query = 'SHOW FULL COLUMNS FROM `' . $table . '`';
-        $columns = [];
-        /** @var array<string, string> $fieldRow */
-        foreach ($connection->executeQuery($query)->fetchAllAssociative() as $fieldRow) {
-            $field = $fieldRow['Field'];
-            $columns[$field] = $fieldRow;
-        }
-
-        self::$tableColumnCache[$table] = $columns;
     }
 
     // Functions concerning a fake front end
@@ -977,33 +915,12 @@ routes: {  }";
      */
     private function getAllTableNames(): array
     {
-        $this->retrieveTableNames();
+        \assert(isset($GLOBALS['TCA']) && is_array($GLOBALS['TCA']));
 
-        return \array_keys(self::$tableNameCache);
-    }
+        /** @var list<non-empty-string> $tableNames */
+        $tableNames = \array_keys($GLOBALS['TCA']);
 
-    /**
-     * Retrieves the table names of the current DB and stores them in self::$tableNameCache.
-     *
-     * This function does nothing if the table names already have been retrieved.
-     */
-    private function retrieveTableNames(): void
-    {
-        if (self::$tableNameCache !== []) {
-            return;
-        }
-
-        $connection = $this->getConnectionPool()->getConnectionByName('Default');
-        $query = 'SHOW TABLE STATUS FROM `' . $connection->getDatabase() . '`';
-        $tableNames = [];
-        /** @var array<string, string|int|null> $tableInformation */
-        foreach ($connection->executeQuery($query)->fetchAllAssociative() as $tableInformation) {
-            /** @var non-empty-string $tableName */
-            $tableName = $tableInformation['Name'];
-            $tableNames[$tableName] = $tableInformation;
-        }
-
-        self::$tableNameCache = $tableNames;
+        return $tableNames;
     }
 
     /**
@@ -1117,12 +1034,6 @@ routes: {  }";
     private function increaseRelationCounter(string $tableName, int $uid, string $fieldName): void
     {
         $this->assertTableNameIsAllowed($tableName);
-        if (!$this->tableHasColumn($tableName, $fieldName)) {
-            throw new \InvalidArgumentException(
-                'The table ' . $tableName . ' has no column ' . $fieldName . '.',
-                1_331_490_986,
-            );
-        }
 
         $connection = $this->getConnectionForTable($tableName);
         $query = 'UPDATE ' . $tableName . ' SET ' . $fieldName . '=' . $fieldName . '+1 WHERE uid=' . $uid;

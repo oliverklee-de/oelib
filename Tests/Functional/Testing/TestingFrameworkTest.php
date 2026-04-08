@@ -388,31 +388,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function createRelationWithInvalidTable(): void
-    {
-        $table = 'tx_oelib_test_DOESNOTEXIST_mm';
-        $uidLocal = 99999;
-        $uidForeign = 199999;
-
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('The table "' . $table . '" is not allowed.');
-        $this->subject->createRelation($table, $uidLocal, $uidForeign);
-    }
-
-    /**
-     * @test
-     */
-    public function createRelationWithEmptyTableName(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('The table "" is not allowed.');
-        // @phpstan-ignore-next-line We are explicitly testing for a contract violation here.
-        $this->subject->createRelation('', 99999, 199999);
-    }
-
-    /**
-     * @test
-     */
     public function createRelationWithZeroFirstUid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
