@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Avoid DB queries for checking the DB schema in the testing framework (#2246)
 - Require the latest TYPO3 12LTS security release (#2076, #2161)
 
 ### Deprecated
