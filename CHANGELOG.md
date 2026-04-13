@@ -7,16 +7,24 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+## 6.2.1 Performance improvements, new record icon, deprecation fixes
+
+### Added
+
 - Add a separate TCEForms record icon for ZIP codes/postal codes (#2164)
 
 ### Changed
 
 - Avoid DB queries for checking the DB schema in the testing framework (#2246)
 - Require the latest TYPO3 12LTS security release (#2076, #2161)
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
