@@ -87,11 +87,11 @@
 			"block-insecure": false,
 			"block-abandoned": false
 		},
+		"bin-dir": ".Build/bin",
 		"lock": false,
 		"preferred-install": {
 			"*": "dist"
 		},
-		"process-timeout": 1000,
 		"sort-packages": true,
 		"vendor-dir": ".Build/vendor"
 	},
@@ -116,7 +116,7 @@
 		],
 		"check:coverage:functional": [
 			"@coverage:create-directories",
-			"find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo \"Running functional test suite {}\"; .Build/vendor/bin/phpunit -c Build/phpunit/FunctionalTests.xml --whitelist Classes --coverage-php=\".Build/coverage/{}.cov\" {}';"
+			"find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo \"Running functional test suite {}\"; .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml --whitelist Classes --coverage-php=\".Build/coverage/{}.cov\" {}';"
 		],
 		"check:coverage:merge": [
 			"@coverage:create-directories",
@@ -147,7 +147,7 @@
 			"@check:tests:unit",
 			"@check:tests:functional"
 		],
-		"check:tests:functional": "find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo \"Running functional test suite {}\"; .Build/vendor/bin/phpunit -c Build/phpunit/FunctionalTests.xml {}';",
+		"check:tests:functional": "find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo \"Running functional test suite {}\"; .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml {}';",
 		"check:tests:unit": "phpunit -c Build/phpunit/UnitTests.xml Tests/Unit",
 		"check:xliff:lint": "php Build/bin/console lint:xliff Resources/Private/Language",
 		"coverage:create-directories": "mkdir -p build/logs .Build/coverage",
