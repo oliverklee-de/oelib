@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Deprecated
 
+- Deprecate `TestingFramework::logoutFrontEndUser()` (#2261)
 - Deprecate the testing framework cleanup hook system (#2260)
 - Deprecate `Deprecate `GeoCalculator` and the `Geo` interface` (#2259)
 - Deprecate `TestingFramework::createTemplate()` (#2257)

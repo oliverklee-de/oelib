@@ -868,6 +868,8 @@ routes: {  }";
      * If no front-end user is logged in, this function does nothing.
      *
      * @throws \BadMethodCallException if no front end has been created
+     *
+     * @deprecated #2219 will be removed in oelib 7.0
      */
     public function logoutFrontEndUser(): void
     {
