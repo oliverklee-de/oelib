@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Deprecated
 
+- Deprecate the table name prefix in the testing framework (#2266)
 - Deprecate the `Time` interface (#2265)
 - Deprecate the `CacheNullifyer` (#2262)
 - Deprecate `TestingFramework::logoutFrontEndUser()` (#2261)
