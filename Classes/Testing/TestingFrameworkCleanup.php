@@ -13,6 +13,8 @@ use OliverKlee\Oelib\Mapper\MapperRegistry;
  * This class takes care of cleaning up oelib after the testing framework.
  *
  * @internal
+ *
+ * @deprecated #2216 will be removed in oelib 7.0
  */
 class TestingFrameworkCleanup
 {
