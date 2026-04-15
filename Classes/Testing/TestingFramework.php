@@ -576,6 +576,7 @@ final class TestingFramework
         WritableEnvironment::restoreCurrentScript();
         GeneralUtility::flushInternalRuntimeCaches();
 
+        // @deprecated #2216 will be removed in oelib 7.0
         foreach ($this->getHooks() as $hook) {
             if (method_exists($hook, 'cleanUp')) {
                 $hook->cleanUp($this);
@@ -1052,6 +1053,8 @@ routes: {  }";
      * Gets all hooks for this class.
      *
      * @return list<object> the hook objects, will be empty if no hooks have been set
+     *
+     * @deprecated #2216 will be removed in oelib 7.0
      */
     private function getHooks(): array
     {
