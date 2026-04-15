@@ -303,6 +303,8 @@ final class TestingFramework
      * @return positive-int the UID of the new template
      *
      * @throws \InvalidArgumentException
+     *
+     * @deprecated #2197 will be removed in version 7.0
      */
     public function createTemplate(int $pageId, array $recordData = []): int
     {

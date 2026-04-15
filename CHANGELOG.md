@@ -11,6 +11,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Deprecated
 
+- Deprecate `TestingFramework::createTemplate()` (#2257)
+
 ### Removed
 
 ### Fixed
