@@ -49,6 +49,8 @@ class GermanZipCode extends AbstractEntity implements Geo
      *
      * @return string this object's address formatted for a geocoding lookup,
      *                will be empty if this object has no address
+     *
+     * @deprecated #2205 will be removed in oelib 7.0
      */
     public function getGeoAddress(): string
     {
@@ -77,6 +79,8 @@ class GermanZipCode extends AbstractEntity implements Geo
 
     /**
      * @return true
+     *
+     * @deprecated #2205 will be removed in oelib 7.0
      */
     public function hasGeoAddress(): bool
     {
@@ -85,6 +89,8 @@ class GermanZipCode extends AbstractEntity implements Geo
 
     /**
      * @return array{latitude: float, longitude: float}
+     *
+     * @deprecated #2205 will be removed in oelib 7.0
      */
     public function getGeoCoordinates(): array
     {
@@ -100,12 +106,17 @@ class GermanZipCode extends AbstractEntity implements Geo
      * @return never
      *
      * @throws \BadMethodCallException
+     *
+     * @deprecated #2205 will be removed in oelib 7.0
      */
     public function setGeoCoordinates(array $coordinates): void
     {
         throw new \BadMethodCallException('This method must not be called.', 1_542_211_338);
     }
 
+    /**
+     * @deprecated #2205 will be removed in oelib 7.0
+     */
     public function hasGeoCoordinates(): bool
     {
         return true;
@@ -115,12 +126,17 @@ class GermanZipCode extends AbstractEntity implements Geo
      * @return never
      *
      * @throws \BadMethodCallException
+     *
+     * @deprecated #2205 will be removed in oelib 7.0
      */
     public function clearGeoCoordinates(): void
     {
         throw new \BadMethodCallException('This method must not be called.', 1_542_211_386);
     }
 
+    /**
+     * @deprecated #2205 will be removed in oelib 7.0
+     */
     public function hasGeoError(): bool
     {
         return false;
@@ -130,6 +146,8 @@ class GermanZipCode extends AbstractEntity implements Geo
      * @return never
      *
      * @throws \BadMethodCallException
+     *
+     * @deprecated #2205 will be removed in oelib 7.0
      */
     public function setGeoError(string $reason = ''): void
     {
@@ -140,6 +158,8 @@ class GermanZipCode extends AbstractEntity implements Geo
      * @return never
      *
      * @throws \BadMethodCallException
+     *
+     * @deprecated #2205 will be removed in oelib 7.0
      */
     public function clearGeoError(): void
     {

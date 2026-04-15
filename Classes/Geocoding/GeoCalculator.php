@@ -11,6 +11,8 @@ use TYPO3\CMS\Core\SingletonInterface;
 
 /**
  * This class provides functions for calculating the distance between geo objects.
+ *
+ * @deprecated #2205 will be removed in oelib 7.0
  */
 class GeoCalculator implements SingletonInterface
 {

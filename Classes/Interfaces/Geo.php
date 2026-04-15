@@ -6,6 +6,8 @@ namespace OliverKlee\Oelib\Interfaces;
 
 /**
  * This interface represents an object that can have geo coordinates.
+ *
+ * @deprecated #2205 will be removed in oelib 7.0
  */
 interface Geo
 {

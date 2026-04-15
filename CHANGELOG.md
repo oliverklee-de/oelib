@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Deprecated
 
+- Deprecate `Deprecate `GeoCalculator` and the `Geo` interface` (#2258)
 - Deprecate `TestingFramework::createTemplate()` (#2257)
 
 ### Removed
