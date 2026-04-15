@@ -17,6 +17,8 @@ use TYPO3\CMS\Fluid\Core\Cache\FluidTemplateCache;
 
 /**
  * This class sets all core caches for tests.
+ *
+ * @deprecated #2222 will be removed in oelib 7.0
  */
 final class CacheNullifyer implements SingletonInterface
 {
