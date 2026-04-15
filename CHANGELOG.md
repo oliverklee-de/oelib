@@ -11,6 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Deprecated
 
+- Deprecate the `Time` interface (#2265)
 - Deprecate the `CacheNullifyer` (#2262)
 - Deprecate `TestingFramework::logoutFrontEndUser()` (#2261)
 - Deprecate the testing framework cleanup hook system (#2260)
