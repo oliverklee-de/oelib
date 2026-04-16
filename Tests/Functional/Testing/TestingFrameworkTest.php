@@ -80,6 +80,26 @@ final class TestingFrameworkTest extends FunctionalTestCase
         return (int)$data['sorting'];
     }
 
+    /**
+     * @test
+     *
+     * @doesNotPerformAssertions
+     */
+    public function canBeCreatedWithNullTablePrefix(): void
+    {
+        new TestingFramework(null);
+    }
+
+    /**
+     * @test
+     *
+     * @doesNotPerformAssertions
+     */
+    public function canBeCreatedWithoutTablePrefix(): void
+    {
+        new TestingFramework();
+    }
+
     // Tests regarding createRecord()
 
     /**

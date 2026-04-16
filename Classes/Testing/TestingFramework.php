@@ -61,16 +61,17 @@ final class TestingFramework
      * prefix of the extension for which this instance of the testing framework
      * was instantiated (e.g. "tx_seminars")
      *
-     * @var non-empty-string
+     * @var non-empty-string|null
      */
-    private string $tablePrefix;
+    private ?string $tablePrefix;
 
     /**
-     * all own DB table names to which this instance of the testing framework has access
+     * all own DB table names to which this instance of the testing framework has access,
+     * or `null` if there is no restriction on the allowed tables
      *
-     * @var list<non-empty-string>
+     * @var list<non-empty-string>|null
      */
-    private array $ownAllowedTables = [];
+    private ?array $ownAllowedTables = null;
 
     /**
      * sorting values of all relation tables
@@ -111,10 +112,10 @@ final class TestingFramework
      *
      * Instantiating this class sets all core caches in order to avoid errors about not registered caches.
      *
-     * @param non-empty-string $tablePrefix table name prefix of the extension
-     *        for this instance of the testing framework
+     * @param non-empty-string|null $tablePrefix deprecated #2225 will be removed in oelib 7.0;
+     *        table name prefix of the extension for this instance of the testing framework
      */
-    public function __construct(string $tablePrefix)
+    public function __construct(?string $tablePrefix = null)
     {
         $this->tablePrefix = $tablePrefix;
 
@@ -153,6 +154,7 @@ final class TestingFramework
     {
         $this->initializeDatabase();
         if (!$this->isNoneSystemTableNameAllowed($table)) {
+            \assert(\is_array($this->ownAllowedTables));
             $allowedTables = \implode(',', $this->ownAllowedTables);
             $errorMessage = \sprintf('The table "%1$s" is not allowed. Allowed tables: %2$s', $table, $allowedTables);
             throw new \InvalidArgumentException($errorMessage, 1_331_489_666);
@@ -941,6 +943,10 @@ routes: {  }";
      */
     private function createListOfOwnAllowedTables(): void
     {
+        if (!\is_string($this->tablePrefix)) {
+            return;
+        }
+
         $this->ownAllowedTables = [];
         $allTables = $this->getAllTableNames();
         $length = \strlen($this->tablePrefix);
@@ -954,10 +960,14 @@ routes: {  }";
 
     /**
      * Checks whether the given table name is in the list of allowed tables for
-     * this instance of the testing framework.
+     * this instance of the testing framework (or whether all tables are allowed).
      */
     private function isOwnTableNameAllowed(string $table): bool
     {
+        if (!\is_array($this->ownAllowedTables)) {
+            return true;
+        }
+
         return \in_array($table, $this->ownAllowedTables, true);
     }
 
@@ -990,6 +1000,7 @@ routes: {  }";
     {
         $isAllowed = $this->isNoneSystemTableNameAllowed($table) || $this->isSystemTableNameAllowed($table);
         if (!$isAllowed) {
+            \assert(\is_array($this->ownAllowedTables));
             $allowedTables = \implode(',', [...self::ALLOWED_SYSTEM_TABLES, ...$this->ownAllowedTables]);
             $errorMessage = \sprintf('The table "%1$s" is not allowed. Allowed tables: %2$s', $table, $allowedTables);
             throw new \InvalidArgumentException($errorMessage, 1_569_784_847);
