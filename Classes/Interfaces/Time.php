@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Interfaces;
 
 /**
- * This class provides time-related constants.
+ * This interface provides time-related constants.
+ *
+ * @deprecated #2264 will be removed in oelib 7.0
  */
 interface Time
 {
