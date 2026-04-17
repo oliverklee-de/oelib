@@ -7,6 +7,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Set more request attributes for the fake FE in the testing framework (#2267)
+
 ### Changed
 
 ### Deprecated
