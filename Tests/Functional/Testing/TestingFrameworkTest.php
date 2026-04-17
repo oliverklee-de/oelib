@@ -12,7 +12,6 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Http\ServerRequest;
-use TYPO3\CMS\Core\Http\Uri;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
@@ -1553,7 +1552,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $pageUid = $this->subject->createFrontEndPage();
         $this->subject->createFakeFrontEnd($pageUid);
 
-        self::assertInstanceOf(ServerRequest::class, $GLOBALS['TYPO3_REQUEST']);
+        self::assertInstanceOf(ServerRequest::class, $GLOBALS['TYPO3_REQUEST'] ?? null);
     }
 
     /**
@@ -1607,10 +1606,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(ServerRequest::class, $request);
         $language = $request->getAttribute('language');
         self::assertInstanceOf(SiteLanguage::class, $language);
-
-        $uri = new Uri($this->subject->getFakeSiteUrl());
-        $expectedLanguage = new SiteLanguage(0, 'en_US.UTF-8', $uri, []);
-        self::assertEquals($expectedLanguage, $language);
+        self::assertSame('en-US', $language->getHreflang());
     }
 
     // Tests regarding user login and logout

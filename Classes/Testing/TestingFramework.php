@@ -17,12 +17,10 @@ use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Http\ServerRequest;
-use TYPO3\CMS\Core\Http\Uri;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\Locales;
 use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Site\Entity\Site;
-use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
@@ -634,11 +632,7 @@ final class TestingFramework
         $this->setRequestUriForFakeFrontEnd($pageUid);
 
         $frontEndUser = GeneralUtility::makeInstance(FrontendUserAuthentication::class);
-        $uri = new Uri($this->getFakeSiteUrl());
-        $siteLanguage = new SiteLanguage(0, 'en_US.UTF-8', $uri, []);
-        $request = (new ServerRequest())
-            ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_FE)
-            ->withAttribute('language', $siteLanguage);
+        $request = new ServerRequest();
         $frontEndUser->start($request);
         $frontEndUser->fetchGroupData($request);
         if ((new Typo3Version())->getMajorVersion() <= 11) {
@@ -653,16 +647,16 @@ final class TestingFramework
         }
 
         $language = $site->getLanguageById(0);
+        $pageArguments = new PageArguments($pageUid, '', []);
         $frontEndController = GeneralUtility::makeInstance(
             TypoScriptFrontendController::class,
             GeneralUtility::makeInstance(Context::class),
             $site,
             $language,
-            new PageArguments($pageUid, '', []),
+            $pageArguments,
             $frontEndUser,
         );
         $GLOBALS['TSFE'] = $frontEndController;
-        $GLOBALS['TYPO3_REQUEST'] = $request;
 
         $frontEndController->fe_user = $frontEndUser;
         $frontEndController->id = $pageUid;
@@ -677,6 +671,11 @@ final class TestingFramework
         $contentObject = $frontEndController->cObj;
         \assert($contentObject instanceof ContentObjectRenderer);
         $contentObject->setLogger(new NullLogger());
+
+        $request = $request
+            ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_FE)
+            ->withAttribute('language', $language);
+        $GLOBALS['TYPO3_REQUEST'] = $request;
         $contentObject->setRequest($request);
 
         $this->hasFakeFrontEnd = true;
