@@ -1572,12 +1572,12 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function createFakeFrontEndSetsFrontEndApplicationTypeInRequest(): void
+    public function createFakeFrontEndSetsRequestApplicationTypeToFrontEnd(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
         $this->subject->createFakeFrontEnd($pageUid);
 
-        $request = $GLOBALS['TYPO3_REQUEST'];
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
         self::assertInstanceOf(ServerRequest::class, $request);
         self::assertSame(SystemEnvironmentBuilder::REQUESTTYPE_FE, $request->getAttribute('applicationType'));
     }
@@ -1585,26 +1585,25 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function createFakeFrontEndSetsLanguageInRequest(): void
+    public function createFakeFrontEndSetsRequestLanguage(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
         $this->subject->createFakeFrontEnd($pageUid);
 
-        $request = $GLOBALS['TYPO3_REQUEST'];
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
         self::assertInstanceOf(ServerRequest::class, $request);
-
         self::assertInstanceOf(SiteLanguage::class, $request->getAttribute('language'));
     }
 
     /**
      * @test
      */
-    public function createFakeFrontEndSetsLanguageInRequestToDefault(): void
+    public function createFakeFrontEndSetsRequestLanguageToEnglish(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
         $this->subject->createFakeFrontEnd($pageUid);
 
-        $request = $GLOBALS['TYPO3_REQUEST'];
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
         self::assertInstanceOf(ServerRequest::class, $request);
         $language = $request->getAttribute('language');
         self::assertInstanceOf(SiteLanguage::class, $language);
