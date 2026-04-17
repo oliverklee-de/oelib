@@ -16,7 +16,9 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Http\NormalizedParams;
 use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Http\ServerRequestFactory;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\Locales;
 use TYPO3\CMS\Core\Routing\PageArguments;
@@ -632,7 +634,8 @@ final class TestingFramework
         $this->setRequestUriForFakeFrontEnd($pageUid);
 
         $frontEndUser = GeneralUtility::makeInstance(FrontendUserAuthentication::class);
-        $request = new ServerRequest();
+        $request = ServerRequestFactory::fromGlobals();
+
         $frontEndUser->start($request);
         $frontEndUser->fetchGroupData($request);
         if ((new Typo3Version())->getMajorVersion() <= 11) {
@@ -672,9 +675,17 @@ final class TestingFramework
         \assert($contentObject instanceof ContentObjectRenderer);
         $contentObject->setLogger(new NullLogger());
 
+        if ((new Typo3Version())->getMajorVersion() >= 12) {
+            $request = $request->withAttribute('currentContentObject', $contentObject);
+        }
         $request = $request
             ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_FE)
-            ->withAttribute('language', $language);
+            ->withAttribute('frontend.controller', $frontEndController)
+            ->withAttribute('frontend.user', $frontEndUser)
+            ->withAttribute('language', $language)
+            ->withAttribute('normalizedParams', NormalizedParams::createFromRequest($request))
+            ->withAttribute('routing', $pageArguments)
+            ->withAttribute('site', $site);
         $GLOBALS['TYPO3_REQUEST'] = $request;
         $contentObject->setRequest($request);
 

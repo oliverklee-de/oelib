@@ -11,7 +11,11 @@ use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Http\NormalizedParams;
 use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\Routing\PageArguments;
+use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
@@ -1571,6 +1575,20 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @test
      */
+    public function createFakeFrontEndSetsRequestServerParameters(): void
+    {
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+
+        self::assertSame($_SERVER, $request->getServerParams());
+    }
+
+    /**
+     * @test
+     */
     public function createFakeFrontEndSetsRequestApplicationTypeToFrontEnd(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1579,6 +1597,64 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
         self::assertInstanceOf(ServerRequest::class, $request);
         self::assertSame(SystemEnvironmentBuilder::REQUESTTYPE_FE, $request->getAttribute('applicationType'));
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndSetsRequestCurrentContentObject(): void
+    {
+        if ((new Typo3Version())->getMajorVersion() < 12) {
+            self::markTestSkipped('The request content object is only available in TYPO3 v12 and above.');
+        }
+
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        self::assertInstanceOf(ContentObjectRenderer::class, $request->getAttribute('currentContentObject'));
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndSetsRequestFrontendController(): void
+    {
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        self::assertInstanceOf(TypoScriptFrontendController::class, $request->getAttribute('frontend.controller'));
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndUsesGlobalFrontendControllerForRequest(): void
+    {
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $globalFrontendController = $GLOBALS['TSFE'] ?? null;
+        self::assertInstanceOf(TypoScriptFrontendController::class, $globalFrontendController);
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        self::assertSame($globalFrontendController, $request->getAttribute('frontend.controller'));
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndSetsRequestFrontendUser(): void
+    {
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        self::assertInstanceOf(FrontendUserAuthentication::class, $request->getAttribute('frontend.user'));
     }
 
     /**
@@ -1607,6 +1683,75 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $language = $request->getAttribute('language');
         self::assertInstanceOf(SiteLanguage::class, $language);
         self::assertSame('en-US', $language->getHreflang());
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndSetsRequestNormalizedParameters(): void
+    {
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        self::assertInstanceOf(NormalizedParams::class, $request->getAttribute('normalizedParams'));
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndPopulatesRequestNormalizedParameters(): void
+    {
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        $normalizedParameters = $request->getAttribute('normalizedParams');
+        self::assertInstanceOf(NormalizedParams::class, $normalizedParameters);
+        self::assertSame('/' . $pageUid, $normalizedParameters->getRequestUri());
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndSetsRequestRouting(): void
+    {
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        self::assertInstanceOf(PageArguments::class, $request->getAttribute('routing'));
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndSetsRequestRoutingPageUid(): void
+    {
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        $pageArguments = $request->getAttribute('routing');
+        self::assertInstanceOf(PageArguments::class, $pageArguments);
+        self::assertSame($pageUid, $pageArguments->getPageId());
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndSetsRequestSite(): void
+    {
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        self::assertInstanceOf(Site::class, $request->getAttribute('site'));
     }
 
     // Tests regarding user login and logout
