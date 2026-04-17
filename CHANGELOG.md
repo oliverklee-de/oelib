@@ -25,6 +25,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+- Avoid the deprecated `determineId()` method in the testing framework (#2274)
+
 ## 6.2.1 Performance improvements, new record icon, deprecation fixes
 
 ### Added
