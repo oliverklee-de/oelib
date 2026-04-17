@@ -653,7 +653,7 @@ final class TestingFramework
         }
 
         $language = $site->getLanguageById(0);
-        $frontEnd = GeneralUtility::makeInstance(
+        $frontEndController = GeneralUtility::makeInstance(
             TypoScriptFrontendController::class,
             GeneralUtility::makeInstance(Context::class),
             $site,
@@ -661,21 +661,21 @@ final class TestingFramework
             new PageArguments($pageUid, '', []),
             $frontEndUser,
         );
-        $GLOBALS['TSFE'] = $frontEnd;
+        $GLOBALS['TSFE'] = $frontEndController;
         $GLOBALS['TYPO3_REQUEST'] = $request;
 
-        $frontEnd->fe_user = $frontEndUser;
-        $frontEnd->id = $pageUid;
-        $frontEnd->determineId($request);
-        $frontEnd->config = [
+        $frontEndController->fe_user = $frontEndUser;
+        $frontEndController->id = $pageUid;
+        $frontEndController->determineId($request);
+        $frontEndController->config = [
             'config' => ['MP_disableTypolinkClosestMPvalue' => true, 'typolinkLinkAccessRestrictedPages' => true],
         ];
 
-        Locales::setSystemLocaleFromSiteLanguage($frontEnd->getLanguage());
+        Locales::setSystemLocaleFromSiteLanguage($frontEndController->getLanguage());
 
-        $frontEnd->newCObj();
-        /** @var ContentObjectRenderer $contentObject */
-        $contentObject = $frontEnd->cObj;
+        $frontEndController->newCObj();
+        $contentObject = $frontEndController->cObj;
+        \assert($contentObject instanceof ContentObjectRenderer);
         $contentObject->setLogger(new NullLogger());
         $contentObject->setRequest($request);
 

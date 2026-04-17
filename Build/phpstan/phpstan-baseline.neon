@@ -291,6 +291,16 @@ parameters:
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
+			message: "#^Call to method setLogger\\(\\) on an unknown class ContentObjectRenderer\\.$#"
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			message: "#^Call to method setRequest\\(\\) on an unknown class ContentObjectRenderer\\.$#"
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
 			message: "#^Call to protected method unpack_uc\\(\\) of class TYPO3\\\\CMS\\\\Core\\\\Authentication\\\\AbstractUserAuthentication\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
@@ -367,11 +377,6 @@ parameters:
 
 		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Testing\\\\TestingFramework\\:\\:getTcaForTable\\(\\) should return array\\<array\\<string, mixed\\>\\> but returns mixed\\.$#"
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
-			message: "#^PHPDoc tag @var with type TYPO3\\\\CMS\\\\Frontend\\\\ContentObject\\\\ContentObjectRenderer is not subtype of type ContentObjectRenderer\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
