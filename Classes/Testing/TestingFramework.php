@@ -663,7 +663,9 @@ final class TestingFramework
 
         $frontEndController->fe_user = $frontEndUser;
         $frontEndController->id = $pageUid;
-        $frontEndController->determineId($request);
+        if ((new Typo3Version())->getMajorVersion() <= 12) {
+            $frontEndController->determineId($request);
+        }
         $frontEndController->config = [
             'config' => ['MP_disableTypolinkClosestMPvalue' => true, 'typolinkLinkAccessRestrictedPages' => true],
         ];
