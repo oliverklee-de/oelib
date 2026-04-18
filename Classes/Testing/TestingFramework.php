@@ -675,7 +675,11 @@ final class TestingFramework
 
         Locales::setSystemLocaleFromSiteLanguage($language);
 
-        $frontEndController->newCObj();
+        if ((new Typo3Version())->getMajorVersion() >= 13) {
+            $frontEndController->newCObj($request);
+        } else {
+            $frontEndController->newCObj();
+        }
         $contentObject = $frontEndController->cObj;
         \assert($contentObject instanceof ContentObjectRenderer);
         $contentObject->setLogger(new NullLogger());
