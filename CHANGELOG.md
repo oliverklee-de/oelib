@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Populate `$_SERVER` in the fake FE in the testing framework (#2275)
 - Set more request attributes for the fake FE in the testing framework (#2267)
 
 ### Changed
