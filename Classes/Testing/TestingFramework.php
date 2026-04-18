@@ -630,8 +630,8 @@ final class TestingFramework
 
         $this->discardFakeFrontEnd();
 
+        $this->setServerGlobalsForFakeFrontEnd($pageUid);
         $this->setPageIndependentGlobalsForFakeFrontEnd();
-        $this->setRequestUriForFakeFrontEnd($pageUid);
 
         $frontEndUser = GeneralUtility::makeInstance(FrontendUserAuthentication::class);
         $request = ServerRequestFactory::fromGlobals();
@@ -737,6 +737,27 @@ routes: {  }";
         }
     }
 
+    /**
+     * @param int<1, max> $pageUid
+     */
+    private function setServerGlobalsForFakeFrontEnd(int $pageUid): void
+    {
+        $documentRoot = '/var/www/html/public';
+        $relativeScriptPath = '/index.php';
+        $absoluteScriptPath = $documentRoot . '/index.php';
+        $slug = '/' . $pageUid;
+
+        $_SERVER['DOCUMENT_ROOT'] = $documentRoot;
+        $_SERVER['HTTP_HOST'] = $this->getFakeFrontEndDomain();
+        $_SERVER['QUERY_STRING'] = '';
+        $_SERVER['REMOTE_ADDR'] = '127.0.0.1';
+        $_SERVER['REMOTE_HOST'] = '';
+        $_SERVER['REQUEST_METHOD'] = 'GET';
+        $_SERVER['REQUEST_URI'] = $slug;
+        $_SERVER['SCRIPT_FILENAME'] = $absoluteScriptPath;
+        $_SERVER['SCRIPT_NAME'] = $relativeScriptPath;
+    }
+
     private function setPageIndependentGlobalsForFakeFrontEnd(): void
     {
         GeneralUtility::flushInternalRuntimeCaches();
@@ -770,16 +791,6 @@ routes: {  }";
         GeneralUtility::setIndpEnv('SERVER_SOFTWARE', 'Apache/2.4.48 (Debian)');
 
         WritableEnvironment::setCurrentScript($absoluteScriptPath);
-    }
-
-    private function setRequestUriForFakeFrontEnd(int $pageUid): void
-    {
-        $slug = '/';
-        if ($pageUid > 0) {
-            $slug .= $pageUid;
-        }
-
-        $_SERVER['REQUEST_URI'] = $slug;
     }
 
     /**

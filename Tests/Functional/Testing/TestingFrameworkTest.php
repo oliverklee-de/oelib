@@ -1426,9 +1426,41 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     /**
-     * @return array<string, array{0: string, 1: string|bool|null}>
+     * @return array<non-empty-string, array{0: non-empty-string, 1: string}>
      */
-    public function globalsDataProvider(): array
+    public function serverGlobalsDataProvider(): array
+    {
+        return [
+            'DOCUMENT_ROOT' => ['DOCUMENT_ROOT', '/var/www/html/public'],
+            'HTTP_HOST' => ['HTTP_HOST', 'typo3-test.dev'],
+            'QUERY_STRING' => ['QUERY_STRING', ''],
+            'REMOTE_ADDR' => ['REMOTE_ADDR', '127.0.0.1'],
+            'REMOTE_HOST' => ['REMOTE_HOST', ''],
+            'REQUEST_METHOD' => ['REQUEST_METHOD', 'GET'],
+            'REQUEST_URI' => ['REQUEST_URI', '/1'],
+            'SCRIPT_FILENAME' => ['SCRIPT_FILENAME', '/var/www/html/public/index.php'],
+            'SCRIPT_NAME' => ['SCRIPT_NAME', '/index.php'],
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @param non-empty-string $key
+     *
+     * @dataProvider serverGlobalsDataProvider
+     */
+    public function createFakeFrontEndPopulatesServerGlobals(string $key, string $expected): void
+    {
+        $this->subject->createFakeFrontEnd($this->subject->createFrontEndPage());
+
+        self::assertSame($expected, $_SERVER[$key]);
+    }
+
+    /**
+     * @return array<non-empty-string, array{0: non-empty-string, 1: string|bool|null}>
+     */
+    public function indEnvDataProvider(): array
     {
         return [
             'HTTP_HOST' => ['HTTP_HOST', 'typo3-test.dev'],
@@ -1459,11 +1491,12 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @test
      *
+     * @param non-empty-string $key
      * @param string|bool|null $expected
      *
-     * @dataProvider globalsDataProvider
+     * @dataProvider indEnvDataProvider
      */
-    public function createFakeFrontEndPopulatesGlobals(string $key, $expected): void
+    public function createFakeFrontEndPopulatesGlobalsAccessibleViaGetIndEnv(string $key, $expected): void
     {
         $this->subject->createFakeFrontEnd($this->subject->createFrontEndPage());
 
