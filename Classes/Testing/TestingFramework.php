@@ -613,15 +613,13 @@ final class TestingFramework
     }
 
     /**
-     * Fakes a TYPO3 front end, using $pageUid as front-end page ID if provided.
-     *
-     * If $pageUid is zero, the front end will have not page UID.
+     * Fakes a TYPO3 front end, using `$pageUid` as front-end page ID.
      *
      * This function creates `$GLOBALS['TSFE']`.
      *
-     * @param positive-int $pageUid UID of a page record to use
+     * @param positive-int $pageUid
      *
-     * @return positive-int the UID of the used front-end page
+     * @return positive-int the UID of the used front-end page, deprecated #2279, will be `void` in oelib 7.0
      *
      * @throws \InvalidArgumentException if $pageUid is < 0
      */
