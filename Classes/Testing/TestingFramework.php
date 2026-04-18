@@ -673,7 +673,7 @@ final class TestingFramework
             'config' => ['MP_disableTypolinkClosestMPvalue' => true, 'typolinkLinkAccessRestrictedPages' => true],
         ];
 
-        Locales::setSystemLocaleFromSiteLanguage($frontEndController->getLanguage());
+        Locales::setSystemLocaleFromSiteLanguage($language);
 
         $frontEndController->newCObj();
         $contentObject = $frontEndController->cObj;
