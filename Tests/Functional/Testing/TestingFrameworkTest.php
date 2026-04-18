@@ -17,6 +17,7 @@ use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
+use TYPO3\CMS\Core\TypoScript\FrontendTypoScript;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -1672,6 +1673,50 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
         self::assertInstanceOf(ServerRequest::class, $request);
         self::assertInstanceOf(TypoScriptFrontendController::class, $request->getAttribute('frontend.controller'));
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndSetsRequestTypoScript(): void
+    {
+        if ((new Typo3Version())->getMajorVersion() < 12) {
+            self::markTestSkipped('The request typoscript object is only available in TYPO3 v12 and above.');
+        }
+
+        $this->importCSVDataSet(__DIR__ . '/Fixtures/createFakeFrontEnd/Page.csv');
+
+        $this->subject->createFakeFrontEnd(1);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        self::assertInstanceOf(FrontendTypoScript::class, $request->getAttribute('frontend.typoscript'));
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndProvidesRequestTypoScriptWithTypoScriptSetupFromPage(): void
+    {
+        if ((new Typo3Version())->getMajorVersion() < 12) {
+            self::markTestSkipped('The request typoscript object is only available in TYPO3 v12 and above.');
+        }
+
+        $this->importCSVDataSet(__DIR__ . '/Fixtures/createFakeFrontEnd/PageWithTemplate.csv');
+
+        $this->subject->createFakeFrontEnd(1);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        $typoScript = $request->getAttribute('frontend.typoscript');
+        self::assertInstanceOf(FrontendTypoScript::class, $typoScript);
+        $setupArray = $typoScript->getSetupArray();
+        self::assertArrayHasKey('plugin.', $setupArray);
+        self::assertIsArray($setupArray['plugin.']);
+        self::assertArrayHasKey('tx_oelib.', $setupArray['plugin.']);
+        self::assertIsArray($setupArray['plugin.']['tx_oelib.']);
+        self::assertArrayHasKey('foo', $setupArray['plugin.']['tx_oelib.']);
+        self::assertSame('bar', $setupArray['plugin.']['tx_oelib.']['foo']);
     }
 
     /**
