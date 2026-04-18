@@ -75,13 +75,9 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
      */
     public function getReturnsDataFromTypoScriptSetupFromManuallySetPage(): void
     {
-        $pageUid = $this->testingFramework->createFrontEndPage();
-        $this->testingFramework->createTemplate(
-            $pageUid,
-            ['config' => 'plugin.tx_oelib.test = 42'],
-        );
+        $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
 
-        PageFinder::getInstance()->setPageUid($pageUid);
+        PageFinder::getInstance()->setPageUid(1);
 
         self::assertSame(
             42,
@@ -94,9 +90,8 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
      */
     public function getReturnsDataFromTypoScriptSetupFromBackEndPage(): void
     {
-        $pageUid = $this->testingFramework->createFrontEndPage();
-        $this->testingFramework->createTemplate($pageUid, ['config' => 'plugin.tx_oelib.test = 42']);
-        $_GET['id'] = $pageUid;
+        $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
+        $_GET['id'] = 1;
 
         PageFinder::getInstance()->forceSource(PageFinder::SOURCE_BACK_END);
 
@@ -104,8 +99,6 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
             42,
             ConfigurationRegistry::get('plugin.tx_oelib')->getAsInteger('test'),
         );
-
-        unset($_POST['id']);
     }
 
     /**
@@ -113,10 +106,9 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
      */
     public function getReturnsDataFromTypoScriptSetupFromFrontEndPage(): void
     {
-        $pageUid = $this->testingFramework->createFrontEndPage();
-        $this->testingFramework->createTemplate($pageUid, ['config' => 'plugin.tx_oelib.test = 42']);
+        $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
 
-        $this->testingFramework->createFakeFrontEnd($pageUid);
+        $this->testingFramework->createFakeFrontEnd(1);
         PageFinder::getInstance()->forceSource(PageFinder::SOURCE_FRONT_END);
 
         self::assertSame(
@@ -130,9 +122,8 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
      */
     public function getAfterSetReturnsManuallySetConfigurationEvenIfThereIsAPage(): void
     {
-        $pageUid = $this->testingFramework->createFrontEndPage();
-        $this->testingFramework->createTemplate($pageUid, ['config' => 'plugin.tx_oelib.bar = 42']);
-        PageFinder::getInstance()->setPageUid($pageUid);
+        $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
+        PageFinder::getInstance()->setPageUid(1);
 
         $configuration = new DummyConfiguration();
         ConfigurationRegistry::getInstance()->set('plugin.tx_oelib', $configuration);

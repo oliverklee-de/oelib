@@ -1,0 +1,10 @@
+"pages"
+,"uid","slug"
+,1,"/1"
+
+"sys_template"
+,"uid","pid","clear","config"
+,1,1,3,"page = PAGE
+page.10 = TEXT
+page.10.value = Hello World
+plugin.tx_oelib.test = 42"

@@ -8,6 +8,7 @@ use OliverKlee\Oelib\DataStructures\Collection;
 use OliverKlee\Oelib\Mapper\FrontEndUserMapper;
 use OliverKlee\Oelib\Mapper\MapperRegistry;
 use OliverKlee\Oelib\Model\FrontEndUserGroup;
+use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\NullLogger;
 use TYPO3\CMS\Core\Configuration\SiteConfiguration;
 use TYPO3\CMS\Core\Context\Context;
@@ -23,6 +24,9 @@ use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\Locales;
 use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Site\Entity\Site;
+use TYPO3\CMS\Core\TypoScript\AST\Node\RootNode;
+use TYPO3\CMS\Core\TypoScript\FrontendTypoScript;
+use TYPO3\CMS\Core\TypoScript\IncludeTree\SysTemplateRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
@@ -684,9 +688,6 @@ final class TestingFramework
         \assert($contentObject instanceof ContentObjectRenderer);
         $contentObject->setLogger(new NullLogger());
 
-        if ((new Typo3Version())->getMajorVersion() >= 12) {
-            $request = $request->withAttribute('currentContentObject', $contentObject);
-        }
         $request = $request
             ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_FE)
             ->withAttribute('frontend.controller', $frontEndController)
@@ -695,6 +696,10 @@ final class TestingFramework
             ->withAttribute('normalizedParams', NormalizedParams::createFromRequest($request))
             ->withAttribute('routing', $pageArguments)
             ->withAttribute('site', $site);
+        if ((new Typo3Version())->getMajorVersion() >= 12) {
+            $request = $request->withAttribute('currentContentObject', $contentObject);
+            $request = $this->addTypoScriptToRequest($frontEndController, $rootline, $request);
+        }
         $GLOBALS['TYPO3_REQUEST'] = $request;
         $contentObject->setRequest($request);
 
@@ -1133,5 +1138,34 @@ routes: {  }";
     private function getFrontEndController(): TypoScriptFrontendController
     {
         return $GLOBALS['TSFE'];
+    }
+
+    /**
+     * @param array<mixed> $rootline
+     */
+    private function addTypoScriptToRequest(
+        TypoScriptFrontendController $controller,
+        array $rootline,
+        ServerRequest $request
+    ): ServerRequestInterface {
+        $sysTemplateRepository = GeneralUtility::makeInstance(SysTemplateRepository::class);
+        $sysTemplateRows = $sysTemplateRepository->getSysTemplateRowsByRootline($rootline, $request);
+
+        if ($sysTemplateRows !== []) {
+            $newRequest = $controller->getFromCache($request);
+        } else {
+            $newRequest = $request->withAttribute('frontend.typoscript', $this->buildEmptyTypoScript());
+        }
+
+        return $newRequest;
+    }
+
+    private function buildEmptyTypoScript(): FrontendTypoScript
+    {
+        $typoScript = new FrontendTypoScript(new RootNode(), []);
+        $typoScript->setSetupTree(new RootNode());
+        $typoScript->setSetupArray([]);
+
+        return $typoScript;
     }
 }

@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Provide the fake frontend request with TypoScript (#2282)
 - Provide the fake frontend with a rootline (#2277)
 - Populate `$_SERVER` in the fake FE in the testing framework (#2275)
 - Set more request attributes for the fake FE in the testing framework (#2267)
