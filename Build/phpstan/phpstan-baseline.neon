@@ -31,11 +31,6 @@ parameters:
 			path: ../../Classes/Configuration/ConfigurationRegistry.php
 
 		-
-			message: "#^Method OliverKlee\\\\Oelib\\\\Configuration\\\\ConfigurationRegistry\\:\\:getFrontEndController\\(\\) should return TYPO3\\\\CMS\\\\Frontend\\\\Controller\\\\TypoScriptFrontendController\\|null but returns mixed\\.$#"
-			count: 1
-			path: ../../Classes/Configuration/ConfigurationRegistry.php
-
-		-
 			message: "#^Parameter \\#1 \\$haystack of method OliverKlee\\\\Oelib\\\\Configuration\\\\FlexformsConfiguration\\:\\:getFromArray\\(\\) expects array\\<array\\<int\\|string, mixed\\>\\|int\\|string\\>, array\\<int\\|string, mixed\\> given\\.$#"
 			count: 1
 			path: ../../Classes/Configuration/FlexformsConfiguration.php
