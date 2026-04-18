@@ -1412,6 +1412,18 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @test
      */
+    public function createFakeFrontEndUsesSetsRootline(): void
+    {
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $rootline = $this->getFrontEndController()->rootLine;
+        self::assertSame($pageUid, $rootline[0]['uid']);
+    }
+
+    /**
+     * @test
+     */
     public function getFakeFrontEndDomainReturnsDevDomain(): void
     {
         self::assertSame('typo3-test.dev', $this->subject->getFakeFrontEndDomain());
