@@ -5,10 +5,16 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Configuration;
 
 use OliverKlee\Oelib\Interfaces\Configuration as ConfigurationInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Exception\Page\PageNotFoundException;
+use TYPO3\CMS\Core\Http\ServerRequest;
+use TYPO3\CMS\Core\Information\Typo3Version;
+use TYPO3\CMS\Core\TypoScript\FrontendTypoScript;
 use TYPO3\CMS\Core\TypoScript\TemplateService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
+use TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
@@ -149,17 +155,59 @@ class ConfigurationRegistry
     /**
      * Retrieves the complete TypoScript setup for the current page as a nested array.
      *
-     * @return array<string, mixed> the TypoScriptSetup for the current page, will be empty if
+     * @return array<mixed> the TypoScriptSetup for the current page, will be empty if
      *         no page is selected or if the TypoScript setup of the page is empty
      */
     private function getCompleteTypoScriptSetup(): array
     {
         $pageUid = PageFinder::getInstance()->getPageUid();
-        if ($pageUid === 0) {
+        if ($pageUid <= 0) {
             return [];
         }
 
-        $frontEndController = $this->getFrontEndController();
+        return ((new Typo3Version())->getMajorVersion() >= 12)
+            ? $this->getCompleteTypoScriptSetupForTypo3V12AndUp($pageUid)
+            : $this->getCompleteTypoScriptSetupForTypo3BelowV12($pageUid);
+    }
+
+    /**
+     * @param int<1, max> $pageUid
+     *
+     * @return array<mixed>
+     */
+    private function getCompleteTypoScriptSetupForTypo3V12AndUp(int $pageUid): array
+    {
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        if (($request instanceof ServerRequestInterface)
+            && ($request->getAttribute('applicationType') === SystemEnvironmentBuilder::REQUESTTYPE_FE)
+            && ($request->getAttribute('frontend.typoscript') instanceof FrontendTypoScript)
+        ) {
+            return $request->getAttribute('frontend.typoscript')->getSetupArray();
+        }
+
+        if ($request instanceof ServerRequestInterface) {
+            $queryParams = $request->getQueryParams();
+        } else {
+            $request = new ServerRequest();
+            $queryParams = [];
+        }
+        $queryParams['id'] = $pageUid;
+        $request = $request->withQueryParams($queryParams);
+
+        $configurationManager = GeneralUtility::makeInstance(BackendConfigurationManager::class);
+        $configurationManager->setRequest($request);
+
+        return $configurationManager->getTypoScriptSetup();
+    }
+
+    /**
+     * @param int<1, max> $pageUid
+     *
+     * @return array<mixed>
+     */
+    private function getCompleteTypoScriptSetupForTypo3BelowV12(int $pageUid): array
+    {
+        $frontEndController = $GLOBALS['TSFE'] ?? null;
         $template = $frontEndController instanceof TypoScriptFrontendController ? $frontEndController->tmpl : null;
         if ($template instanceof TemplateService && $template->loaded) {
             return $template->setup;
@@ -178,10 +226,5 @@ class ConfigurationRegistry
         $template->generateConfig();
 
         return $template->setup;
-    }
-
-    protected function getFrontEndController(): ?TypoScriptFrontendController
-    {
-        return $GLOBALS['TSFE'] ?? null;
     }
 }

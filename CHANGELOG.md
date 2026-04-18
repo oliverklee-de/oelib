@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Use the new TypoScript parser in TYPO3 >= V12 (#2284)
 - Provide the fake frontend request with TypoScript (#2282)
 - Provide the fake frontend with a rootline (#2277)
 - Populate `$_SERVER` in the fake FE in the testing framework (#2275)
