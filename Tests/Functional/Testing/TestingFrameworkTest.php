@@ -1772,7 +1772,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(ServerRequest::class, $request);
         $language = $request->getAttribute('language');
         self::assertInstanceOf(SiteLanguage::class, $language);
-        self::assertSame('en-US', $language->getHreflang());
+        self::assertSame('en-us', \strtolower($language->getHreflang()));
     }
 
     /**

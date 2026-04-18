@@ -13,7 +13,6 @@ use Psr\Log\NullLogger;
 use TYPO3\CMS\Core\Configuration\SiteConfiguration;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\UserAspect;
-use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -646,8 +645,9 @@ final class TestingFramework
             $frontEndUser->unpack_uc();
         }
 
-        $this->createDummySite($pageUid);
-        $allSites = GeneralUtility::makeInstance(SiteConfiguration::class)->getAllExistingSites(false);
+        $siteConfiguration = GeneralUtility::makeInstance(SiteConfiguration::class);
+        $siteConfiguration->createNewBasicSite(self::SITE_IDENTIFIER, $pageUid, $this->getFakeSiteUrl());
+        $allSites = $siteConfiguration->getAllExistingSites(false);
         $site = $allSites[self::SITE_IDENTIFIER] ?? null;
         if (!$site instanceof Site) {
             throw new \RuntimeException('Dummy site not found.', 1_635_024_025);
@@ -707,46 +707,6 @@ final class TestingFramework
         $this->logoutFrontEndUser();
 
         return $pageUid;
-    }
-
-    /**
-     * Discards all site configuration files, and creates a new configuration file for a dummy site.
-     *
-     * Starting with TYPO3 10, we will be able to use `SiteConfiguration::createNewBasicSite()` for this.
-     */
-    private function createDummySite(int $pageUid): void
-    {
-        $siteConfigurationDirectory = Environment::getConfigPath() . '/sites/';
-        GeneralUtility::rmdir($siteConfigurationDirectory, true);
-        $configurationDirectoryForTestingDummySite = $siteConfigurationDirectory . self::SITE_IDENTIFIER;
-        GeneralUtility::mkdir_deep($configurationDirectoryForTestingDummySite);
-
-        $url = $this->getFakeSiteUrl();
-        $contents =
-            "rootPageId: {$pageUid}
-base: '{$url}'
-baseVariants: {  }
-languages:
-  -
-    title: 'Englisch'
-    enabled: true
-    languageId: 0
-    base: '/'
-    typo3Language: 'default'
-    locale: 'en_US.UTF-8'
-    iso-639-1: 'en'
-    navigationTitle: 'Englisch'
-    hreflang: 'en-US'
-    direction: 'ltr'
-    flag: 'us'
-errorHandling: {  }
-routes: {  }";
-
-        $file = $configurationDirectoryForTestingDummySite . '/config.yaml';
-        \file_put_contents($file, $contents);
-        if (!\is_readable($file)) {
-            throw new \RuntimeException('Site config file "' . $file . '" could not be created.', 1_634_918_114);
-        }
     }
 
     /**
