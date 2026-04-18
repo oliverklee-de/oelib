@@ -659,6 +659,9 @@ final class TestingFramework
             $pageArguments,
             $frontEndUser,
         );
+        $rootlineUtility = GeneralUtility::makeInstance(RootlineUtility::class, $pageUid);
+        $rootline = $rootlineUtility->get();
+        $frontEndController->rootLine = $rootline;
         $GLOBALS['TSFE'] = $frontEndController;
 
         $frontEndController->fe_user = $frontEndUser;
