@@ -58,6 +58,8 @@ class TemplateRegistry
      * @return Template the template for the given template file name
      *
      * @see getByFileName
+     *
+     * @deprecated use `getByFileName` instead. #2290 will be removed in oelib 7.0
      */
     public static function get(string $templateFileName): Template
     {

@@ -17,6 +17,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Deprecated
 
+- Deprecate the static accessors of `ConfigurationRegistry`, `MapperRegistry`
+  and `TemplateRegistry` (#2291)
 - Deprecate returning the page UID from `createFakeFrontend` (#2286)
 - Deprecate the table name prefix in the testing framework (#2266)
 - Deprecate the `Time` interface (#2265)
