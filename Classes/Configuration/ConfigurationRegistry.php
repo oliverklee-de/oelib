@@ -75,6 +75,8 @@ class ConfigurationRegistry
      * @return ConfigurationInterface the configuration for the given namespace
      *
      * @see getByNamespace
+     *
+     * @deprecated use `getByNamespace` instead. #2290 will be removed in oelib 7.0
      */
     public static function get(string $namespace): ConfigurationInterface
     {

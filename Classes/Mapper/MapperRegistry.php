@@ -60,6 +60,8 @@ class MapperRegistry
      * @throws \InvalidArgumentException if there is no such mapper
      *
      * @see getByClassName
+     *
+     * @deprecated use `getByClassName` instead. #2290 will be removed in oelib 7.0
      */
     public static function get(string $className): AbstractDataMapper
     {
@@ -114,6 +116,8 @@ class MapperRegistry
      * @param M $mapper the mapper to set, must be an instance of `$className`
      *
      * @see setByClassName
+     *
+     * @deprecated use `setByClassName` instead. #2290 will be removed in oelib 7.0
      */
     public static function set(string $className, AbstractDataMapper $mapper): void
     {
