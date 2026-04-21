@@ -7,3 +7,12 @@ services:
   OliverKlee\Oelib\:
     resource: '../Classes/*'
     exclude: '../Classes/Configuration/*,../Classes/DataStructures/*,../Classes/Domain/Model/*,../Classes/Interfaces/Configuration.php,../Classes/Model/*'
+
+  OliverKlee\Oelib\Configuration\ConfigurationRegistry:
+    public: true
+
+  OliverKlee\Oelib\Mapper\MapperRegistry:
+    public: true
+
+  OliverKlee\Oelib\Templating\TemplateRegistry:
+    public: true

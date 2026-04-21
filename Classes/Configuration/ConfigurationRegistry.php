@@ -22,17 +22,15 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  */
 class ConfigurationRegistry
 {
+    /**
+     * @deprecated #2287 will be removed in oelib 7.0
+     */
     private static ?ConfigurationRegistry $instance = null;
 
     /**
      * @var array<non-empty-string, ConfigurationInterface> already created configurations (by namespace)
      */
     private array $configurations = [];
-
-    /**
-     * The constructor. Use getInstance() instead.
-     */
-    private function __construct() {}
 
     /**
      * Destructs a configuration for a given namespace and drops the reference to it.
@@ -49,6 +47,8 @@ class ConfigurationRegistry
      * Returns an instance of this class.
      *
      * @return ConfigurationRegistry the current Singleton instance
+     *
+     * @deprecated #2287 will be removed in oelib 7.0; use DI instead
      */
     public static function getInstance(): ConfigurationRegistry
     {
@@ -61,6 +61,8 @@ class ConfigurationRegistry
 
     /**
      * Purges the current instance so that getInstance will create a new instance.
+     *
+     * @deprecated #2287 will be removed in oelib 7.0
      */
     public static function purgeInstance(): void
     {

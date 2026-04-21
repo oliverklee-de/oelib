@@ -32,6 +32,16 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
         parent::tearDown();
     }
 
+    /**
+     * @test
+     */
+    public function isAvailableViaContainer(): void
+    {
+        $instance = $this->get(ConfigurationRegistry::class);
+
+        self::assertInstanceOf(ConfigurationRegistry::class, $instance);
+    }
+
     ////////////////////////////////
     // Test concerning get and set
     ////////////////////////////////
