@@ -13,6 +13,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class MapperRegistry
 {
+    /**
+     * @deprecated #2287 will be removed in oelib 7.0
+     */
     private static ?MapperRegistry $instance = null;
 
     /**
@@ -21,14 +24,11 @@ class MapperRegistry
     private array $mappers = [];
 
     /**
-     * The constructor. Use getInstance() instead.
-     */
-    private function __construct() {}
-
-    /**
      * Returns an instance of this class.
      *
      * @return MapperRegistry the current Singleton instance
+     *
+     * @deprecated #2287 will be removed in oelib 7.0; use DI instead
      */
     public static function getInstance(): MapperRegistry
     {
@@ -42,6 +42,8 @@ class MapperRegistry
     /**
      * Purges the current instance so that getInstance will create a new
      * instance.
+     *
+     * @deprecated #2287 will be removed in oelib 7.0
      */
     public static function purgeInstance(): void
     {

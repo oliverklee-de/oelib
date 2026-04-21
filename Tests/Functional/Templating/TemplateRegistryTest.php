@@ -17,7 +17,15 @@ final class TemplateRegistryTest extends FunctionalTestCase
 
     protected bool $initializeDatabase = false;
 
-    // Tests concerning the Singleton property
+    /**
+     * @test
+     */
+    public function isAvailableViaContainer(): void
+    {
+        $instance = $this->get(TemplateRegistry::class);
+
+        self::assertInstanceOf(TemplateRegistry::class, $instance);
+    }
 
     /**
      * @test

@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Make the registries available via DI (#2292)
 - Use the new TypoScript parser in TYPO3 >= V12 (#2284)
 - Provide the fake frontend request with TypoScript (#2282)
 - Provide the fake frontend with a rootline (#2277)
@@ -17,6 +18,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Deprecated
 
+- Deprecate `::getInstance` in the registries (#2292)
 - Deprecate the static accessors of `ConfigurationRegistry`, `MapperRegistry`
   and `TemplateRegistry` (#2291)
 - Deprecate returning the page UID from `createFakeFrontend` (#2286)
