@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Configuration;
 
 use OliverKlee\Oelib\Interfaces\Configuration as ConfigurationInterface;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Exception\Page\PageNotFoundException;
@@ -198,10 +199,13 @@ class ConfigurationRegistry
         $queryParams['id'] = $pageUid;
         $request = $request->withQueryParams($queryParams);
 
-        $configurationManager = GeneralUtility::makeInstance(BackendConfigurationManager::class);
+        $container = GeneralUtility::makeInstance(ContainerInterface::class);
+        $configurationManager = $container->get(BackendConfigurationManager::class);
         $configurationManager->setRequest($request);
 
-        return $configurationManager->getTypoScriptSetup();
+        return ((new Typo3Version())->getMajorVersion() >= 13)
+            ? $configurationManager->getTypoScriptSetup($request)
+            : $configurationManager->getTypoScriptSetup();
     }
 
     /**
