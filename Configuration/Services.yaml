@@ -11,6 +11,9 @@ services:
   OliverKlee\Oelib\Configuration\ConfigurationRegistry:
     public: true
 
+  OliverKlee\Oelib\Email\SystemEmailBuilder:
+    public: true
+
   OliverKlee\Oelib\Mapper\MapperRegistry:
     public: true
 
