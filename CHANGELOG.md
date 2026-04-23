@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Add `IfIsAdminViewHelper` (#2298)
 - Make the registries available via DI (#2292)
 - Use the new TypoScript parser in TYPO3 >= V12 (#2284)
 - Provide the fake frontend request with TypoScript (#2282)
