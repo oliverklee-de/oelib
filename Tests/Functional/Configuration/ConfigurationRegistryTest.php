@@ -42,10 +42,6 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
         self::assertInstanceOf(ConfigurationRegistry::class, $instance);
     }
 
-    ////////////////////////////////
-    // Test concerning get and set
-    ////////////////////////////////
-
     /**
      * @test
      */
@@ -75,10 +71,6 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
             ConfigurationRegistry::get('plugin.tx_oelib'),
         );
     }
-
-    //////////////////////////////////////
-    // Tests concerning TypoScript setup
-    //////////////////////////////////////
 
     /**
      * @test
