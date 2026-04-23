@@ -25,7 +25,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractConditionViewHelper;
  * -----------
  *
  * ::
- *     {namespace ota=OliverKlee\Oelib\ViewHelpers}
+ *     {namespace oelib=OliverKlee\Oelib\ViewHelpers}
  *     <oelib:isFieldEnabled fieldName="name">
  *         Here the "name" field should be displayed.
  *     </oelib:isFieldEnabled>
