@@ -18,6 +18,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Deprecated
 
+- Deprecate the configuration check (#2297)
 - Deprecate `::getInstance` in the registries (#2292)
 - Deprecate the static accessors of `ConfigurationRegistry`, `MapperRegistry`
   and `TemplateRegistry` (#2291)
