@@ -37,8 +37,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        GeneralUtility::makeInstance(Context::class)
-            ->setAspect('date', new DateTimeAspect(new \DateTimeImmutable('2018-04-26 12:42:23')));
+        $dateAspect = new DateTimeAspect(new \DateTimeImmutable('2018-04-26 12:42:23'));
+        $this->get(Context::class)->setAspect('date', $dateAspect);
 
         $this->subject = MapperRegistry::get(TestingMapper::class);
     }
@@ -476,6 +476,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     public function isHiddenOnGhostNotInDatabaseThrowsException(): void
     {
         $this->expectException(NotFoundException::class);
+        $this->expectExceptionMessage('either has been deleted (or has never existed)');
+        $this->expectExceptionCode(1332446332);
 
         $this->subject->find(1)->isHidden();
     }
@@ -1725,6 +1727,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     public function findSingleByWhereClauseWithUidOfInexistentRecordThrowsException(): void
     {
         $this->expectException(NotFoundException::class);
+        $this->expectExceptionMessage('No records found');
+        $this->expectExceptionCode(8074950578);
 
         $this->subject->findSingleByWhereClause(
             ['uid' => 1],
@@ -3108,6 +3112,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     public function findOneByKeyForInexistentThrowsException(): void
     {
         $this->expectException(NotFoundException::class);
+        $this->expectExceptionMessage('No records found');
+        $this->expectExceptionCode(8074950578);
 
         $this->subject->findOneByKey('title', 'Darjeeling');
     }
@@ -3167,12 +3173,9 @@ final class AbstractDataMapperTest extends FunctionalTestCase
      */
     public function deleteForGhostFromGetNewGhostThrowsException(): void
     {
-        $this->expectException(
-            \InvalidArgumentException::class,
-        );
-        $this->expectExceptionMessage(
-            'This model is a memory-only dummy that must not be deleted.',
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('This model is a memory-only dummy that must not be deleted.');
+        $this->expectExceptionCode(1_331_319_817);
 
         $model = $this->subject->getNewGhost();
         $this->subject->delete($model);
@@ -3185,6 +3188,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('This model is read-only and must not be deleted.');
+        $this->expectExceptionCode(1331319836);
 
         $model = new ReadOnlyModel();
         $this->subject->delete($model);
@@ -3295,6 +3299,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('$relationKey must not be empty');
+        $this->expectExceptionCode(1_331_319_921);
 
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', []);

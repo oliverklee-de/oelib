@@ -25,8 +25,6 @@ final class TemplateTest extends FunctionalTestCase
         $this->subject = new Template();
     }
 
-    // Tests for reading the HTML from a file.
-
     /**
      * @test
      */
