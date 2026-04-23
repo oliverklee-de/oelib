@@ -261,6 +261,11 @@ parameters:
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
+			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Core\\\\TypoScript\\\\FrontendTypoScript\\:\\:setConfigArray\\(\\)\\.$#"
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
 			message: "#^Call to an undefined static method TYPO3\\\\CMS\\\\Core\\\\Utility\\\\RootlineUtility\\:\\:purgeCaches\\(\\)\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
@@ -357,6 +362,11 @@ parameters:
 
 		-
 			message: "#^Cannot access offset non\\-empty\\-string on mixed\\.$#"
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			message: "#^Class TYPO3\\\\CMS\\\\Core\\\\TypoScript\\\\FrontendTypoScript constructor invoked with 4 parameters, 2 required\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
