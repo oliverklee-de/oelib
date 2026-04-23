@@ -13,6 +13,13 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class TemplateRegistryTest extends UnitTestCase
 {
+    protected function tearDown(): void
+    {
+        TemplateRegistry::purgeInstance();
+
+        parent::tearDown();
+    }
+
     // Tests concerning the Singleton property
 
     /**

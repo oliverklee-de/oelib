@@ -14,6 +14,13 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class ConfigurationRegistryTest extends UnitTestCase
 {
+    protected function tearDown(): void
+    {
+        ConfigurationRegistry::purgeInstance();
+
+        parent::tearDown();
+    }
+
     /**
      * @test
      */
