@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Add `SystemEmailBuilder` (#2294)
 - Add `IfIsAdminViewHelper` (#2298)
 - Make the registries available via DI (#2292)
 - Use the new TypoScript parser in TYPO3 >= V12 (#2284)
@@ -19,6 +20,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Deprecated
 
+- Deprecate `SystemEmailFromBuilder` (#2294)
 - Deprecate the configuration check (#2297)
 - Deprecate `::getInstance` in the registries (#2292)
 - Deprecate the static accessors of `ConfigurationRegistry`, `MapperRegistry`
