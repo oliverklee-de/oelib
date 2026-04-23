@@ -16,6 +16,15 @@ final class MapperRegistryTest extends FunctionalTestCase
 
     protected array $testExtensionsToLoad = ['oliverklee/oelib'];
 
+    private MapperRegistry $subject;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->subject = $this->get(MapperRegistry::class);
+    }
+
     protected function tearDown(): void
     {
         MapperRegistry::purgeInstance();
@@ -28,8 +37,6 @@ final class MapperRegistryTest extends FunctionalTestCase
      */
     public function isAvailableViaContainer(): void
     {
-        $instance = $this->get(MapperRegistry::class);
-
-        self::assertInstanceOf(MapperRegistry::class, $instance);
+        self::assertInstanceOf(MapperRegistry::class, $this->subject);
     }
 }

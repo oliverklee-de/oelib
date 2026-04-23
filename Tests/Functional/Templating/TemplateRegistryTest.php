@@ -17,6 +17,15 @@ final class TemplateRegistryTest extends FunctionalTestCase
 
     protected bool $initializeDatabase = false;
 
+    private TemplateRegistry $subject;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->subject = $this->get(TemplateRegistry::class);
+    }
+
     protected function tearDown(): void
     {
         TemplateRegistry::purgeInstance();
@@ -29,9 +38,7 @@ final class TemplateRegistryTest extends FunctionalTestCase
      */
     public function isAvailableViaContainer(): void
     {
-        $instance = $this->get(TemplateRegistry::class);
-
-        self::assertInstanceOf(TemplateRegistry::class, $instance);
+        self::assertInstanceOf(TemplateRegistry::class, $this->subject);
     }
 
     /**
