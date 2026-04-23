@@ -1698,8 +1698,8 @@ final class TestingFrameworkTest extends FunctionalTestCase
      */
     public function createFakeFrontEndProvidesRequestTypoScriptWithTypoScriptSetupFromPage(): void
     {
-        if ((new Typo3Version())->getMajorVersion() < 12) {
-            self::markTestSkipped('The request typoscript object is only available in TYPO3 v12 and above.');
+        if ((new Typo3Version())->getMajorVersion() !== 12) {
+            self::markTestSkipped('This feature is only available in TYPO3 v12.');
         }
 
         $this->importCSVDataSet(__DIR__ . '/Fixtures/createFakeFrontEnd/PageWithTemplate.csv');
