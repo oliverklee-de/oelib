@@ -39,6 +39,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+- Avoid undefined array access in `SystemEmailFromBuilder` (#2310)
 - Provide the request to `newCObj()` for TYPO3 V13 (#2281)
 - Avoid the deprecated `TypoScriptFrontendController::getLanguage()` (#2278)
 - Avoid the deprecated `determineId()` method in the testing framework (#2274)

@@ -21,16 +21,19 @@ class SystemEmailFromBuilder
     {
         $configuration = $this->getEmailConfiguration();
         $emailAddress = $configuration['defaultMailFromAddress'] ?? '';
+        \assert(\is_string($emailAddress));
 
         return \filter_var($emailAddress, FILTER_VALIDATE_EMAIL) !== false;
     }
 
     /**
-     * @return array{defaultMailFromAddress?: string}
+     * @return array<mixed>
      */
     protected function getEmailConfiguration(): array
     {
-        return $GLOBALS['TYPO3_CONF_VARS']['MAIL'];
+        $configuration = $GLOBALS['TYPO3_CONF_VARS']['MAIL'] ?? null;
+
+        return \is_array($configuration) ? $configuration : [];
     }
 
     /**
