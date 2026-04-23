@@ -1149,7 +1149,7 @@ routes: {  }";
         $sysTemplateRepository = GeneralUtility::makeInstance(SysTemplateRepository::class);
         $sysTemplateRows = $sysTemplateRepository->getSysTemplateRowsByRootline($rootline, $request);
 
-        if ($sysTemplateRows !== []) {
+        if ($sysTemplateRows !== [] && (new Typo3Version())->getMajorVersion() === 12) {
             $newRequest = $controller->getFromCache($request);
         } else {
             $newRequest = $request->withAttribute('frontend.typoscript', $this->buildEmptyTypoScript());

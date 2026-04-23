@@ -20,6 +20,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Deprecated
 
+- Only provide real TypoScript to the fake FE in TYPO3 V12 (#2302)
 - Deprecate `SystemEmailFromBuilder` (#2294)
 - Deprecate the configuration check (#2297)
 - Deprecate `::getInstance` in the registries (#2292)
