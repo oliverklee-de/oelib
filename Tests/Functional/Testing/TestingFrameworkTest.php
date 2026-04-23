@@ -7,6 +7,7 @@ namespace OliverKlee\Oelib\Tests\Functional\Testing;
 use OliverKlee\Oelib\Testing\TestingFramework;
 use OliverKlee\Oelib\Tests\Functional\Testing\Fixtures\TestingCleanup;
 use Psr\Http\Message\ServerRequestInterface;
+use Symfony\Component\Cache\DataCollector\CacheDataCollector;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
@@ -20,8 +21,10 @@ use TYPO3\CMS\Core\Site\Entity\SiteLanguage;
 use TYPO3\CMS\Core\TypoScript\FrontendTypoScript;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
+use TYPO3\CMS\Frontend\Cache\CacheInstruction;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\CMS\Frontend\Page\PageInformation;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -1690,6 +1693,59 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @test
      */
+    public function createFakeFrontEndSetsRequestFrontendCacheCollector(): void
+    {
+        if ((new Typo3Version())->getMajorVersion() < 13) {
+            self::markTestSkipped('The request frontend cache collector is only available in TYPO3 v13 and above.');
+        }
+
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        self::assertInstanceOf(CacheDataCollector::class, $request->getAttribute('frontend.cache.collector'));
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndSetsRequestFrontendCacheInstruction(): void
+    {
+        if ((new Typo3Version())->getMajorVersion() < 13) {
+            self::markTestSkipped('The request frontend cache instruction is only available in TYPO3 v13 and above.');
+        }
+
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        self::assertInstanceOf(CacheInstruction::class, $request->getAttribute('frontend.cache.instruction'));
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndDisablesCachingInRequestFrontendCacheInstruction(): void
+    {
+        if ((new Typo3Version())->getMajorVersion() < 13) {
+            self::markTestSkipped('The request frontend cache instruction is only available in TYPO3 v13 and above.');
+        }
+
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        $cacheInstruction = $request->getAttribute('frontend.cache.instruction');
+        self::assertInstanceOf(CacheInstruction::class, $cacheInstruction);
+        self::assertFalse($cacheInstruction->isCachingAllowed());
+    }
+
+    /**
+     * @test
+     */
     public function createFakeFrontEndSetsRequestFrontendController(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1698,6 +1754,23 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
         self::assertInstanceOf(ServerRequest::class, $request);
         self::assertInstanceOf(TypoScriptFrontendController::class, $request->getAttribute('frontend.controller'));
+    }
+
+    /**
+     * @test
+     */
+    public function createFakeFrontEndSetsRequestFrontendPageInformation(): void
+    {
+        if ((new Typo3Version())->getMajorVersion() < 13) {
+            self::markTestSkipped('The request frontend page information is only available in TYPO3 v13 and above.');
+        }
+
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        self::assertInstanceOf(ServerRequest::class, $request);
+        self::assertInstanceOf(PageInformation::class, $request->getAttribute('frontend.page.information'));
     }
 
     /**

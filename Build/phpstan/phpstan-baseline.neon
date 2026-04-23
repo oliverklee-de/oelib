@@ -276,6 +276,11 @@ parameters:
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
+			message: "#^Call to method disableCache\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Cache\\\\CacheInstruction\\.$#"
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
 			message: "#^Call to method fetchGroupData\\(\\) on an unknown class FrontendUserAuthentication\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
@@ -286,7 +291,17 @@ parameters:
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
+			message: "#^Call to method setId\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Page\\\\PageInformation\\.$#"
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
 			message: "#^Call to method setLogger\\(\\) on an unknown class ContentObjectRenderer\\.$#"
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			message: "#^Call to method setPageRecord\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Page\\\\PageInformation\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
@@ -371,6 +386,16 @@ parameters:
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
+			message: "#^Instantiated class TYPO3\\\\CMS\\\\Frontend\\\\Cache\\\\CacheInstruction not found\\.$#"
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			message: "#^Instantiated class TYPO3\\\\CMS\\\\Frontend\\\\Page\\\\PageInformation not found\\.$#"
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Testing\\\\TestingFramework\\:\\:getFrontEndController\\(\\) should return TYPO3\\\\CMS\\\\Frontend\\\\Controller\\\\TypoScriptFrontendController but returns mixed\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
@@ -431,6 +456,11 @@ parameters:
 			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
 
 		-
+			message: "#^Call to method isCachingAllowed\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Cache\\\\CacheInstruction\\.$#"
+			count: 1
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+
+		-
 			message: "#^Call to method typoLink_URL\\(\\) on an unknown class ContentObjectRenderer\\.$#"
 			count: 3
 			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
@@ -456,7 +486,32 @@ parameters:
 			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
+			message: "#^Class TYPO3\\\\CMS\\\\Frontend\\\\Cache\\\\CacheInstruction not found\\.$#"
+			count: 2
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+
+		-
+			message: "#^Class TYPO3\\\\CMS\\\\Frontend\\\\Page\\\\PageInformation not found\\.$#"
+			count: 1
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+
+		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Tests\\\\Functional\\\\Testing\\\\TestingFrameworkTest\\:\\:getFrontEndController\\(\\) should return TYPO3\\\\CMS\\\\Frontend\\\\Controller\\\\TypoScriptFrontendController but returns mixed\\.$#"
+			count: 1
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+
+		-
+			message: "#^There is no request attribute \"frontend\\.cache\\.collector\" configured so we can't figure out the exact type to return when calling TYPO3\\\\CMS\\\\Core\\\\Http\\\\ServerRequest\\:\\:getAttribute$#"
+			count: 1
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+
+		-
+			message: "#^There is no request attribute \"frontend\\.cache\\.instruction\" configured so we can't figure out the exact type to return when calling TYPO3\\\\CMS\\\\Core\\\\Http\\\\ServerRequest\\:\\:getAttribute$#"
+			count: 2
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+
+		-
+			message: "#^There is no request attribute \"frontend\\.page\\.information\" configured so we can't figure out the exact type to return when calling TYPO3\\\\CMS\\\\Core\\\\Http\\\\ServerRequest\\:\\:getAttribute$#"
 			count: 1
 			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
