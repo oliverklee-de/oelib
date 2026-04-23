@@ -70,7 +70,7 @@ class ConfigurationRegistry
     }
 
     /**
-     * Retrieves a Configuration by namespace.
+     * Retrieves a `Configuration` by namespace.
      *
      * @param non-empty-string $namespace the name of a configuration namespace, e.g., "plugin.tx_oelib"
      *
@@ -86,7 +86,7 @@ class ConfigurationRegistry
     }
 
     /**
-     * Retrieves a Configuration by namespace.
+     * Retrieves a `Configuration` by namespace.
      *
      * @param non-empty-string $namespace the name of a configuration namespace, e.g., "plugin.tx_oelib"
      *

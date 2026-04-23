@@ -14,8 +14,6 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class ConfigurationRegistryTest extends UnitTestCase
 {
-    // Tests concerning the Singleton property
-
     /**
      * @test
      */
@@ -56,12 +54,9 @@ final class ConfigurationRegistryTest extends UnitTestCase
      */
     public function getForEmptyNamespaceThrowsException(): void
     {
-        $this->expectException(
-            \InvalidArgumentException::class,
-        );
-        $this->expectExceptionMessage(
-            '$namespace must not be empty.',
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$namespace must not be empty.');
+        $this->expectExceptionCode(1_331_318_549);
 
         // @phpstan-ignore-next-line We are explicitly checking for a contract violation here.
         ConfigurationRegistry::get('');
@@ -72,12 +67,9 @@ final class ConfigurationRegistryTest extends UnitTestCase
      */
     public function setWithEmptyNamespaceThrowsException(): void
     {
-        $this->expectException(
-            \InvalidArgumentException::class,
-        );
-        $this->expectExceptionMessage(
-            '$namespace must not be empty.',
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$namespace must not be empty.');
+        $this->expectExceptionCode(1_331_318_549);
 
         // @phpstan-ignore-next-line We are explicitly checking for a contract violation here.
         ConfigurationRegistry::getInstance()->set('', new DummyConfiguration());
