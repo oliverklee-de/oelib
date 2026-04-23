@@ -47,9 +47,8 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
      */
     public function getForNonEmptyNamespaceReturnsConfigurationInstance(): void
     {
-        PageFinder::getInstance()->setPageUid(
-            $this->testingFramework->createFrontEndPage(),
-        );
+        $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
+        PageFinder::getInstance()->setPageUid(1);
 
         self::assertInstanceOf(
             TypoScriptConfiguration::class,
@@ -62,9 +61,8 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
      */
     public function getForTheSameNamespaceCalledTwoTimesReturnsTheSameInstance(): void
     {
-        PageFinder::getInstance()->setPageUid(
-            $this->testingFramework->createFrontEndPage(),
-        );
+        $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
+        PageFinder::getInstance()->setPageUid(1);
 
         self::assertSame(
             ConfigurationRegistry::get('plugin.tx_oelib'),
