@@ -7,6 +7,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- Expose the non-static `ConfigurationRegistry` getter (#2311)
 - Expose the non-static `MapperRegistry` getter/setter (#2320)
 - Add `SystemEmailBuilder` (#2294)
 - Add `IfIsAdminViewHelper` (#2298)

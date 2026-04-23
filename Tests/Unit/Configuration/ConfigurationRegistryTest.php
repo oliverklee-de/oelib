@@ -63,8 +63,6 @@ final class ConfigurationRegistryTest extends UnitTestCase
         );
     }
 
-    // Test concerning get and set
-
     /**
      * @test
      */
@@ -122,5 +120,42 @@ final class ConfigurationRegistryTest extends UnitTestCase
     {
         $this->subject->set('foo', new DummyConfiguration());
         $this->subject->set('foo', new DummyConfiguration());
+    }
+
+    /**
+     * @test
+     */
+    public function getByNamespaceForEmptyNamespaceThrowsException(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$namespace must not be empty.');
+        $this->expectExceptionCode(1_331_318_549);
+
+        // @phpstan-ignore-next-line We are explicitly checking for a contract violation here.
+        $this->subject->getByNamespace('');
+    }
+
+    /**
+     * @test
+     */
+    public function getByNamespaceAfterSetWithTypoScriptConfigurationReturnsTheSetInstance(): void
+    {
+        $configuration = new TypoScriptConfiguration();
+
+        $this->subject->set('foo', $configuration);
+
+        self::assertSame($configuration, $this->subject->getByNamespace('foo'));
+    }
+
+    /**
+     * @test
+     */
+    public function getByNamespaceAfterSetWithDummyConfigurationReturnsTheSetInstance(): void
+    {
+        $configuration = new DummyConfiguration();
+
+        $this->subject->set('foo', $configuration);
+
+        self::assertSame($configuration, $this->subject->getByNamespace('foo'));
     }
 }
