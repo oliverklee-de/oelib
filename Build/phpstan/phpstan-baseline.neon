@@ -111,11 +111,6 @@ parameters:
 			path: ../../Classes/Email/SystemEmailFromBuilder.php
 
 		-
-			message: "#^Method OliverKlee\\\\Oelib\\\\Email\\\\SystemEmailFromBuilder\\:\\:getEmailConfiguration\\(\\) should return array\\{defaultMailFromAddress\\?\\: string\\} but returns mixed\\.$#"
-			count: 1
-			path: ../../Classes/Email/SystemEmailFromBuilder.php
-
-		-
 			message: "#^Parameters should have \"OliverKlee\\\\Oelib\\\\DataStructures\\\\Collection\\<OliverKlee\\\\Oelib\\\\Interfaces\\\\Geo&OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\>\\|OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Geocoding\\\\Fixtures\\\\TestingGeo\\|float\" types as the only types passed to this method$#"
 			count: 1
 			path: ../../Classes/Geocoding/GeoCalculator.php
