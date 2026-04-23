@@ -15,12 +15,14 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  * Usage:
  * 1. Create a corresponding configuration check class.
  * 2. Extend this view helper in your extension.
- * 4. Override the method getExtensionKey() to return your extension key (without the `tx_` prefix).
- * 3. Override the method getConfigurationCheckClassName() to return the name of your configuration check class.
+ * 4. Override the method `getExtensionKey()` to return your extension key (without the `tx_` prefix).
+ * 3. Override the method `getConfigurationCheckClassName()` to return the name of your configuration check class.
  * 4. If your TypoScript configuration namespace is different from `plugin.tx_<your extension key>.settings`
- *    override the method getConfigurationNamespace() to return your namespace.
+ *    override the method `getConfigurationNamespace()` to return your namespace.
  *
  * @template C of AbstractConfigurationCheck
+ *
+ * @deprecated will be removed in oelib 7.0 in #2296
  */
 abstract class AbstractConfigurationCheckViewHelper extends AbstractViewHelper
 {

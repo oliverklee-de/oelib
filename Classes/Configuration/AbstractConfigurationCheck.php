@@ -14,6 +14,8 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * This class can check any configuration, e.g., TypoScript, Flexforms or extension manager.
  *
  * To use this class, override the `checkAllConfigurationValues` method to call the available `check*` methods.
+ *
+ * @deprecated will be removed in oelib 7.0 in #2296
  */
 abstract class AbstractConfigurationCheck
 {
