@@ -20,10 +20,15 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
 
     private TestingFramework $testingFramework;
 
+    private ConfigurationRegistry $subject;
+
     protected function setUp(): void
     {
         parent::setUp();
+
         $this->testingFramework = new TestingFramework('tx_oelib');
+
+        $this->subject = $this->get(ConfigurationRegistry::class);
     }
 
     protected function tearDown(): void
@@ -39,9 +44,7 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
      */
     public function isAvailableViaContainer(): void
     {
-        $instance = $this->get(ConfigurationRegistry::class);
-
-        self::assertInstanceOf(ConfigurationRegistry::class, $instance);
+        self::assertInstanceOf(ConfigurationRegistry::class, $this->subject);
     }
 
     /**

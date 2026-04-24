@@ -14,6 +14,15 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class ConfigurationRegistryTest extends UnitTestCase
 {
+    private ConfigurationRegistry $subject;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->subject = new ConfigurationRegistry();
+    }
+
     protected function tearDown(): void
     {
         ConfigurationRegistry::purgeInstance();
@@ -111,7 +120,7 @@ final class ConfigurationRegistryTest extends UnitTestCase
      */
     public function setTwoTimesForTheSameNamespaceDoesNotFail(): void
     {
-        ConfigurationRegistry::getInstance()->set('foo', new DummyConfiguration());
-        ConfigurationRegistry::getInstance()->set('foo', new DummyConfiguration());
+        $this->subject->set('foo', new DummyConfiguration());
+        $this->subject->set('foo', new DummyConfiguration());
     }
 }
