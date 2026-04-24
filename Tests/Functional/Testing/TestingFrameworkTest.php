@@ -1340,6 +1340,19 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @test
      */
+    public function createFakeFrontEndDisablesFrontEndCaching(): void
+    {
+        $pageUid = $this->subject->createFrontEndPage();
+        $this->subject->createFakeFrontEnd($pageUid);
+
+        $frontEndController = $GLOBALS['TSFE'];
+        self::assertInstanceOf(TypoScriptFrontendController::class, $frontEndController);
+        self::assertTrue($frontEndController->no_cache);
+    }
+
+    /**
+     * @test
+     */
     public function createFakeFrontEndCreatesFrontEndUser(): void
     {
         $pageUid = $this->subject->createFrontEndPage();

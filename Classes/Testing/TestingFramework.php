@@ -661,6 +661,7 @@ final class TestingFramework
             $pageArguments,
             $frontEndUser,
         );
+        $frontEndController->set_no_cache('fake frontend', true);
         $rootlineUtility = GeneralUtility::makeInstance(RootlineUtility::class, $pageUid);
         $rootline = $rootlineUtility->get();
         $frontEndController->rootLine = $rootline;
