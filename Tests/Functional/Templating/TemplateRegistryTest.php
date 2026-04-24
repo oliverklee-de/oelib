@@ -17,6 +17,13 @@ final class TemplateRegistryTest extends FunctionalTestCase
 
     protected bool $initializeDatabase = false;
 
+    protected function tearDown(): void
+    {
+        TemplateRegistry::purgeInstance();
+
+        parent::tearDown();
+    }
+
     /**
      * @test
      */

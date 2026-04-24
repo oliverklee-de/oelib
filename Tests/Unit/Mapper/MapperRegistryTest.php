@@ -17,6 +17,7 @@ final class MapperRegistryTest extends UnitTestCase
     protected function tearDown(): void
     {
         MapperRegistry::purgeInstance();
+
         parent::tearDown();
     }
 

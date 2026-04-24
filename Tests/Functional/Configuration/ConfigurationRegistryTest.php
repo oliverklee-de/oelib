@@ -28,7 +28,9 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
 
     protected function tearDown(): void
     {
+        ConfigurationRegistry::purgeInstance();
         $this->testingFramework->cleanUpWithoutDatabase();
+
         parent::tearDown();
     }
 

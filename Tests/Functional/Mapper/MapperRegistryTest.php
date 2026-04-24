@@ -16,6 +16,13 @@ final class MapperRegistryTest extends FunctionalTestCase
 
     protected array $testExtensionsToLoad = ['oliverklee/oelib'];
 
+    protected function tearDown(): void
+    {
+        MapperRegistry::purgeInstance();
+
+        parent::tearDown();
+    }
+
     /**
      * @test
      */
