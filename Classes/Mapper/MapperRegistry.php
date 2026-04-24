@@ -81,7 +81,7 @@ class MapperRegistry
      *
      * @throws \InvalidArgumentException if there is no such mapper
      */
-    private function getByClassName(string $className): AbstractDataMapper
+    public function getByClassName(string $className): AbstractDataMapper
     {
         if ($className === '') {
             throw new \InvalidArgumentException('$className must not be empty.', 1_331_488_868);
@@ -139,7 +139,7 @@ class MapperRegistry
      * @throws \InvalidArgumentException
      * @throws \BadMethodCallException
      */
-    private function setByClassName(string $className, AbstractDataMapper $mapper): void
+    public function setByClassName(string $className, AbstractDataMapper $mapper): void
     {
         if (!$mapper instanceof $className) {
             throw new \InvalidArgumentException(
