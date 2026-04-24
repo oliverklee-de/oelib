@@ -14,6 +14,15 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class MapperRegistryTest extends UnitTestCase
 {
+    private MapperRegistry $subject;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->subject = new MapperRegistry();
+    }
+
     protected function tearDown(): void
     {
         MapperRegistry::purgeInstance();
@@ -119,6 +128,65 @@ final class MapperRegistryTest extends UnitTestCase
     /**
      * @test
      */
+    public function getByClassNameForEmptyKeyThrowsException(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$className must not be empty.');
+        $this->expectExceptionCode(1331488868);
+
+        // @phpstan-ignore-next-line We explicitly check for contract violations here.
+        $this->subject->getByClassName('');
+    }
+
+    /**
+     * @test
+     */
+    public function getByClassNameForInexistentClassThrowsException(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('No mapper class');
+        $this->expectExceptionCode(1632844178);
+
+        // @phpstan-ignore-next-line We're testing a contract violation here on purpose.
+        $this->subject->getByClassName('InexistentMapper');
+    }
+
+    /**
+     * @test
+     */
+    public function getByClassNameForExistingClassReturnsObjectOfRequestedClass(): void
+    {
+        self::assertInstanceOf(TestingMapper::class, $this->subject->getByClassName(TestingMapper::class));
+    }
+
+    /**
+     * @test
+     */
+    public function getByClassNameForExistingClassCalledTwoTimesReturnsTheSameInstance(): void
+    {
+        self::assertSame(
+            $this->subject->getByClassName(TestingMapper::class),
+            $this->subject->getByClassName(TestingMapper::class),
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getByClassNameReturnsMapperSetViaSetByClassName(): void
+    {
+        $mapper = new TestingMapper();
+        $this->subject->setByClassName(TestingMapper::class, $mapper);
+
+        self::assertSame(
+            $mapper,
+            $this->subject->getByClassName(TestingMapper::class),
+        );
+    }
+
+    /**
+     * @test
+     */
     public function setThrowsExceptionForMismatchingWrapperClass(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -142,5 +210,33 @@ final class MapperRegistryTest extends UnitTestCase
 
         $mapper = new TestingMapper();
         MapperRegistry::set(TestingMapper::class, $mapper);
+    }
+
+    /**
+     * @test
+     */
+    public function setByClassNameThrowsExceptionForMismatchingWrapperClass(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The provided mapper is not an instance of');
+        $this->expectExceptionCode(1331488915);
+
+        $mapper = new TestingMapper();
+        $this->subject->setByClassName(TestingChildMapper::class, $mapper);
+    }
+
+    /**
+     * @test
+     */
+    public function setByClassNameThrowsExceptionIfTheMapperTypeAlreadyIsRegistered(): void
+    {
+        $this->expectException(\BadMethodCallException::class);
+        $this->expectExceptionMessage('Overwriting existing mappers is not allowed.');
+        $this->expectExceptionCode(1331488928);
+
+        $this->subject->getByClassName(TestingMapper::class);
+
+        $mapper = new TestingMapper();
+        $this->subject->setByClassName(TestingMapper::class, $mapper);
     }
 }
