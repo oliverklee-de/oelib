@@ -13,6 +13,15 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class TemplateRegistryTest extends UnitTestCase
 {
+    private TemplateRegistry $subject;
+
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->subject = new TemplateRegistry();
+    }
+
     protected function tearDown(): void
     {
         TemplateRegistry::purgeInstance();
@@ -75,6 +84,28 @@ final class TemplateRegistryTest extends UnitTestCase
         self::assertNotSame(
             TemplateRegistry::get(''),
             TemplateRegistry::get(''),
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getByFileNameForEmptyTemplateFileNameReturnsTemplateInstance(): void
+    {
+        self::assertInstanceOf(
+            Template::class,
+            $this->subject->getByFileName(''),
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getByFileNameForEmptyTemplateFileNameCalledTwoTimesReturnsNewInstance(): void
+    {
+        self::assertNotSame(
+            $this->subject->getByFileName(''),
+            $this->subject->getByFileName(''),
         );
     }
 }
