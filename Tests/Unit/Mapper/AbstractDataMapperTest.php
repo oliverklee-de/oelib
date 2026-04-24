@@ -29,10 +29,6 @@ final class AbstractDataMapperTest extends UnitTestCase
         $this->subject = new TestingMapper();
     }
 
-    ///////////////////////////////////////
-    // Tests concerning the instantiation
-    ///////////////////////////////////////
-
     /**
      * @test
      */
@@ -74,6 +70,7 @@ final class AbstractDataMapperTest extends UnitTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('$data must contain an element "uid".');
+        $this->expectExceptionCode(1_331_319_491);
 
         $this->subject->getModel([]);
     }
@@ -109,12 +106,9 @@ final class AbstractDataMapperTest extends UnitTestCase
      */
     public function loadWithModelWithoutUidThrowsException(): void
     {
-        $this->expectException(
-            \InvalidArgumentException::class,
-        );
-        $this->expectExceptionMessage(
-            'load must only be called with models that already have a UID.',
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('load must only be called with models that already have a UID.');
+        $this->expectExceptionCode(1_331_319_554);
 
         $model = new TestingModel();
         $this->subject->load($model);
@@ -126,6 +120,8 @@ final class AbstractDataMapperTest extends UnitTestCase
     public function reloadForTestingOnlyGhostThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('This ghost was created via getNewGhost and must not be loaded.');
+        $this->expectExceptionCode(1_331_319_529);
 
         $model = $this->subject->getNewGhost();
         $this->subject->load($model);
@@ -137,6 +133,8 @@ final class AbstractDataMapperTest extends UnitTestCase
     public function reloadForModelWithoutUidThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('load must only be called with models that already have a UID.');
+        $this->expectExceptionCode(1_331_319_554);
 
         $model = new TestingModel();
         $this->subject->load($model);
@@ -167,12 +165,9 @@ final class AbstractDataMapperTest extends UnitTestCase
      */
     public function findWithZeroUidThrowsException(): void
     {
-        $this->expectException(
-            \InvalidArgumentException::class,
-        );
-        $this->expectExceptionMessage(
-            '$uid must be > 0.',
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$uid must be > 0.');
+        $this->expectExceptionCode(1_331_488_761);
 
         // @phpstan-ignore-next-line We're testing for a contract violation here.
         $this->subject->find(0);
@@ -183,12 +178,9 @@ final class AbstractDataMapperTest extends UnitTestCase
      */
     public function findWithNegativeUidThrowsException(): void
     {
-        $this->expectException(
-            \InvalidArgumentException::class,
-        );
-        $this->expectExceptionMessage(
-            '$uid must be > 0.',
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$uid must be > 0.');
+        $this->expectExceptionCode(1_331_488_761);
 
         // @phpstan-ignore-next-line We're testing for a contract violation here.
         $this->subject->find(-1);
@@ -282,12 +274,9 @@ final class AbstractDataMapperTest extends UnitTestCase
      */
     public function loadingAGhostCreatedWithGetNewGhostThrowsException(): void
     {
-        $this->expectException(
-            \InvalidArgumentException::class,
-        );
-        $this->expectExceptionMessage(
-            'This ghost was created via getNewGhost and must not be loaded.',
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('This ghost was created via getNewGhost and must not be loaded.');
+        $this->expectExceptionCode(1_331_319_529);
 
         $ghost = $this->subject->getNewGhost();
         $this->subject->load($ghost);
@@ -304,6 +293,7 @@ final class AbstractDataMapperTest extends UnitTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('The parameter $whereClauseParts must not be empty.');
+        $this->expectExceptionCode(1_331_319_506);
 
         // @phpstan-ignore-next-line We are explicitly testing for a contract violation here.
         $this->subject->findSingleByWhereClause([]);
@@ -320,6 +310,7 @@ final class AbstractDataMapperTest extends UnitTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('$key must not be empty.');
+        $this->expectExceptionCode(1_416_847_364);
 
         // @phpstan-ignore-next-line We are explicitly testing for a contract violation here.
         $this->subject->findOneByKeyFromCache('', 'bar');
@@ -332,6 +323,7 @@ final class AbstractDataMapperTest extends UnitTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('"foo" is not a valid key for this mapper.');
+        $this->expectExceptionCode(1_331_319_882);
 
         $this->subject->findOneByKeyFromCache('foo', 'bar');
     }
@@ -343,6 +335,7 @@ final class AbstractDataMapperTest extends UnitTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('$value must not be empty.');
+        $this->expectExceptionCode(1_331_319_892);
 
         // @phpstan-ignore-next-line We are explicitly testing for a contract violation here.
         $this->subject->findOneByKeyFromCache('title', '');
@@ -354,6 +347,8 @@ final class AbstractDataMapperTest extends UnitTestCase
     public function findOneByKeyFromCacheForModelNotInCacheThrowsException(): void
     {
         $this->expectException(NotFoundException::class);
+        $this->expectExceptionMessage('Not found');
+        $this->expectExceptionCode(1_573_836_483);
 
         $this->subject->findOneByKeyFromCache('title', 'bar');
     }
@@ -365,6 +360,7 @@ final class AbstractDataMapperTest extends UnitTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('$key must not be empty.');
+        $this->expectExceptionCode(1_416_847_364);
 
         // @phpstan-ignore-next-line We are explicitly testing for a contract violation here.
         $this->subject->findOneByKey('', 'bar');
@@ -375,12 +371,9 @@ final class AbstractDataMapperTest extends UnitTestCase
      */
     public function findOneByKeyForInexistentKeyThrowsException(): void
     {
-        $this->expectException(
-            \InvalidArgumentException::class,
-        );
-        $this->expectExceptionMessage(
-            '"foo" is not a valid key for this mapper.',
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('"foo" is not a valid key for this mapper.');
+        $this->expectExceptionCode(1_331_319_882);
 
         $this->subject->findOneByKey('foo', 'bar');
     }
@@ -392,6 +385,7 @@ final class AbstractDataMapperTest extends UnitTestCase
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('$value must not be empty.');
+        $this->expectExceptionCode(1_331_319_892);
 
         // @phpstan-ignore-next-line We are explicitly testing for a contract violation here.
         $this->subject->findOneByKey('title', '');
@@ -406,12 +400,9 @@ final class AbstractDataMapperTest extends UnitTestCase
      */
     public function findAllByRelationWithModelWithoutUidThrowsException(): void
     {
-        $this->expectException(
-            \InvalidArgumentException::class,
-        );
-        $this->expectExceptionMessage(
-            '$model must have a UID.',
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$model must have a UID.');
+        $this->expectExceptionCode(1_331_319_915);
 
         $model = new TestingModel();
 

@@ -20,8 +20,6 @@ final class TemplateRegistryTest extends UnitTestCase
         parent::tearDown();
     }
 
-    // Tests concerning the Singleton property
-
     /**
      * @test
      */
@@ -57,8 +55,6 @@ final class TemplateRegistryTest extends UnitTestCase
             TemplateRegistry::getInstance(),
         );
     }
-
-    // Tests concerning get()
 
     /**
      * @test
