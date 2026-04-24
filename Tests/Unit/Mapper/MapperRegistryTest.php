@@ -21,10 +21,6 @@ final class MapperRegistryTest extends UnitTestCase
         parent::tearDown();
     }
 
-    ////////////////////////////////////////////
-    // Tests concerning the Singleton property
-    ////////////////////////////////////////////
-
     /**
      * @test
      */
@@ -61,21 +57,14 @@ final class MapperRegistryTest extends UnitTestCase
         );
     }
 
-    ////////////////////////////////////////
-    // Test concerning get and setMappings
-    ////////////////////////////////////////
-
     /**
      * @test
      */
     public function getForEmptyKeyThrowsException(): void
     {
-        $this->expectException(
-            \InvalidArgumentException::class,
-        );
-        $this->expectExceptionMessage(
-            '$className must not be empty.',
-        );
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$className must not be empty.');
+        $this->expectExceptionCode(1331488868);
 
         // @phpstan-ignore-next-line We explicitly check for contract violations here.
         MapperRegistry::get('');
@@ -87,9 +76,11 @@ final class MapperRegistryTest extends UnitTestCase
     public function getForInexistentClassThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('No mapper class');
+        $this->expectExceptionCode(1632844178);
 
         // @phpstan-ignore-next-line We're testing a contract violation here on purpose.
-        MapperRegistry::get(InexistentMapper::class);
+        MapperRegistry::get('InexistentMapper');
     }
 
     /**
@@ -111,10 +102,6 @@ final class MapperRegistryTest extends UnitTestCase
         );
     }
 
-    /////////////////////////
-    // Tests concerning set
-    /////////////////////////
-
     /**
      * @test
      */
@@ -135,6 +122,8 @@ final class MapperRegistryTest extends UnitTestCase
     public function setThrowsExceptionForMismatchingWrapperClass(): void
     {
         $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('The provided mapper is not an instance of');
+        $this->expectExceptionCode(1331488915);
 
         $mapper = new TestingMapper();
         MapperRegistry::set(TestingChildMapper::class, $mapper);
@@ -146,6 +135,8 @@ final class MapperRegistryTest extends UnitTestCase
     public function setThrowsExceptionIfTheMapperTypeAlreadyIsRegistered(): void
     {
         $this->expectException(\BadMethodCallException::class);
+        $this->expectExceptionMessage('Overwriting existing mappers is not allowed.');
+        $this->expectExceptionCode(1331488928);
 
         MapperRegistry::get(TestingMapper::class);
 
