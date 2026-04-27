@@ -22,16 +22,12 @@ class TemplateRegistry
     private array $templates = [];
 
     /**
-     * Returns an instance of this class.
-     *
-     * @return TemplateRegistry the current Singleton instance
-     *
      * @deprecated #2287 will be removed in oelib 7.0; use DI instead
      */
-    public static function getInstance(): TemplateRegistry
+    public static function getInstance(): self
     {
         if (!self::$instance instanceof self) {
-            self::$instance = new TemplateRegistry();
+            self::$instance = GeneralUtility::makeInstance(self::class);
         }
 
         return self::$instance;

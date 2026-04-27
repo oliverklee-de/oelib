@@ -11,7 +11,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Expose the non-static `MapperRegistry` getter/setter (#2320)
 - Add `SystemEmailBuilder` (#2294)
 - Add `IfIsAdminViewHelper` (#2298)
-- Make the registries available via DI (#2292)
+- Make the registries available via DI (#2292, #2321)
 - Use the new TypoScript parser in TYPO3 >= V12 (#2284)
 - Provide the fake frontend request with TypoScript (#2282)
 - Provide the fake frontend with a rootline (#2277)
