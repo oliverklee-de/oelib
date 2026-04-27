@@ -92,7 +92,7 @@ class ConfigurationRegistry
      *
      * @return ConfigurationInterface the configuration for the given namespace
      */
-    private function getByNamespace(string $namespace): ConfigurationInterface
+    public function getByNamespace(string $namespace): ConfigurationInterface
     {
         $this->checkForNonEmptyNamespace($namespace);
 
