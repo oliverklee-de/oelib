@@ -1,6 +1,6 @@
 {
 	"name": "oliverklee/oelib",
-	"description": "Useful stuff for TYPO3 extension development: helper functions for unit testing, templating and automatic configuration checks.",
+	"description": "Useful stuff for TYPO3 extension development: helper functions for unit testing and templating.",
 	"license": "GPL-2.0-or-later",
 	"type": "typo3-cms-extension",
 	"keywords": [
