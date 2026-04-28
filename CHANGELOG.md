@@ -7,6 +7,18 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+## 6.3.0: DI-capable registries, new ViewHelper, better fake FE, deprecations
+
+### Added
+
 - Expose the non-static `ConfigurationRegistry` getter (#2311)
 - Expose the non-static `MapperRegistry` getter/setter (#2320)
 - Add `SystemEmailBuilder` (#2294)
@@ -17,8 +29,6 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Provide the fake frontend with a rootline (#2277)
 - Populate `$_SERVER` in the fake FE in the testing framework (#2275)
 - Set more request attributes for the fake FE in the testing framework (#2267)
-
-### Changed
 
 ### Deprecated
 
@@ -36,8 +46,6 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Deprecate the testing framework cleanup hook system (#2260)
 - Deprecate `Deprecate `GeoCalculator` and the `Geo` interface` (#2259)
 - Deprecate `TestingFramework::createTemplate()` (#2257)
-
-### Removed
 
 ### Fixed
 
