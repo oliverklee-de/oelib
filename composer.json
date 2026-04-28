@@ -148,7 +148,7 @@
 			"@check:tests:functional"
 		],
 		"check:tests:functional": "find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo \"Running functional test suite {}\"; .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml {}';",
-		"check:tests:unit": "phpunit -c Build/phpunit/UnitTests.xml Tests/Unit",
+		"check:tests:unit": "phpunit -c Build/phpunit/UnitTests.xml",
 		"check:xliff:lint": "php Build/bin/console lint:xliff Resources/Private/Language",
 		"coverage:create-directories": "mkdir -p build/logs .Build/coverage",
 		"fix": [
