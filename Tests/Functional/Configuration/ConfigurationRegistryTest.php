@@ -51,6 +51,123 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
     /**
      * @test
      */
+    public function getInstanceReturnsInstance(): void
+    {
+        self::assertInstanceOf(ConfigurationRegistry::class, ConfigurationRegistry::getInstance());
+    }
+
+    /**
+     * @test
+     */
+    public function getInstanceCalledTwoTimesReturnsSameInstance(): void
+    {
+        self::assertSame(
+            ConfigurationRegistry::getInstance(),
+            ConfigurationRegistry::getInstance(),
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function getForEmptyNamespaceThrowsException(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$namespace must not be empty.');
+        $this->expectExceptionCode(1_331_318_549);
+
+        // @phpstan-ignore-next-line We are explicitly checking for a contract violation here.
+        ConfigurationRegistry::get('');
+    }
+
+    /**
+     * @test
+     */
+    public function setWithEmptyNamespaceThrowsException(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$namespace must not be empty.');
+        $this->expectExceptionCode(1_331_318_549);
+
+        // @phpstan-ignore-next-line We are explicitly checking for a contract violation here.
+        ConfigurationRegistry::getInstance()->set('', new DummyConfiguration());
+    }
+
+    /**
+     * @test
+     */
+    public function getAfterSetWithTypoScriptConfigurationReturnsTheSetInstance(): void
+    {
+        $configuration = new TypoScriptConfiguration();
+
+        ConfigurationRegistry::getInstance()->set('foo', $configuration);
+
+        self::assertSame($configuration, ConfigurationRegistry::get('foo'));
+    }
+
+    /**
+     * @test
+     */
+    public function getAfterSetWithDummyConfigurationReturnsTheSetInstance(): void
+    {
+        $configuration = new DummyConfiguration();
+
+        ConfigurationRegistry::getInstance()->set('foo', $configuration);
+
+        self::assertSame($configuration, ConfigurationRegistry::get('foo'));
+    }
+
+    /**
+     * @test
+     *
+     * @doesNotPerformAssertions
+     */
+    public function setTwoTimesForTheSameNamespaceDoesNotFail(): void
+    {
+        $this->subject->set('foo', new DummyConfiguration());
+        $this->subject->set('foo', new DummyConfiguration());
+    }
+
+    /**
+     * @test
+     */
+    public function getByNamespaceForEmptyNamespaceThrowsException(): void
+    {
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('$namespace must not be empty.');
+        $this->expectExceptionCode(1_331_318_549);
+
+        // @phpstan-ignore-next-line We are explicitly checking for a contract violation here.
+        $this->subject->getByNamespace('');
+    }
+
+    /**
+     * @test
+     */
+    public function getByNamespaceAfterSetWithTypoScriptConfigurationReturnsTheSetInstance(): void
+    {
+        $configuration = new TypoScriptConfiguration();
+
+        $this->subject->set('foo', $configuration);
+
+        self::assertSame($configuration, $this->subject->getByNamespace('foo'));
+    }
+
+    /**
+     * @test
+     */
+    public function getByNamespaceAfterSetWithDummyConfigurationReturnsTheSetInstance(): void
+    {
+        $configuration = new DummyConfiguration();
+
+        $this->subject->set('foo', $configuration);
+
+        self::assertSame($configuration, $this->subject->getByNamespace('foo'));
+    }
+
+    /**
+     * @test
+     */
     public function getForNonEmptyNamespaceReturnsConfigurationInstance(): void
     {
         $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
