@@ -1898,40 +1898,56 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     }
 
     /**
-     * @return array<string, array{0: non-empty-string, 1: non-empty-string|float|int}>
+     * @test
      */
-    public function dataTypeDataProvider(): array
+    public function savePersistsStringDataTypes(): void
+    {
+        $model = new TestingModel();
+        $propertyName = 'title';
+        $value = 'the title';
+        $model->setData([$propertyName => $value]);
+
+        $this->subject->save($model);
+
+        $uid = $model->getUid();
+
+        $result = $this
+            ->getConnectionPool()->getConnectionForTable('tx_oelib_test')
+            ->select(['*'], 'tx_oelib_test', ['uid' => $uid]);
+        $data = $result->fetchAssociative();
+
+        self::assertIsArray($data);
+        self::assertArrayHasKey($propertyName, $data);
+        self::assertSame($value, $data[$propertyName]);
+    }
+
+    /**
+     * @return array<string, array{0: non-empty-string, 1: non-empty-string|float}>
+     */
+    public function floatDataTypeDataProvider(): array
     {
         return [
-            'string' => ['title', 'the title'],
             'float as float' => ['float_data', 3.5],
-            'float as decimal' => ['decimal_data', '3.500'],
+            'float as decimal' => ['decimal_data', 3.5],
             'float as string' => ['string_data', '3.5'],
-            'boolean true' => ['bool_data1', 1],
-            'boolean false' => ['bool_data2', 0],
-            'int' => ['int_data', 42],
         ];
     }
 
     /**
      * @test
      *
-     * @param mixed $expectedValue
+     * @param non-empty-string|float $expectedValue
      *
-     * @dataProvider dataTypeDataProvider
+     * @dataProvider floatDataTypeDataProvider
      */
-    public function savePersistsAllBasicDataTypes(string $propertyName, $expectedValue): void
+    public function savePersistsFloatDataTypes(string $propertyName, $expectedValue): void
     {
         $model = new TestingModel();
         $model->setData(
             [
-                'title' => 'the title',
                 'float_data' => 3.5,
                 'decimal_data' => 3.5,
                 'string_data' => 3.5,
-                'bool_data1' => true,
-                'bool_data2' => false,
-                'int_data' => 42,
             ],
         );
 
@@ -1942,10 +1958,75 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $result = $this
             ->getConnectionPool()->getConnectionForTable('tx_oelib_test')
             ->select(['*'], 'tx_oelib_test', ['uid' => $uid]);
-        /** @var DatabaseRow|false $data */
         $data = $result->fetchAssociative();
 
         self::assertIsArray($data);
+        self::assertArrayHasKey($propertyName, $data);
+        $actualValue = $data[$propertyName];
+        self::assertTrue(\is_float($actualValue) || \is_string($actualValue));
+        self::assertEquals((float)$expectedValue, (float)$actualValue);
+    }
+
+    /**
+     * @test
+     */
+    public function savePersistsIntDataTypes(): void
+    {
+        $model = new TestingModel();
+        $propertyName = 'int_data';
+        $model->setData([$propertyName => 42]);
+
+        $this->subject->save($model);
+
+        $uid = $model->getUid();
+
+        $result = $this
+            ->getConnectionPool()->getConnectionForTable('tx_oelib_test')
+            ->select(['*'], 'tx_oelib_test', ['uid' => $uid]);
+        $data = $result->fetchAssociative();
+
+        self::assertIsArray($data);
+        self::assertArrayHasKey($propertyName, $data);
+        self::assertSame(42, $data[$propertyName]);
+    }
+
+    /**
+     * @return array<string, array{0: non-empty-string, 1: int}>
+     */
+    public function boolDataTypeDataProvider(): array
+    {
+        return [
+            'boolean true' => ['bool_data1', 1],
+            'boolean false' => ['bool_data2', 0],
+        ];
+    }
+
+    /**
+     * @test
+     *
+     * @dataProvider boolDataTypeDataProvider
+     */
+    public function savePersistsBoolDataTypes(string $propertyName, int $expectedValue): void
+    {
+        $model = new TestingModel();
+        $model->setData(
+            [
+                'bool_data1' => true,
+                'bool_data2' => false,
+            ],
+        );
+
+        $this->subject->save($model);
+
+        $uid = $model->getUid();
+
+        $result = $this
+            ->getConnectionPool()->getConnectionForTable('tx_oelib_test')
+            ->select(['*'], 'tx_oelib_test', ['uid' => $uid]);
+        $data = $result->fetchAssociative();
+
+        self::assertIsArray($data);
+        self::assertArrayHasKey($propertyName, $data);
         self::assertSame($expectedValue, $data[$propertyName]);
     }
 
