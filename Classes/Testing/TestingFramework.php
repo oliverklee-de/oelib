@@ -212,6 +212,9 @@ final class TestingFramework
         foreach ($rawData as $key => $value) {
             $dataToInsert[$key] = \is_bool($value) ? (int)$value : $value;
         }
+        if ($dataToInsert === []) {
+            $dataToInsert['pid'] = 0;
+        }
 
         return $dataToInsert;
     }
