@@ -143,11 +143,6 @@
 			"@check:php:cs-fixer",
 			"@check:xliff:lint"
 		],
-		"check:tests": [
-			"@check:tests:unit",
-			"@check:tests:functional"
-		],
-		"check:tests:functional": "find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo \"Running functional test suite {}\"; .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml {}';",
 		"check:tests:unit": "phpunit -c Build/phpunit/UnitTests.xml",
 		"check:xliff:lint": "php Build/bin/console lint:xliff Resources/Private/Language",
 		"coverage:create-directories": "mkdir -p build/logs .Build/coverage",
@@ -188,6 +183,7 @@
 		"check:php:rector": "Checks for code for changes by Rector.",
 		"check:php:stan": "Checks the PHP types using PHPStan.",
 		"check:static": "Runs all static code checks (syntax, style, types).",
+		"check:tests:unit": "Runs the unit tests.",
 		"check:xliff:lint": "Lints the XLIFF files.",
 		"coverage:create-directories": "Creates the directories needed for recording and merging the code coverage reports.",
 		"fix": "Runs all automatic code style fixes.",
