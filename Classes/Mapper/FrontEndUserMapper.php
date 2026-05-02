@@ -38,9 +38,6 @@ class FrontEndUserMapper extends AbstractDataMapper
      */
     public function findByUserName(string $username): FrontEndUser
     {
-        /** @var FrontEndUser $result */
-        $result = $this->findOneByKey('username', $username);
-
-        return $result;
+        return $this->findOneByKey('username', $username);
     }
 }

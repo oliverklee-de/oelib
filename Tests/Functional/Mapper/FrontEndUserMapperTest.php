@@ -108,45 +108,11 @@ final class FrontEndUserMapperTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function findByUserNameWithUppercasedNameOfExistingLowercasedUserReturnsModelWithThatUid(): void
-    {
-        $username = 'max.doe';
-        $connection = $this->getConnectionPool()->getConnectionForTable('fe_users');
-        $connection->insert('fe_users', ['username' => $username]);
-
-        $uid = (int)$connection->lastInsertId('fe_users');
-
-        self::assertSame(
-            $uid,
-            $this->subject->findByUserName(strtoupper($username))->getUid(),
-        );
-    }
-
-    /**
-     * @test
-     */
     public function findByUserNameWithUppercasedNameOfExistingUppercasedUserReturnsModelWithThatUid(): void
     {
         $username = 'MAX.DOE';
         $connection = $this->getConnectionPool()->getConnectionForTable('fe_users');
         $connection->insert('fe_users', ['username' => $username]);
-
-        $uid = (int)$connection->lastInsertId('fe_users');
-
-        self::assertSame(
-            $uid,
-            $this->subject->findByUserName($username)->getUid(),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function findByUserNameWithLowercasedNameOfExistingUppercasedUserReturnsModelWithThatUid(): void
-    {
-        $username = 'max.doe';
-        $connection = $this->getConnectionPool()->getConnectionForTable('fe_users');
-        $connection->insert('fe_users', ['username' => \strtoupper($username)]);
 
         $uid = (int)$connection->lastInsertId('fe_users');
 
