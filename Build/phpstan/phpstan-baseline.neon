@@ -411,6 +411,11 @@ parameters:
 			path: ../../Tests/Functional/Configuration/ConfigurationRegistryTest.php
 
 		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 5
+			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
+
+		-
 			message: "#^PHPDoc tag @var with type OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingModel is not subtype of type OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingChildModel\\.$#"
 			count: 1
 			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
@@ -438,6 +443,11 @@ parameters:
 		-
 			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotSame\\(\\) with 0 and int\\<1, max\\> will always evaluate to true\\.$#"
 			count: 16
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+
+		-
+			message: "#^Cannot cast mixed to int\\.$#"
+			count: 3
 			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
