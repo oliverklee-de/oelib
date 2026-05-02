@@ -7,7 +7,6 @@ namespace OliverKlee\Oelib\Configuration;
 use OliverKlee\Oelib\Email\SystemEmailFromBuilder;
 use OliverKlee\Oelib\Interfaces\Configuration as ConfigurationInterface;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
-use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -205,14 +204,29 @@ abstract class AbstractConfigurationCheck
      */
     private function getDbColumnNames(string $tableName): array
     {
-        $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable($tableName);
-        $query = 'SHOW FULL COLUMNS FROM `' . $tableName . '`';
-        $columns = [];
-        foreach ($connection->executeQuery($query)->fetchAllAssociative() as $row) {
-            $columns[] = $row['Field'];
-        }
+        $tca = $this->getTcaForTable($tableName);
+        \assert(isset($tca['columns']) && \is_array($tca['columns']));
 
-        return $columns;
+        $columnNames = \array_keys($tca['columns']);
+        /** @var list<non-empty-string> $columnNames */
+
+        return $columnNames;
+    }
+
+    /**
+     * Returns the TCA for a certain table.
+     *
+     * @param non-empty-string $tableName the table name to look up
+     *
+     * @return array<mixed> associative array with the TCA description for this table
+     */
+    private function getTcaForTable(string $tableName): array
+    {
+        \assert(isset($GLOBALS['TCA']) && is_array($GLOBALS['TCA']));
+        $tcaForTable = $GLOBALS['TCA'][$tableName] ?? null;
+        assert(\is_array($tcaForTable));
+
+        return $tcaForTable;
     }
 
     /**
