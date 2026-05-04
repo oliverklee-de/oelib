@@ -1987,7 +1987,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
         self::assertIsArray($data);
         self::assertArrayHasKey($propertyName, $data);
-        self::assertSame(42, $data[$propertyName]);
+        self::assertSame(42, (int)$data[$propertyName]);
     }
 
     /**
@@ -2027,7 +2027,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
         self::assertIsArray($data);
         self::assertArrayHasKey($propertyName, $data);
-        self::assertSame($expectedValue, $data[$propertyName]);
+        self::assertSame($expectedValue, (int)$data[$propertyName]);
     }
 
     /**
@@ -2685,7 +2685,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $queryResult = $relationConnection->executeQuery($query, ['uid' => $component2->getUid(), 'deleted' => 1]);
         $row = $queryResult->fetchAssociative();
         self::assertIsArray($row);
-        self::assertSame(1, $row['count']);
+        self::assertSame(1, (int)$row['count']);
     }
 
     /**
@@ -3294,7 +3294,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $queryResult = $connection->executeQuery($query, ['uid' => $uid, 'deleted' => 1]);
         $row = $queryResult->fetchAssociative();
         self::assertIsArray($row);
-        self::assertSame(1, $row['count']);
+        self::assertSame(1, (int)$row['count']);
     }
 
     /**
@@ -3340,7 +3340,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $queryResult = $relationConnection->executeQuery($query, ['uid' => $relatedUid, 'deleted' => 1]);
         $row = $queryResult->fetchAssociative();
         self::assertIsArray($row);
-        self::assertSame(1, $row['count']);
+        self::assertSame(1, (int)$row['count']);
     }
 
     /**

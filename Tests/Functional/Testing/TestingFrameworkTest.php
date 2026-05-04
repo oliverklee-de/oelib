@@ -191,7 +191,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $queryResult = $connection->executeQuery($query, ['uid' => $uid, 'hidden' => 1]);
         $row = $queryResult->fetchAssociative();
         self::assertIsArray($row);
-        self::assertSame(1, $row['count']);
+        self::assertSame(1, (int)$row['count']);
     }
 
     /**
@@ -207,7 +207,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $queryResult = $connection->executeQuery($query, ['uid' => $uid, 'deleted' => 1]);
         $row = $queryResult->fetchAssociative();
         self::assertIsArray($row);
-        self::assertSame(1, $row['count']);
+        self::assertSame(1, (int)$row['count']);
     }
 
     /**
@@ -1432,7 +1432,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->createFakeFrontEnd($pageUid);
 
         $rootline = $this->getFrontEndController()->rootLine;
-        self::assertSame($pageUid, $rootline[0]['uid']);
+        self::assertSame($pageUid, (int)$rootline[0]['uid']);
     }
 
     /**
