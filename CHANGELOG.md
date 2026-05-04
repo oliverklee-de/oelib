@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+- Make `AbstractConfigurationCheck` cross-DBMS-compatible (#2350)
 - Fix cross-DBMS compatibility in the testing framework (#2341)
 
 ## 6.3.0: DI-capable registries, new ViewHelper, better fake FE, deprecations
