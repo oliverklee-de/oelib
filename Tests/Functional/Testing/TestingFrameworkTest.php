@@ -104,6 +104,27 @@ final class TestingFrameworkTest extends FunctionalTestCase
         new TestingFramework();
     }
 
+    /**
+     * @test
+     */
+    public function isAvailableFromTheContainer(): void
+    {
+        $instance = $this->get(TestingFramework::class);
+
+        self::assertInstanceOf(TestingFramework::class, $instance);
+    }
+
+    /**
+     * @test
+     */
+    public function isNotShared(): void
+    {
+        $instance1 = $this->get(TestingFramework::class);
+        $instance2 = $this->get(TestingFramework::class);
+
+        self::assertNotSame($instance1, $instance2);
+    }
+
     // Tests regarding createRecord()
 
     /**

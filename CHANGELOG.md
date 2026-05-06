@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Make the testing framework injectable (#2353)
+
 ### Deprecated
 
 ### Removed
