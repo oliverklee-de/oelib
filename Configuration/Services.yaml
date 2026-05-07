@@ -19,3 +19,7 @@ services:
 
   OliverKlee\Oelib\Templating\TemplateRegistry:
     public: true
+
+  OliverKlee\Oelib\Testing\TestingFramework:
+    public: true
+    shared: false
