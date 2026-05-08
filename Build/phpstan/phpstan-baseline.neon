@@ -411,11 +411,6 @@ parameters:
 			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
 
 		-
-			message: "#^PHPDoc tag @var with type OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingModel is not subtype of type OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingChildModel\\.$#"
-			count: 1
-			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
-
-		-
 			message: "#^PHPDoc tag @var with type OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingModel is not subtype of type OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingChildModel\\|null\\.$#"
 			count: 2
 			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
