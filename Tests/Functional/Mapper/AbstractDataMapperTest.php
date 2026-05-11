@@ -1394,14 +1394,14 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $uid, 'title' => 'b']);
 
-        $relatedUid1 = (int)$relationConnection->lastInsertId('tx_oelib_test');
+        $relatedUid1 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
         \assert($relatedUid1 > 0);
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $uid, 'title' => 'a']);
-        $relatedUid2 = (int)$relationConnection->lastInsertId('tx_oelib_test');
+        $relatedUid2 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
         \assert($relatedUid2 > 0);
 
-        /** @var TestingModel $model */
         $model = $this->subject->find($uid);
+        self::assertInstanceOf(TestingModel::class, $model);
         self::assertSame($relatedUid2 . ',' . $relatedUid1, $model->getComposition()->getUids());
     }
 
@@ -1416,14 +1416,14 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $uid = (int)$connection->lastInsertId('tx_oelib_test');
         \assert($uid > 0);
         $connection->insert('tx_oelib_testchild', ['tx_oelib_parent2' => $uid, 'title' => 'b']);
-        $relatedUid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid1 = (int)$connection->lastInsertId('tx_oelib_testchild');
         \assert($relatedUid1 > 0);
         $connection->insert('tx_oelib_testchild', ['tx_oelib_parent2' => $uid, 'title' => 'a']);
-        $relatedUid2 = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid2 = (int)$connection->lastInsertId('tx_oelib_testchild');
         \assert($relatedUid2 > 0);
 
-        /** @var TestingModel $model */
         $model = $this->subject->find($uid);
+        self::assertInstanceOf(TestingModel::class, $model);
         self::assertSame($relatedUid2 . ',' . $relatedUid1, $model->getComposition2()->getUids());
     }
 
@@ -2668,15 +2668,15 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $model->getUid()]);
 
-        $childUid1 = (int)$relationConnection->lastInsertId('tx_oelib_test');
+        $childUid1 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
         \assert($childUid1 > 0);
         $component1 = $mapper->find($childUid1);
         $composition->add($component1);
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $model->getUid()]);
-        $childUid2 = (int)$relationConnection->lastInsertId('tx_oelib_test');
+        $childUid2 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
         \assert($childUid2 > 0);
-        /** @var TestingModel $component2 */
         $component2 = $mapper->find($childUid2);
+        self::assertInstanceOf(TestingChildModel::class, $component2);
 
         $this->subject->save($model);
 
@@ -3451,7 +3451,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $model->getUid()]);
 
-        $relatedUid = (int)$relationConnection->lastInsertId('tx_oelib_test');
+        $relatedUid = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
         \assert($relatedUid > 0);
         $relatedModel = $mapper->find($relatedUid);
 
@@ -3501,11 +3501,11 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $parentModel->getUid()]);
 
-        $childUid1 = (int)$relationConnection->lastInsertId('tx_oelib_test');
+        $childUid1 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
         \assert($childUid1 > 0);
         $relatedModel = $childMapper->find($childUid1);
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $parentModel->getUid()]);
-        $childUid2 = (int)$relationConnection->lastInsertId('tx_oelib_test');
+        $childUid2 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
         \assert($childUid2 > 0);
         $ignoredRelatedModel = $childMapper->find($childUid2);
 
