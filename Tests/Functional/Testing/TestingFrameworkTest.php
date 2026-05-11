@@ -1363,6 +1363,10 @@ final class TestingFrameworkTest extends FunctionalTestCase
      */
     public function createFakeFrontEndDisablesFrontEndCaching(): void
     {
+        if ((new Typo3Version())->getMajorVersion() >= 13) {
+            self::markTestSkipped('TypoScriptFrontendController::no_cache got removed in TYPO3 13LTS.');
+        }
+
         $pageUid = $this->subject->createFrontEndPage();
         $this->subject->createFakeFrontEnd($pageUid);
 
