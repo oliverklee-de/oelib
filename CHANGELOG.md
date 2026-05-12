@@ -9,11 +9,17 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
-- Make the testing framework injectable (#2353)
-
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+## 6.3.1: Bugfixes, cross-DBMS compatibility, and improved DI
+
+### Changed
+
+- Make the testing framework injectable (#2353)
 
 ### Fixed
 
