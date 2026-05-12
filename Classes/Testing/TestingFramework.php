@@ -630,7 +630,6 @@ final class TestingFramework
         $contentObject->setRequest($request);
 
         $this->hasFakeFrontEnd = true;
-        $this->logoutFrontEndUser();
 
         return $pageUid;
     }
@@ -745,8 +744,6 @@ routes: {  }";
             return;
         }
 
-        $this->logoutFrontEndUser();
-
         $GLOBALS['TSFE'] = null;
         unset(
             $GLOBALS['TYPO3_REQUEST'],
@@ -798,10 +795,6 @@ routes: {  }";
             );
         }
 
-        if ($this->isLoggedIn()) {
-            $this->logoutFrontEndUser();
-        }
-
         $mapper = MapperRegistry::get(FrontEndUserMapper::class);
         // loads the model from database if it is a ghost
         $mapper->existsModel($userId);
@@ -821,52 +814,6 @@ routes: {  }";
         $frontEndUser->fetchGroupData(new ServerRequest());
 
         GeneralUtility::makeInstance(Context::class)->setAspect('frontend.user', new UserAspect($frontEndUser));
-    }
-
-    /**
-     * Logs out the current front-end user.
-     *
-     * If no front-end user is logged in, this function does nothing.
-     *
-     * @throws \BadMethodCallException if no front end has been created
-     *
-     * @deprecated #2219 will be removed in oelib 7.0
-     */
-    public function logoutFrontEndUser(): void
-    {
-        if (!$this->hasFakeFrontEnd()) {
-            throw new \BadMethodCallException(
-                'Please create a front end before calling logoutFrontEndUser.',
-                1_331_490_825,
-            );
-        }
-
-        if (!$this->isLoggedIn()) {
-            return;
-        }
-
-        $frontEndUser = $this->getFrontEndController()->fe_user;
-        $frontEndUser->logoff();
-
-        GeneralUtility::makeInstance(Context::class)->setAspect('frontend.user', new UserAspect());
-    }
-
-    /**
-     * Checks whether a FE user is logged in.
-     *
-     * @return bool TRUE if a FE user is logged in, FALSE otherwise
-     *
-     * @throws \BadMethodCallException if no front end has been created
-     *
-     * @internal
-     */
-    private function isLoggedIn(): bool
-    {
-        if (!$this->hasFakeFrontEnd()) {
-            throw new \BadMethodCallException('Please create a front end before calling isLoggedIn.', 1_331_490_846);
-        }
-
-        return (bool)GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('frontend.user', 'isLoggedIn');
     }
 
     // ----------------------------------------------------------------------
