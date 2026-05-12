@@ -27,7 +27,7 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $this->testingFramework = new TestingFramework('tx_oelib');
+        $this->testingFramework = $this->get(TestingFramework::class);
 
         $this->subject = $this->get(ConfigurationRegistry::class);
     }
