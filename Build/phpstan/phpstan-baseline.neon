@@ -406,11 +406,6 @@ parameters:
 			path: ../../Classes/ViewHelpers/AbstractConfigurationCheckViewHelper.php
 
 		-
-			message: "#^Unreachable statement \\- code above always terminates\\.$#"
-			count: 1
-			path: ../../Tests/Functional/Configuration/ConfigurationRegistryTest.php
-
-		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 5
 			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php

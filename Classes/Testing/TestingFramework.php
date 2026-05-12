@@ -22,6 +22,7 @@ use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Http\ServerRequestFactory;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Localization\Locales;
+use TYPO3\CMS\Core\Locking\ResourceMutex;
 use TYPO3\CMS\Core\Routing\PageArguments;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\TypoScript\AST\Node\RootNode;
@@ -701,6 +702,7 @@ final class TestingFramework
         if ((new Typo3Version())->getMajorVersion() >= 12) {
             $request = $request->withAttribute('currentContentObject', $contentObject);
             $request = $this->addTypoScriptToRequest($frontEndController, $rootline, $request);
+            GeneralUtility::makeInstance(ResourceMutex::class)->releaseLock('pages');
         }
         $GLOBALS['TYPO3_REQUEST'] = $request;
         $contentObject->setRequest($request);
