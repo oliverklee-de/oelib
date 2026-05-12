@@ -111,16 +111,6 @@ parameters:
 			path: ../../Classes/Email/SystemEmailFromBuilder.php
 
 		-
-			message: "#^Parameters should have \"OliverKlee\\\\Oelib\\\\DataStructures\\\\Collection\\<OliverKlee\\\\Oelib\\\\Interfaces\\\\Geo&OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\>\\|OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Geocoding\\\\Fixtures\\\\TestingGeo\\|float\" types as the only types passed to this method$#"
-			count: 1
-			path: ../../Classes/Geocoding/GeoCalculator.php
-
-		-
-			message: "#^Parameters should have \"OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Geocoding\\\\Fixtures\\\\TestingGeo\\|float\" types as the only types passed to this method$#"
-			count: 1
-			path: ../../Classes/Geocoding/GeoCalculator.php
-
-		-
 			message: "#^Call to function is_string\\(\\) with class\\-string\\<M of OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\> will always evaluate to true\\.$#"
 			count: 1
 			path: ../../Classes/Mapper/AbstractDataMapper.php
@@ -504,11 +494,6 @@ parameters:
 			message: "#^Parameter \\#2 \\$value of method OliverKlee\\\\Oelib\\\\DataStructures\\\\AbstractObjectWithPublicAccessors\\:\\:setAsArray\\(\\) expects array\\<int\\|string\\>, array\\<int, mixed\\> given\\.$#"
 			count: 1
 			path: ../../Tests/Unit/DataStructures/AbstractObjectWithPublicAccessorsTest.php
-
-		-
-			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertTrue\\(\\) with true will always evaluate to true\\.$#"
-			count: 3
-			path: ../../Tests/Unit/Domain/Model/GermanZipCodeTest.php
 
 		-
 			message: "#^Class OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Domain\\\\Repository\\\\Traits\\\\Fixtures\\\\DirectPersistRepository constructor invoked with 1 parameter, 0 required\\.$#"
