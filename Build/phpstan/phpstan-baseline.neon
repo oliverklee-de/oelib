@@ -81,11 +81,6 @@ parameters:
 			path: ../../Classes/DataStructures/Collection.php
 
 		-
-			message: "#^Cannot cast mixed to int\\.$#"
-			count: 1
-			path: ../../Classes/Domain/Repository/PageRepository.php
-
-		-
 			message: "#^Trait OliverKlee\\\\Oelib\\\\Domain\\\\Repository\\\\Traits\\\\StoragePageAgnostic is used zero times and is not analysed\\.$#"
 			count: 1
 			path: ../../Classes/Domain/Repository/Traits/StoragePageAgnostic.php
