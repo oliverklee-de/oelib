@@ -45,7 +45,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $GLOBALS['TSFE'] = null;
         parent::setUp();
 
-        $this->subject = new TestingFramework('tx_oelib');
+        $this->subject = $this->get(TestingFramework::class);
     }
 
     protected function tearDown(): void
@@ -85,26 +85,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertIsArray($data);
 
         return (int)$data['sorting'];
-    }
-
-    /**
-     * @test
-     */
-    public function canBeCreatedWithNullTablePrefix(): void
-    {
-        $instance = new TestingFramework(null);
-
-        self::assertInstanceOf(TestingFramework::class, $instance);
-    }
-
-    /**
-     * @test
-     */
-    public function canBeCreatedWithoutTablePrefix(): void
-    {
-        $instance = new TestingFramework();
-
-        self::assertInstanceOf(TestingFramework::class, $instance);
     }
 
     /**
@@ -165,28 +145,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
 
         self::assertIsArray($row);
         self::assertSame($title, $row['title']);
-    }
-
-    /**
-     * @test
-     */
-    public function createRecordOnInvalidTable(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('The table "tx_oelib_DOESNOTEXIST" is not allowed.');
-        $this->subject->createRecord('tx_oelib_DOESNOTEXIST', []);
-    }
-
-    /**
-     * @test
-     */
-    public function createRecordWithEmptyTableName(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('The table "" is not allowed.');
-
-        // @phpstan-ignore-next-line We are explicitly testing for a contract violation here.
-        $this->subject->createRecord('', []);
     }
 
     /**
@@ -291,34 +249,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function changeRecordFailsOnForeignTable(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('The table "tx_seminars_seminars" is not allowed.');
-        $this->subject->changeRecord(
-            'tx_seminars_seminars',
-            99999,
-            ['title' => 'foo'],
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function changeRecordFailsOnInexistentTable(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('The table "tx_oelib_DOESNOTEXIST" is not allowed.');
-        $this->subject->changeRecord(
-            'tx_oelib_DOESNOTEXIST',
-            99999,
-            ['title' => 'foo'],
-        );
-    }
-
-    /**
-     * @test
-     */
     public function changeRecordOnAllowedSystemTableForPages(): void
     {
         $pid = $this->subject->createFrontEndPage();
@@ -333,20 +263,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(
             1,
             $connection->count('*', 'pages', ['uid' => $pid, 'title' => 'bar']),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function changeRecordFailsOnOtherSystemTable(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('The table "sys_domain" is not allowed.');
-        $this->subject->changeRecord(
-            'sys_domain',
-            1,
-            ['title' => 'bar'],
         );
     }
 

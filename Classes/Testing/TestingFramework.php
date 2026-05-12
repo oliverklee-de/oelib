@@ -42,44 +42,10 @@ use TYPO3\CMS\Frontend\Page\PageInformation;
  */
 final class TestingFramework
 {
-    /**
-     * all system table names to which this instance of the testing framework
-     * has access
-     */
-    private const ALLOWED_SYSTEM_TABLES = [
-        'fe_groups',
-        'fe_users',
-        'pages',
-        'sys_template',
-        'tt_content',
-        'be_groups',
-        'sys_file',
-        'sys_file_collection',
-        'sys_file_reference',
-        'sys_category',
-        'sys_category_record_mm',
-    ];
-
     private const FAKE_FRONTEND_DOMAIN_NAME = 'typo3-test.dev';
     private const SITE_IDENTIFIER = 'testing-framework';
 
     private bool $databaseInitialized = false;
-
-    /**
-     * prefix of the extension for which this instance of the testing framework
-     * was instantiated (e.g. "tx_seminars")
-     *
-     * @var non-empty-string|null
-     */
-    private ?string $tablePrefix;
-
-    /**
-     * all own DB table names to which this instance of the testing framework has access,
-     * or `null` if there is no restriction on the allowed tables
-     *
-     * @var list<non-empty-string>|null
-     */
-    private ?array $ownAllowedTables = null;
 
     /**
      * sorting values of all relation tables
@@ -105,36 +71,11 @@ final class TestingFramework
      */
     private static bool $hooksHaveBeenRetrieved = false;
 
-    /**
-     * This testing framework can be instantiated for one extension at a time.
-     * Example: In your testcase, you'll have something similar to this line of code:
-     *
-     * `$this->subject = new TestingFramework('tx_seminars');`
-     *
-     * The parameter you provide is the prefix of the table names of that particular
-     * extension. Like this, we ensure that the testing framework creates and
-     * deletes records only on table with this prefix.
-     *
-     * If you need dummy records on tables of multiple extensions, you will have to
-     * instantiate the testing framework multiple times (once per extension).
-     *
-     * Instantiating this class sets all core caches in order to avoid errors about not registered caches.
-     *
-     * @param non-empty-string|null $tablePrefix deprecated #2225 will be removed in oelib 7.0;
-     *        table name prefix of the extension for this instance of the testing framework
-     */
-    public function __construct(?string $tablePrefix = null)
-    {
-        $this->tablePrefix = $tablePrefix;
-    }
-
     private function initializeDatabase(): void
     {
         if ($this->databaseInitialized) {
             return;
         }
-
-        $this->createListOfOwnAllowedTables();
 
         $this->databaseInitialized = true;
     }
@@ -159,13 +100,6 @@ final class TestingFramework
     public function createRecord(string $table, array $recordData = []): int
     {
         $this->initializeDatabase();
-        if (!$this->isNoneSystemTableNameAllowed($table)) {
-            \assert(\is_array($this->ownAllowedTables));
-            $allowedTables = \implode(',', $this->ownAllowedTables);
-            $errorMessage = \sprintf('The table "%1$s" is not allowed. Allowed tables: %2$s', $table, $allowedTables);
-            throw new \InvalidArgumentException($errorMessage, 1_331_489_666);
-        }
-
         if (isset($recordData['uid'])) {
             throw new \InvalidArgumentException('The column "uid" must not be set in $recordData.', 1_331_489_678);
         }
@@ -440,7 +374,6 @@ final class TestingFramework
     public function changeRecord(string $table, int $uid, array $rawData): void
     {
         $this->initializeDatabase();
-        $this->assertTableNameIsAllowed($table);
         // @phpstan-ignore-next-line We're testing for a contract violation here.
         if ($uid === 0) {
             throw new \InvalidArgumentException('The parameter $uid must not be zero.', 1_331_490_003);
@@ -514,7 +447,6 @@ final class TestingFramework
         string $columnName
     ): void {
         $this->initializeDatabase();
-        $this->assertTableNameIsAllowed($tableName);
         // @phpstan-ignore-next-line We're testing for a contract violation here.
         if ($uidLocal <= 0) {
             throw new \InvalidArgumentException(
@@ -961,99 +893,6 @@ routes: {  }";
     // ----------------------------------------------------------------------
 
     /**
-     * Returns a list of all table names that are available in the current
-     * database.
-     *
-     * @return list<non-empty-string> table names
-     */
-    private function getAllTableNames(): array
-    {
-        \assert(isset($GLOBALS['TCA']) && is_array($GLOBALS['TCA']));
-
-        /** @var list<non-empty-string> $tableNames */
-        $tableNames = \array_keys($GLOBALS['TCA']);
-
-        return $tableNames;
-    }
-
-    /**
-     * Generates a list of allowed tables to which this instance of the testing
-     * framework has access to create/remove test records.
-     *
-     * The generated list is based on the list of all tables that TYPO3 can
-     * access (which will be all tables in this database), filtered by prefix of
-     * the extension to test.
-     *
-     * The array with the allowed table names is written directly to
-     * `$this->ownAllowedTables`.
-     */
-    private function createListOfOwnAllowedTables(): void
-    {
-        if (!\is_string($this->tablePrefix)) {
-            return;
-        }
-
-        $this->ownAllowedTables = [];
-        $allTables = $this->getAllTableNames();
-        $length = \strlen($this->tablePrefix);
-
-        foreach ($allTables as $currentTable) {
-            if (substr_compare($this->tablePrefix, $currentTable, 0, $length) === 0) {
-                $this->ownAllowedTables[] = $currentTable;
-            }
-        }
-    }
-
-    /**
-     * Checks whether the given table name is in the list of allowed tables for
-     * this instance of the testing framework (or whether all tables are allowed).
-     */
-    private function isOwnTableNameAllowed(string $table): bool
-    {
-        if (!\is_array($this->ownAllowedTables)) {
-            return true;
-        }
-
-        return \in_array($table, $this->ownAllowedTables, true);
-    }
-
-    /**
-     * Checks whether the given table name is in the list of allowed
-     * system tables for this instance of the testing framework.
-     */
-    private function isSystemTableNameAllowed(string $table): bool
-    {
-        return \in_array($table, self::ALLOWED_SYSTEM_TABLES, true);
-    }
-
-    /**
-     * Checks whether the given table name is in the list of allowed tables for this instance of the testing framework.
-     *
-     * @param string $table the name of the table to check
-     */
-    private function isNoneSystemTableNameAllowed(string $table): bool
-    {
-        return $this->isOwnTableNameAllowed($table);
-    }
-
-    /**
-     * Checks whether the given table name is in the list of allowed tables or allowed system tables,
-     * and throws an exception if it is not.
-     *
-     * @throws \InvalidArgumentException
-     */
-    private function assertTableNameIsAllowed(string $table): void
-    {
-        $isAllowed = $this->isNoneSystemTableNameAllowed($table) || $this->isSystemTableNameAllowed($table);
-        if (!$isAllowed) {
-            \assert(\is_array($this->ownAllowedTables));
-            $allowedTables = \implode(',', [...self::ALLOWED_SYSTEM_TABLES, ...$this->ownAllowedTables]);
-            $errorMessage = \sprintf('The table "%1$s" is not allowed. Allowed tables: %2$s', $table, $allowedTables);
-            throw new \InvalidArgumentException($errorMessage, 1_569_784_847);
-        }
-    }
-
-    /**
      * Returns the next sorting value of the relation table which should be used.
      *
      * Note: This function does not take already existing relations in the
@@ -1095,8 +934,6 @@ routes: {  }";
      */
     private function increaseRelationCounter(string $tableName, int $uid, string $fieldName): void
     {
-        $this->assertTableNameIsAllowed($tableName);
-
         $connection = $this->getConnectionForTable($tableName);
         $query = 'UPDATE ' . $tableName . ' SET ' . $fieldName . '=' . $fieldName . '+1 WHERE uid=' . $uid;
         $numberOfAffectedRows = $connection->executeStatement($query);
