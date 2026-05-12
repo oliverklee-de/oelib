@@ -11,7 +11,6 @@ parameters:
     - ../../Classes
     - ../../Configuration
     - ../../Tests
-    - ../../ext_localconf.php
 
   type_perfect:
     no_mixed_property: true

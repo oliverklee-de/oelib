@@ -316,11 +316,6 @@ parameters:
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Cannot access offset 'EXTCONF' on mixed\\.$#"
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
 			message: "#^Cannot access offset 'FE' on mixed\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
@@ -362,16 +357,6 @@ parameters:
 
 		-
 			message: "#^Cannot access offset 'foreign_table' on mixed\\.$#"
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
-			message: "#^Cannot access offset 'oelib' on mixed\\.$#"
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
-			message: "#^Cannot access offset 'testingFrameworkCle…' on mixed\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
@@ -594,23 +579,3 @@ parameters:
 			message: "#^Expression \"clone \\$this\\-\\>subject\" on a separate line does not do anything\\.$#"
 			count: 2
 			path: ../../Tests/Unit/Model/AbstractModelTest.php
-
-		-
-			message: "#^Cannot access an offset on mixed\\.$#"
-			count: 1
-			path: ../../ext_localconf.php
-
-		-
-			message: "#^Cannot access offset 'EXTCONF' on mixed\\.$#"
-			count: 1
-			path: ../../ext_localconf.php
-
-		-
-			message: "#^Cannot access offset 'oelib' on mixed\\.$#"
-			count: 1
-			path: ../../ext_localconf.php
-
-		-
-			message: "#^Cannot access offset 'testingFrameworkCle…' on mixed\\.$#"
-			count: 1
-			path: ../../ext_localconf.php
