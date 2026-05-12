@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 
+- Drop the configuration check (#2365)
 - Drop `$tablePrefix` in `TestingFramework::__construct()` (#2363)
 - Drop the `CacheNullifyer` class (#2220)
 
