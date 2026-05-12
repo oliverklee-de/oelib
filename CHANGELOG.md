@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 
+- Drop `GeoCalculator` and the `Geo` interface (#2368)
 - Drop `TestingFramework::logoutFrontEndUser()` (#2367)
 - Drop the testing framework cleanup hook system (#2366)
 - Drop the configuration check (#2365)
