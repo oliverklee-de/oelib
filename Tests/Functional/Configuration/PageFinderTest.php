@@ -30,6 +30,7 @@ final class PageFinderTest extends FunctionalTestCase
     protected function tearDown(): void
     {
         $this->testingFramework->cleanUpWithoutDatabase();
+        PageFinder::purgeInstance();
         parent::tearDown();
     }
 

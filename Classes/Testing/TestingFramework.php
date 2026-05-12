@@ -59,18 +59,6 @@ final class TestingFramework
      */
     private bool $hasFakeFrontEnd = false;
 
-    /**
-     * hook objects for this class
-     *
-     * @var list<object>
-     */
-    private static $hooks = [];
-
-    /**
-     * whether the hooks in self::hooks have been retrieved
-     */
-    private static bool $hooksHaveBeenRetrieved = false;
-
     private function initializeDatabase(): void
     {
         if ($this->databaseInitialized) {
@@ -518,13 +506,6 @@ final class TestingFramework
         $this->discardFakeFrontEnd();
         GeneralUtility::flushInternalRuntimeCaches();
 
-        // @deprecated #2216 will be removed in oelib 7.0
-        foreach ($this->getHooks() as $hook) {
-            if (method_exists($hook, 'cleanUp')) {
-                $hook->cleanUp($this);
-            }
-        }
-
         if ((new Typo3Version())->getMajorVersion() <= 11) {
             RootlineUtility::purgeCaches();
         }
@@ -943,39 +924,6 @@ routes: {  }";
                 1_331_491_003,
             );
         }
-    }
-
-    /**
-     * Gets all hooks for this class.
-     *
-     * @return list<object> the hook objects, will be empty if no hooks have been set
-     *
-     * @deprecated #2216 will be removed in oelib 7.0
-     */
-    private function getHooks(): array
-    {
-        if (self::$hooksHaveBeenRetrieved) {
-            return self::$hooks;
-        }
-
-        /** @var array<array-key, class-string> $hookClasses */
-        $hookClasses = (array)($GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['oelib']['testingFrameworkCleanUp'] ?? []);
-        foreach ($hookClasses as $hookClass) {
-            self::$hooks[] = GeneralUtility::makeInstance($hookClass);
-        }
-
-        self::$hooksHaveBeenRetrieved = true;
-
-        return self::$hooks;
-    }
-
-    /**
-     * Purges the cached hooks.
-     */
-    public function purgeHooks(): void
-    {
-        self::$hooks = [];
-        self::$hooksHaveBeenRetrieved = false;
     }
 
     /**

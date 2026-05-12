@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Tests\Functional\Testing;
 
 use OliverKlee\Oelib\Testing\TestingFramework;
-use OliverKlee\Oelib\Tests\Functional\Testing\Fixtures\TestingCleanup;
 use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\Cache\DataCollector\CacheDataCollector;
 use TYPO3\CMS\Core\Context\Context;
@@ -29,7 +28,6 @@ use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
  * @covers \OliverKlee\Oelib\Testing\TestingFramework
- * @covers \OliverKlee\Oelib\Testing\TestingFrameworkCleanup
  *
  * @phpstan-type DatabaseColumn string|int|float|bool|null
  * @phpstan-type DatabaseRow array<string, DatabaseColumn>
@@ -582,24 +580,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests regarding cleanUpWithoutDatabase()
-
-    /**
-     * @test
-     */
-    public function cleanUpWithoutDatabaseExecutesCleanUpHook(): void
-    {
-        $this->subject->purgeHooks();
-
-        $cleanUpWithoutDatabaseHookMock = $this->createMock(TestingCleanup::class);
-        $cleanUpWithoutDatabaseHookMock->expects(self::atLeastOnce())->method('cleanUp');
-        $hookClassName = \get_class($cleanUpWithoutDatabaseHookMock);
-
-        // @phpstan-ignore-next-line We know that the necessary array keys exist.
-        $GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['oelib']['testingFrameworkCleanUp'][$hookClassName] = $hookClassName;
-        GeneralUtility::addInstance($hookClassName, $cleanUpWithoutDatabaseHookMock);
-
-        $this->subject->cleanUpWithoutDatabase();
-    }
 
     /**
      * @test
