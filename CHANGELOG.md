@@ -54,6 +54,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+- Release the lock after creating a fake FE (#2359)
 - Receive the `BackendConfigurationManager` via DI (#2358)
 - Disable caching for the fake frontend (#2322)
 - Avoid undefined array access in `SystemEmailFromBuilder` (#2310)

@@ -319,12 +319,27 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
      */
     public function getByNamespaceReturnsDataFromTypoScriptSetupFromFrontEndPage(): void
     {
-        self::markTestIncomplete(
-            'This test currently fails if run after getReturnsDataFromTypoScriptSetupFromFrontEndPage '
-            . 'as the TypoScript parsing runs into an endless loop. There is some cross-pollution between these tests, '
-            . 'and we need to find out how to properly clean up after them to avoid that.',
-        );
+        $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
 
+        $this->testingFramework->createFakeFrontEnd(1);
+        $pageFinder = PageFinder::getInstance();
+        $pageFinder->setPageUid(1);
+        $pageFinder->forceSource(PageFinder::SOURCE_FRONT_END);
+
+        self::assertSame(
+            42,
+            $this->subject->getByNamespace('plugin.tx_oelib')->getAsInteger('test'),
+        );
+    }
+
+    /**
+     * This is the same as the previous test, but we are testing that the previous tests does not leave any locks
+     * in our way.
+     *
+     * @test
+     */
+    public function getByNamespaceReturnsDataFromTypoScriptSetupFromFrontEndPageAgain(): void
+    {
         $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
 
         $this->testingFramework->createFakeFrontEnd(1);
