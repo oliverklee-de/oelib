@@ -10,6 +10,7 @@ use OliverKlee\Oelib\Mapper\MapperRegistry;
 use OliverKlee\Oelib\Model\FrontEndUserGroup;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\NullLogger;
+use Symfony\Component\Cache\DataCollector\CacheDataCollector;
 use TYPO3\CMS\Core\Configuration\SiteConfiguration;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\UserAspect;
@@ -31,8 +32,10 @@ use TYPO3\CMS\Core\TypoScript\IncludeTree\SysTemplateRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
+use TYPO3\CMS\Frontend\Cache\CacheInstruction;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
+use TYPO3\CMS\Frontend\Page\PageInformation;
 
 /**
  * This class provides various functions to handle dummy records in unit tests.
@@ -680,6 +683,15 @@ final class TestingFramework
         Locales::setSystemLocaleFromSiteLanguage($language);
 
         if ((new Typo3Version())->getMajorVersion() >= 13) {
+            $pageInformation = new PageInformation();
+            $pageInformation->setId($pageUid);
+            $pageInformation->setPageRecord(['uid' => $pageUid]);
+            $cacheInstruction = new CacheInstruction();
+            $cacheInstruction->disableCache('fake frontend');
+            $request = $request
+                ->withAttribute('frontend.cache.collector', new CacheDataCollector())
+                ->withAttribute('frontend.cache.instruction', $cacheInstruction)
+                ->withAttribute('frontend.page.information', $pageInformation);
             $frontEndController->newCObj($request);
         } else {
             $frontEndController->newCObj();
