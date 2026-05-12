@@ -1522,7 +1522,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
             'TYPO3_REQUEST_HOST' => ['TYPO3_REQUEST_HOST', 'http://typo3-test.dev'],
             'TYPO3_REQUEST_SCRIPT' => ['TYPO3_REQUEST_SCRIPT', 'http://typo3-test.dev/index.php'],
             'TYPO3_REQUEST_DIR' => ['TYPO3_REQUEST_DIR', 'http://typo3-test.dev/'],
-            'TYPO3_SITE_URL' => ['TYPO3_SITE_URL', 'http://typo3-test.dev/'],
             'TYPO3_SSL' => ['TYPO3_SSL', false],
             'TYPO3_REV_PROXY' => ['TYPO3_REV_PROXY', false],
             'SCRIPT_NAME' => ['SCRIPT_NAME', '/index.php'],
@@ -1562,7 +1561,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
         return [
             'REQUEST_URI' => ['REQUEST_URI', '/%1s'],
             'TYPO3_REQUEST_URL' => ['TYPO3_REQUEST_URL', 'http://typo3-test.dev/%1s'],
-            'TYPO3_SITE_SCRIPT' => ['TYPO3_SITE_SCRIPT', '%1s'],
         ];
     }
 
@@ -1619,17 +1617,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
 
         $expectedUrl = $this->subject->getFakeSiteUrl() . $rootPageUid;
         self::assertSame($expectedUrl, GeneralUtility::locationHeaderUrl($typolinkUrl));
-    }
-
-    /**
-     * @test
-     */
-    public function createFakeFrontEndOverwritesCurrentScript(): void
-    {
-        $previous = Environment::getCurrentScript();
-        $this->subject->createFakeFrontEnd($this->subject->createFrontEndPage());
-
-        self::assertNotSame($previous, Environment::getCurrentScript());
     }
 
     /**

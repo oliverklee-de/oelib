@@ -583,7 +583,6 @@ final class TestingFramework
     public function cleanUpWithoutDatabase(): void
     {
         $this->discardFakeFrontEnd();
-        WritableEnvironment::restoreCurrentScript();
         GeneralUtility::flushInternalRuntimeCaches();
 
         // @deprecated #2216 will be removed in oelib 7.0
@@ -805,8 +804,6 @@ routes: {  }";
         GeneralUtility::setIndpEnv('SERVER_ADDR', '127.0.0.1');
         GeneralUtility::setIndpEnv('SERVER_NAME', $hostName);
         GeneralUtility::setIndpEnv('SERVER_SOFTWARE', 'Apache/2.4.48 (Debian)');
-
-        WritableEnvironment::setCurrentScript($absoluteScriptPath);
     }
 
     /**
