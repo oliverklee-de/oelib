@@ -286,11 +286,6 @@ parameters:
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Call to method logoff\\(\\) on an unknown class FrontendUserAuthentication\\.$#"
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
 			message: "#^Call to method setId\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Page\\\\PageInformation\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php

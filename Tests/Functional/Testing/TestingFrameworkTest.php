@@ -1843,46 +1843,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function logoutFrontEndUserWithoutFrontEndThrowsException(): void
-    {
-        $this->expectException(\BadMethodCallException::class);
-        $this->expectExceptionMessage('Please create a front end before calling logoutFrontEndUser.');
-
-        $this->subject->logoutFrontEndUser();
-    }
-
-    /**
-     * @test
-     */
-    public function logoutFrontEndUserSetsLoginUserToFalse(): void
-    {
-        $pageUid = $this->subject->createFrontEndPage();
-        $this->subject->createFakeFrontEnd($pageUid);
-
-        $this->subject->logoutFrontEndUser();
-
-        $isLoggedIn = (bool)$this->getContext()->getPropertyFromAspect('frontend.user', 'isLoggedIn');
-
-        self::assertFalse($isLoggedIn);
-    }
-
-    /**
-     * @test
-     *
-     * @doesNotPerformAssertions
-     */
-    public function logoutFrontEndUserCanBeCalledTwoTimes(): void
-    {
-        $pageUid = $this->subject->createFrontEndPage();
-        $this->subject->createFakeFrontEnd($pageUid);
-
-        $this->subject->logoutFrontEndUser();
-        $this->subject->logoutFrontEndUser();
-    }
-
-    /**
-     * @test
-     */
     public function createAndLoginFrontEndUserCreatesFrontEndUser(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
