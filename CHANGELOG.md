@@ -13,6 +13,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 
+- Drop the `CacheNullifyer` class (#2220)
+
 ### Fixed
 
 ## 6.3.1: Bugfixes, cross-DBMS compatibility, and improved DI

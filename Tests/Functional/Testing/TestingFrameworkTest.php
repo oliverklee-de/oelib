@@ -86,22 +86,22 @@ final class TestingFrameworkTest extends FunctionalTestCase
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function canBeCreatedWithNullTablePrefix(): void
     {
-        new TestingFramework(null);
+        $instance = new TestingFramework(null);
+
+        self::assertInstanceOf(TestingFramework::class, $instance);
     }
 
     /**
      * @test
-     *
-     * @doesNotPerformAssertions
      */
     public function canBeCreatedWithoutTablePrefix(): void
     {
-        new TestingFramework();
+        $instance = new TestingFramework();
+
+        self::assertInstanceOf(TestingFramework::class, $instance);
     }
 
     /**

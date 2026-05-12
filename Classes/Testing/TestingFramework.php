@@ -123,8 +123,6 @@ final class TestingFramework
     public function __construct(?string $tablePrefix = null)
     {
         $this->tablePrefix = $tablePrefix;
-
-        GeneralUtility::makeInstance(CacheNullifyer::class)->setAllCoreCaches();
     }
 
     private function initializeDatabase(): void
