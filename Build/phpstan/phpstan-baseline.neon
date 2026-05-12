@@ -436,11 +436,6 @@ parameters:
 			path: ../../Classes/Validation/AbstractConfigurationDependentValidator.php
 
 		-
-			message: "#^Parameter \\#1 \\$data of class OliverKlee\\\\Oelib\\\\Configuration\\\\ExtbaseConfiguration constructor expects array\\<string, mixed\\>, array given\\.$#"
-			count: 1
-			path: ../../Classes/ViewHelpers/AbstractConfigurationCheckViewHelper.php
-
-		-
 			message: "#^Cannot cast mixed to int\\.$#"
 			count: 5
 			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
@@ -514,16 +509,6 @@ parameters:
 			message: "#^There is no request attribute \"frontend\\.page\\.information\" configured so we can't figure out the exact type to return when calling TYPO3\\\\CMS\\\\Core\\\\Http\\\\ServerRequest\\:\\:getAttribute$#"
 			count: 1
 			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
-
-		-
-			message: "#^Cannot access offset 'MAIL' on mixed\\.$#"
-			count: 5
-			path: ../../Tests/Unit/Configuration/AbstractConfigurationCheckTest.php
-
-		-
-			message: "#^Cannot access offset 'defaultMailFromAddr…' on mixed\\.$#"
-			count: 5
-			path: ../../Tests/Unit/Configuration/AbstractConfigurationCheckTest.php
 
 		-
 			message: "#^Cannot access offset 'EXTENSIONS' on mixed\\.$#"

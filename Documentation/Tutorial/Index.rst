@@ -8,7 +8,6 @@ Tutorial
    :glob:
 
    UsingAndPersistingDomainModels/Index
-   UsingTheAutomaticConfigurationCheckForExtensions/Index
    UsingTheTestingFrameworkForUnitTests/Index
    UsingTheConfigurationProxy/Index
    UsingThePriceViewHelper/Index
