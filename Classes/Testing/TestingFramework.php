@@ -1161,7 +1161,12 @@ routes: {  }";
 
     private function buildEmptyTypoScript(): FrontendTypoScript
     {
-        $typoScript = new FrontendTypoScript(new RootNode(), []);
+        if ((new Typo3Version())->getMajorVersion() >= 13) {
+            $typoScript = new FrontendTypoScript(new RootNode(), [], [], []);
+            $typoScript->setConfigArray([]);
+        } else {
+            $typoScript = new FrontendTypoScript(new RootNode(), []);
+        }
         $typoScript->setSetupTree(new RootNode());
         $typoScript->setSetupArray([]);
 
