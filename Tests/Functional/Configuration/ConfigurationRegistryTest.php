@@ -9,6 +9,7 @@ use OliverKlee\Oelib\Configuration\DummyConfiguration;
 use OliverKlee\Oelib\Configuration\PageFinder;
 use OliverKlee\Oelib\Configuration\TypoScriptConfiguration;
 use OliverKlee\Oelib\Testing\TestingFramework;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -229,6 +230,10 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
      */
     public function getReturnsDataFromTypoScriptSetupFromFrontEndPage(): void
     {
+        if ((new Typo3Version())->getMajorVersion() >= 13) {
+            self::markTestSkipped('This feature is only available in the testing framework for TYPO3 <= 12LTS.');
+        }
+
         $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
 
         $this->testingFramework->createFakeFrontEnd(1);
@@ -319,6 +324,10 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
      */
     public function getByNamespaceReturnsDataFromTypoScriptSetupFromFrontEndPage(): void
     {
+        if ((new Typo3Version())->getMajorVersion() >= 13) {
+            self::markTestSkipped('This feature is only available in the testing framework for TYPO3 <= 12LTS.');
+        }
+
         $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
 
         $this->testingFramework->createFakeFrontEnd(1);
@@ -333,13 +342,17 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
     }
 
     /**
-     * This is the same as the previous test, but we are testing that the previous tests does not leave any locks
+     * This is the same as the previous test, but we are testing that the previous test does not leave any locks
      * in our way.
      *
      * @test
      */
     public function getByNamespaceReturnsDataFromTypoScriptSetupFromFrontEndPageAgain(): void
     {
+        if ((new Typo3Version())->getMajorVersion() >= 13) {
+            self::markTestSkipped('This feature is only available in the testing framework for TYPO3 <= 12LTS.');
+        }
+
         $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
 
         $this->testingFramework->createFakeFrontEnd(1);
