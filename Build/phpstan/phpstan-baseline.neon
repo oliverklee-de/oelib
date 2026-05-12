@@ -26,6 +26,11 @@ parameters:
 			path: ../../Classes/Configuration/ConfigurationRegistry.php
 
 		-
+			message: "#^Method TYPO3\\\\CMS\\\\Extbase\\\\Configuration\\\\BackendConfigurationManager\\:\\:getTypoScriptSetup\\(\\) invoked with 1 parameter, 0 required\\.$#"
+			count: 1
+			path: ../../Classes/Configuration/ConfigurationRegistry.php
+
+		-
 			message: "#^Parameter \\#1 \\$haystack of method OliverKlee\\\\Oelib\\\\Configuration\\\\FlexformsConfiguration\\:\\:getFromArray\\(\\) expects array\\<array\\<int\\|string, mixed\\>\\|int\\|string\\>, array\\<int\\|string, mixed\\> given\\.$#"
 			count: 1
 			path: ../../Classes/Configuration/FlexformsConfiguration.php
