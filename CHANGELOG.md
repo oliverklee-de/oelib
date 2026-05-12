@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 
+- Drop the `Country` model and mapper (#2370)
 - Drop the `Language` model and mapper (#2369)
 - Drop `GeoCalculator` and the `Geo` interface (#2368)
 - Drop `TestingFramework::logoutFrontEndUser()` (#2367)
