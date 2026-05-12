@@ -22,7 +22,7 @@ final class PageFinderTest extends FunctionalTestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->testingFramework = new TestingFramework('tx_oelib');
+        $this->testingFramework = $this->get(TestingFramework::class);
 
         $this->subject = PageFinder::getInstance();
     }
