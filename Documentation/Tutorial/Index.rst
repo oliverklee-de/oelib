@@ -9,5 +9,4 @@ Tutorial
 
    UsingAndPersistingDomainModels/Index
    UsingTheTestingFrameworkForUnitTests/Index
-   UsingTheConfigurationProxy/Index
    UsingThePriceViewHelper/Index
