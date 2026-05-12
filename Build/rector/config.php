@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
+use Rector\Php71\Rector\FuncCall\RemoveExtraParametersRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
@@ -78,4 +79,7 @@ return RectorConfig::configure()
         ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
     ])
     ->withSkip([
+        RemoveExtraParametersRector::class => [
+            'Classes/Configuration/ConfigurationRegistry.php',
+        ],
     ]);

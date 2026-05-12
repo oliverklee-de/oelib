@@ -22,6 +22,8 @@ use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
  */
 class ConfigurationRegistry
 {
+    private BackendConfigurationManager $backendConfigurationManager;
+
     /**
      * @deprecated #2287 will be removed in oelib 7.0
      */
@@ -31,6 +33,11 @@ class ConfigurationRegistry
      * @var array<non-empty-string, ConfigurationInterface> already created configurations (by namespace)
      */
     private array $configurations = [];
+
+    public function __construct(BackendConfigurationManager $backendConfigurationManager)
+    {
+        $this->backendConfigurationManager = $backendConfigurationManager;
+    }
 
     /**
      * Destructs a configuration for a given namespace and drops the reference to it.
@@ -194,10 +201,21 @@ class ConfigurationRegistry
         $queryParams['id'] = $pageUid;
         $request = $request->withQueryParams($queryParams);
 
-        $configurationManager = GeneralUtility::makeInstance(BackendConfigurationManager::class);
-        $configurationManager->setRequest($request);
+        $configurationManager = $this->getBackendConfigurationManager($request);
 
-        return $configurationManager->getTypoScriptSetup();
+        return ((new Typo3Version())->getMajorVersion() <= 12)
+            ? $configurationManager->getTypoScriptSetup()
+            : $configurationManager->getTypoScriptSetup($request);
+    }
+
+    private function getBackendConfigurationManager(ServerRequestInterface $request): BackendConfigurationManager
+    {
+        $configurationManager = $this->backendConfigurationManager;
+        if ((new Typo3Version())->getMajorVersion() <= 12) {
+            $configurationManager->setRequest($request);
+        }
+
+        return $configurationManager;
     }
 
     /**
