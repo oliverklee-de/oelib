@@ -500,11 +500,9 @@ final class TestingFramework
      *
      * @param positive-int $pageUid
      *
-     * @return positive-int the UID of the used front-end page, deprecated #2279, will be `void` in oelib 7.0
-     *
      * @throws \InvalidArgumentException if $pageUid is < 0
      */
-    public function createFakeFrontEnd(int $pageUid): int
+    public function createFakeFrontEnd(int $pageUid): void
     {
         /** @phpstan-ignore-next-line We are explicitly checking for contract violations here */
         if ($pageUid <= 0) {
@@ -594,8 +592,6 @@ final class TestingFramework
         $contentObject->setRequest($request);
 
         $this->hasFakeFrontEnd = true;
-
-        return $pageUid;
     }
 
     /**
