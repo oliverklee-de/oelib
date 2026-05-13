@@ -10,7 +10,6 @@ use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRect
 use Rector\ValueObject\PhpVersion;
 use Ssch\TYPO3Rector\CodeQuality\General\ConvertImplicitVariablesToExplicitGlobalsRector;
 use Ssch\TYPO3Rector\CodeQuality\General\ExtEmConfRector;
-use Ssch\TYPO3Rector\CodeQuality\General\GeneralUtilityMakeInstanceToConstructorPropertyRector;
 use Ssch\TYPO3Rector\Configuration\Typo3Option;
 use Ssch\TYPO3Rector\Set\Typo3LevelSetList;
 use Ssch\TYPO3Rector\Set\Typo3SetList;
@@ -18,7 +17,6 @@ use Ssch\Typo3RectorTestingFramework\Set\TYPO3TestingFrameworkSetList;
 
 return RectorConfig::configure()
     ->withPaths([
-        __DIR__ . '/../../Build/',
         __DIR__ . '/../../Classes/',
         __DIR__ . '/../../Configuration/',
         __DIR__ . '/../../Tests/',
