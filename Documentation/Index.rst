@@ -35,7 +35,6 @@ The content of this document is related to TYPO3 - a GNU/GPL CMS/Framework avail
    Introduction/Index
    Tutorial/Index
    Configuration/Index
-   Reference/Index
 
 
 .. Meta Menu

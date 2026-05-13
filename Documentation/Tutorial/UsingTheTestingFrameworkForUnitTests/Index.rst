@@ -21,12 +21,7 @@ The testing framework enables you to easily
 
 - Remove single relations from a database table
 
-- Add dummy FE pages, FE user groups, FE users, system folders, content
-  elements, TS templates and page cache entries
-
 - Create a fake front end for testing front-end plugins
-
-- Count records
 
 
 Before you start
@@ -80,7 +75,6 @@ of the many good documentations regarding this topic.
 
      public function tearDown() {
              $this->testingFramework->cleanUp();
-             unset($this->fixture, $this->testingFramework);
            }
 
      public function testGetTitle() {
