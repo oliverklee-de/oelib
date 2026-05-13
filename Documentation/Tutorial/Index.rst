@@ -9,4 +9,3 @@ Tutorial
 
    UsingAndPersistingDomainModels/Index
    UsingTheTestingFrameworkForUnitTests/Index
-   UsingThePriceViewHelper/Index

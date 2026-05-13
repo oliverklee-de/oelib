@@ -8,5 +8,4 @@ Introduction
 
    WhatDoesItDo/Index
    KeyFeatures/Index
-   Examples/Index
    Credits/Index
