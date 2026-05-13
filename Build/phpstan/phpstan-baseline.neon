@@ -176,16 +176,6 @@ parameters:
 			path: ../../Classes/Mapper/MapperRegistry.php
 
 		-
-			message: "#^Method OliverKlee\\\\Oelib\\\\Model\\\\BackEndUser\\:\\:getConfiguration\\(\\) should return array\\<string, string\\> but returns array\\.$#"
-			count: 1
-			path: ../../Classes/Model/BackEndUser.php
-
-		-
-			message: "#^Property OliverKlee\\\\Oelib\\\\Model\\\\BackEndUser\\:\\:\\$configuration \\(array\\<string, string\\>\\) does not accept array\\.$#"
-			count: 1
-			path: ../../Classes/Model/BackEndUser.php
-
-		-
 			message: "#^Parameters should have \"OliverKlee\\\\Oelib\\\\DataStructures\\\\Collection\\<OliverKlee\\\\Oelib\\\\Model\\\\FrontEndUserGroup\\>\" types as the only types passed to this method$#"
 			count: 1
 			path: ../../Classes/Model/FrontEndUser.php

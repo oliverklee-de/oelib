@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 
+- Drop the `BackEndUser` model and mapper (#2374)
 - Drop `TestingFramework::createTemplate()` (#2373)
 - Drop the `PageRepository` (#2372)
 - Drop the `ConfigurationProxy` (#2371)
