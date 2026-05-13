@@ -9,6 +9,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Use DI in the `TestingFramework` (#2385)
+
 ### Deprecated
 
 ### Removed
