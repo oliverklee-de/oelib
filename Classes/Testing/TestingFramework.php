@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace OliverKlee\Oelib\Testing;
 
-use OliverKlee\Oelib\DataStructures\Collection;
 use OliverKlee\Oelib\Mapper\FrontEndUserMapper;
 use OliverKlee\Oelib\Mapper\MapperRegistry;
-use OliverKlee\Oelib\Model\FrontEndUserGroup;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\NullLogger;
 use Symfony\Component\Cache\DataCollector\CacheDataCollector;
@@ -767,11 +765,6 @@ routes: {  }";
 
         $dataToSet = $mapper->find($userId)->getData();
         $dataToSet['uid'] = $userId;
-        if (isset($dataToSet['usergroup'])) {
-            /** @var Collection<FrontEndUserGroup> $userGroups */
-            $userGroups = $dataToSet['usergroup'];
-            $dataToSet['usergroup'] = $userGroups->getUids();
-        }
 
         $frontEndUser = $this->getFrontEndController()->fe_user;
         $frontEndUser->createUserSession(['uid' => $userId, 'disableIPlock' => true]);
