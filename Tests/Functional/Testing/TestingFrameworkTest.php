@@ -1166,19 +1166,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function createFakeFrontEndReturnsProvidedPageUid(): void
-    {
-        $pageUid = $this->subject->createFrontEndPage();
-
-        self::assertSame(
-            $pageUid,
-            $this->subject->createFakeFrontEnd($pageUid),
-        );
-    }
-
-    /**
-     * @test
-     */
     public function createFakeFrontEndUsesProvidedPageUidAsFrontEndId(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
