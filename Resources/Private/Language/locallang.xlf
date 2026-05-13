@@ -3,9 +3,6 @@
   <file source-language="en" datatype="plaintext" original="messages">
     <header/>
     <body>
-      <trans-unit id="label_test">
-        <source>I am from file.</source>
-      </trans-unit>
       <trans-unit id="validationError.fillInField">
         <source>Please fill in this field.</source>
       </trans-unit>
