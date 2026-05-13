@@ -7,7 +7,6 @@ namespace OliverKlee\Oelib\Tests\Unit\Model;
 use OliverKlee\Oelib\DataStructures\Collection;
 use OliverKlee\Oelib\Exception\NotFoundException;
 use OliverKlee\Oelib\Model\AbstractModel;
-use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\ReadOnlyModel;
 use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingChildModel;
 use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingModel;
 use TYPO3\CMS\Core\Context\Context;
@@ -1143,57 +1142,6 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    //////////////////////////////////////
-    // Tests concerning read-only models
-    //////////////////////////////////////
-
-    /**
-     * @test
-     */
-    public function isReadOnlyOnReadWriteModelReturnsFalse(): void
-    {
-        self::assertFalse(
-            $this->subject->isReadOnly(),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function isReadOnlyOnReadOnlyModelReturnsTrue(): void
-    {
-        $model = new ReadOnlyModel();
-
-        self::assertTrue(
-            $model->isReadOnly(),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function setDataOnReadOnlyModelDoesNotFail(): void
-    {
-        $model = new ReadOnlyModel();
-        $model->setData([]);
-    }
-
-    /**
-     * @test
-     */
-    public function setOnReadOnlyModelThrowsException(): void
-    {
-        $this->expectException(
-            \BadMethodCallException::class,
-        );
-        $this->expectExceptionMessage(
-            'set() must not be called on a read-only model.',
-        );
-
-        $model = new ReadOnlyModel();
-        $model->setTitle('foo');
-    }
-
     /////////////////////////////
     // Tests concerning getData
     /////////////////////////////
@@ -1421,18 +1369,6 @@ final class AbstractModelTest extends UnitTestCase
     }
 
     // Tests concerning __clone
-
-    /**
-     * @test
-     */
-    public function cloneOfReadOnlyModelThrowsException(): void
-    {
-        $this->expectException(\BadMethodCallException::class);
-
-        $this->subject->markAsReadOnly();
-
-        clone $this->subject;
-    }
 
     /**
      * @return array<string, array{0: AbstractModel::STATUS_*}>

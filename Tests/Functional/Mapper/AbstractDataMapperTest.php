@@ -11,7 +11,6 @@ use OliverKlee\Oelib\Model\AbstractModel;
 use OliverKlee\Oelib\Model\FrontEndUser;
 use OliverKlee\Oelib\Tests\Unit\Mapper\Fixtures\TestingChildMapper;
 use OliverKlee\Oelib\Tests\Unit\Mapper\Fixtures\TestingMapper;
-use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\ReadOnlyModel;
 use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingChildModel;
 use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingModel;
 use TYPO3\CMS\Core\Context\Context;
@@ -1784,29 +1783,6 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     /**
      * @test
      */
-    public function saveForReadOnlyModelDoesNotCommitModelToDatabase(): void
-    {
-        $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
-        $connection->insert('tx_oelib_test', ['title' => 'foo']);
-
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
-        \assert($uid > 0);
-
-        $this->subject->setModelClassName(ReadOnlyModel::class);
-        $this->subject->save($this->subject->find($uid));
-
-        self::assertSame(
-            0,
-            $connection->count('*', 'tx_oelib_test', [
-                'title' => 'foo',
-                'tstamp' => GeneralUtility::makeInstance(Context::class)->getPropertyFromAspect('date', 'timestamp'),
-            ]),
-        );
-    }
-
-    /**
-     * @test
-     */
     public function saveForGhostDoesNotCommitModelToDatabase(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -3259,19 +3235,6 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $this->expectExceptionCode(1_331_319_817);
 
         $model = $this->subject->getNewGhost();
-        $this->subject->delete($model);
-    }
-
-    /**
-     * @test
-     */
-    public function deleteForReadOnlyModelThrowsException(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('This model is read-only and must not be deleted.');
-        $this->expectExceptionCode(1331319836);
-
-        $model = new ReadOnlyModel();
         $this->subject->delete($model);
     }
 

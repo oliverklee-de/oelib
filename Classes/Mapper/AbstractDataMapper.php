@@ -675,7 +675,7 @@ abstract class AbstractDataMapper
             );
         }
 
-        if (!$model->isDirty() || !$model->isLoaded() || $model->isReadOnly()) {
+        if (!$model->isDirty() || !$model->isLoaded()) {
             return;
         }
 
@@ -964,10 +964,6 @@ abstract class AbstractDataMapper
                 'This model is a memory-only dummy that must not be deleted.',
                 1_331_319_817,
             );
-        }
-
-        if ($model->isReadOnly()) {
-            throw new \InvalidArgumentException('This model is read-only and must not be deleted.', 1_331_319_836);
         }
 
         if ($model->isDead()) {
