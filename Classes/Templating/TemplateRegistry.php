@@ -50,27 +50,6 @@ class TemplateRegistry
      * If the template file name is empty, no template file will be used for
      * that template.
      *
-     * @param string $templateFileName the file name of the template to retrieve, may not be empty to get a template
-     *        that is not related to a template file.
-     *
-     * @return Template the template for the given template file name
-     *
-     * @see getByFileName
-     *
-     * @deprecated use `getByFileName` instead. #2290 will be removed in oelib 7.0
-     */
-    public static function get(string $templateFileName): Template
-    {
-        return self::getInstance()->getByFileName($templateFileName);
-    }
-
-    /**
-     * Creates a new template for a provided template file name with an already
-     * parsed the template file.
-     *
-     * If the template file name is empty, no template file will be used for
-     * that template.
-     *
      * @param string $fileName the file name of the template to retrieve, may not be empty to get a template that
      *        is not related to a template file
      *

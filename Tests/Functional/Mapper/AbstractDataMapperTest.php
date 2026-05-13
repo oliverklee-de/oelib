@@ -39,7 +39,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $dateAspect = new DateTimeAspect(new \DateTimeImmutable('2018-04-26 12:42:23'));
         $this->get(Context::class)->setAspect('date', $dateAspect);
 
-        $this->subject = MapperRegistry::get(TestingMapper::class);
+        $this->subject = $this->get(MapperRegistry::class)->getByClassName(TestingMapper::class);
     }
 
     protected function tearDown(): void

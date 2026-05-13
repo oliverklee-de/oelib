@@ -404,9 +404,7 @@ final class AbstractDataMapperTest extends UnitTestCase
         $this->expectExceptionMessage('$model must have a UID.');
         $this->expectExceptionCode(1_331_319_915);
 
-        $model = new TestingModel();
-
-        MapperRegistry::get(TestingChildMapper::class)->findAllByRelation($model, 'parent');
+        (new TestingChildMapper())->findAllByRelation(new TestingModel(), 'parent');
     }
 
     /**

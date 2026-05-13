@@ -68,28 +68,6 @@ final class TemplateRegistryTest extends UnitTestCase
     /**
      * @test
      */
-    public function getForEmptyTemplateFileNameReturnsTemplateInstance(): void
-    {
-        self::assertInstanceOf(
-            Template::class,
-            TemplateRegistry::get(''),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function getForEmptyTemplateFileNameCalledTwoTimesReturnsNewInstance(): void
-    {
-        self::assertNotSame(
-            TemplateRegistry::get(''),
-            TemplateRegistry::get(''),
-        );
-    }
-
-    /**
-     * @test
-     */
     public function getByFileNameForEmptyTemplateFileNameReturnsTemplateInstance(): void
     {
         self::assertInstanceOf(

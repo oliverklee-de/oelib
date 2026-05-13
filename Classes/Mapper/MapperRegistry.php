@@ -56,26 +56,6 @@ class MapperRegistry
      * @return M the mapper instance of the provided class
      *
      * @throws \InvalidArgumentException if there is no such mapper
-     *
-     * @see getByClassName
-     *
-     * @deprecated use `getByClassName` instead. #2290 will be removed in oelib 7.0
-     */
-    public static function get(string $className): AbstractDataMapper
-    {
-        return self::getInstance()->getByClassName($className);
-    }
-
-    /**
-     * Retrieves a dataMapper by class name.
-     *
-     * @template M of AbstractDataMapper
-     *
-     * @param class-string<M> $className the name of an existing mapper class
-     *
-     * @return M the mapper instance of the provided class
-     *
-     * @throws \InvalidArgumentException if there is no such mapper
      */
     public function getByClassName(string $className): AbstractDataMapper
     {
@@ -99,27 +79,6 @@ class MapperRegistry
         }
 
         return $mapper;
-    }
-
-    /**
-     * Sets a mapper that can be returned via get.
-     *
-     * This function is a static public convenience wrapper for setByClassName.
-     *
-     * This function is to be used for testing purposes only.
-     *
-     * @template M of AbstractDataMapper
-     *
-     * @param class-string<M> $className the class name of the mapper to set
-     * @param M $mapper the mapper to set, must be an instance of `$className`
-     *
-     * @see setByClassName
-     *
-     * @deprecated use `setByClassName` instead. #2290 will be removed in oelib 7.0
-     */
-    public static function set(string $className, AbstractDataMapper $mapper): void
-    {
-        self::getInstance()->setByClassName($className, $mapper);
     }
 
     /**

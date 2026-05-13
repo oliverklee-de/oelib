@@ -755,7 +755,7 @@ routes: {  }";
             );
         }
 
-        $mapper = MapperRegistry::get(FrontEndUserMapper::class);
+        $mapper = MapperRegistry::getInstance()->getByClassName(FrontEndUserMapper::class);
         // loads the model from database if it is a ghost
         $mapper->existsModel($userId);
 
