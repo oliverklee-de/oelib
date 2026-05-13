@@ -466,31 +466,6 @@ parameters:
 			path: ../../Tests/Unit/Email/SystemEmailFromBuilderTest.php
 
 		-
-			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\) with 31536000 and 31536000 will always evaluate to true\\.$#"
-			count: 1
-			path: ../../Tests/Unit/Interfaces/TimeTest.php
-
-		-
-			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\) with 3600 and 3600 will always evaluate to true\\.$#"
-			count: 1
-			path: ../../Tests/Unit/Interfaces/TimeTest.php
-
-		-
-			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\) with 60 and 60 will always evaluate to true\\.$#"
-			count: 1
-			path: ../../Tests/Unit/Interfaces/TimeTest.php
-
-		-
-			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\) with 604800 and 604800 will always evaluate to true\\.$#"
-			count: 1
-			path: ../../Tests/Unit/Interfaces/TimeTest.php
-
-		-
-			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertSame\\(\\) with 86400 and 86400 will always evaluate to true\\.$#"
-			count: 1
-			path: ../../Tests/Unit/Interfaces/TimeTest.php
-
-		-
 			message: "#^Class OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Mapper\\\\Fixtures\\\\ModelLessTestingMapper extends generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper but does not specify its types\\: M$#"
 			count: 1
 			path: ../../Tests/Unit/Mapper/Fixtures/ModelLessTestingMapper.php

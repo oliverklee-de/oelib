@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 
+- Drop the `Time` interface (#2378)
 - Drop `FrontEndUserMapper::findByUserName()` (#2377)
 - Drop explicit support for readonly models (#2376)
 - Drop the `FrontEndUserGroup` model and mapper (#2375)
