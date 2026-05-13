@@ -3,10 +3,6 @@
   <file source-language="en" datatype="plaintext" original="messages" target-language="hu">
     <header/>
     <body>
-      <trans-unit id="label_test">
-        <source>I am from file.</source>
-        <target state="needs-translation">I am from file.</target>
-      </trans-unit>
       <trans-unit id="validationError.fillInField">
         <source>Please fill in this field.</source>
         <target state="needs-translation">Please fill in this field.</target>
