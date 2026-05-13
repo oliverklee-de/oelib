@@ -13,6 +13,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 
+- Drop `TestingFramework::createTemplate()` (#2373)
 - Drop the `PageRepository` (#2372)
 - Drop the `ConfigurationProxy` (#2371)
 - Drop the `Country` model and mapper (#2370)

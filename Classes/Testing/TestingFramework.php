@@ -227,40 +227,6 @@ final class TestingFramework
     }
 
     /**
-     * Creates a template on the page with the UID given by the first parameter $pageId.
-     *
-     * @param positive-int $pageId UID of the page on which the template should be created
-     * @param array<string, string|int|bool> $recordData data to save, may be empty,
-     *        but must not contain the keys "uid" or "pid"
-     *
-     * @return positive-int the UID of the new template
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @deprecated #2197 will be removed in version 7.0
-     */
-    public function createTemplate(int $pageId, array $recordData = []): int
-    {
-        // @phpstan-ignore-next-line We're testing for a contract violation here.
-        if ($pageId <= 0) {
-            throw new \InvalidArgumentException('$pageId must be > 0.', 1_331_489_774);
-        }
-
-        if (isset($recordData['uid'])) {
-            throw new \InvalidArgumentException('The column "uid" must not be set in $recordData.', 1_331_489_769);
-        }
-
-        if (isset($recordData['pid'])) {
-            throw new \InvalidArgumentException('The column "pid" must not be set in $recordData.', 1_331_489_764);
-        }
-
-        $completeRecordData = $recordData;
-        $completeRecordData['pid'] = $pageId;
-
-        return $this->createRecordWithoutTableNameChecks('sys_template', $completeRecordData);
-    }
-
-    /**
      * Creates a FE user group.
      *
      * @param array<string, string|int|bool> $recordData data to save, may be empty, but must not contain the key "uid"

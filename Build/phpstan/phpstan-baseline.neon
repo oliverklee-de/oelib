@@ -417,7 +417,7 @@ parameters:
 
 		-
 			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotSame\\(\\) with 0 and int\\<1, max\\> will always evaluate to true\\.$#"
-			count: 16
+			count: 15
 			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
