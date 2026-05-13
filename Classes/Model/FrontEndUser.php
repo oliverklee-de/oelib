@@ -4,10 +4,8 @@ declare(strict_types=1);
 
 namespace OliverKlee\Oelib\Model;
 
-use OliverKlee\Oelib\DataStructures\Collection;
 use OliverKlee\Oelib\Interfaces\Address;
 use OliverKlee\Oelib\Interfaces\MailRole;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
  * This class represents a front-end user.
@@ -236,65 +234,6 @@ class FrontEndUser extends AbstractModel implements MailRole, Address
     public function setEmailAddress(string $emailAddress): void
     {
         $this->setAsString('email', $emailAddress);
-    }
-
-    /**
-     * Gets this user's user groups.
-     *
-     * @return Collection<FrontEndUserGroup> this user's FE user groups, will not be empty if the user data is valid
-     *
-     * @deprecated #1928 will be removed in version 7.0
-     */
-    public function getUserGroups(): Collection
-    {
-        /** @var Collection<FrontEndUserGroup> $groups */
-        $groups = $this->getAsCollection('usergroup');
-
-        return $groups;
-    }
-
-    /**
-     * Sets this user's direct user groups.
-     *
-     * @param Collection<FrontEndUserGroup> $userGroups the user groups to set, may be empty
-     *
-     * @deprecated #1928 will be removed in version 7.0
-     */
-    public function setUserGroups(Collection $userGroups): void
-    {
-        $this->set('usergroup', $userGroups);
-    }
-
-    /**
-     * Checks whether this user is a member of at least one of the user groups
-     * provided as comma-separated UID list.
-     *
-     * @param non-empty-string $uidList comma-separated list of user group UIDs, can also consist of only
-     *        one UID
-     *
-     * @return bool TRUE if the user is member of at least one of the user groups provided, FALSE otherwise
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @deprecated #1928 will be removed in version 7.0
-     */
-    public function hasGroupMembership(string $uidList): bool
-    {
-        // @phpstan-ignore-next-line We're checking for a contract violation here.
-        if ($uidList === '') {
-            throw new \InvalidArgumentException('$uidList must not be empty.', 1_331_488_635);
-        }
-
-        $isMember = false;
-
-        foreach (GeneralUtility::intExplode(',', $uidList, true) as $uid) {
-            if ($uid > 0 && $this->getUserGroups()->hasUid($uid)) {
-                $isMember = true;
-                break;
-            }
-        }
-
-        return $isMember;
     }
 
     /**

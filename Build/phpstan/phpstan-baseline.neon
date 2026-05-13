@@ -161,11 +161,6 @@ parameters:
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Property OliverKlee\\\\Oelib\\\\Mapper\\\\FrontEndUserMapper\\:\\:\\$relations with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper does not specify its types\\: M$#"
-			count: 1
-			path: ../../Classes/Mapper/FrontEndUserMapper.php
-
-		-
 			message: "#^Property OliverKlee\\\\Oelib\\\\Mapper\\\\MapperRegistry\\:\\:\\$mappers with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper does not specify its types\\: M$#"
 			count: 1
 			path: ../../Classes/Mapper/MapperRegistry.php
@@ -174,11 +169,6 @@ parameters:
 			message: "#^Strict comparison using \\=\\=\\= between class\\-string\\<M of OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper \\(method OliverKlee\\\\Oelib\\\\Mapper\\\\MapperRegistry\\:\\:getByClassName\\(\\), argument\\)\\> and '' will always evaluate to false\\.$#"
 			count: 1
 			path: ../../Classes/Mapper/MapperRegistry.php
-
-		-
-			message: "#^Parameters should have \"OliverKlee\\\\Oelib\\\\DataStructures\\\\Collection\\<OliverKlee\\\\Oelib\\\\Model\\\\FrontEndUserGroup\\>\" types as the only types passed to this method$#"
-			count: 1
-			path: ../../Classes/Model/FrontEndUser.php
 
 		-
 			message: "#^Cannot cast mixed to int\\.$#"

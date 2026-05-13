@@ -4,12 +4,8 @@ declare(strict_types=1);
 
 namespace OliverKlee\Oelib\Tests\Unit\Model;
 
-use OliverKlee\Oelib\DataStructures\Collection;
 use OliverKlee\Oelib\Interfaces\MailRole;
-use OliverKlee\Oelib\Mapper\FrontEndUserGroupMapper;
-use OliverKlee\Oelib\Mapper\MapperRegistry;
 use OliverKlee\Oelib\Model\FrontEndUser;
-use OliverKlee\Oelib\Model\FrontEndUserGroup;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -684,124 +680,6 @@ final class FrontEndUserTest extends UnitTestCase
         self::assertSame(
             'john@example.com',
             $this->subject->getEmailAddress(),
-        );
-    }
-
-    // Tests concerning the user groups
-
-    /**
-     * @test
-     */
-    public function getUserGroupsForReturnsUserGroups(): void
-    {
-        /** @var Collection<FrontEndUserGroup> $expectedGroups */
-        $expectedGroups = new Collection();
-
-        $this->subject->setData(['usergroup' => $expectedGroups]);
-
-        /** @var Collection<FrontEndUserGroup> $actualGroups */
-        $actualGroups = $this->subject->getUserGroups();
-        self::assertSame($expectedGroups, $actualGroups);
-    }
-
-    /**
-     * @test
-     */
-    public function setUserGroupsSetsUserGroups(): void
-    {
-        /** @var Collection<FrontEndUserGroup> $userGroups */
-        $userGroups = new Collection();
-
-        $this->subject->setUserGroups($userGroups);
-
-        self::assertSame(
-            $userGroups,
-            $this->subject->getUserGroups(),
-        );
-    }
-
-    // Test concerning hasGroupMembership
-
-    /**
-     * @test
-     */
-    public function hasGroupMembershipWithEmptyUidListThrowsException(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-
-        // @phpstan-ignore-next-line We are explicitly checking for a contract violation here.
-        $this->subject->hasGroupMembership('');
-    }
-
-    /**
-     * @test
-     */
-    public function hasGroupMembershipForUserOnlyInProvidedGroupReturnsTrue(): void
-    {
-        $userGroup = MapperRegistry::get(FrontEndUserGroupMapper::class)->getNewGhost();
-        $list = new Collection();
-        $list->add($userGroup);
-
-        $this->subject->setData(['usergroup' => $list]);
-
-        self::assertTrue(
-            $this->subject->hasGroupMembership((string)$userGroup->getUid()),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function hasGroupMembershipForUserInProvidedGroupAndInAnotherReturnsTrue(): void
-    {
-        $groupMapper = MapperRegistry::get(FrontEndUserGroupMapper::class);
-        $userGroup = $groupMapper->getNewGhost();
-        $list = new Collection();
-        $list->add($groupMapper->getNewGhost());
-        $list->add($userGroup);
-
-        $this->subject->setData(['usergroup' => $list]);
-
-        self::assertTrue(
-            $this->subject->hasGroupMembership((string)$userGroup->getUid()),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function hasGroupMembershipForUserInOneOfTheProvidedGroupsReturnsTrue(): void
-    {
-        $groupMapper = MapperRegistry::get(FrontEndUserGroupMapper::class);
-        $userGroup = $groupMapper->getNewGhost();
-        $list = new Collection();
-        $list->add($userGroup);
-
-        $this->subject->setData(['usergroup' => $list]);
-
-        self::assertTrue(
-            $this->subject->hasGroupMembership(
-                $userGroup->getUid() . ',' . $groupMapper->getNewGhost()->getUid(),
-            ),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function hasGroupMembershipForUserNoneOfTheProvidedGroupsReturnsFalse(): void
-    {
-        $groupMapper = MapperRegistry::get(FrontEndUserGroupMapper::class);
-        $list = new Collection();
-        $list->add($groupMapper->getNewGhost());
-        $list->add($groupMapper->getNewGhost());
-
-        $this->subject->setData(['usergroup' => $list]);
-
-        self::assertFalse(
-            $this->subject->hasGroupMembership(
-                $groupMapper->getNewGhost()->getUid() . ',' . $groupMapper->getNewGhost()->getUid(),
-            ),
         );
     }
 

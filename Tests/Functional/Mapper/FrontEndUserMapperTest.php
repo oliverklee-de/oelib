@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Tests\Functional\Mapper;
 
 use OliverKlee\Oelib\Exception\NotFoundException;
-use OliverKlee\Oelib\Mapper\FrontEndUserGroupMapper;
 use OliverKlee\Oelib\Mapper\FrontEndUserMapper;
-use OliverKlee\Oelib\Mapper\MapperRegistry;
 use OliverKlee\Oelib\Model\FrontEndUser;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -26,37 +24,6 @@ final class FrontEndUserMapperTest extends FunctionalTestCase
         parent::setUp();
 
         $this->subject = new FrontEndUserMapper();
-    }
-
-    //////////////////////////////
-    // Test concerning getGroups
-    //////////////////////////////
-
-    /**
-     * @test
-     */
-    public function getUserGroupsGetsRelatedGroupsAsList(): void
-    {
-        $groupMapper = MapperRegistry::get(FrontEndUserGroupMapper::class);
-
-        $group1 = $groupMapper->getNewGhost();
-        $group2 = $groupMapper->getNewGhost();
-        $groupUids = $group1->getUid() . ',' . $group2->getUid();
-
-        $connection = $this->getConnectionPool()->getConnectionForTable('fe_users');
-        $connection->insert('fe_users', ['usergroup' => $groupUids]);
-
-        $uid = (int)$connection->lastInsertId('fe_users');
-        if ($uid <= 0) {
-            throw new \RuntimeException('Could not create test record.', 1_699_653_406);
-        }
-
-        /** @var FrontEndUser $user */
-        $user = $this->subject->find($uid);
-        self::assertSame(
-            $groupUids,
-            $user->getUserGroups()->getUids(),
-        );
     }
 
     // Tests concerning findByUserName
