@@ -24,14 +24,6 @@ final class CurrencyTest extends UnitTestCase
     /**
      * @test
      */
-    public function isReadOnlyIsTrue(): void
-    {
-        self::assertTrue($this->subject->isReadOnly());
-    }
-
-    /**
-     * @test
-     */
     public function getIsoAlpha3CodeReturnsIsoAlpha3Code(): void
     {
         $code = 'EUR';

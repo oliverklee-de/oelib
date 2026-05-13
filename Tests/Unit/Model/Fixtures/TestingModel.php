@@ -39,14 +39,6 @@ class TestingModel extends AbstractModel
     }
 
     /**
-     * Marks this model as read-only.
-     */
-    public function markAsReadOnly(): void
-    {
-        $this->readOnly = true;
-    }
-
-    /**
      * Gets the "friend" data item. This is an n:1 relation.
      */
     public function getFriend(): ?TestingModel

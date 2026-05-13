@@ -44,9 +44,6 @@ abstract class AbstractModel extends AbstractObjectWithAccessors implements Iden
      */
     public const STATUS_DEAD = 4;
 
-    // @deprecated #1991 will be removed in version 7.0
-    protected bool $readOnly = false;
-
     /**
      * @var int<0, max> this model's UID, will be 0 if this model has been created in memory
      */
@@ -81,10 +78,6 @@ abstract class AbstractModel extends AbstractObjectWithAccessors implements Iden
      */
     public function __clone()
     {
-        if ($this->isReadOnly()) {
-            throw new \BadMethodCallException('Read-only models cannot be cloned.', 1_436_453_245);
-        }
-
         if ($this->isDead()) {
             throw new \BadMethodCallException('Deleted models cannot be cloned.', 1_436_453_107);
         }
@@ -259,10 +252,6 @@ abstract class AbstractModel extends AbstractObjectWithAccessors implements Iden
                 '$key must not be "deleted". Please use setToDeleted() instead.',
                 1_331_489_276,
             );
-        }
-
-        if ($this->isReadOnly()) {
-            throw new \BadMethodCallException('set() must not be called on a read-only model.', 1_331_489_292);
         }
 
         if ($this->isGhost()) {
@@ -588,18 +577,6 @@ abstract class AbstractModel extends AbstractObjectWithAccessors implements Iden
     public function isDeleted(): bool
     {
         return $this->getAsBoolean('deleted');
-    }
-
-    /**
-     * Checks whether this model is read-only.
-     *
-     * @return bool TRUE if this model is read-only, FALSE if it is writable
-     *
-     * @deprecated #1991 will be removed in version 7.0
-     */
-    public function isReadOnly(): bool
-    {
-        return $this->readOnly;
     }
 
     /**

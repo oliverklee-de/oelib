@@ -507,5 +507,5 @@ parameters:
 
 		-
 			message: "#^Expression \"clone \\$this\\-\\>subject\" on a separate line does not do anything\\.$#"
-			count: 2
+			count: 1
 			path: ../../Tests/Unit/Model/AbstractModelTest.php

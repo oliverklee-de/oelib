@@ -11,8 +11,6 @@ namespace OliverKlee\Oelib\Model;
  */
 class Currency extends AbstractModel
 {
-    protected bool $readOnly = true;
-
     /**
      * Returns the ISO 4217 alpha-3 code for this currency.
      *
