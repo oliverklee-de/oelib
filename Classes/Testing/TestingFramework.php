@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace OliverKlee\Oelib\Testing;
 
-use OliverKlee\Oelib\Mapper\FrontEndUserMapper;
-use OliverKlee\Oelib\Mapper\MapperRegistry;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Log\NullLogger;
 use Symfony\Component\Cache\DataCollector\CacheDataCollector;
@@ -709,9 +707,6 @@ routes: {  }";
     /**
      * Fakes that a front-end user has logged in.
      *
-     * If a front-end user currently is logged in, he/she will be logged out
-     * first.
-     *
      * Note: To set the logged-in users group data properly, the front-end user
      *       and his groups must actually exist in the database.
      *
@@ -734,18 +729,16 @@ routes: {  }";
             );
         }
 
-        $mapper = MapperRegistry::get(FrontEndUserMapper::class);
-        // loads the model from database if it is a ghost
-        $mapper->existsModel($userId);
-
-        $dataToSet = $mapper->find($userId)->getData();
-        $dataToSet['uid'] = $userId;
-
         $frontEndUser = $this->getFrontEndController()->fe_user;
-        $frontEndUser->createUserSession(['uid' => $userId, 'disableIPlock' => true]);
 
-        $frontEndUser->user = $dataToSet;
+        $queryResult = $this->connectionPool
+            ->getConnectionForTable('fe_users')
+            ->select(['*'], 'fe_users', ['uid' => $userId]);
+        $userData = $queryResult->fetchAllAssociative()[0] ?? [];
+        $frontEndUser->user = $userData;
+
         $frontEndUser->fetchGroupData(new ServerRequest());
+        $frontEndUser->createUserSession(['uid' => $userId, 'disableIPlock' => true]);
 
         $this->context->setAspect('frontend.user', new UserAspect($frontEndUser));
     }
