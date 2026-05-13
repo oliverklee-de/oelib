@@ -46,8 +46,6 @@ final class TestingFramework
 
     private Context $context;
 
-    private bool $databaseInitialized = false;
-
     /**
      * sorting values of all relation tables
      *
@@ -64,15 +62,6 @@ final class TestingFramework
     {
         $this->connectionPool = $connectionPool;
         $this->context = $context;
-    }
-
-    private function initializeDatabase(): void
-    {
-        if ($this->databaseInitialized) {
-            return;
-        }
-
-        $this->databaseInitialized = true;
     }
 
     /**
@@ -94,7 +83,6 @@ final class TestingFramework
      */
     public function createRecord(string $table, array $recordData = []): int
     {
-        $this->initializeDatabase();
         if (isset($recordData['uid'])) {
             throw new \InvalidArgumentException('The column "uid" must not be set in $recordData.', 1_331_489_678);
         }
@@ -118,7 +106,6 @@ final class TestingFramework
      */
     private function createRecordWithoutTableNameChecks(string $table, array $rawData): int
     {
-        $this->initializeDatabase();
         $dataToInsert = $this->normalizeDatabaseRow($rawData);
 
         $connection = $this->connectionPool->getConnectionForTable($table);
@@ -321,7 +308,6 @@ final class TestingFramework
      */
     public function changeRecord(string $table, int $uid, array $rawData): void
     {
-        $this->initializeDatabase();
         // @phpstan-ignore-next-line We're testing for a contract violation here.
         if ($uid === 0) {
             throw new \InvalidArgumentException('The parameter $uid must not be zero.', 1_331_490_003);
@@ -355,8 +341,6 @@ final class TestingFramework
      */
     public function createRelation(string $table, int $uidLocal, int $uidForeign): void
     {
-        $this->initializeDatabase();
-
         // @phpstan-ignore-next-line We're testing for a contract violation here.
         if ($uidLocal <= 0) {
             throw new \InvalidArgumentException('$uidLocal must be > 0, but is: ' . $uidLocal, 1_331_490_370);
@@ -394,7 +378,6 @@ final class TestingFramework
         int $uidForeign,
         string $columnName
     ): void {
-        $this->initializeDatabase();
         // @phpstan-ignore-next-line We're testing for a contract violation here.
         if ($uidLocal <= 0) {
             throw new \InvalidArgumentException(
