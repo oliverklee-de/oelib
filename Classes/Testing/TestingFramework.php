@@ -14,7 +14,6 @@ use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\UserAspect;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
-use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Http\NormalizedParams;
 use TYPO3\CMS\Core\Http\ServerRequest;
@@ -43,6 +42,10 @@ final class TestingFramework
     private const FAKE_FRONTEND_DOMAIN_NAME = 'typo3-test.dev';
     private const SITE_IDENTIFIER = 'testing-framework';
 
+    private ConnectionPool $connectionPool;
+
+    private Context $context;
+
     private bool $databaseInitialized = false;
 
     /**
@@ -56,6 +59,12 @@ final class TestingFramework
      * whether a fake front end has been created
      */
     private bool $hasFakeFrontEnd = false;
+
+    public function __construct(ConnectionPool $connectionPool, Context $context)
+    {
+        $this->connectionPool = $connectionPool;
+        $this->context = $context;
+    }
 
     private function initializeDatabase(): void
     {
@@ -112,7 +121,7 @@ final class TestingFramework
         $this->initializeDatabase();
         $dataToInsert = $this->normalizeDatabaseRow($rawData);
 
-        $connection = $this->getConnectionForTable($table);
+        $connection = $this->connectionPool->getConnectionForTable($table);
         $connection->insert($table, $dataToInsert);
 
         $uid = (int)$connection->lastInsertId($table);
@@ -139,19 +148,6 @@ final class TestingFramework
         }
 
         return $dataToInsert;
-    }
-
-    /**
-     * @param non-empty-string $tableName
-     */
-    private function getConnectionForTable(string $tableName): Connection
-    {
-        return $this->getConnectionPool()->getConnectionForTable($tableName);
-    }
-
-    private function getConnectionPool(): ConnectionPool
-    {
-        return GeneralUtility::makeInstance(ConnectionPool::class);
     }
 
     /**
@@ -344,7 +340,7 @@ final class TestingFramework
         }
 
         $dataToSave = $this->normalizeDatabaseRow($rawData);
-        $this->getConnectionForTable($table)->update($table, $dataToSave, ['uid' => $uid]);
+        $this->connectionPool->getConnectionForTable($table)->update($table, $dataToSave, ['uid' => $uid]);
     }
 
     /**
@@ -377,7 +373,7 @@ final class TestingFramework
             'sorting' => $this->getRelationSorting($table, $uidLocal),
         ];
 
-        $this->getConnectionForTable($table)->insert($table, $recordData);
+        $this->connectionPool->getConnectionForTable($table)->insert($table, $recordData);
     }
 
     /**
@@ -534,7 +530,7 @@ final class TestingFramework
         $pageArguments = new PageArguments($pageUid, '', []);
         $frontEndController = GeneralUtility::makeInstance(
             TypoScriptFrontendController::class,
-            GeneralUtility::makeInstance(Context::class),
+            $this->context,
             $site,
             $language,
             $pageArguments,
@@ -768,7 +764,7 @@ routes: {  }";
         $frontEndUser->user = $dataToSet;
         $frontEndUser->fetchGroupData(new ServerRequest());
 
-        GeneralUtility::makeInstance(Context::class)->setAspect('frontend.user', new UserAspect($frontEndUser));
+        $this->context->setAspect('frontend.user', new UserAspect($frontEndUser));
     }
 
     // ----------------------------------------------------------------------
@@ -817,7 +813,7 @@ routes: {  }";
      */
     private function increaseRelationCounter(string $tableName, int $uid, string $fieldName): void
     {
-        $connection = $this->getConnectionForTable($tableName);
+        $connection = $this->connectionPool->getConnectionForTable($tableName);
         $query = 'UPDATE ' . $tableName . ' SET ' . $fieldName . '=' . $fieldName . '+1 WHERE uid=' . $uid;
         $numberOfAffectedRows = $connection->executeStatement($query);
         if ($numberOfAffectedRows === 0) {

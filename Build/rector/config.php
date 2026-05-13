@@ -79,9 +79,6 @@ return RectorConfig::configure()
         ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
     ])
     ->withSkip([
-        GeneralUtilityMakeInstanceToConstructorPropertyRector::class => [
-            'Classes/Testing/TestingFramework.php',
-        ],
         RemoveExtraParametersRector::class => [
             'Classes/Configuration/ConfigurationRegistry.php',
         ],
