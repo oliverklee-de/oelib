@@ -12,57 +12,9 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class TemplateRegistry
 {
     /**
-     * @deprecated #2287 will be removed in oelib 7.0
-     */
-    private static ?TemplateRegistry $instance = null;
-
-    /**
      * @var array<string, Template> already created templates (by file name)
      */
     private array $templates = [];
-
-    /**
-     * @deprecated #2287 will be removed in oelib 7.0; use DI instead
-     */
-    public static function getInstance(): self
-    {
-        if (!self::$instance instanceof self) {
-            self::$instance = GeneralUtility::makeInstance(self::class);
-        }
-
-        return self::$instance;
-    }
-
-    /**
-     * Purges the current instance so that getInstance will create a new instance.
-     *
-     * @deprecated #2287 will be removed in oelib 7.0
-     */
-    public static function purgeInstance(): void
-    {
-        self::$instance = null;
-    }
-
-    /**
-     * Creates a new template for a provided template file name with an already
-     * parsed the template file.
-     *
-     * If the template file name is empty, no template file will be used for
-     * that template.
-     *
-     * @param string $templateFileName the file name of the template to retrieve, may not be empty to get a template
-     *        that is not related to a template file.
-     *
-     * @return Template the template for the given template file name
-     *
-     * @see getByFileName
-     *
-     * @deprecated use `getByFileName` instead. #2290 will be removed in oelib 7.0
-     */
-    public static function get(string $templateFileName): Template
-    {
-        return self::getInstance()->getByFileName($templateFileName);
-    }
 
     /**
      * Creates a new template for a provided template file name with an already

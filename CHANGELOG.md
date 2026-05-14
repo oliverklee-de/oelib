@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 
+- Drop deprecated static registry methods (#2392)
 - Drop returning the page UID in `createFakeFrontend` (#2383)
 - Drop `ExtbaseConfiguration` (#2379)
 - Drop the `Time` interface (#2378)

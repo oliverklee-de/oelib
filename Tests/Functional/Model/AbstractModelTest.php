@@ -28,7 +28,7 @@ final class AbstractModelTest extends FunctionalTestCase
     {
         parent::setUp();
 
-        $this->dataMapper = MapperRegistry::get(TestingMapper::class);
+        $this->dataMapper = $this->get(MapperRegistry::class)->getByClassName(TestingMapper::class);
 
         $uid = $this->createTestRecord();
         $this->subject = $this->dataMapper->find($uid);

@@ -30,6 +30,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 {
     protected array $testExtensionsToLoad = ['oliverklee/oelib'];
 
+    private MapperRegistry $mapperRegistry;
+
     private TestingMapper $subject;
 
     protected function setUp(): void
@@ -38,14 +40,9 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
         $dateAspect = new DateTimeAspect(new \DateTimeImmutable('2018-04-26 12:42:23'));
         $this->get(Context::class)->setAspect('date', $dateAspect);
+        $this->mapperRegistry = $this->get(MapperRegistry::class);
 
-        $this->subject = MapperRegistry::get(TestingMapper::class);
-    }
-
-    protected function tearDown(): void
-    {
-        MapperRegistry::purgeInstance();
-        parent::tearDown();
+        $this->subject = $this->mapperRegistry->getByClassName(TestingMapper::class);
     }
 
     // Tests concerning load
@@ -2473,7 +2470,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $model->setTitle('bar');
 
         $composition = $model->getComposition();
-        $mapper = MapperRegistry::get(TestingChildMapper::class);
+        $mapper = $this->mapperRegistry->getByClassName(TestingChildMapper::class);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['pid' => 0]);
 
@@ -2508,7 +2505,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $model->setTitle('bar');
 
         $composition = $model->getComposition();
-        $mapper = MapperRegistry::get(TestingChildMapper::class);
+        $mapper = $this->mapperRegistry->getByClassName(TestingChildMapper::class);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['pid' => 0]);
 
@@ -2640,7 +2637,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $model->markAsDirty();
 
         $composition = $model->getComposition();
-        $mapper = MapperRegistry::get(TestingChildMapper::class);
+        $mapper = $this->mapperRegistry->getByClassName(TestingChildMapper::class);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $model->getUid()]);
 
@@ -3354,7 +3351,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $model = $this->subject->find($uid);
 
         // @phpstan-ignore-next-line We are explicitly testing for a contract violation here.
-        MapperRegistry::get(TestingChildMapper::class)->findAllByRelation($model, '');
+        $this->mapperRegistry->getByClassName(TestingChildMapper::class)->findAllByRelation($model, '');
     }
 
     /**
@@ -3369,7 +3366,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         \assert($uid > 0);
         $model = $this->subject->find($uid);
 
-        $mapper = MapperRegistry::get(TestingChildMapper::class);
+        $mapper = $this->mapperRegistry->getByClassName(TestingChildMapper::class);
         self::assertTrue(
             $mapper->findAllByRelation($model, 'parent')->isEmpty(),
         );
@@ -3393,7 +3390,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $anotherModel->getUid()]);
 
-        $mapper = MapperRegistry::get(TestingChildMapper::class);
+        $mapper = $this->mapperRegistry->getByClassName(TestingChildMapper::class);
         self::assertTrue(
             $mapper->findAllByRelation($model, 'parent')->isEmpty(),
         );
@@ -3410,7 +3407,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $uid = (int)$connection->lastInsertId('tx_oelib_test');
         \assert($uid > 0);
         $model = $this->subject->find($uid);
-        $mapper = MapperRegistry::get(TestingChildMapper::class);
+        $mapper = $this->mapperRegistry->getByClassName(TestingChildMapper::class);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $model->getUid()]);
 
@@ -3441,7 +3438,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $model->getUid()]);
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $model->getUid()]);
 
-        $result = MapperRegistry::get(TestingChildMapper::class)->findAllByRelation($model, 'parent');
+        $result = $this->mapperRegistry->getByClassName(TestingChildMapper::class)->findAllByRelation($model, 'parent');
 
         self::assertCount(2, $result);
     }
@@ -3451,8 +3448,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
      */
     public function findAllByRelationIgnoresIgnoreList(): void
     {
-        $childMapper = MapperRegistry::get(TestingChildMapper::class);
-        $parentMapper = MapperRegistry::get(TestingMapper::class);
+        $childMapper = $this->mapperRegistry->getByClassName(TestingChildMapper::class);
+        $parentMapper = $this->mapperRegistry->getByClassName(TestingMapper::class);
 
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
