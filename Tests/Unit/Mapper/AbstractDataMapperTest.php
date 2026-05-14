@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Tests\Unit\Mapper;
 
 use OliverKlee\Oelib\Exception\NotFoundException;
-use OliverKlee\Oelib\Mapper\MapperRegistry;
 use OliverKlee\Oelib\Model\AbstractModel;
 use OliverKlee\Oelib\Tests\Unit\Mapper\Fixtures\ColumnLessTestingMapper;
 use OliverKlee\Oelib\Tests\Unit\Mapper\Fixtures\ModelLessTestingMapper;
@@ -406,7 +405,9 @@ final class AbstractDataMapperTest extends UnitTestCase
 
         $model = new TestingModel();
 
-        MapperRegistry::get(TestingChildMapper::class)->findAllByRelation($model, 'parent');
+        $subject = new TestingChildMapper();
+
+        $subject->findAllByRelation($model, 'parent');
     }
 
     /**

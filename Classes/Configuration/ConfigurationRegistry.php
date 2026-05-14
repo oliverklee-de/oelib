@@ -25,11 +25,6 @@ class ConfigurationRegistry
     private BackendConfigurationManager $backendConfigurationManager;
 
     /**
-     * @deprecated #2287 will be removed in oelib 7.0
-     */
-    private static ?ConfigurationRegistry $instance = null;
-
-    /**
      * @var array<non-empty-string, ConfigurationInterface> already created configurations (by namespace)
      */
     private array $configurations = [];
@@ -48,44 +43,6 @@ class ConfigurationRegistry
     private function dropConfiguration(string $namespace): void
     {
         unset($this->configurations[$namespace]);
-    }
-
-    /**
-     * @deprecated #2287 will be removed in oelib 7.0; use DI instead
-     */
-    public static function getInstance(): self
-    {
-        if (!self::$instance instanceof self) {
-            self::$instance = GeneralUtility::makeInstance(self::class);
-        }
-
-        return self::$instance;
-    }
-
-    /**
-     * Purges the current instance so that getInstance will create a new instance.
-     *
-     * @deprecated #2287 will be removed in oelib 7.0
-     */
-    public static function purgeInstance(): void
-    {
-        self::$instance = null;
-    }
-
-    /**
-     * Retrieves a `Configuration` by namespace.
-     *
-     * @param non-empty-string $namespace the name of a configuration namespace, e.g., "plugin.tx_oelib"
-     *
-     * @return ConfigurationInterface the configuration for the given namespace
-     *
-     * @see getByNamespace
-     *
-     * @deprecated use `getByNamespace` instead. #2290 will be removed in oelib 7.0
-     */
-    public static function get(string $namespace): ConfigurationInterface
-    {
-        return self::getInstance()->getByNamespace($namespace);
     }
 
     /**

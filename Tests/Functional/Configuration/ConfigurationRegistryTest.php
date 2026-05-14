@@ -34,7 +34,6 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
 
     protected function tearDown(): void
     {
-        ConfigurationRegistry::purgeInstance();
         PageFinder::purgeInstance();
         $this->testingFramework->cleanUpWithoutDatabase();
 
@@ -47,75 +46,6 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
     public function isAvailableViaContainer(): void
     {
         self::assertInstanceOf(ConfigurationRegistry::class, $this->subject);
-    }
-
-    /**
-     * @test
-     */
-    public function getInstanceReturnsInstance(): void
-    {
-        self::assertInstanceOf(ConfigurationRegistry::class, ConfigurationRegistry::getInstance());
-    }
-
-    /**
-     * @test
-     */
-    public function getInstanceCalledTwoTimesReturnsSameInstance(): void
-    {
-        self::assertSame(
-            ConfigurationRegistry::getInstance(),
-            ConfigurationRegistry::getInstance(),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function getForEmptyNamespaceThrowsException(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('$namespace must not be empty.');
-        $this->expectExceptionCode(1_331_318_549);
-
-        // @phpstan-ignore-next-line We are explicitly checking for a contract violation here.
-        ConfigurationRegistry::get('');
-    }
-
-    /**
-     * @test
-     */
-    public function setWithEmptyNamespaceThrowsException(): void
-    {
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('$namespace must not be empty.');
-        $this->expectExceptionCode(1_331_318_549);
-
-        // @phpstan-ignore-next-line We are explicitly checking for a contract violation here.
-        ConfigurationRegistry::getInstance()->set('', new DummyConfiguration());
-    }
-
-    /**
-     * @test
-     */
-    public function getAfterSetWithTypoScriptConfigurationReturnsTheSetInstance(): void
-    {
-        $configuration = new TypoScriptConfiguration();
-
-        ConfigurationRegistry::getInstance()->set('foo', $configuration);
-
-        self::assertSame($configuration, ConfigurationRegistry::get('foo'));
-    }
-
-    /**
-     * @test
-     */
-    public function getAfterSetWithDummyConfigurationReturnsTheSetInstance(): void
-    {
-        $configuration = new DummyConfiguration();
-
-        ConfigurationRegistry::getInstance()->set('foo', $configuration);
-
-        self::assertSame($configuration, ConfigurationRegistry::get('foo'));
     }
 
     /**
@@ -164,101 +94,6 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
         $this->subject->set('foo', $configuration);
 
         self::assertSame($configuration, $this->subject->getByNamespace('foo'));
-    }
-
-    /**
-     * @test
-     */
-    public function getForNonEmptyNamespaceReturnsConfigurationInstance(): void
-    {
-        $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
-        PageFinder::getInstance()->setPageUid(1);
-
-        self::assertInstanceOf(
-            TypoScriptConfiguration::class,
-            ConfigurationRegistry::get('plugin.tx_oelib'),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function getForTheSameNamespaceCalledTwoTimesReturnsTheSameInstance(): void
-    {
-        $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
-        PageFinder::getInstance()->setPageUid(1);
-
-        self::assertSame(
-            ConfigurationRegistry::get('plugin.tx_oelib'),
-            ConfigurationRegistry::get('plugin.tx_oelib'),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function getReturnsDataFromTypoScriptSetupFromManuallySetPage(): void
-    {
-        $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
-
-        PageFinder::getInstance()->setPageUid(1);
-
-        self::assertSame(
-            42,
-            ConfigurationRegistry::get('plugin.tx_oelib')->getAsInteger('test'),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function getReturnsDataFromTypoScriptSetupFromBackEndPage(): void
-    {
-        $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
-        $_GET['id'] = 1;
-
-        PageFinder::getInstance()->forceSource(PageFinder::SOURCE_BACK_END);
-
-        self::assertSame(
-            42,
-            ConfigurationRegistry::get('plugin.tx_oelib')->getAsInteger('test'),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function getReturnsDataFromTypoScriptSetupFromFrontEndPage(): void
-    {
-        if ((new Typo3Version())->getMajorVersion() >= 13) {
-            self::markTestSkipped('This feature is only available in the testing framework for TYPO3 <= 12LTS.');
-        }
-
-        $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
-
-        $this->testingFramework->createFakeFrontEnd(1);
-        $pageFinder = PageFinder::getInstance();
-        $pageFinder->setPageUid(1);
-        $pageFinder->forceSource(PageFinder::SOURCE_FRONT_END);
-
-        self::assertSame(
-            42,
-            ConfigurationRegistry::get('plugin.tx_oelib')->getAsInteger('test'),
-        );
-    }
-
-    /**
-     * @test
-     */
-    public function getAfterSetReturnsManuallySetConfigurationEvenIfThereIsAPage(): void
-    {
-        $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
-        PageFinder::getInstance()->setPageUid(1);
-
-        $configuration = new DummyConfiguration();
-        ConfigurationRegistry::getInstance()->set('plugin.tx_oelib', $configuration);
-
-        self::assertSame($configuration, ConfigurationRegistry::get('plugin.tx_oelib'));
     }
 
     /**
