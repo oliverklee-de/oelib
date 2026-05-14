@@ -66,11 +66,6 @@ parameters:
 			path: ../../Classes/DataStructures/AbstractReadOnlyObjectWithAccessors.php
 
 		-
-			message: "#^Parameters should have \"OliverKlee\\\\Oelib\\\\DataStructures\\\\Collection\\<OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingModel\\>\" types as the only types passed to this method$#"
-			count: 1
-			path: ../../Classes/DataStructures/Collection.php
-
-		-
 			message: "#^Template type M is declared as covariant, but occurs in contravariant position in parameter model of method OliverKlee\\\\Oelib\\\\DataStructures\\\\Collection\\:\\:add\\(\\)\\.$#"
 			count: 1
 			path: ../../Classes/DataStructures/Collection.php
@@ -151,11 +146,6 @@ parameters:
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Parameters should have \"M of OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\" types as the only types passed to this method$#"
-			count: 1
-			path: ../../Classes/Mapper/AbstractDataMapper.php
-
-		-
 			message: "#^Property OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\:\\:\\$relations with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper does not specify its types\\: M$#"
 			count: 1
 			path: ../../Classes/Mapper/AbstractDataMapper.php
@@ -187,16 +177,6 @@ parameters:
 
 		-
 			message: "#^Function str_starts_with not found\\.$#"
-			count: 1
-			path: ../../Classes/Templating/Template.php
-
-		-
-			message: "#^Parameters should have \"string\\|int\\|string\\|string\" types as the only types passed to this method$#"
-			count: 1
-			path: ../../Classes/Templating/Template.php
-
-		-
-			message: "#^Parameters should have \"string\\|string\\|string\\|string\" types as the only types passed to this method$#"
 			count: 1
 			path: ../../Classes/Templating/Template.php
 
