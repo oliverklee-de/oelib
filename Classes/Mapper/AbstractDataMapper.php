@@ -1237,6 +1237,8 @@ abstract class AbstractDataMapper
      */
     private function getRelationMapperByKey(string $key): AbstractDataMapper
     {
-        return MapperRegistry::getInstance()->getByClassName($this->relations[$key]);
+        $mapperRegistry = GeneralUtility::makeInstance(MapperRegistry::class);
+
+        return $mapperRegistry->getByClassName($this->relations[$key]);
     }
 }
