@@ -36,6 +36,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+- Avoid using the deprecated `MapperRegistry::getInstance()` (#2390)
 - Provide TypoScript in TYPO3 V13 to the fake FE (#2301)
 
 ## 6.3.1: Bugfixes, cross-DBMS compatibility, and improved DI
