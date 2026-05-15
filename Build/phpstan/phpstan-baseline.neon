@@ -421,11 +421,6 @@ parameters:
 			path: ../../Tests/Unit/DataStructures/AbstractObjectWithPublicAccessorsTest.php
 
 		-
-			message: "#^Class OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Domain\\\\Repository\\\\Traits\\\\Fixtures\\\\DirectPersistRepository constructor invoked with 1 parameter, 0 required\\.$#"
-			count: 1
-			path: ../../Tests/Unit/Domain/Repository/Traits/DirectPersistTest.php
-
-		-
 			message: "#^Cannot access offset 'MAIL' on mixed\\.$#"
 			count: 16
 			path: ../../Tests/Unit/Email/SystemEmailFromBuilderTest.php

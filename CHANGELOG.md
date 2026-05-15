@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 
+- Drop the `DirectPersist` trait and interface (#2398)
 - Drop the `StoragePageAgnostic` trait (#2397)
 - Drop deprecated static registry methods (#2392)
 - Drop returning the page UID in `createFakeFrontend` (#2383)
