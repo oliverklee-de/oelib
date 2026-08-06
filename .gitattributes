@@ -3,10 +3,8 @@
 /.gitattributes export-ignore
 /.github/ export-ignore
 /.gitignore export-ignore
-/.phive/ export-ignore
 /Build/ export-ignore
 /CODE_OF_CONDUCT.md export-ignore
 /Resources/Private/Patches/ export-ignore
 /Tests/ export-ignore
 /crowdin.yml export-ignore
-/tools/ export-ignore binary
