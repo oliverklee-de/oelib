@@ -67,7 +67,12 @@ return RectorConfig::configure()
         ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
     ])
     ->withSkip([
+        // can be removed when we drop support for TYPO3 12LTS
         RemoveExtraParametersRector::class => [
             'Classes/Configuration/ConfigurationRegistry.php',
+            'Classes/Mapper/AbstractDataMapper.php',
+            'Classes/Testing/TestingFramework.php',
+            'Tests/Functional/Mapper/AbstractDataMapperTest.php',
+            'Tests/Functional/Model/AbstractModelTest.php',
         ],
     ]);

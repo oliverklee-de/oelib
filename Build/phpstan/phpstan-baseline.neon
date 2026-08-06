@@ -1,381 +1,835 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Method TYPO3\\\\CMS\\\\Extbase\\\\Configuration\\\\BackendConfigurationManager\\:\\:getTypoScriptSetup\\(\\) invoked with 1 parameter, 0 required\\.$#"
+			rawMessage: Access to internal constant TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::REQUESTTYPE_FE from outside its root namespace TYPO3.
+			identifier: classConstant.internal
 			count: 1
 			path: ../../Classes/Configuration/ConfigurationRegistry.php
 
 		-
-			message: "#^Parameter \\#1 \\$haystack of method OliverKlee\\\\Oelib\\\\Configuration\\\\FlexformsConfiguration\\:\\:getFromArray\\(\\) expects array\\<array\\<int\\|string, mixed\\>\\|int\\|string\\>, array\\<int\\|string, mixed\\> given\\.$#"
+			rawMessage: 'Call to an undefined method TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager::setRequest().'
+			identifier: method.notFound
+			count: 1
+			path: ../../Classes/Configuration/ConfigurationRegistry.php
+
+		-
+			rawMessage: 'Call to method __construct() of internal class TYPO3\CMS\Core\Http\ServerRequest from outside its root namespace TYPO3.'
+			identifier: method.internalClass
+			count: 1
+			path: ../../Classes/Configuration/ConfigurationRegistry.php
+
+		-
+			rawMessage: 'Call to method getTypoScriptSetup() of internal class TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager from outside its root namespace TYPO3.'
+			identifier: method.internalClass
+			count: 2
+			path: ../../Classes/Configuration/ConfigurationRegistry.php
+
+		-
+			rawMessage: Instantiation of internal class TYPO3\CMS\Core\Http\ServerRequest.
+			identifier: new.internalClass
+			count: 1
+			path: ../../Classes/Configuration/ConfigurationRegistry.php
+
+		-
+			rawMessage: 'Method TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager::getTypoScriptSetup() invoked with 0 parameters, 1 required.'
+			identifier: arguments.count
+			count: 1
+			path: ../../Classes/Configuration/ConfigurationRegistry.php
+
+		-
+			rawMessage: 'Parameter $backendConfigurationManager of method OliverKlee\Oelib\Configuration\ConfigurationRegistry::__construct() has typehint with internal class TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager.'
+			identifier: parameter.internalClass
+			count: 1
+			path: ../../Classes/Configuration/ConfigurationRegistry.php
+
+		-
+			rawMessage: Property $backendConfigurationManager references internal class TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager in its type.
+			identifier: property.internalClass
+			count: 1
+			path: ../../Classes/Configuration/ConfigurationRegistry.php
+
+		-
+			rawMessage: 'Return type of method OliverKlee\Oelib\Configuration\ConfigurationRegistry::getBackendConfigurationManager() has typehint with internal class TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager.'
+			identifier: return.internalClass
+			count: 1
+			path: ../../Classes/Configuration/ConfigurationRegistry.php
+
+		-
+			rawMessage: 'Parameter #1 $haystack of method OliverKlee\Oelib\Configuration\FlexformsConfiguration::getFromArray() expects array<array<int|string, mixed>|int|string>, array<int|string, mixed> given.'
+			identifier: argument.type
 			count: 1
 			path: ../../Classes/Configuration/FlexformsConfiguration.php
 
 		-
-			message: "#^Parameter \\#1 \\$haystack of method OliverKlee\\\\Oelib\\\\Configuration\\\\FlexformsConfiguration\\:\\:getFromArray\\(\\) expects array\\<array\\<int\\|string, mixed\\>\\|int\\|string\\>, array\\<string, mixed\\> given\\.$#"
+			rawMessage: 'Parameter #1 $haystack of method OliverKlee\Oelib\Configuration\FlexformsConfiguration::getFromArray() expects array<array<int|string, mixed>|int|string>, array<string, mixed> given.'
+			identifier: argument.type
 			count: 1
 			path: ../../Classes/Configuration/FlexformsConfiguration.php
 
 		-
-			message: "#^Property OliverKlee\\\\Oelib\\\\Configuration\\\\FlexformsConfiguration\\:\\:\\$data \\(array\\<string, mixed\\>\\|null\\) does not accept array\\.$#"
+			rawMessage: 'Parameter #1 $source of method DOMDocument::loadXML() expects non-empty-string, string given.'
+			identifier: argument.type
 			count: 1
 			path: ../../Classes/Configuration/FlexformsConfiguration.php
 
 		-
-			message: "#^Cannot cast mixed to int\\.$#"
+			rawMessage: 'Property OliverKlee\Oelib\Configuration\FlexformsConfiguration::$data (array<string, mixed>|null) does not accept array<mixed, mixed>.'
+			identifier: assign.propertyType
+			count: 1
+			path: ../../Classes/Configuration/FlexformsConfiguration.php
+
+		-
+			rawMessage: Cannot cast mixed to int.
+			identifier: cast.int
 			count: 2
 			path: ../../Classes/Configuration/PageFinder.php
 
 		-
-			message: "#^Casting to int something that's already int\\.$#"
+			rawMessage: Casting to int something that's already int.
+			identifier: cast.useless
 			count: 1
 			path: ../../Classes/Configuration/PageFinder.php
 
 		-
-			message: "#^Method OliverKlee\\\\Oelib\\\\Configuration\\\\PageFinder\\:\\:getFrontEndController\\(\\) should return TYPO3\\\\CMS\\\\Frontend\\\\Controller\\\\TypoScriptFrontendController\\|null but returns mixed\\.$#"
+			rawMessage: 'Method OliverKlee\Oelib\Configuration\PageFinder::getFrontEndController() should return TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController|null but returns mixed.'
+			identifier: return.type
 			count: 1
 			path: ../../Classes/Configuration/PageFinder.php
 
 		-
-			message: "#^Method OliverKlee\\\\Oelib\\\\Configuration\\\\TypoScriptConfiguration\\:\\:getAsMultidimensionalArray\\(\\) should return array\\<string, array\\<int\\|string, mixed\\>\\|int\\|string\\> but returns array\\.$#"
+			rawMessage: 'Method OliverKlee\Oelib\Configuration\TypoScriptConfiguration::getAsMultidimensionalArray() should return array<string, array<int|string, mixed>|int|string> but returns array<mixed, mixed>.'
+			identifier: return.type
 			count: 1
 			path: ../../Classes/Configuration/TypoScriptConfiguration.php
 
 		-
-			message: "#^Cannot cast mixed to float\\.$#"
+			rawMessage: Cannot cast mixed to float.
+			identifier: cast.double
 			count: 1
 			path: ../../Classes/DataStructures/AbstractReadOnlyObjectWithAccessors.php
 
 		-
-			message: "#^Cannot cast mixed to int\\.$#"
+			rawMessage: Cannot cast mixed to int.
+			identifier: cast.int
 			count: 1
 			path: ../../Classes/DataStructures/AbstractReadOnlyObjectWithAccessors.php
 
 		-
-			message: "#^Cannot cast mixed to string\\.$#"
+			rawMessage: Cannot cast mixed to string.
+			identifier: cast.string
 			count: 1
 			path: ../../Classes/DataStructures/AbstractReadOnlyObjectWithAccessors.php
 
 		-
-			message: "#^Template type M is declared as covariant, but occurs in contravariant position in parameter model of method OliverKlee\\\\Oelib\\\\DataStructures\\\\Collection\\:\\:add\\(\\)\\.$#"
+			rawMessage: 'Template type M is declared as covariant, but occurs in contravariant position in parameter model of method OliverKlee\Oelib\DataStructures\Collection::add().'
+			identifier: generics.variance
 			count: 1
 			path: ../../Classes/DataStructures/Collection.php
 
 		-
-			message: "#^Template type M is declared as covariant, but occurs in invariant position in extended type SplObjectStorage\\<M of OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel, int\\> of class OliverKlee\\\\Oelib\\\\DataStructures\\\\Collection\\.$#"
+			rawMessage: 'Template type M is declared as covariant, but occurs in invariant position in extended type SplObjectStorage<M of OliverKlee\Oelib\Model\AbstractModel, int> of class OliverKlee\Oelib\DataStructures\Collection.'
+			identifier: generics.variance
 			count: 1
 			path: ../../Classes/DataStructures/Collection.php
 
 		-
-			message: "#^Cannot access offset 'MAIL' on mixed\\.$#"
+			rawMessage: Cannot access offset 'MAIL' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: ../../Classes/Email/SystemEmailFromBuilder.php
 
 		-
-			message: "#^Call to function is_string\\(\\) with class\\-string\\<M of OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\> will always evaluate to true\\.$#"
+			rawMessage: 'Call to function is_string() with class-string<M of OliverKlee\Oelib\Model\AbstractModel> will always evaluate to true.'
+			identifier: function.alreadyNarrowedType
 			count: 1
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Cannot access offset non\\-empty\\-string on mixed\\.$#"
+			rawMessage: Cannot access offset non-empty-string on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Cannot cast mixed to int\\.$#"
+			rawMessage: Cannot cast mixed to int.
+			identifier: cast.int
 			count: 7
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Cannot cast mixed to string\\.$#"
+			rawMessage: Cannot cast mixed to string.
+			identifier: cast.string
 			count: 1
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Method OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\:\\:getTcaForTable\\(\\) should return array\\<string, array\\<string, array\\<string, array\\<string, string\\>\\>\\>\\> but returns mixed\\.$#"
+			rawMessage: 'Method OliverKlee\Oelib\Mapper\AbstractDataMapper::getTcaForTable() should return array<string, array<string, array<string, array<string, string>>>> but returns mixed.'
+			identifier: return.type
 			count: 1
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Method OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\:\\:saveManyToManyAndCommaSeparatedRelatedModels\\(\\) has parameter \\$mapper with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper but does not specify its types\\: M$#"
+			rawMessage: 'Method OliverKlee\Oelib\Mapper\AbstractDataMapper::saveManyToManyAndCommaSeparatedRelatedModels() has parameter $mapper with generic class OliverKlee\Oelib\Mapper\AbstractDataMapper but does not specify its types: M'
+			identifier: missingType.generics
 			count: 1
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Method OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\:\\:saveManyToOneRelatedModels\\(\\) has parameter \\$mapper with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper but does not specify its types\\: M$#"
+			rawMessage: 'Method OliverKlee\Oelib\Mapper\AbstractDataMapper::saveManyToOneRelatedModels() has parameter $mapper with generic class OliverKlee\Oelib\Mapper\AbstractDataMapper but does not specify its types: M'
+			identifier: missingType.generics
 			count: 1
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Parameter \\#1 \\$data of method OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\<M of OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\>\\:\\:createRelations\\(\\) expects array\\<string, int\\|string\\>, array\\<string, bool\\|float\\|int\\|string\\|null\\> given\\.$#"
+			rawMessage: 'Method TYPO3\CMS\Core\Database\Connection::lastInsertId() invoked with 1 parameter, 0 required.'
+			identifier: arguments.count
 			count: 1
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Parameter \\#1 \\$data of method OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\:\\:setData\\(\\) expects array\\<non\\-empty\\-string, bool\\|float\\|int\\|object\\|string\\|null\\>, array\\<string, int\\|string\\> given\\.$#"
+			rawMessage: 'Parameter #1 $data of method OliverKlee\Oelib\Mapper\AbstractDataMapper<M of OliverKlee\Oelib\Model\AbstractModel>::createRelations() expects array<string, int|string>, array<string, bool|float|int|string|null> given.'
+			identifier: argument.type
 			count: 1
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Parameter \\#1 \\$dataOfModels of method OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\<M of OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\>\\:\\:getListOfModels\\(\\) expects array\\<array\\<string, bool\\|float\\|int\\|string\\|null\\>\\>, array\\<int, array\\<string, mixed\\>\\> given\\.$#"
+			rawMessage: 'Parameter #1 $data of method OliverKlee\Oelib\Model\AbstractModel::setData() expects array<non-empty-string, bool|float|int|object|string|null>, array<string, int|string> given.'
+			identifier: argument.type
 			count: 1
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Parameter &\\$data by\\-ref type of method OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\:\\:createRelations\\(\\) expects array\\<string, int\\|string\\>, array\\<string, mixed\\> given\\.$#"
+			rawMessage: 'Parameter #1 $dataOfModels of method OliverKlee\Oelib\Mapper\AbstractDataMapper<M of OliverKlee\Oelib\Model\AbstractModel>::getListOfModels() expects array<array<string, bool|float|int|string|null>>, list<array<string, mixed>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Classes/Mapper/AbstractDataMapper.php
+
+		-
+			rawMessage: 'Parameter &$data by-ref type of method OliverKlee\Oelib\Mapper\AbstractDataMapper::createRelations() expects array<string, int|string>, array<string, mixed> given.'
+			identifier: parameterByRef.type
 			count: 4
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Property OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\:\\:\\$relations with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper does not specify its types\\: M$#"
+			rawMessage: 'Property OliverKlee\Oelib\Mapper\AbstractDataMapper::$relations with generic class OliverKlee\Oelib\Mapper\AbstractDataMapper does not specify its types: M'
+			identifier: missingType.generics
 			count: 1
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Property OliverKlee\\\\Oelib\\\\Mapper\\\\MapperRegistry\\:\\:\\$mappers with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper does not specify its types\\: M$#"
+			rawMessage: 'Property OliverKlee\Oelib\Mapper\MapperRegistry::$mappers with generic class OliverKlee\Oelib\Mapper\AbstractDataMapper does not specify its types: M'
+			identifier: missingType.generics
 			count: 1
 			path: ../../Classes/Mapper/MapperRegistry.php
 
 		-
-			message: "#^Strict comparison using \\=\\=\\= between class\\-string\\<M of OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper \\(method OliverKlee\\\\Oelib\\\\Mapper\\\\MapperRegistry\\:\\:getByClassName\\(\\), argument\\)\\> and '' will always evaluate to false\\.$#"
+			rawMessage: 'Strict comparison using === between class-string<M of OliverKlee\Oelib\Mapper\AbstractDataMapper (method OliverKlee\Oelib\Mapper\MapperRegistry::getByClassName(), argument)> and '''' will always evaluate to false.'
+			identifier: identical.alwaysFalse
 			count: 1
 			path: ../../Classes/Mapper/MapperRegistry.php
 
 		-
-			message: "#^Cannot cast mixed to int\\.$#"
+			rawMessage: Cannot cast mixed to int.
+			identifier: cast.int
 			count: 2
 			path: ../../Classes/Templating/Template.php
 
 		-
-			message: "#^Cannot cast mixed to string\\.$#"
+			rawMessage: Cannot cast mixed to string.
+			identifier: cast.string
 			count: 5
 			path: ../../Classes/Templating/Template.php
 
 		-
-			message: "#^Property OliverKlee\\\\Oelib\\\\Templating\\\\Template\\:\\:\\$subparts \\(array\\<string, string\\>\\) does not accept array\\<string, mixed\\>\\.$#"
+			rawMessage: 'Property OliverKlee\Oelib\Templating\Template::$subparts (array<string, string>) does not accept array<string, mixed>.'
+			identifier: assign.propertyType
 			count: 1
 			path: ../../Classes/Templating/Template.php
 
 		-
-			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Core\\\\TypoScript\\\\FrontendTypoScript\\:\\:setConfigArray\\(\\)\\.$#"
+			rawMessage: Access to an undefined property TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController::$fe_user.
+			identifier: property.notFound
+			count: 2
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: Access to constant on internal class TYPO3\CMS\Core\Configuration\SiteConfiguration.
+			identifier: classConstant.internalClass
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Call to method disableCache\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Cache\\\\CacheInstruction\\.$#"
+			rawMessage: Access to constant on internal class TYPO3\CMS\Core\TypoScript\IncludeTree\SysTemplateRepository.
+			identifier: classConstant.internalClass
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Call to method setId\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Page\\\\PageInformation\\.$#"
+			rawMessage: Access to internal constant TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::REQUESTTYPE_FE from outside its root namespace TYPO3.
+			identifier: classConstant.internal
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Call to method setPageRecord\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Page\\\\PageInformation\\.$#"
+			rawMessage: Access to internal property TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController::$cObj from outside its root namespace TYPO3.
+			identifier: property.internal
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Cannot access offset 'FE' on mixed\\.$#"
+			rawMessage: 'Call to an undefined method TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController::determineId().'
+			identifier: method.notFound
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Cannot access offset 'MM' on mixed\\.$#"
+			rawMessage: 'Call to an undefined method TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController::getFromCache().'
+			identifier: method.notFound
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Cannot access offset 'MM_opposite_field' on mixed\\.$#"
+			rawMessage: 'Call to internal method TYPO3\CMS\Core\TypoScript\FrontendTypoScript::setConfigArray() from outside its root namespace TYPO3.'
+			identifier: method.internal
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Cannot access offset 'Objects' on mixed\\.$#"
+			rawMessage: 'Call to internal method TYPO3\CMS\Core\TypoScript\FrontendTypoScript::setSetupArray() from outside its root namespace TYPO3.'
+			identifier: method.internal
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Cannot access offset 'SYS' on mixed\\.$#"
+			rawMessage: 'Call to internal method TYPO3\CMS\Core\TypoScript\FrontendTypoScript::setSetupTree() from outside its root namespace TYPO3.'
+			identifier: method.internal
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Cannot access offset 'TYPO3\\\\\\\\CMS\\\\\\\\Frontend\\\\\\\\Authentication\\\\\\\\FrontendUserAuthentication' on mixed\\.$#"
+			rawMessage: 'Call to internal method TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController::newCObj() from outside its root namespace TYPO3.'
+			identifier: method.internal
+			count: 2
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: 'Call to internal method TYPO3\CMS\Frontend\Page\PageInformation::setId() from outside its root namespace TYPO3.'
+			identifier: method.internal
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Cannot access offset 'config' on mixed\\.$#"
+			rawMessage: 'Call to internal method TYPO3\CMS\Frontend\Page\PageInformation::setPageRecord() from outside its root namespace TYPO3.'
+			identifier: method.internal
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Cannot access offset 'dontSetCookie' on mixed\\.$#"
+			rawMessage: 'Call to internal static method TYPO3\CMS\Core\Http\ServerRequestFactory::fromGlobals() from outside its root namespace TYPO3.'
+			identifier: staticMethod.internal
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Cannot access offset 'foreign_table' on mixed\\.$#"
+			rawMessage: 'Call to internal static method TYPO3\CMS\Core\Utility\GeneralUtility::flushInternalRuntimeCaches() from outside its root namespace TYPO3.'
+			identifier: staticMethod.internal
+			count: 2
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: 'Call to internal static method TYPO3\CMS\Core\Utility\GeneralUtility::setIndpEnv() from outside its root namespace TYPO3.'
+			identifier: staticMethod.internal
+			count: 18
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: 'Call to method __construct() of internal class TYPO3\CMS\Core\Http\ServerRequest from outside its root namespace TYPO3.'
+			identifier: method.internalClass
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Cannot access offset non\\-empty\\-string on mixed\\.$#"
+			rawMessage: 'Call to method getAllExistingSites() of internal class TYPO3\CMS\Core\Configuration\SiteConfiguration from outside its root namespace TYPO3.'
+			identifier: method.internalClass
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Class TYPO3\\\\CMS\\\\Core\\\\TypoScript\\\\FrontendTypoScript constructor invoked with 4 parameters, 2 required\\.$#"
+			rawMessage: 'Call to method getSysTemplateRowsByRootline() of internal class TYPO3\CMS\Core\TypoScript\IncludeTree\SysTemplateRepository from outside its root namespace TYPO3.'
+			identifier: method.internalClass
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Instantiated class TYPO3\\\\CMS\\\\Frontend\\\\Cache\\\\CacheInstruction not found\\.$#"
+			rawMessage: 'Call to method withAttribute() of internal class TYPO3\CMS\Core\Http\ServerRequest from outside its root namespace TYPO3.'
+			identifier: method.internalClass
+			count: 12
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: Cannot access offset 'FE' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Instantiated class TYPO3\\\\CMS\\\\Frontend\\\\Page\\\\PageInformation not found\\.$#"
+			rawMessage: Cannot access offset 'MM' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Method OliverKlee\\\\Oelib\\\\Testing\\\\TestingFramework\\:\\:getFrontEndController\\(\\) should return TYPO3\\\\CMS\\\\Frontend\\\\Controller\\\\TypoScriptFrontendController but returns mixed\\.$#"
+			rawMessage: Cannot access offset 'MM_opposite_field' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Method OliverKlee\\\\Oelib\\\\Testing\\\\TestingFramework\\:\\:getTcaForTable\\(\\) should return array\\<array\\<string, mixed\\>\\> but returns mixed\\.$#"
+			rawMessage: Cannot access offset 'Objects' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Parameter \\#1 \\$table of method OliverKlee\\\\Oelib\\\\Testing\\\\TestingFramework\\:\\:createRelation\\(\\) expects non\\-empty\\-string, mixed given\\.$#"
+			rawMessage: Cannot access offset 'SYS' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Parameter \\#1 \\$tableName of method OliverKlee\\\\Oelib\\\\Testing\\\\TestingFramework\\:\\:createRelationAndUpdateCounter\\(\\) expects non\\-empty\\-string, mixed given\\.$#"
+			rawMessage: Cannot access offset 'TYPO3\\CMS\\Frontend\\Authentication\\FrontendUserAuthentication' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Parameter \\#4 \\$columnName of method OliverKlee\\\\Oelib\\\\Testing\\\\TestingFramework\\:\\:createRelationAndUpdateCounter\\(\\) expects non\\-empty\\-string, mixed given\\.$#"
+			rawMessage: Cannot access offset 'config' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Expression on left side of \\?\\? is not nullable\\.$#"
+			rawMessage: Cannot access offset 'dontSetCookie' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: Cannot access offset 'foreign_table' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: Cannot access offset non-empty-string on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: 'Class TYPO3\CMS\Core\TypoScript\FrontendTypoScript constructor invoked with 2 parameters, 4 required.'
+			identifier: arguments.count
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: Instantiation of internal class TYPO3\CMS\Core\Http\ServerRequest.
+			identifier: new.internalClass
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: Instantiation of internal class TYPO3\CMS\Core\TypoScript\AST\Node\RootNode.
+			identifier: new.internalClass
+			count: 3
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: 'Method OliverKlee\Oelib\Testing\TestingFramework::getFrontEndController() should return TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: 'Method OliverKlee\Oelib\Testing\TestingFramework::getTcaForTable() should return array<array<string, mixed>> but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: 'Method TYPO3\CMS\Core\Database\Connection::lastInsertId() invoked with 1 parameter, 0 required.'
+			identifier: arguments.count
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: 'Method TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController::newCObj() invoked with 0 parameters, 1 required.'
+			identifier: arguments.count
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: 'Method TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController::set_no_cache() invoked with 2 parameters, 0-1 required.'
+			identifier: arguments.count
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: Mixed property fetch in a "$frontEndUser->..." can skip important errors. Make sure the type is known
+			identifier: typePerfect.noMixedPropertyFetcher
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: 'Parameter #1 $table of method OliverKlee\Oelib\Testing\TestingFramework::createRelation() expects non-empty-string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: 'Parameter #1 $tableName of method OliverKlee\Oelib\Testing\TestingFramework::createRelationAndUpdateCounter() expects non-empty-string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: 'Parameter #4 $columnName of method OliverKlee\Oelib\Testing\TestingFramework::createRelationAndUpdateCounter() expects non-empty-string, mixed given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: 'Parameter $request of method OliverKlee\Oelib\Testing\TestingFramework::addTypoScriptToRequest() has typehint with internal class TYPO3\CMS\Core\Http\ServerRequest.'
+			identifier: parameter.internalClass
+			count: 1
+			path: ../../Classes/Testing/TestingFramework.php
+
+		-
+			rawMessage: Expression on left side of ?? is not nullable.
+			identifier: nullCoalesce.expr
 			count: 1
 			path: ../../Classes/Validation/AbstractConfigurationDependentValidator.php
 
 		-
-			message: "#^Cannot cast mixed to int\\.$#"
+			rawMessage: Cannot cast mixed to int.
+			identifier: cast.int
 			count: 5
 			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
 
 		-
-			message: "#^PHPDoc tag @var with type OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingModel is not subtype of type OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Model\\\\Fixtures\\\\TestingChildModel\\|null\\.$#"
+			rawMessage: 'Method TYPO3\CMS\Core\Database\Connection::lastInsertId() invoked with 1 parameter, 0 required.'
+			identifier: arguments.count
+			count: 161
+			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
+
+		-
+			rawMessage: PHPDoc tag @var with type OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingModel is not subtype of type OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingChildModel|null.
+			identifier: varTag.type
 			count: 2
 			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
 
 		-
-			message: "#^Parameter \\#1 \\$data of method OliverKlee\\\\Oelib\\\\Model\\\\AbstractModel\\:\\:setData\\(\\) expects array\\<non\\-empty\\-string, bool\\|float\\|int\\|object\\|string\\|null\\>, array\\<string, int\\|string\\> given\\.$#"
+			rawMessage: 'Parameter #1 $data of method OliverKlee\Oelib\Model\AbstractModel::setData() expects array<non-empty-string, bool|float|int|object|string|null>, array<string, int|string> given.'
+			identifier: argument.type
 			count: 7
 			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
 
 		-
-			message: "#^Call to method isCachingAllowed\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Cache\\\\CacheInstruction\\.$#"
+			rawMessage: 'You should use assertSame() instead of assertEquals(), because both values are scalars of the same type'
+			identifier: phpunit.assertEquals
+			count: 1
+			path: ../../Tests/Functional/Mapper/AbstractDataMapperTest.php
+
+		-
+			rawMessage: 'Method TYPO3\CMS\Core\Database\Connection::lastInsertId() invoked with 1 parameter, 0 required.'
+			identifier: arguments.count
+			count: 1
+			path: ../../Tests/Functional/Model/AbstractModelTest.php
+
+		-
+			rawMessage: Access to an undefined property TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController::$fe_user.
+			identifier: property.notFound
 			count: 1
 			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
-			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertIsArray\\(\\) with array\\<string, mixed\\> will always evaluate to true\\.$#"
+			rawMessage: Access to an undefined property TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController::$no_cache.
+			identifier: property.notFound
 			count: 1
 			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
-			message: "#^Call to static method PHPUnit\\\\Framework\\\\Assert\\:\\:assertNotSame\\(\\) with 0 and int\\<1, max\\> will always evaluate to true\\.$#"
+			rawMessage: Access to constant on internal class TYPO3\CMS\Core\Http\ServerRequest.
+			identifier: classConstant.internalClass
+			count: 20
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+
+		-
+			rawMessage: Access to internal constant TYPO3\CMS\Core\Core\SystemEnvironmentBuilder::REQUESTTYPE_FE from outside its root namespace TYPO3.
+			identifier: classConstant.internal
+			count: 1
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+
+		-
+			rawMessage: Access to internal property TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController::$cObj from outside its root namespace TYPO3.
+			identifier: property.internal
+			count: 4
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+
+		-
+			rawMessage: 'Call to method getAttribute() of internal class TYPO3\CMS\Core\Http\ServerRequest from outside its root namespace TYPO3.'
+			identifier: method.internalClass
+			count: 18
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+
+		-
+			rawMessage: 'Call to method getServerParams() of internal class TYPO3\CMS\Core\Http\ServerRequest from outside its root namespace TYPO3.'
+			identifier: method.internalClass
+			count: 1
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+
+		-
+			rawMessage: 'Call to static method PHPUnit\Framework\Assert::assertIsArray() with array<string, mixed> will always evaluate to true.'
+			identifier: staticMethod.alreadyNarrowedType
+			count: 1
+			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+
+		-
+			rawMessage: 'Call to static method PHPUnit\Framework\Assert::assertNotSame() with 0 and int<1, max> will always evaluate to true.'
+			identifier: staticMethod.alreadyNarrowedType
 			count: 15
 			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
-			message: "#^Cannot cast mixed to int\\.$#"
+			rawMessage: Cannot cast mixed to int.
+			identifier: cast.int
 			count: 3
 			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
-			message: "#^Casting to int something that's already int\\.$#"
+			rawMessage: Casting to int something that's already int.
+			identifier: cast.useless
 			count: 1
 			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
-			message: "#^Class TYPO3\\\\CMS\\\\Frontend\\\\Cache\\\\CacheInstruction not found\\.$#"
-			count: 2
-			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
-
-		-
-			message: "#^Class TYPO3\\\\CMS\\\\Frontend\\\\Page\\\\PageInformation not found\\.$#"
+			rawMessage: 'Method OliverKlee\Oelib\Tests\Functional\Testing\TestingFrameworkTest::getFrontEndController() should return TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController but returns mixed.'
+			identifier: return.type
 			count: 1
 			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
-			message: "#^Method OliverKlee\\\\Oelib\\\\Tests\\\\Functional\\\\Testing\\\\TestingFrameworkTest\\:\\:getFrontEndController\\(\\) should return TYPO3\\\\CMS\\\\Frontend\\\\Controller\\\\TypoScriptFrontendController but returns mixed\\.$#"
+			rawMessage: 'Call to internal method TYPO3\CMS\Core\Context\Context::unsetAspect() from outside its root namespace TYPO3.'
+			identifier: method.internal
 			count: 1
-			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+			path: ../../Tests/Functional/ViewHelpers/Be/Security/IfIsAdminViewHelperTest.php
 
 		-
-			message: "#^There is no request attribute \"frontend\\.cache\\.collector\" configured so we can't figure out the exact type to return when calling TYPO3\\\\CMS\\\\Core\\\\Http\\\\ServerRequest\\:\\:getAttribute$#"
+			rawMessage: 'Call to internal method TYPO3\CMS\Fluid\View\AbstractTemplateView::__construct() from outside its root namespace TYPO3.'
+			identifier: method.internal
 			count: 1
-			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+			path: ../../Tests/Functional/ViewHelpers/Be/Security/IfIsAdminViewHelperTest.php
 
 		-
-			message: "#^There is no request attribute \"frontend\\.cache\\.instruction\" configured so we can't figure out the exact type to return when calling TYPO3\\\\CMS\\\\Core\\\\Http\\\\ServerRequest\\:\\:getAttribute$#"
-			count: 2
-			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
-
-		-
-			message: "#^There is no request attribute \"frontend\\.page\\.information\" configured so we can't figure out the exact type to return when calling TYPO3\\\\CMS\\\\Core\\\\Http\\\\ServerRequest\\:\\:getAttribute$#"
+			rawMessage: 'Method OliverKlee\Oelib\Tests\Functional\ViewHelpers\Be\Security\IfIsAdminViewHelperTest::renderViewHelper() should return string but returns mixed.'
+			identifier: return.type
 			count: 1
-			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
+			path: ../../Tests/Functional/ViewHelpers/Be/Security/IfIsAdminViewHelperTest.php
 
 		-
-			message: "#^Parameter \\#2 \\$value of method OliverKlee\\\\Oelib\\\\DataStructures\\\\AbstractObjectWithPublicAccessors\\:\\:setAsArray\\(\\) expects array\\<int\\|string\\>, array\\<int, mixed\\> given\\.$#"
+			rawMessage: 'Call to internal method TYPO3\CMS\Fluid\View\AbstractTemplateView::__construct() from outside its root namespace TYPO3.'
+			identifier: method.internal
+			count: 1
+			path: ../../Tests/Functional/ViewHelpers/IsFieldEnabledViewHelperTest.php
+
+		-
+			rawMessage: 'Method OliverKlee\Oelib\Tests\Functional\ViewHelpers\IsFieldEnabledViewHelperTest::renderViewHelper() should return string but returns mixed.'
+			identifier: return.type
+			count: 1
+			path: ../../Tests/Functional/ViewHelpers/IsFieldEnabledViewHelperTest.php
+
+		-
+			rawMessage: 'Parameter #1 $value of method OliverKlee\Oelib\Tests\Functional\ViewHelpers\IsFieldEnabledViewHelperTest::renderForNonStringSettingNameInSettingsThrowsException() expects array{int<1, max>|list<mixed>}, 5 given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Functional/ViewHelpers/IsFieldEnabledViewHelperTest.php
+
+		-
+			rawMessage: 'Parameter #1 $value of method OliverKlee\Oelib\Tests\Functional\ViewHelpers\IsFieldEnabledViewHelperTest::renderForNonStringSettingNameInSettingsThrowsException() expects array{int<1, max>|list<mixed>}, array{} given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Functional/ViewHelpers/IsFieldEnabledViewHelperTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsBooleanForNoFlexformsDataReturnsFalse() expects array<array<string, string|null>>, array<string, array<string, array<string, array<string, array<string, array<string, string>>>>>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsBooleanForNoFlexformsDataReturnsFalse() expects array<array<string, string|null>>, array<string, array<string, array<string, array<string, array<string, array>>>>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsBooleanForNoFlexformsDataReturnsFalse() expects array<array<string, string|null>>, array<string, array<string, array<string, array<string, array>>>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsBooleanForNoFlexformsDataReturnsFalse() expects array<array<string, string|null>>, array<string, array<string, array<string, array>>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsBooleanForNoFlexformsDataReturnsFalse() expects array<array<string, string|null>>, array<string, array<string, array>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsBooleanForNoFlexformsDataReturnsFalse() expects array<array<string, string|null>>, array<string, null> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsBooleanForNoFlexformsDataReturnsFalse() expects array<array<string, string|null>>, array<string, string> given.'
+			identifier: argument.type
+			count: 3
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsIntegerForNoFlexformsDataReturnsZero() expects array<array<string, string|null>>, array<string, array<string, array<string, array<string, array<string, array<string, string>>>>>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsIntegerForNoFlexformsDataReturnsZero() expects array<array<string, string|null>>, array<string, array<string, array<string, array<string, array<string, array>>>>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsIntegerForNoFlexformsDataReturnsZero() expects array<array<string, string|null>>, array<string, array<string, array<string, array<string, array>>>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsIntegerForNoFlexformsDataReturnsZero() expects array<array<string, string|null>>, array<string, array<string, array<string, array>>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsIntegerForNoFlexformsDataReturnsZero() expects array<array<string, string|null>>, array<string, array<string, array>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsIntegerForNoFlexformsDataReturnsZero() expects array<array<string, string|null>>, array<string, null> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsIntegerForNoFlexformsDataReturnsZero() expects array<array<string, string|null>>, array<string, string> given.'
+			identifier: argument.type
+			count: 3
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsStringForNoFlexformsDataReturnsEmptyString() expects array<array<string, array<string, mixed>|string|null>>, array<string, null> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $contentObjectData of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsStringForNoFlexformsDataReturnsEmptyString() expects array<array<string, array<string, mixed>|string|null>>, array<string, string> given.'
+			identifier: argument.type
+			count: 3
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $data of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsBooleanForExistingNonEmptyFieldInArrayReturnsValueFromField() expects array<string, array<string, array<string, array<string, array<string, array<string, string>>>>>>, array<string, array<string, array<string, array<string, array<string, array<string, int>>>>>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $data of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsBooleanForExistingNonEmptyFieldInArrayReturnsValueFromField() expects array<string, array<string, array<string, array<string, array<string, array<string, string>>>>>>, array<string, array<string, array<string, array<string, array<string, string>>>>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $data of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsIntegerForExistingNonEmptyFieldInArrayReturnsValueFromField() expects array<string, array<string, array<string, array<string, array<string, array<string, mixed>>>>>>, array<string, array<string, array<string, array<string, array<string, string>>>>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #1 $data of method OliverKlee\Oelib\Tests\Unit\Configuration\FlexformsConfigurationTest::getAsStringForExistingNonEmptyFieldInArrayReturnsValueFromField() expects array<string, array<string, array<string, array<string, array<string, array<string, mixed>>>>>>, array<string, array<string, array<string, array<string, array<string, string>>>>> given.'
+			identifier: argument.type
+			count: 1
+			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
+
+		-
+			rawMessage: 'Parameter #2 $value of method OliverKlee\Oelib\DataStructures\AbstractObjectWithPublicAccessors::setAsArray() expects array<int|string>, array<int, mixed> given.'
+			identifier: argument.type
 			count: 1
 			path: ../../Tests/Unit/DataStructures/AbstractObjectWithPublicAccessorsTest.php
 
 		-
-			message: "#^Cannot access offset 'MAIL' on mixed\\.$#"
-			count: 16
-			path: ../../Tests/Unit/Email/SystemEmailFromBuilderTest.php
-
-		-
-			message: "#^Cannot access offset 'defaultMailFromAddr…' on mixed\\.$#"
+			rawMessage: Cannot access offset 'MAIL' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 8
 			path: ../../Tests/Unit/Email/SystemEmailFromBuilderTest.php
 
 		-
-			message: "#^Cannot access offset 'defaultMailFromName' on mixed\\.$#"
+			rawMessage: Cannot access offset 'defaultMailFromAddress' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 8
 			path: ../../Tests/Unit/Email/SystemEmailFromBuilderTest.php
 
 		-
-			message: "#^Class OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Mapper\\\\Fixtures\\\\ModelLessTestingMapper extends generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper but does not specify its types\\: M$#"
+			rawMessage: Cannot access offset 'defaultMailFromName' on mixed.
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 8
+			path: ../../Tests/Unit/Email/SystemEmailFromBuilderTest.php
+
+		-
+			rawMessage: 'Class OliverKlee\Oelib\Tests\Unit\Mapper\Fixtures\ModelLessTestingMapper extends generic class OliverKlee\Oelib\Mapper\AbstractDataMapper but does not specify its types: M'
+			identifier: missingType.generics
 			count: 1
 			path: ../../Tests/Unit/Mapper/Fixtures/ModelLessTestingMapper.php
 
 		-
-			message: "#^Property OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Mapper\\\\Fixtures\\\\TestingChildMapper\\:\\:\\$relations with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper does not specify its types\\: M$#"
+			rawMessage: 'Property OliverKlee\Oelib\Tests\Unit\Mapper\Fixtures\TestingChildMapper::$relations with generic class OliverKlee\Oelib\Mapper\AbstractDataMapper does not specify its types: M'
+			identifier: missingType.generics
 			count: 1
 			path: ../../Tests/Unit/Mapper/Fixtures/TestingChildMapper.php
 
 		-
-			message: "#^Property OliverKlee\\\\Oelib\\\\Tests\\\\Unit\\\\Mapper\\\\Fixtures\\\\TestingMapper\\:\\:\\$relations with generic class OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper does not specify its types\\: M$#"
+			rawMessage: 'Property OliverKlee\Oelib\Tests\Unit\Mapper\Fixtures\TestingMapper::$relations with generic class OliverKlee\Oelib\Mapper\AbstractDataMapper does not specify its types: M'
+			identifier: missingType.generics
 			count: 1
 			path: ../../Tests/Unit/Mapper/Fixtures/TestingMapper.php
 
 		-
-			message: "#^Expression \"clone \\$this\\-\\>subject\" on a separate line does not do anything\\.$#"
+			rawMessage: Expression "clone $this->subject" on a separate line does not do anything.
+			identifier: expr.resultUnused
 			count: 1
 			path: ../../Tests/Unit/Model/AbstractModelTest.php
+
+		-
+			rawMessage: Access to constant on internal interface TYPO3Fluid\Fluid\Core\ViewHelper\ViewHelperInterface.
+			identifier: classConstant.internalInterface
+			count: 1
+			path: ../../Tests/Unit/ViewHelpers/PriceViewHelperTest.php
