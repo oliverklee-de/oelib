@@ -6,6 +6,7 @@ use Rector\Config\RectorConfig;
 use Rector\Php71\Rector\FuncCall\RemoveExtraParametersRector;
 use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\LevelSetList;
+use Rector\Set\ValueObject\SetList;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 use Rector\ValueObject\PhpVersion;
 use Ssch\TYPO3Rector\CodeQuality\General\ConvertImplicitVariablesToExplicitGlobalsRector;
@@ -27,9 +28,7 @@ return RectorConfig::configure()
     ->withSets([
         // Rector sets
 
-        LevelSetList::UP_TO_PHP_74,
-        // LevelSetList::UP_TO_PHP_80,
-        // LevelSetList::UP_TO_PHP_81,
+        LevelSetList::UP_TO_PHP_81,
         // LevelSetList::UP_TO_PHP_82,
         // LevelSetList::UP_TO_PHP_83,
 
@@ -41,7 +40,7 @@ return RectorConfig::configure()
         // SetList::NAMING,
         // SetList::PRIVATIZATION,
         // SetList::STRICT_BOOLEANS,
-        // SetList::TYPE_DECLARATION,
+        SetList::TYPE_DECLARATION,
 
         // PHPUnit sets
 
@@ -72,7 +71,7 @@ return RectorConfig::configure()
     ])
     ->withImportNames(true, true, false)
     ->withConfiguredRule(ExtEmConfRector::class, [
-        ExtEmConfRector::PHP_VERSION_CONSTRAINT => '7.4.0-8.4.99',
+        ExtEmConfRector::PHP_VERSION_CONSTRAINT => '8.1.0-8.4.99',
         ExtEmConfRector::TYPO3_VERSION_CONSTRAINT => '11.5.41-12.4.99',
         ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
     ])

@@ -1,16 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Access to property \\$loaded on an unknown class TemplateService\\.$#"
-			count: 1
-			path: ../../Classes/Configuration/ConfigurationRegistry.php
-
-		-
-			message: "#^Access to property \\$setup on an unknown class TemplateService\\.$#"
-			count: 1
-			path: ../../Classes/Configuration/ConfigurationRegistry.php
-
-		-
 			message: "#^Method TYPO3\\\\CMS\\\\Extbase\\\\Configuration\\\\BackendConfigurationManager\\:\\:getTypoScriptSetup\\(\\) invoked with 1 parameter, 0 required\\.$#"
 			count: 1
 			path: ../../Classes/Configuration/ConfigurationRegistry.php
@@ -101,11 +91,6 @@ parameters:
 			path: ../../Classes/Mapper/AbstractDataMapper.php
 
 		-
-			message: "#^Function str_starts_with not found\\.$#"
-			count: 1
-			path: ../../Classes/Mapper/AbstractDataMapper.php
-
-		-
 			message: "#^Method OliverKlee\\\\Oelib\\\\Mapper\\\\AbstractDataMapper\\:\\:getTcaForTable\\(\\) should return array\\<string, array\\<string, array\\<string, array\\<string, string\\>\\>\\>\\> but returns mixed\\.$#"
 			count: 1
 			path: ../../Classes/Mapper/AbstractDataMapper.php
@@ -166,24 +151,9 @@ parameters:
 			path: ../../Classes/Templating/Template.php
 
 		-
-			message: "#^Function str_contains not found\\.$#"
-			count: 1
-			path: ../../Classes/Templating/Template.php
-
-		-
-			message: "#^Function str_starts_with not found\\.$#"
-			count: 1
-			path: ../../Classes/Templating/Template.php
-
-		-
 			message: "#^Property OliverKlee\\\\Oelib\\\\Templating\\\\Template\\:\\:\\$subparts \\(array\\<string, string\\>\\) does not accept array\\<string, mixed\\>\\.$#"
 			count: 1
 			path: ../../Classes/Templating/Template.php
-
-		-
-			message: "#^Access to property \\$user on an unknown class FrontendUserAuthentication\\.$#"
-			count: 2
-			path: ../../Classes/Testing/TestingFramework.php
 
 		-
 			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Core\\\\TypoScript\\\\FrontendTypoScript\\:\\:setConfigArray\\(\\)\\.$#"
@@ -196,17 +166,7 @@ parameters:
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Call to method createUserSession\\(\\) on an unknown class FrontendUserAuthentication\\.$#"
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
 			message: "#^Call to method disableCache\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Cache\\\\CacheInstruction\\.$#"
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
-			message: "#^Call to method fetchGroupData\\(\\) on an unknown class FrontendUserAuthentication\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
@@ -216,17 +176,7 @@ parameters:
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Call to method setLogger\\(\\) on an unknown class ContentObjectRenderer\\.$#"
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
 			message: "#^Call to method setPageRecord\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Page\\\\PageInformation\\.$#"
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
-			message: "#^Call to method setRequest\\(\\) on an unknown class ContentObjectRenderer\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
@@ -321,17 +271,7 @@ parameters:
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Parameter \\#1 \\$user of class TYPO3\\\\CMS\\\\Core\\\\Context\\\\UserAspect constructor expects TYPO3\\\\CMS\\\\Core\\\\Authentication\\\\AbstractUserAuthentication\\|null, FrontendUserAuthentication given\\.$#"
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
 			message: "#^Parameter \\#4 \\$columnName of method OliverKlee\\\\Oelib\\\\Testing\\\\TestingFramework\\:\\:createRelationAndUpdateCounter\\(\\) expects non\\-empty\\-string, mixed given\\.$#"
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
-			message: "#^Property TYPO3\\\\CMS\\\\Frontend\\\\Controller\\\\TypoScriptFrontendController\\:\\:\\$fe_user \\(FrontendUserAuthentication\\) does not accept TYPO3\\\\CMS\\\\Frontend\\\\Authentication\\\\FrontendUserAuthentication\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 
@@ -358,11 +298,6 @@ parameters:
 		-
 			message: "#^Call to method isCachingAllowed\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Cache\\\\CacheInstruction\\.$#"
 			count: 1
-			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
-
-		-
-			message: "#^Call to method typoLink_URL\\(\\) on an unknown class ContentObjectRenderer\\.$#"
-			count: 3
 			path: ../../Tests/Functional/Testing/TestingFrameworkTest.php
 
 		-
