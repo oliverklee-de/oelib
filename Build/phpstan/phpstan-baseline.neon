@@ -161,11 +161,6 @@ parameters:
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			message: "#^Call to an undefined static method TYPO3\\\\CMS\\\\Core\\\\Utility\\\\RootlineUtility\\:\\:purgeCaches\\(\\)\\.$#"
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
 			message: "#^Call to method disableCache\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Cache\\\\CacheInstruction\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
@@ -177,11 +172,6 @@ parameters:
 
 		-
 			message: "#^Call to method setPageRecord\\(\\) on an unknown class TYPO3\\\\CMS\\\\Frontend\\\\Page\\\\PageInformation\\.$#"
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
-			message: "#^Call to protected method unpack_uc\\(\\) of class TYPO3\\\\CMS\\\\Core\\\\Authentication\\\\AbstractUserAuthentication\\.$#"
 			count: 1
 			path: ../../Classes/Testing/TestingFramework.php
 

@@ -1401,10 +1401,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
      */
     public function createFakeFrontEndSetsRequestCurrentContentObject(): void
     {
-        if ((new Typo3Version())->getMajorVersion() < 12) {
-            self::markTestSkipped('The request content object is only available in TYPO3 v12 and above.');
-        }
-
         $pageUid = $this->subject->createFrontEndPage();
         $this->subject->createFakeFrontEnd($pageUid);
 
@@ -1501,10 +1497,6 @@ final class TestingFrameworkTest extends FunctionalTestCase
      */
     public function createFakeFrontEndSetsRequestTypoScript(): void
     {
-        if ((new Typo3Version())->getMajorVersion() < 12) {
-            self::markTestSkipped('The request typoscript object is only available in TYPO3 v12 and above.');
-        }
-
         $this->importCSVDataSet(__DIR__ . '/Fixtures/createFakeFrontEnd/Page.csv');
 
         $this->subject->createFakeFrontEnd(1);

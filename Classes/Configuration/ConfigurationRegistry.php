@@ -7,15 +7,11 @@ namespace OliverKlee\Oelib\Configuration;
 use OliverKlee\Oelib\Interfaces\Configuration as ConfigurationInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
-use TYPO3\CMS\Core\Exception\Page\PageNotFoundException;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\TypoScript\FrontendTypoScript;
-use TYPO3\CMS\Core\TypoScript\TemplateService;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\RootlineUtility;
 use TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager;
-use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 
 /**
  * This class represents a registration that allows the storage and retrieval of configuration objects.
@@ -129,18 +125,6 @@ class ConfigurationRegistry
             return [];
         }
 
-        return ((new Typo3Version())->getMajorVersion() >= 12)
-            ? $this->getCompleteTypoScriptSetupForTypo3V12AndUp($pageUid)
-            : $this->getCompleteTypoScriptSetupForTypo3BelowV12($pageUid);
-    }
-
-    /**
-     * @param int<1, max> $pageUid
-     *
-     * @return array<mixed>
-     */
-    private function getCompleteTypoScriptSetupForTypo3V12AndUp(int $pageUid): array
-    {
         $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
         if (($request instanceof ServerRequestInterface)
             && ($request->getAttribute('applicationType') === SystemEnvironmentBuilder::REQUESTTYPE_FE)
@@ -173,33 +157,5 @@ class ConfigurationRegistry
         }
 
         return $configurationManager;
-    }
-
-    /**
-     * @param int<1, max> $pageUid
-     *
-     * @return array<mixed>
-     */
-    private function getCompleteTypoScriptSetupForTypo3BelowV12(int $pageUid): array
-    {
-        $frontEndController = $GLOBALS['TSFE'] ?? null;
-        $template = $frontEndController instanceof TypoScriptFrontendController ? $frontEndController->tmpl : null;
-        if ($template instanceof TemplateService && $template->loaded) {
-            return $template->setup;
-        }
-
-        $template = GeneralUtility::makeInstance(TemplateService::class);
-        $template->tt_track = false;
-
-        try {
-            $rootLine = GeneralUtility::makeInstance(RootlineUtility::class, $pageUid)->get();
-        } catch (PageNotFoundException $pageNotFoundException) {
-            $rootLine = [];
-        }
-
-        $template->runThroughTemplates($rootLine);
-        $template->generateConfig();
-
-        return $template->setup;
     }
 }
