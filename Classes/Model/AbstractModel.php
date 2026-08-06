@@ -66,10 +66,7 @@ abstract class AbstractModel extends AbstractObjectWithAccessors implements Iden
      */
     private bool $isDirty = false;
 
-    /**
-     * @var \Closure|null the callback function that fills this model with data
-     */
-    private $loadCallback;
+    private ?\Closure $loadCallback = null;
 
     /**
      * Clone.

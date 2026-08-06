@@ -28,7 +28,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Utility\RootlineUtility;
 use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 use TYPO3\CMS\Frontend\Cache\CacheInstruction;
-use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\Controller\TypoScriptFrontendController;
 use TYPO3\CMS\Frontend\Page\PageInformation;
 
@@ -549,7 +548,6 @@ final class TestingFramework
             $frontEndController->newCObj();
         }
         $contentObject = $frontEndController->cObj;
-        \assert($contentObject instanceof ContentObjectRenderer);
         $contentObject->setLogger(new NullLogger());
 
         $request = $request
