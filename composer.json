@@ -118,7 +118,7 @@
 		],
 		"check:coverage:functional": [
 			"@coverage:create-directories",
-			"find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo \"Running functional test suite {}\"; .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml --whitelist Classes --coverage-php=\".Build/coverage/{}.cov\" {}';"
+			"find 'Tests/Functional' -wholename '*Test.php' | parallel --gnu 'echo; echo \"Running functional test suite {}\"; .Build/bin/phpunit -c Build/phpunit/FunctionalTests.xml --coverage-php=\".Build/coverage/{}.cov\" {}';"
 		],
 		"check:coverage:merge": [
 			"@coverage:create-directories",
@@ -126,7 +126,7 @@
 		],
 		"check:coverage:unit": [
 			"@coverage:create-directories",
-			"phpunit -c Build/phpunit/UnitTests.xml --whitelist Classes --coverage-php=.Build/coverage/unit.cov Tests/Unit"
+			"phpunit -c Build/phpunit/UnitTests.xml --coverage-php=.Build/coverage/unit.cov Tests/Unit"
 		],
 		"check:dynamic": [
 			"@check:tests"
