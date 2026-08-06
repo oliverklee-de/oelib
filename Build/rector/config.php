@@ -56,8 +56,7 @@ return RectorConfig::configure()
         Typo3SetList::CODE_QUALITY,
         Typo3SetList::GENERAL,
 
-        Typo3LevelSetList::UP_TO_TYPO3_11,
-        // Typo3LevelSetList::UP_TO_TYPO3_12,
+        Typo3LevelSetList::UP_TO_TYPO3_12,
 
         TYPO3TestingFrameworkSetList::TYPO3_TESTING_FRAMEWORK_7,
     ])
@@ -72,7 +71,7 @@ return RectorConfig::configure()
     ->withImportNames(true, true, false)
     ->withConfiguredRule(ExtEmConfRector::class, [
         ExtEmConfRector::PHP_VERSION_CONSTRAINT => '8.1.0-8.4.99',
-        ExtEmConfRector::TYPO3_VERSION_CONSTRAINT => '11.5.41-12.4.99',
+        ExtEmConfRector::TYPO3_VERSION_CONSTRAINT => '12.4.41-12.4.99',
         ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
     ])
     ->withSkip([

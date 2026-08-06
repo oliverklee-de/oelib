@@ -15,6 +15,7 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Removed
 
+- Drop support for TYPO3 11LTS (#2419)
 - Drop support for PHP < 8.1 (#2420)
 - Drop the `DirectPersist` trait and interface (#2398)
 - Drop the `StoragePageAgnostic` trait (#2397)

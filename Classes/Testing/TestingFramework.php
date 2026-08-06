@@ -445,10 +445,6 @@ final class TestingFramework
     {
         $this->discardFakeFrontEnd();
         GeneralUtility::flushInternalRuntimeCaches();
-
-        if ((new Typo3Version())->getMajorVersion() <= 11) {
-            RootlineUtility::purgeCaches();
-        }
     }
 
     // Functions concerning a fake front end
@@ -495,9 +491,6 @@ final class TestingFramework
 
         $frontEndUser->start($request);
         $frontEndUser->fetchGroupData($request);
-        if ((new Typo3Version())->getMajorVersion() <= 11) {
-            $frontEndUser->unpack_uc();
-        }
 
         $this->createDummySite($pageUid);
         $allSites = GeneralUtility::makeInstance(SiteConfiguration::class)->getAllExistingSites(false);
