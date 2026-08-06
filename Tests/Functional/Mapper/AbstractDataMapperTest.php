@@ -56,7 +56,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => $title]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $model = new TestingModel();
@@ -77,7 +77,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -323,7 +323,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['hidden' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $model = new TestingModel();
@@ -344,7 +344,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $model = new TestingModel();
@@ -365,7 +365,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['float_data' => 12.5]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $model = new TestingModel();
@@ -387,7 +387,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['decimal_data' => 12.5]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $model = new TestingModel();
@@ -409,7 +409,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['string_data' => '12.5']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $model = new TestingModel();
@@ -435,7 +435,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -455,7 +455,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $model = $this->subject->find($uid);
@@ -486,7 +486,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $model = new TestingModel();
@@ -526,7 +526,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $this->subject->load($this->subject->find($uid));
@@ -544,7 +544,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         self::assertTrue(
@@ -583,7 +583,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $this->subject->existsModel($uid);
@@ -601,7 +601,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['hidden' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         self::assertFalse(
@@ -617,7 +617,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['hidden' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         self::assertTrue(
@@ -633,7 +633,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['hidden' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $this->subject->load($this->subject->find($uid));
@@ -651,7 +651,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['hidden' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $this->subject->load($this->subject->find($uid));
@@ -669,7 +669,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['hidden' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $this->subject->load($this->subject->find($uid));
@@ -687,7 +687,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['hidden' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $this->subject->load($this->subject->find($uid));
@@ -790,7 +790,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -808,11 +808,11 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $friendUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $friendUid = (int)$connection->lastInsertId();
         \assert($friendUid > 0);
 
         $connection->insert('tx_oelib_test', ['friend' => $friendUid]);
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $model = $this->subject->find($uid);
@@ -831,7 +831,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $connection->update('tx_oelib_test', ['friend' => $uid], ['uid' => $uid]);
 
@@ -852,13 +852,13 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $usersConnection = $this->getConnectionPool()->getConnectionForTable('fe_users');
         $usersConnection->insert('fe_users', ['pid' => 0]);
 
-        $ownerUid = (int)$usersConnection->lastInsertId('fe_users');
+        $ownerUid = (int)$usersConnection->lastInsertId();
         \assert($ownerUid > 0);
 
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['owner' => $ownerUid]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -877,11 +877,11 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $friendUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $friendUid = (int)$connection->lastInsertId();
         \assert($friendUid > 0);
 
         $connection->insert('tx_oelib_test', ['friend' => $friendUid]);
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $model = $this->subject->find($uid);
@@ -902,7 +902,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['friend' => $friendUid]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $model = $this->subject->find($uid);
@@ -923,7 +923,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -941,11 +941,11 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $childUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid = (int)$connection->lastInsertId();
         \assert($childUid > 0);
 
         $connection->insert('tx_oelib_test', ['children' => $childUid]);
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -964,14 +964,14 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $childUid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid1 = (int)$connection->lastInsertId();
         \assert($childUid1 > 0);
         $connection->insert('tx_oelib_test', ['pid' => 0]);
-        $childUid2 = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid2 = (int)$connection->lastInsertId();
         \assert($childUid2 > 0);
 
         $connection->insert('tx_oelib_test', ['children' => $childUid1 . ',' . $childUid2]);
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -990,10 +990,10 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $childUid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid1 = (int)$connection->lastInsertId();
         \assert($childUid1 > 0);
         $connection->insert('tx_oelib_test', ['children' => $childUid1 . ',0']);
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1012,7 +1012,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1032,7 +1032,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1055,7 +1055,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1073,10 +1073,10 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['related_records' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $connection->insert('tx_oelib_test', ['bidirectional' => 1]);
-        $relatedUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid = (int)$connection->lastInsertId();
         \assert($relatedUid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test_article_mm');
         $relationConnection->insert('tx_oelib_test_article_mm', ['uid_local' => $uid, 'uid_foreign' => $relatedUid]);
@@ -1097,13 +1097,13 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['related_records' => 2]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $connection->insert('tx_oelib_test', ['bidirectional' => 1]);
-        $relatedUid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid1 = (int)$connection->lastInsertId();
         \assert($relatedUid1 > 0);
         $connection->insert('tx_oelib_test', ['bidirectional' => 1]);
-        $relatedUid2 = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid2 = (int)$connection->lastInsertId();
         \assert($relatedUid2 > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test_article_mm');
         $relationConnection->insert('tx_oelib_test_article_mm', ['uid_local' => $uid, 'uid_foreign' => $relatedUid1]);
@@ -1125,13 +1125,13 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['related_records' => 2]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $connection->insert('tx_oelib_test', ['bidirectional' => 1]);
-        $relatedUid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid1 = (int)$connection->lastInsertId();
         \assert($relatedUid1 > 0);
         $connection->insert('tx_oelib_test', ['bidirectional' => 1]);
-        $relatedUid2 = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid2 = (int)$connection->lastInsertId();
         \assert($relatedUid2 > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test_article_mm');
         $relationConnection->insert(
@@ -1159,7 +1159,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1179,7 +1179,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1202,7 +1202,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1220,10 +1220,10 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['related_records' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $connection->insert('tx_oelib_test', ['bidirectional' => 1]);
-        $relatedUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid = (int)$connection->lastInsertId();
         \assert($relatedUid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test_article_mm');
         $relationConnection->insert('tx_oelib_test_article_mm', ['uid_local' => $uid, 'uid_foreign' => $relatedUid]);
@@ -1244,13 +1244,13 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['related_records' => 1]);
 
-        $uid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid1 = (int)$connection->lastInsertId();
         \assert($uid1 > 0);
         $connection->insert('tx_oelib_test', ['related_records' => 1]);
-        $uid2 = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid2 = (int)$connection->lastInsertId();
         \assert($uid2 > 0);
         $connection->insert('tx_oelib_test', ['bidirectional' => 1]);
-        $relatedUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid = (int)$connection->lastInsertId();
         \assert($relatedUid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test_article_mm');
         $relationConnection->insert('tx_oelib_test_article_mm', ['uid_local' => $uid1, 'uid_foreign' => $relatedUid]);
@@ -1272,13 +1272,13 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['related_records' => 1]);
 
-        $uid2 = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid2 = (int)$connection->lastInsertId();
         \assert($uid2 > 0);
         $connection->insert('tx_oelib_test', ['related_records' => 1]);
-        $uid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid1 = (int)$connection->lastInsertId();
         \assert($uid1 > 0);
         $connection->insert('tx_oelib_test', ['bidirectional' => 1]);
-        $relatedUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid = (int)$connection->lastInsertId();
         \assert($relatedUid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test_article_mm');
         $relationConnection->insert('tx_oelib_test_article_mm', ['uid_local' => $uid1, 'uid_foreign' => $relatedUid]);
@@ -1300,7 +1300,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1320,7 +1320,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1343,7 +1343,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1361,12 +1361,12 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['composition' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $uid]);
 
-        $relatedUid = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $relatedUid = (int)$relationConnection->lastInsertId();
         \assert($relatedUid > 0);
 
         /** @var TestingModel $model */
@@ -1385,15 +1385,15 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['composition' => 2]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $uid, 'title' => 'b']);
 
-        $relatedUid1 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $relatedUid1 = (int)$relationConnection->lastInsertId();
         \assert($relatedUid1 > 0);
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $uid, 'title' => 'a']);
-        $relatedUid2 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $relatedUid2 = (int)$relationConnection->lastInsertId();
         \assert($relatedUid2 > 0);
 
         $model = $this->subject->find($uid);
@@ -1409,13 +1409,13 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['composition2' => 2]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $connection->insert('tx_oelib_testchild', ['tx_oelib_parent2' => $uid, 'title' => 'b']);
-        $relatedUid1 = (int)$connection->lastInsertId('tx_oelib_testchild');
+        $relatedUid1 = (int)$connection->lastInsertId();
         \assert($relatedUid1 > 0);
         $connection->insert('tx_oelib_testchild', ['tx_oelib_parent2' => $uid, 'title' => 'a']);
-        $relatedUid2 = (int)$connection->lastInsertId('tx_oelib_testchild');
+        $relatedUid2 = (int)$connection->lastInsertId();
         \assert($relatedUid2 > 0);
 
         $model = $this->subject->find($uid);
@@ -1431,12 +1431,12 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['composition_without_sorting' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['tx_oelib_parent3' => $uid]);
 
-        $relatedUid = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $relatedUid = (int)$relationConnection->lastInsertId();
         \assert($relatedUid > 0);
 
         /** @var TestingModel $model */
@@ -1452,7 +1452,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['composition' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $uid, 'deleted' => 1]);
@@ -1471,15 +1471,15 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['composition' => 2]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $uid, 'title' => 'relation A']);
 
-        $relatedUid1 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $relatedUid1 = (int)$relationConnection->lastInsertId();
         \assert($relatedUid1 > 0);
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $uid, 'title' => 'relation B']);
-        $relatedUid2 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $relatedUid2 = (int)$relationConnection->lastInsertId();
         \assert($relatedUid2 > 0);
 
         /** @var TestingModel $model */
@@ -1498,15 +1498,15 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['composition' => 2]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $uid, 'title' => 'relation B']);
 
-        $relatedUid1 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $relatedUid1 = (int)$relationConnection->lastInsertId();
         \assert($relatedUid1 > 0);
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $uid, 'title' => 'relation A']);
-        $relatedUid2 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $relatedUid2 = (int)$relationConnection->lastInsertId();
         \assert($relatedUid2 > 0);
 
         /** @var TestingModel $model */
@@ -1525,7 +1525,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1545,7 +1545,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1566,10 +1566,10 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $friendTitle = 'Brianna';
         $connection->insert('tx_oelib_test', ['title' => $friendTitle]);
-        $friendUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $friendUid = (int)$connection->lastInsertId();
         \assert($friendUid > 0);
         $connection->insert('tx_oelib_test', ['friend' => $friendUid]);
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $model = $this->subject->find($uid);
@@ -1590,10 +1590,10 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $childTitle = 'Abraham';
         $connection->insert('tx_oelib_test', ['title' => $childTitle]);
-        $childUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid = (int)$connection->lastInsertId();
         \assert($childUid > 0);
         $connection->insert('tx_oelib_test', ['children' => (string)$childUid]);
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1613,7 +1613,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['children' => '0']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1633,10 +1633,10 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['related_records' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $connection->insert('tx_oelib_test', ['title' => $relatedTitle, 'bidirectional' => 1]);
-        $relatedUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid = (int)$connection->lastInsertId();
         \assert($relatedUid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test_article_mm');
         $relationConnection->insert('tx_oelib_test_article_mm', ['uid_local' => $uid, 'uid_foreign' => $relatedUid]);
@@ -1658,7 +1658,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['related_records' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test_article_mm');
         $relationConnection->insert('tx_oelib_test_article_mm', ['uid_local' => $uid, 'uid_foreign' => 0]);
@@ -1679,10 +1679,10 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['related_records' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $connection->insert('tx_oelib_test', ['bidirectional' => 1]);
-        $relatedUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid = (int)$connection->lastInsertId();
         \assert($relatedUid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test_article_mm');
         $relationConnection->insert('tx_oelib_test_article_mm', ['uid_local' => $uid, 'uid_foreign' => $relatedUid]);
@@ -1703,7 +1703,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['composition' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $uid, 'title' => $relatedTitle]);
@@ -1755,7 +1755,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         /** @var TestingModel $model1 */
         $model1 = $this->subject->find($uid);
@@ -1785,7 +1785,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $this->subject->save($this->subject->find($uid));
@@ -1807,7 +1807,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1831,7 +1831,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -1855,7 +1855,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -2011,7 +2011,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -2034,7 +2034,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -2060,7 +2060,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         $model = new TestingModel();
@@ -2125,7 +2125,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -2322,7 +2322,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         self::assertSame(
@@ -2355,7 +2355,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -2378,10 +2378,10 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $friendUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $friendUid = (int)$connection->lastInsertId();
         \assert($friendUid > 0);
         $connection->insert('tx_oelib_test', ['friend' => $friendUid]);
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         /** @var TestingModel $model */
         $model = $this->subject->find($uid);
@@ -2403,13 +2403,13 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $childUid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid1 = (int)$connection->lastInsertId();
         \assert($childUid1 > 0);
         $connection->insert('tx_oelib_test', ['pid' => 0]);
-        $childUid2 = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid2 = (int)$connection->lastInsertId();
         \assert($childUid2 > 0);
         $connection->insert('tx_oelib_test', ['children' => $childUid1 . ',' . $childUid2]);
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         /** @var TestingModel $model */
         $model = $this->subject->find($uid);
@@ -2431,13 +2431,13 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['related_records' => 2]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $connection->insert('tx_oelib_test', ['bidirectional' => 1]);
-        $relatedUid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid1 = (int)$connection->lastInsertId();
         \assert($relatedUid1 > 0);
         $connection->insert('tx_oelib_test', ['bidirectional' => 1]);
-        $relatedUid2 = (int)$connection->lastInsertId('tx_oelib_test');
+        $relatedUid2 = (int)$connection->lastInsertId();
         \assert($relatedUid2 > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test_article_mm');
         $relationConnection->insert('tx_oelib_test_article_mm', ['uid_local' => $uid, 'uid_foreign' => $relatedUid1]);
@@ -2463,7 +2463,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         /** @var TestingModel $model */
         $model = $this->subject->find($uid);
@@ -2474,10 +2474,10 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['pid' => 0]);
 
-        $childUid1 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $childUid1 = (int)$relationConnection->lastInsertId();
         \assert($childUid1 > 0);
         $relationConnection->insert('tx_oelib_testchild', ['pid' => 0]);
-        $childUid2 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $childUid2 = (int)$relationConnection->lastInsertId();
         \assert($childUid2 > 0);
         $composition->add($mapper->find($childUid1));
         $composition->add($mapper->find($childUid2));
@@ -2498,7 +2498,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         /** @var TestingModel $model */
         $model = $this->subject->find($uid);
@@ -2509,7 +2509,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['pid' => 0]);
 
-        $childUid = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $childUid = (int)$relationConnection->lastInsertId();
         \assert($childUid > 0);
         $component = $mapper->find($childUid);
         $composition->add($component);
@@ -2534,7 +2534,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         /** @var TestingModel $model */
         $model = $this->subject->find($uid);
@@ -2565,7 +2565,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         /** @var TestingModel $model */
         $model = $this->subject->find($uid);
@@ -2600,7 +2600,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         /** @var TestingModel $model */
         $model = $this->subject->find($uid);
@@ -2631,7 +2631,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $model = $this->subject->find($uid);
         $model->markAsDirty();
@@ -2641,12 +2641,12 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $model->getUid()]);
 
-        $childUid1 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $childUid1 = (int)$relationConnection->lastInsertId();
         \assert($childUid1 > 0);
         $component1 = $mapper->find($childUid1);
         $composition->add($component1);
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $model->getUid()]);
-        $childUid2 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $childUid2 = (int)$relationConnection->lastInsertId();
         \assert($childUid2 > 0);
         $component2 = $mapper->find($childUid2);
         self::assertInstanceOf(TestingChildModel::class, $component2);
@@ -2669,10 +2669,10 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $friendUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $friendUid = (int)$connection->lastInsertId();
         \assert($friendUid > 0);
         $connection->insert('tx_oelib_test', ['friend' => $friendUid]);
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         /** @var TestingModel $model */
         $model = $this->subject->find($uid);
@@ -2700,7 +2700,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         /** @var TestingModel $model */
         $model = $this->subject->find($uid);
@@ -2722,13 +2722,13 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $childUid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid1 = (int)$connection->lastInsertId();
         \assert($childUid1 > 0);
         $connection->insert('tx_oelib_test', ['pid' => 0]);
-        $childUid2 = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid2 = (int)$connection->lastInsertId();
         \assert($childUid2 > 0);
         $connection->insert('tx_oelib_test', ['children' => $childUid1 . ',' . $childUid2]);
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         /** @var TestingModel $model */
         $model = $this->subject->find($uid);
@@ -2753,7 +2753,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'foo']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         /** @var TestingModel $model */
@@ -2777,7 +2777,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $parentUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $parentUid = (int)$connection->lastInsertId();
         \assert($parentUid > 0);
 
         /** @var TestingModel $parent */
@@ -2799,7 +2799,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $parentUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $parentUid = (int)$connection->lastInsertId();
         \assert($parentUid > 0);
 
         /** @var TestingModel $parent */
@@ -2824,7 +2824,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $parentUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $parentUid = (int)$connection->lastInsertId();
         \assert($parentUid > 0);
 
         /** @var TestingModel $parent */
@@ -2850,10 +2850,10 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $parentUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $parentUid = (int)$connection->lastInsertId();
         \assert($parentUid > 0);
         $connection->insert('tx_oelib_test', ['pid' => 0]);
-        $childUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid = (int)$connection->lastInsertId();
         \assert($childUid > 0);
 
         /** @var TestingModel $parent */
@@ -2882,13 +2882,13 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $parentUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $parentUid = (int)$connection->lastInsertId();
         \assert($parentUid > 0);
         $connection->insert('tx_oelib_test', ['pid' => 0]);
-        $childUid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid1 = (int)$connection->lastInsertId();
         \assert($childUid1 > 0);
         $connection->insert('tx_oelib_test', ['pid' => 0]);
-        $childUid2 = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid2 = (int)$connection->lastInsertId();
         \assert($childUid2 > 0);
 
         /** @var TestingModel $parent */
@@ -2919,10 +2919,10 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $parentUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $parentUid = (int)$connection->lastInsertId();
         \assert($parentUid > 0);
         $connection->insert('tx_oelib_test', ['pid' => 0]);
-        $childUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid = (int)$connection->lastInsertId();
         \assert($childUid > 0);
 
         $parent = $this->subject->find($parentUid);
@@ -2951,13 +2951,13 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $parentUid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $parentUid1 = (int)$connection->lastInsertId();
         \assert($parentUid1 > 0);
         $connection->insert('tx_oelib_test', ['pid' => 0]);
-        $parentUid2 = (int)$connection->lastInsertId('tx_oelib_test');
+        $parentUid2 = (int)$connection->lastInsertId();
         \assert($parentUid2 > 0);
         $connection->insert('tx_oelib_test', ['pid' => 0]);
-        $childUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $childUid = (int)$connection->lastInsertId();
         \assert($childUid > 0);
 
         $parent1 = $this->subject->find($parentUid1);
@@ -3083,7 +3083,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         /** @var TestingModel $model */
         $model = $this->subject->find($uid);
@@ -3105,7 +3105,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid1 = (int)$connection->lastInsertId();
         \assert($uid1 > 0);
         /** @var TestingModel $model1 */
         $model1 = $this->subject->find($uid1);
@@ -3114,7 +3114,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $this->subject->save($model1);
 
         $connection->insert('tx_oelib_test', ['title' => 'Earl Grey']);
-        $uid2 = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid2 = (int)$connection->lastInsertId();
         \assert($uid2 > 0);
         /** @var TestingModel $model2 */
         $model2 = $this->subject->find($uid2);
@@ -3151,7 +3151,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => 'Earl Grey']);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         self::assertSame(
@@ -3211,7 +3211,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $model = $this->subject->find($uid);
 
@@ -3243,7 +3243,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $model = $this->subject->find($uid);
 
@@ -3265,7 +3265,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $model = $this->subject->find($uid);
 
@@ -3285,12 +3285,12 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['composition' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $uid]);
 
-        $relatedUid = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $relatedUid = (int)$relationConnection->lastInsertId();
         \assert($relatedUid > 0);
 
         $this->subject->delete($this->subject->find($uid));
@@ -3313,7 +3313,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['composition' => 1]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $uid]);
@@ -3345,7 +3345,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         /** @var TestingModel $model */
         $model = $this->subject->find($uid);
@@ -3362,7 +3362,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $model = $this->subject->find($uid);
 
@@ -3380,11 +3380,11 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid1 = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid1 = (int)$connection->lastInsertId();
         \assert($uid1 > 0);
         $model = $this->subject->find($uid1);
         $connection->insert('tx_oelib_test', ['pid' => 0]);
-        $uid2 = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid2 = (int)$connection->lastInsertId();
         \assert($uid2 > 0);
         $anotherModel = $this->subject->find($uid2);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
@@ -3404,14 +3404,14 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $model = $this->subject->find($uid);
         $mapper = $this->mapperRegistry->getByClassName(TestingChildMapper::class);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $model->getUid()]);
 
-        $relatedUid = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $relatedUid = (int)$relationConnection->lastInsertId();
         \assert($relatedUid > 0);
         $relatedModel = $mapper->find($relatedUid);
 
@@ -3431,7 +3431,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
         $model = $this->subject->find($uid);
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
@@ -3454,18 +3454,18 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['pid' => 0]);
 
-        $parentUid = (int)$connection->lastInsertId('tx_oelib_test');
+        $parentUid = (int)$connection->lastInsertId();
         \assert($parentUid > 0);
         $parentModel = $parentMapper->find($parentUid);
 
         $relationConnection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_testchild');
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $parentModel->getUid()]);
 
-        $childUid1 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $childUid1 = (int)$relationConnection->lastInsertId();
         \assert($childUid1 > 0);
         $relatedModel = $childMapper->find($childUid1);
         $relationConnection->insert('tx_oelib_testchild', ['parent' => $parentModel->getUid()]);
-        $childUid2 = (int)$relationConnection->lastInsertId('tx_oelib_testchild');
+        $childUid2 = (int)$relationConnection->lastInsertId();
         \assert($childUid2 > 0);
         $ignoredRelatedModel = $childMapper->find($childUid2);
 

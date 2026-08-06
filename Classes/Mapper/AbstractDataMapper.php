@@ -688,7 +688,7 @@ abstract class AbstractDataMapper
         } else {
             $tableName = $this->getTableName();
             $this->getConnection()->insert($tableName, $data);
-            $lastInsertId = (int)$this->getConnection()->lastInsertId($tableName);
+            $lastInsertId = (int)$this->getConnection()->lastInsertId();
             if ($lastInsertId <= 0) {
                 throw new \UnexpectedValueException('No last insert ID available.', 1_699_640_499);
             }

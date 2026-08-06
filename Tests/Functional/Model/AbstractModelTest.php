@@ -42,7 +42,7 @@ final class AbstractModelTest extends FunctionalTestCase
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
         $connection->insert('tx_oelib_test', ['title' => self::TEST_RECORD_TITLE]);
 
-        $uid = (int)$connection->lastInsertId('tx_oelib_test');
+        $uid = (int)$connection->lastInsertId();
 
         if ($uid <= 0) {
             throw new \RuntimeException('Could not create test record.', 1_699_653_383);

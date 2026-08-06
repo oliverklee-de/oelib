@@ -108,7 +108,7 @@ final class TestingFramework
         $connection = $this->connectionPool->getConnectionForTable($table);
         $connection->insert($table, $dataToInsert);
 
-        $uid = (int)$connection->lastInsertId($table);
+        $uid = (int)$connection->lastInsertId();
         \assert($uid > 0);
 
         return $uid;
@@ -509,7 +509,7 @@ final class TestingFramework
             $pageArguments,
             $frontEndUser,
         );
-        $frontEndController->set_no_cache('fake frontend', true);
+        $frontEndController->set_no_cache('fake frontend');
         $rootlineUtility = GeneralUtility::makeInstance(RootlineUtility::class, $pageUid);
         $rootline = $rootlineUtility->get();
         $frontEndController->rootLine = $rootline;
