@@ -66,7 +66,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
     /**
      * @return array<string, array{0: string|int|bool, 1: string}>
      */
-    public function stringDataProvider(): array
+    public static function stringDataProvider(): array
     {
         return [
             'empty string' => ['', ''],
@@ -127,7 +127,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
     /**
      * @return array<string, array{0: int|string|float|bool, 1: int}>
      */
-    public function integerDataProvider(): array
+    public static function integerDataProvider(): array
     {
         return [
             'zero' => [0, 0],
@@ -420,7 +420,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
     /**
      * @return array<string, array{0: bool|int|string, 1: bool}>
      */
-    public function booleanDataProvider(): array
+    public static function booleanDataProvider(): array
     {
         return [
             'boolean false' => [false, false],
@@ -473,7 +473,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
     /**
      * @return array<string, array{0: float|string|int|bool, 1: float}>
      */
-    public function floatDataProvider(): array
+    public static function floatDataProvider(): array
     {
         return [
             'zero float' => [0.0, 0.0],

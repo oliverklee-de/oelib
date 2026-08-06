@@ -75,7 +75,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
     /**
      * @return array<string, array{0: list<mixed>|positive-int}>
      */
-    public function nonStringSettingDataProvider(): array
+    public static function nonStringSettingDataProvider(): array
     {
         return [
             'array' => [[]],
