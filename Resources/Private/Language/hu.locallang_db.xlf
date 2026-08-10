@@ -5,23 +5,23 @@
     <body>
       <trans-unit id="tx_oelib_domain_model_germanzipcode">
         <source>German ZIP codes</source>
-        <target state="needs-translation">German ZIP codes</target>
+        <target state="translated">Német irányítószámok</target>
       </trans-unit>
       <trans-unit id="tx_oelib_domain_model_germanzipcode.zip_code">
         <source>ZIP code</source>
-        <target state="needs-translation">ZIP code</target>
+        <target state="translated">Irányítószám</target>
       </trans-unit>
       <trans-unit id="tx_oelib_domain_model_germanzipcode.city_name">
         <source>City</source>
-        <target state="needs-translation">City</target>
+        <target state="translated">Város</target>
       </trans-unit>
       <trans-unit id="tx_oelib_domain_model_germanzipcode.longitude">
         <source>Longitude</source>
-        <target state="needs-translation">Longitude</target>
+        <target state="translated">Hosszúság</target>
       </trans-unit>
       <trans-unit id="tx_oelib_domain_model_germanzipcode.latitude">
         <source>Latitude</source>
-        <target state="needs-translation">Latitude</target>
+        <target state="translated">Szélesség</target>
       </trans-unit>
     </body>
   </file>
