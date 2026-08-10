@@ -5,7 +5,7 @@
     <body>
       <trans-unit id="validationError.fillInField">
         <source>Please fill in this field.</source>
-        <target state="needs-translation">Please fill in this field.</target>
+        <target state="translated">Kérjük, töltse ki ezt a mezőt.</target>
       </trans-unit>
     </body>
   </file>
