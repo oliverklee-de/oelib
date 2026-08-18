@@ -23,7 +23,7 @@ class ConfigurationRegistry
      */
     private array $configurations = [];
 
-    public function __construct(private BackendConfigurationManager $backendConfigurationManager) {}
+    public function __construct(private readonly BackendConfigurationManager $backendConfigurationManager) {}
 
     /**
      * Destructs a configuration for a given namespace and drops the reference to it.

@@ -41,7 +41,7 @@ abstract class AbstractDataMapper
     /**
      * @var IdentityMap a map that holds the models that already have been retrieved
      */
-    private IdentityMap $map;
+    private readonly IdentityMap $map;
 
     /**
      * @var array<positive-int, true> UIDs of models that are memory-only models that must not be saved,
