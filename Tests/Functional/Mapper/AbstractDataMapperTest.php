@@ -13,6 +13,9 @@ use OliverKlee\Oelib\Tests\Unit\Mapper\Fixtures\TestingChildMapper;
 use OliverKlee\Oelib\Tests\Unit\Mapper\Fixtures\TestingMapper;
 use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingChildModel;
 use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingModel;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\DateTimeAspect;
 use TYPO3\CMS\Core\Database\ConnectionPool;
@@ -47,9 +50,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     // Tests concerning load
 
-    /**
-     * @test
-     */
+    #[Test]
     public function loadWithModelWithExistingUidFillsModelWithData(): void
     {
         $title = 'Assassin of Kings';
@@ -69,9 +70,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     // Tests concerning find
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findWithUidOfExistingRecordReturnsModelDataFromDatabase(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -89,9 +88,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     // Tests concerning getModel
     //////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModelForNonMappedUidReturnsModelInstance(): void
     {
         self::assertInstanceOf(
@@ -100,9 +97,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModelForNonMappedUidReturnsLoadedModel(): void
     {
         self::assertTrue(
@@ -110,9 +105,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModelForMappedUidOfGhostReturnsModelInstance(): void
     {
         $mappedUid = $this->subject->getNewGhost()->getUid();
@@ -123,9 +116,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModelForMappedUidOfGhostReturnsLoadedModel(): void
     {
         $mappedUid = $this->subject->getNewGhost()->getUid();
@@ -135,9 +126,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModelForMappedUidOfGhostReturnsLoadedModelWithTheProvidedData(): void
     {
         $mappedModel = $this->subject->getNewGhost();
@@ -150,9 +139,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModelForMappedUidOfGhostReturnsThatModel(): void
     {
         $mappedModel = $this->subject->getNewGhost();
@@ -163,9 +150,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModelForMappedUidOfLoadedModelReturnsThatModelInstance(): void
     {
         $mappedModel = $this->subject->getNewGhost();
@@ -177,9 +162,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModelForMappedUidOfLoadedModelAndNoNewDataProvidedReturnsModelWithTheInitialData(): void
     {
         $mappedModel = $this->subject->getNewGhost();
@@ -193,9 +176,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModelForMappedUidOfLoadedModelAndNewDataProvidedReturnsModelWithTheInitialData(): void
     {
         $mappedModel = $this->subject->getNewGhost();
@@ -209,9 +190,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModelForMappedUidOfDeadModelReturnsDeadModel(): void
     {
         $mappedModel = $this->subject->getNewGhost();
@@ -222,9 +201,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModelForNonMappedUidReturnsModelWithChildrenList(): void
     {
         /** @var TestingModel $model */
@@ -235,9 +212,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModelSavesModelToCacheByKeys(): void
     {
         $model = $this->subject->getModel(['uid' => 2]);
@@ -252,9 +227,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     // Tests concerning getListOfModels
     /////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getListOfModelsReturnsInstanceOfList(): void
     {
         self::assertInstanceOf(
@@ -263,9 +236,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getListOfModelsForAnEmptyArrayProvidedReturnsEmptyList(): void
     {
         self::assertTrue(
@@ -273,25 +244,19 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getListOfModelsForOneRecordsProvidedReturnsListWithOneElement(): void
     {
         self::assertCount(1, $this->subject->getListOfModels([['uid' => 1]]));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getListOfModelsForTwoRecordsProvidedReturnsListWithTwoElements(): void
     {
         self::assertCount(2, $this->subject->getListOfModels([['uid' => 1], ['uid' => 2]]));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getListOfModelsReturnsListOfModelInstances(): void
     {
         self::assertInstanceOf(
@@ -300,9 +265,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getListOfModelsReturnsListOfModelWithProvidedTitle(): void
     {
         /** @var Collection<TestingModel> $models */
@@ -315,9 +278,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     // Tests concerning load and reload
 
-    /**
-     * @test
-     */
+    #[Test]
     public function loadWithModelWithExistingUidOfHiddenRecordMarksModelAsLoaded(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -336,9 +297,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function loadForModelWithExistingUidMarksModelAsClean(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -357,9 +316,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function loadCanReadFloatDataFromFloatColumn(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -379,9 +336,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function loadCanReadFloatDataFromDecimalColumn(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -401,9 +356,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function loadCanReadFloatDataFromStringColumn(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -427,9 +380,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     // Tests concerning the model states
     //////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAndAccessingDataLoadsModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -447,9 +398,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isHiddenOnGhostInDatabaseLoadsModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -466,9 +415,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isHiddenOnGhostNotInDatabaseThrowsException(): void
     {
         $this->expectException(NotFoundException::class);
@@ -478,9 +425,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $this->subject->find(1)->isHidden();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function loadWithModelWithExistingUidLoadsModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -499,9 +444,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function loadWithModelWithInexistentUidMarksModelAsDead(): void
     {
         $model = new TestingModel();
@@ -518,9 +461,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     // Tests concerning existsModel
     /////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsModelForUidOfLoadedModelReturnsTrue(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -536,9 +477,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsModelForUidOfNotLoadedModelInDatabaseReturnsTrue(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -552,9 +491,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsModelForInexistentUidReturnsFalse(): void
     {
         self::assertFalse(
@@ -562,9 +499,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsModelForGhostModelWithInexistentUidReturnsFalse(): void
     {
         $uid = 1;
@@ -575,9 +510,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsModelForExistingUidLoadsModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -593,9 +526,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsModelForExistentUidOfHiddenRecordReturnsFalse(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -609,9 +540,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsModelForExistentUidOfHiddenRecordAndHiddenBeingAllowedReturnsTrue(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -625,9 +554,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsModelForExistentUidOfLoadedHiddenRecordAndHiddenNotBeingAllowedReturnsFalse(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -643,9 +570,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsModelForExistentUidOfLoadedHiddenRecordAndHiddenBeingAllowedReturnsTrue(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -661,9 +586,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsModelForExistentUidOfLoadedNonHiddenRecordAndHiddenBeingAllowedReturnsTrue(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -679,9 +602,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsModelForExistentUidOfHiddenAfterLoadingAsNonHiddenAndHiddenBeingAllowedReturnsTrue(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -701,9 +622,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     // Tests concerning getLoadedTestingModel
     ///////////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLoadedTestingModelReturnsModel(): void
     {
         self::assertInstanceOf(
@@ -712,9 +631,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLoadedTestingModelReturnsLoadedModel(): void
     {
         self::assertTrue(
@@ -722,9 +639,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLoadedTestingModelReturnsModelWithUid(): void
     {
         self::assertTrue(
@@ -732,9 +647,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLoadedTestingModelCreatesRegisteredModel(): void
     {
         $model = $this->subject->getLoadedTestingModel([]);
@@ -747,9 +660,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLoadedTestingModelSetsTheProvidedData(): void
     {
         /** @var TestingModel $model */
@@ -763,9 +674,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLoadedTestingModelCreatesRelations(): void
     {
         $relatedModel = $this->subject->getNewGhost();
@@ -782,9 +691,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     // Tests concerning the foreign key mapping
     /////////////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function relatedRecordWithZeroUidIsNull(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -800,9 +707,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function relatedRecordWithExistingUidReturnsRelatedRecord(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -823,9 +728,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertSame($friendUid, $friend->getUid());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function relatedRecordWithRelationToSelfReturnsSelf(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -844,9 +747,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function relatedRecordWithExistingUidCanReturnOtherModelType(): void
     {
         $usersConnection = $this->getConnectionPool()->getConnectionForTable('fe_users');
@@ -869,9 +770,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function relatedRecordWithExistingUidReturnsRelatedRecordThatCanBeLoaded(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -893,9 +792,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertTrue($friend->isLoaded());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function relatedRecordWithInexistentUidReturnsRelatedRecordAsGhost(): void
     {
         $friendUid = 2;
@@ -915,9 +812,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     // Tests concerning the m:n mapping with a comma-separated list of UIDs
 
-    /**
-     * @test
-     */
+    #[Test]
     public function commaSeparatedRelationsWithEmptyStringCreatesEmptyList(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -933,9 +828,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function commaSeparatedRelationsWithOneUidReturnsListWithRelatedModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -956,9 +849,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function commaSeparatedRelationsWithTwoUidsReturnsListWithBothRelatedModels(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -982,9 +873,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function commaSeparatedRelationsWithOneUidAndZeroIgnoresZero(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1004,9 +893,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function commaSeparatedRelationHasParentModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1024,9 +911,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function commaSeparatedRelationIsNotOwnedByParent(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1047,9 +932,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     // Tests concerning the m:n mapping using an m:n table
     ////////////////////////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mnRelationsWithEmptyStringCreatesEmptyList(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1065,9 +948,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mnRelationsWithOneRelatedModelReturnsListWithRelatedModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1089,9 +970,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mnRelationsWithTwoRelatedModelsReturnsListWithBothRelatedModels(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1117,9 +996,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mnRelationsReturnsListSortedBySorting(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1151,9 +1028,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mnRelationHasParentModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1171,9 +1046,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mnRelationIsNotOwnedByParent(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1194,9 +1067,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     // Tests concerning the bidirectional m:n mapping using an m:n table.
     ///////////////////////////////////////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function bidirectionalMNRelationsWithEmptyStringCreatesEmptyList(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1212,9 +1083,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function bidirectionalMNRelationsWithOneRelatedModelReturnsListWithRelatedModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1236,9 +1105,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function bidirectionalMNRelationsWithTwoRelatedModelsReturnsListWithBothRelatedModels(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1264,9 +1131,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function bidirectionalMNRelationsReturnsListSortedByUid(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1292,9 +1157,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function bidirectionalMnRelationHasParentModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1312,9 +1175,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function bidirectionalMnRelationIsNotOwnedByParent(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1335,9 +1196,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     // Tests concerning the 1:n mapping using a foreign field.
     ////////////////////////////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function oneToManyRelationsWithEmptyStringCreatesEmptyList(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1353,9 +1212,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function oneToManyRelationsWithOneRelatedModelReturnsListWithRelatedModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1377,9 +1234,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function oneToManyRelationsCanSortByForeignSortBy(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1401,9 +1256,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertSame($relatedUid2 . ',' . $relatedUid1, $model->getComposition()->getUids());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function oneToManyRelationsCanSortByForeignDefaultSortBy(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1423,9 +1276,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertSame($relatedUid2 . ',' . $relatedUid1, $model->getComposition2()->getUids());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function oneToManyRelationWithoutSortingDoesNotCrash(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1444,9 +1295,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertSame((string)$relatedUid, $model->getCompositionWithoutSorting()->getUids());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function oneToManyRelationsWithOneRelatedModelNotLoadsDeletedModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1463,9 +1312,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertTrue($model->getComposition()->isEmpty());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function oneToManyRelationsWithTwoRelatedModelsReturnsListWithBothRelatedModels(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1490,9 +1337,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function oneToManyRelationsReturnsListSortedByForeignSortBy(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1517,9 +1362,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function oneToManyRelationHasParentModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1537,9 +1380,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function oneToManyRelationIsOwnedByParent(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1558,9 +1399,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     // Tests concerning n:1 association mapping
 
-    /**
-     * @test
-     */
+    #[Test]
     public function relatedRecordWithExistingUidReturnsRelatedRecordWithData(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1582,9 +1421,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     // Tests concerning the m:n mapping with a comma-separated list of UIDs
 
-    /**
-     * @test
-     */
+    #[Test]
     public function commaSeparatedRelationsWithOneUidReturnsListWithRelatedModelWithData(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1603,11 +1440,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertSame($childTitle, $firstChild->getTitle());
     }
 
-    /**
-     * @test
-     *
-     * @doesNotPerformAssertions
-     */
+    #[Test]
+    #[DoesNotPerformAssertions]
     public function silentlyIgnoresCommaSeparatedOneToManyRelationWithZeroForeignUid(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1624,9 +1458,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     // Tests concerning the m:n mapping using an m:n table
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mnRelationsWithOneRelatedModelReturnsListWithRelatedModelWithData(): void
     {
         $relatedTitle = 'Geralt of Rivia';
@@ -1648,11 +1480,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertSame($relatedTitle, $firstRelatedModel->getTitle());
     }
 
-    /**
-     * @test
-     *
-     * @doesNotPerformAssertions
-     */
+    #[Test]
+    #[DoesNotPerformAssertions]
     public function silentlyIgnoresManyToManyRelationWithZeroForeignUid(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1671,9 +1500,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     // Tests concerning the bidirectional m:n mapping using an m:n table.
 
-    /**
-     * @test
-     */
+    #[Test]
     public function bidirectionalMNRelationsWithOneRelatedModelReturnsListWithRelatedModelWithData(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1694,9 +1521,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     // Tests concerning the 1:n mapping using a foreign field.
 
-    /**
-     * @test
-     */
+    #[Test]
     public function oneToManyRelationsWithOneRelatedModelReturnsListWithRelatedModelWithData(): void
     {
         $relatedTitle = 'Triss Merrigold';
@@ -1717,9 +1542,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     // Tests concerning findSingleByWhereClause().
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findSingleByWhereClauseWithUidOfInexistentRecordThrowsException(): void
     {
         $this->expectException(NotFoundException::class);
@@ -1731,9 +1554,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findSingleByWhereClauseWithUidOfExistentNotMappedRecordReturnsModelWithTheData(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1747,9 +1568,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findSingleByWhereClauseWithUidOfExistentYetMappedRecordReturnsModelWithTheMappedData(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1772,14 +1591,11 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     //////////////////////////////////////////////
     // Tests concerning disabled database access
     //////////////////////////////////////////////
-
     ////////////////////////////
     // Tests concerning save()
     ////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForGhostDoesNotCommitModelToDatabase(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1799,9 +1615,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForDeadModelDoesNotCommitDirtyModelToDatabase(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1823,9 +1637,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForCleanLoadedModelDoesNotCommitModelToDatabase(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1847,9 +1659,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForDirtyLoadedModelWithUidCommitsModelToDatabase(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -1870,9 +1680,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function savePersistsStringDataTypes(): void
     {
         $model = new TestingModel();
@@ -1906,11 +1714,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider floatDataTypeDataProvider
-     */
+    #[Test]
+    #[DataProvider('floatDataTypeDataProvider')]
     public function savePersistsFloatDataTypes(string $propertyName, string|float $expectedValue): void
     {
         $model = new TestingModel();
@@ -1938,9 +1743,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertEquals((float)$expectedValue, (float)$actualValue);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function savePersistsIntDataTypes(): void
     {
         $model = new TestingModel();
@@ -1972,11 +1775,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider boolDataTypeDataProvider
-     */
+    #[Test]
+    #[DataProvider('boolDataTypeDataProvider')]
     public function savePersistsBoolDataTypes(string $propertyName, int $expectedValue): void
     {
         $model = new TestingModel();
@@ -2001,9 +1801,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertSame($expectedValue, (int)$data[$propertyName]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForDirtyLoadedModelWithUidDoesNotChangeTheUid(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2024,9 +1822,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForDirtyLoadedModelWithUidSetsTimestamp(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2050,9 +1846,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForDirtyLoadedModelWithUidAndWithoutDataCommitsModelToDatabase(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2078,9 +1872,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveNewModelFromMemoryAndMapperInTestingModeMarksModelAsDummyModel(): void
     {
         $model = new TestingModel();
@@ -2096,9 +1888,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveNewModelFromMemoryRegistersModelInMapper(): void
     {
         $model = new TestingModel();
@@ -2115,9 +1905,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDirtyAfterSaveForDirtyLoadedModelWithUidReturnsFalse(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2137,9 +1925,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForDirtyLoadedModelWithoutUidAndWithoutRelationsCommitsModelToDatabase(): void
     {
         $model = new TestingModel();
@@ -2155,9 +1941,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForDirtyLoadedModelWithoutUidAndWithRelationsCommitsModelToDatabase(): void
     {
         $model = new TestingModel();
@@ -2177,9 +1961,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForDirtyLoadedModelWithoutUidAddsModelToMapAfterSave(): void
     {
         $model = new TestingModel();
@@ -2200,9 +1982,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForDirtyLoadedModelWithoutUidSetsUidForModel(): void
     {
         $model = new TestingModel();
@@ -2220,9 +2000,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForDirtyLoadedModelWithoutUidSetsUidReceivedFromDatabaseForModel(): void
     {
         $model = new TestingModel();
@@ -2242,9 +2020,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDirtyAfterSaveForDirtyLoadedModelWithoutUidReturnsFalse(): void
     {
         $model = new TestingModel();
@@ -2262,9 +2038,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForDirtyLoadedModelWithoutUidSetsTimestamp(): void
     {
         $model = new TestingModel();
@@ -2287,9 +2061,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForDirtyLoadedModelWithoutUidSetsCreationDate(): void
     {
         $model = new TestingModel();
@@ -2312,9 +2084,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForDirtyLoadedModelWithNoDataDoesNotCommitModelToDatabase(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2345,9 +2115,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDeadAfterSaveForDirtyLoadedModelWithDeletedFlagSetReturnsTrue(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2368,9 +2136,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWithN1RelationSavesUidOfRelatedRecord(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2393,9 +2159,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWithMNCommaSeparatedRelationSavesUidList(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2421,9 +2185,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWithMNTableRelationSavesNumberOfRelatedRecords(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2453,9 +2215,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWithOneToManyRelationSavesNumberOfRelatedRecords(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2488,9 +2248,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWithOneToManyRelationSavesDirtyRelatedRecord(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2524,9 +2282,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWith1NRelationSavesFirstNewRelatedRecord(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2555,9 +2311,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWith1NRelationSavesSecondNewRelatedRecord(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2590,9 +2344,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWith1NRelationSavesNewRelatedRecordWithPrefixInForeignKey(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2621,9 +2373,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWithOneToManyRelationDeletesUnconnectedRecord(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2659,9 +2409,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertSame(1, (int)$row['count']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWithN1RelationSavesDirtyRelatedRecord(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2687,9 +2435,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWithN1RelationSavesNewRelatedRecord(): void
     {
         $friend = new TestingModel();
@@ -2712,9 +2458,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWithMNCommaSeparatedRelationSavesDirtyRelatedRecord(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2743,9 +2487,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveAddsModelToCache(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2767,9 +2509,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addModelToListMarksParentModelAsDirty(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2789,9 +2529,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function appendListMarksParentModelAsDirty(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2814,9 +2552,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function purgeModelFromListMarksModelAsDirty(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2840,9 +2576,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
 
     // Tests concerning save
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWithMNTableRelationCreatesIntermediateRelationRecord(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2872,9 +2606,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWithMNTableRelationsCreatesIntermediateRelationRecordAndIncrementsSorting(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2909,9 +2641,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWithBidirectionalMNRelationCreatesIntermediateRelationRecord(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2941,9 +2671,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveForModelWithBidirectionalMNRelationCreatesIntermediateRelationRecordAndIncrementsSorting(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -2978,9 +2706,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveCanSaveFloatDataToFloatColumn(): void
     {
         $model = new TestingModel();
@@ -2992,9 +2718,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertSame('9.5', rtrim((string)$row['float_data'], '0'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveCanSaveFloatDataToDecimalColumn(): void
     {
         $model = new TestingModel();
@@ -3006,9 +2730,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertSame('9.5', rtrim((string)$row['decimal_data'], '0'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function saveCanSaveFloatDataToStringColumn(): void
     {
         $model = new TestingModel();
@@ -3040,9 +2762,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     // Tests concerning additional keys
     /////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByKeyFindsLoadedModel(): void
     {
         $model = $this->subject->getLoadedTestingModel(
@@ -3055,9 +2775,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByKeyFindsLastLoadedModelWithSameKey(): void
     {
         $this->subject->getLoadedTestingModel(
@@ -3073,9 +2791,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByKeyFindsSavedModel(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -3095,9 +2811,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByKeyFindsLastSavedModelWithSameKey(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -3126,9 +2840,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findOneByKeyCanFindModelFromCache(): void
     {
         $model = $this->subject->getLoadedTestingModel(
@@ -3141,9 +2853,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findOneByKeyCanLoadModelFromDatabase(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -3158,9 +2868,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findOneByKeyForInexistentThrowsException(): void
     {
         $this->expectException(NotFoundException::class);
@@ -3174,11 +2882,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     // Tests concerning delete
     ////////////////////////////
 
-    /**
-     * @test
-     *
-     * @doesNotPerformAssertions
-     */
+    #[Test]
+    #[DoesNotPerformAssertions]
     public function deleteForDeadModelDoesNotThrowException(): void
     {
         $model = new TestingModel();
@@ -3187,9 +2892,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $this->subject->delete($model);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteForModelWithoutUidMarksModelAsDead(): void
     {
         $model = new TestingModel();
@@ -3201,9 +2904,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteForModelWithUidMarksModelAsDead(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -3220,9 +2921,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteForGhostFromGetNewGhostThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -3233,9 +2932,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $this->subject->delete($model);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteForModelWithUidWritesModelAsDeletedToDatabase(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -3255,9 +2952,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertSame(1, (int)$row['count']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteForModelWithUidStillKeepsModelAccessibleViaDataMapper(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -3275,9 +2970,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deleteForModelWithOneToManyRelationDeletesRelatedElements(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -3301,11 +2994,8 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertSame(1, (int)$row['count']);
     }
 
-    /**
-     * @test
-     *
-     * @doesNotPerformAssertions
-     */
+    #[Test]
+    #[DoesNotPerformAssertions]
     public function deleteForDirtyModelWithOneToManyRelationToDirtyElementDoesNotCrash(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -3331,9 +3021,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     // Tests concerning findAllByRelation
     ///////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAllByRelationWithEmptyKeyThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -3352,9 +3040,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         $this->mapperRegistry->getByClassName(TestingChildMapper::class)->findAllByRelation($model, '');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAllByRelationForNoMatchesReturnsEmptyList(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -3370,9 +3056,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAllByRelationNotReturnsNotMatchingRecords(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -3394,9 +3078,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAllByRelationCanReturnOneMatch(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -3421,9 +3103,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAllByRelationCanReturnTwoMatches(): void
     {
         $connection = $this->getConnectionPool()->getConnectionForTable('tx_oelib_test');
@@ -3441,9 +3121,7 @@ final class AbstractDataMapperTest extends FunctionalTestCase
         self::assertCount(2, $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findAllByRelationIgnoresIgnoreList(): void
     {
         $childMapper = $this->mapperRegistry->getByClassName(TestingChildMapper::class);

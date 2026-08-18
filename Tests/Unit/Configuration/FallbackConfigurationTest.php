@@ -7,6 +7,7 @@ namespace OliverKlee\Oelib\Tests\Unit\Configuration;
 use OliverKlee\Oelib\Configuration\DummyConfiguration;
 use OliverKlee\Oelib\Configuration\FallbackConfiguration;
 use OliverKlee\Oelib\Interfaces\Configuration;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -14,9 +15,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class FallbackConfigurationTest extends UnitTestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function implementsConfiguration(): void
     {
         $subject = new FallbackConfiguration(new DummyConfiguration(), new DummyConfiguration());
@@ -24,9 +23,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertInstanceOf(Configuration::class, $subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasSourceNameFromBothConfigurations(): void
     {
         $primarySourceName = 'primary';
@@ -43,9 +40,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($expected, $subject->getSourceName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsStringForBothEmptyStringReturnsEmptyString(): void
     {
         $key = 'something';
@@ -56,9 +51,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame('', $subject->getAsString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsStringForBothNonEmptyReturnsValueFromPrimary(): void
     {
         $key = 'something';
@@ -71,9 +64,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($primaryValue, $subject->getAsString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsStringForPrimaryNonEmptyAndSecondaryEmptyReturnsValueFromPrimary(): void
     {
         $key = 'something';
@@ -86,9 +77,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($primaryValue, $subject->getAsString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsStringForPrimaryEmptyAndSecondaryNonEmptyReturnsValueFromSecondary(): void
     {
         $key = 'something';
@@ -101,9 +90,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($secondaryValue, $subject->getAsString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasStringForBothEmptyStringReturnsFalse(): void
     {
         $key = 'something';
@@ -114,9 +101,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertFalse($subject->hasString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasStringForBothNonEmptyReturnsTrue(): void
     {
         $key = 'something';
@@ -127,9 +112,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertTrue($subject->hasString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasStringForPrimaryNonEmptyAndSecondaryEmptyReturnsTrue(): void
     {
         $key = 'something';
@@ -140,9 +123,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertTrue($subject->hasString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasStringForPrimaryEmptyAndSecondaryNonEmptyReturnsTrue(): void
     {
         $key = 'something';
@@ -153,9 +134,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertTrue($subject->hasString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsIntegerForBothZeroReturnsZero(): void
     {
         $key = 'something';
@@ -166,9 +145,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame(0, $subject->getAsInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsIntegerForBothNonZeroReturnsValueFromPrimary(): void
     {
         $key = 'something';
@@ -181,9 +158,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($primaryValue, $subject->getAsInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsIntegerForPrimaryNonZeroAndSecondaryZeroReturnsValueFromPrimary(): void
     {
         $key = 'something';
@@ -196,9 +171,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($primaryValue, $subject->getAsInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsIntegerForPrimaryZeroAndSecondaryNonZeroReturnsValueFromSecondary(): void
     {
         $key = 'something';
@@ -211,9 +184,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($secondaryValue, $subject->getAsInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasIntegerForBothZeroReturnsFalse(): void
     {
         $key = 'something';
@@ -224,9 +195,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertFalse($subject->hasInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasIntegerForBothNonZeroReturnsTrue(): void
     {
         $key = 'something';
@@ -237,9 +206,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertTrue($subject->hasInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasIntegerForPrimaryNonZeroAndSecondaryZeroReturnsTrue(): void
     {
         $key = 'something';
@@ -250,9 +217,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertTrue($subject->hasInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasIntegerForPrimaryZeroAndSecondaryNonZeroReturnsTrue(): void
     {
         $key = 'something';
@@ -263,9 +228,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertTrue($subject->hasInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsNonNegativeIntegerForBothZeroReturnsZero(): void
     {
         $key = 'something';
@@ -276,9 +239,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame(0, $subject->getAsNonNegativeInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsNonNegativeIntegerForBothPositiveReturnsValueFromPrimary(): void
     {
         $key = 'something';
@@ -291,9 +252,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($primaryValue, $subject->getAsNonNegativeInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsNonNegativeIntegerForPrimaryPositiveAndSecondaryZeroReturnsValueFromPrimary(): void
     {
         $key = 'something';
@@ -306,9 +265,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($primaryValue, $subject->getAsNonNegativeInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsNonNegativeIntegerForPrimaryPositiveAndSecondaryNegativeReturnsValueFromPrimary(): void
     {
         $key = 'something';
@@ -321,9 +278,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($primaryValue, $subject->getAsNonNegativeInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsNonNegativeIntegerForPrimaryZeroAndSecondaryPositiveReturnsValueFromSecondary(): void
     {
         $key = 'something';
@@ -336,9 +291,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($secondaryValue, $subject->getAsNonNegativeInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsNonNegativeIntegerForPrimaryNegativeAndSecondaryPositiveThrowsException(): void
     {
         $key = 'something';
@@ -355,9 +308,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         $subject->getAsNonNegativeInteger($key);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsNonNegativeIntegerForBothNegativeThrowsException(): void
     {
         $key = 'something';
@@ -374,9 +325,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         $subject->getAsNonNegativeInteger($key);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsNonNegativeIntegerForPrimaryZeroAndSecondaryNegativeThrowsException(): void
     {
         $key = 'something';
@@ -393,9 +342,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         $subject->getAsNonNegativeInteger($key);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsPositiveIntegerForBothZeroThrowsException(): void
     {
         $key = 'something';
@@ -410,9 +357,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         $subject->getAsPositiveInteger($key);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsPositiveIntegerForBothPositiveReturnsValueFromPrimary(): void
     {
         $key = 'something';
@@ -425,9 +370,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($primaryValue, $subject->getAsPositiveInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsPositiveIntegerForPrimaryPositiveAndSecondaryZeroReturnsValueFromPrimary(): void
     {
         $key = 'something';
@@ -440,9 +383,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($primaryValue, $subject->getAsPositiveInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsPositiveIntegerForPrimaryPositiveAndSecondaryNegativeReturnsValueFromPrimary(): void
     {
         $key = 'something';
@@ -455,9 +396,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($primaryValue, $subject->getAsPositiveInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsPositiveIntegerForPrimaryNegativeAndSecondaryPositiveThrowsException(): void
     {
         $key = 'something';
@@ -474,9 +413,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         $subject->getAsPositiveInteger($key);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsPositiveIntegerForPrimaryZeroAndSecondaryNegativeThrowsException(): void
     {
         $key = 'something';
@@ -493,9 +430,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         $subject->getAsPositiveInteger($key);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsPositiveIntegerForPrimaryZeroAndSecondaryPositiveReturnsValueFromSecondary(): void
     {
         $key = 'something';
@@ -508,9 +443,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame($secondaryValue, $subject->getAsPositiveInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsBooleanForBothFalseReturnsFalse(): void
     {
         $key = 'something';
@@ -521,9 +454,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertFalse($subject->getAsBoolean($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsBooleanForBothTrueReturnsTrue(): void
     {
         $key = 'something';
@@ -534,9 +465,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertTrue($subject->getAsBoolean($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsBooleanForPrimaryTrueAndSecondaryFalseReturnsTrue(): void
     {
         $key = 'something';
@@ -547,9 +476,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertTrue($subject->getAsBoolean($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsBooleanForPrimaryFalseAndSecondaryTrueReturnsTrue(): void
     {
         $key = 'something';
@@ -560,9 +487,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertTrue($subject->getAsBoolean($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsTrimmedArrayForBothEmptyArrayReturnsEmptyArray(): void
     {
         $key = 'something';
@@ -573,9 +498,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame([], $subject->getAsTrimmedArray($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsTrimmedArrayForBothNonEmptyReturnsValueFromPrimary(): void
     {
         $key = 'something';
@@ -588,9 +511,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame([$primaryValue], $subject->getAsTrimmedArray($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsTrimmedArrayForPrimaryNonEmptyAndSecondaryEmptyReturnsValueFromPrimary(): void
     {
         $key = 'something';
@@ -603,9 +524,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame([$primaryValue], $subject->getAsTrimmedArray($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsTrimmedArrayForPrimaryEmptyAndSecondaryNonEmptyReturnsValueFromSecondary(): void
     {
         $key = 'something';
@@ -618,9 +537,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame([$secondaryValue], $subject->getAsTrimmedArray($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsTrimmedArrayTrimsValues(): void
     {
         $key = 'something';
@@ -633,9 +550,7 @@ final class FallbackConfigurationTest extends UnitTestCase
         self::assertSame([$primaryValue], $subject->getAsTrimmedArray($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsTrimmedArrayExplodesValues(): void
     {
         $key = 'something';

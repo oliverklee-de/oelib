@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace OliverKlee\Oelib\Tests\Functional\ViewHelpers;
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 use TYPO3Fluid\Fluid\Core\Parser\Exception as FluidParserException;
@@ -46,9 +48,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
             . $html . '</html>';
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForMissingSettingsThrowsException(): void
     {
         $this->expectException(\UnexpectedValueException::class);
@@ -58,9 +58,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         $this->renderViewHelper('<oelib:isFieldEnabled fieldName="foo"/>');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForMissingSettingNameInSettingsThrowsException(): void
     {
         $this->expectException(\UnexpectedValueException::class);
@@ -84,12 +82,10 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
     }
 
     /**
-     * @test
-     *
      * @param array{}|positive-int $value
-     *
-     * @dataProvider nonStringSettingDataProvider
      */
+    #[Test]
+    #[DataProvider('nonStringSettingDataProvider')]
     public function renderForNonStringSettingNameInSettingsThrowsException(int|array $value): void
     {
         $this->expectException(\UnexpectedValueException::class);
@@ -101,9 +97,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         $this->renderViewHelper('<oelib:isFieldEnabled fieldName="company"/>');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForMissingFieldNameThrowsException(): void
     {
         $this->expectException(FluidParserException::class);
@@ -115,9 +109,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         $this->renderViewHelper('<oelib:isFieldEnabled />');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForEmptyFieldNameThrowsException(): void
     {
         $this->expectExceptionCode(\InvalidArgumentException::class);
@@ -129,9 +121,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         $this->renderViewHelper('<oelib:isFieldEnabled fieldName=""/>');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForNonStringFieldNameThrowsException(): void
     {
         $this->expectExceptionCode(\InvalidArgumentException::class);
@@ -143,9 +133,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         $this->renderViewHelper('<oelib:isFieldEnabled fieldName="{0: 1}"/>');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForSingleRequestedFieldEnabledRendersThenChild(): void
     {
         $this->variableProvider->add('settings', ['fieldsToShow' => 'company']);
@@ -156,9 +144,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         self::assertStringContainsString('THEN', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForRequestedFieldEnabledWithOtherAfterRendersThenChild(): void
     {
         $this->variableProvider->add('settings', ['fieldsToShow' => 'company,name']);
@@ -169,9 +155,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         self::assertStringContainsString('THEN', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForRequestedFieldEnabledWithOtherBeforeRendersThenChild(): void
     {
         $this->variableProvider->add('settings', ['fieldsToShow' => 'name,company']);
@@ -182,9 +166,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         self::assertStringContainsString('THEN', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForOneOfTwoRequestedFieldsEnabledRendersThenChild(): void
     {
         $this->variableProvider->add('settings', ['fieldsToShow' => 'company']);
@@ -195,9 +177,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         self::assertStringContainsString('THEN', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForBothRequestedFieldsEnabledRendersThenChild(): void
     {
         $this->variableProvider->add('settings', ['fieldsToShow' => 'company,name']);
@@ -208,9 +188,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         self::assertStringContainsString('THEN', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForRequestedFieldNotEnabledRendersElseChild(): void
     {
         $this->variableProvider->add('settings', ['fieldsToShow' => 'company']);
@@ -221,9 +199,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         self::assertStringContainsString('ELSE', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForNoFieldEnabledRendersElseChild(): void
     {
         $this->variableProvider->add('settings', ['fieldsToShow' => '']);
@@ -234,9 +210,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         self::assertStringContainsString('ELSE', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderEscapesChildren(): void
     {
         $this->variableProvider->add('settings', ['fieldsToShow' => 'company,name']);
@@ -247,9 +221,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         self::assertStringContainsString('a&amp;b', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForBothRequestedConfiguredFieldsEnabledRendersThenChild(): void
     {
         $this->variableProvider->add('settings', ['columns' => 'company,name']);
@@ -260,9 +232,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         self::assertStringContainsString('THEN', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForSingleRequestedConfiguredFieldEnabledRendersThenChild(): void
     {
         $this->variableProvider->add('settings', ['columns' => 'company']);
@@ -273,9 +243,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         self::assertStringContainsString('THEN', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForRequestedConfiguredFieldNotEnabledRendersElseChild(): void
     {
         $this->variableProvider->add('settings', ['columns' => 'company']);
@@ -286,9 +254,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         self::assertStringContainsString('ELSE', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForNonStringConfigurationKeyThrowsException(): void
     {
         $this->expectException(\UnexpectedValueException::class);
@@ -301,9 +267,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
         $this->renderViewHelper($html);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForEmptyConfigurationKeyThrowsException(): void
     {
         $this->expectException(\UnexpectedValueException::class);

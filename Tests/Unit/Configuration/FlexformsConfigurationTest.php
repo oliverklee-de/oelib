@@ -7,6 +7,8 @@ namespace OliverKlee\Oelib\Tests\Unit\Configuration;
 use OliverKlee\Oelib\Configuration\FlexformsConfiguration;
 use OliverKlee\Oelib\DataStructures\AbstractReadOnlyObjectWithPublicAccessors;
 use OliverKlee\Oelib\Interfaces\Configuration as ConfigurationInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
@@ -47,9 +49,7 @@ final class FlexformsConfigurationTest extends UnitTestCase
         return $contentObject;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function implementsConfigurationInterface(): void
     {
         $subject = new FlexformsConfiguration(new ContentObjectRenderer());
@@ -57,9 +57,7 @@ final class FlexformsConfigurationTest extends UnitTestCase
         self::assertInstanceOf(ConfigurationInterface::class, $subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isReadOnlyObjectWithPublicAccessors(): void
     {
         $subject = new FlexformsConfiguration(new ContentObjectRenderer());
@@ -67,9 +65,7 @@ final class FlexformsConfigurationTest extends UnitTestCase
         self::assertInstanceOf(AbstractReadOnlyObjectWithPublicAccessors::class, $subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasFlexformsName(): void
     {
         $subject = new FlexformsConfiguration(new ContentObjectRenderer());
@@ -106,11 +102,10 @@ final class FlexformsConfigurationTest extends UnitTestCase
     }
 
     /**
-     * @test
-     * @dataProvider noFlexformsDataDataProvider
-     *
      * @param array<array<string, string|array<string, mixed>|null>> $contentObjectData
      */
+    #[Test]
+    #[DataProvider('noFlexformsDataDataProvider')]
     public function getAsStringForNoFlexformsDataReturnsEmptyString(array $contentObjectData): void
     {
         $contentObject = new ContentObjectRenderer();
@@ -121,11 +116,10 @@ final class FlexformsConfigurationTest extends UnitTestCase
     }
 
     /**
-     * @test
-     * @dataProvider noFlexformsDataDataProvider
-     *
      * @param array<array<string, string|null>> $contentObjectData
      */
+    #[Test]
+    #[DataProvider('noFlexformsDataDataProvider')]
     public function getAsIntegerForNoFlexformsDataReturnsZero(array $contentObjectData): void
     {
         $contentObject = new ContentObjectRenderer();
@@ -136,11 +130,10 @@ final class FlexformsConfigurationTest extends UnitTestCase
     }
 
     /**
-     * @test
-     * @dataProvider noFlexformsDataDataProvider
-     *
      * @param array<array<string, string|null>> $contentObjectData
      */
+    #[Test]
+    #[DataProvider('noFlexformsDataDataProvider')]
     public function getAsBooleanForNoFlexformsDataReturnsFalse(array $contentObjectData): void
     {
         $contentObject = new ContentObjectRenderer();
@@ -172,12 +165,10 @@ final class FlexformsConfigurationTest extends UnitTestCase
     }
 
     /**
-     * @test
-     *
      * @param array<string, string> $contentObjectData
-     *
-     * @dataProvider noFieldsDataDataProvider
      */
+    #[Test]
+    #[DataProvider('noFieldsDataDataProvider')]
     public function getAsStringForMissingFieldReturnsEmptyString(array $contentObjectData): void
     {
         $contentObject = new ContentObjectRenderer();
@@ -188,12 +179,10 @@ final class FlexformsConfigurationTest extends UnitTestCase
     }
 
     /**
-     * @test
-     *
      * @param array<string, string> $contentObjectData
-     *
-     * @dataProvider noFieldsDataDataProvider
      */
+    #[Test]
+    #[DataProvider('noFieldsDataDataProvider')]
     public function getAsIntegerForMissingFieldReturnsZero(array $contentObjectData): void
     {
         $contentObject = new ContentObjectRenderer();
@@ -204,12 +193,10 @@ final class FlexformsConfigurationTest extends UnitTestCase
     }
 
     /**
-     * @test
-     *
      * @param array<string, string> $contentObjectData
-     *
-     * @dataProvider noFieldsDataDataProvider
      */
+    #[Test]
+    #[DataProvider('noFieldsDataDataProvider')]
     public function getAsBooleanForMissingFieldReturnsFalse(array $contentObjectData): void
     {
         $contentObject = new ContentObjectRenderer();
@@ -245,12 +232,10 @@ final class FlexformsConfigurationTest extends UnitTestCase
     }
 
     /**
-     * @test
-     *
      * @param array<string, string> $contentObjectData
-     *
-     * @dataProvider emptyFieldDataDataProvider
      */
+    #[Test]
+    #[DataProvider('emptyFieldDataDataProvider')]
     public function getAsStringForEmptyFieldReturnsEmptyString(array $contentObjectData): void
     {
         $contentObject = new ContentObjectRenderer();
@@ -261,12 +246,10 @@ final class FlexformsConfigurationTest extends UnitTestCase
     }
 
     /**
-     * @test
-     *
      * @param array<string, string> $contentObjectData
-     *
-     * @dataProvider emptyFieldDataDataProvider
      */
+    #[Test]
+    #[DataProvider('emptyFieldDataDataProvider')]
     public function getAsIntegerForEmptyFieldReturnsZero(array $contentObjectData): void
     {
         $contentObject = new ContentObjectRenderer();
@@ -277,12 +260,10 @@ final class FlexformsConfigurationTest extends UnitTestCase
     }
 
     /**
-     * @test
-     *
      * @param array<string, string> $contentObjectData
-     *
-     * @dataProvider emptyFieldDataDataProvider
      */
+    #[Test]
+    #[DataProvider('emptyFieldDataDataProvider')]
     public function getAsBooleanForEmptyFieldReturnsFalse(array $contentObjectData): void
     {
         $contentObject = new ContentObjectRenderer();
@@ -292,9 +273,7 @@ final class FlexformsConfigurationTest extends UnitTestCase
         self::assertFalse($subject->getAsBoolean('flavor'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsStringForExistingNonEmptyFieldInXmlReturnsValueFromField(): void
     {
         $key = 'flavor';
@@ -329,12 +308,10 @@ final class FlexformsConfigurationTest extends UnitTestCase
     }
 
     /**
-     * @test
-     *
      * @param array<string, array<string, array<string, array<string, array<string, array<string, mixed>>>>>> $data
-     *
-     * @dataProvider stringValueInArrayDataProvider
      */
+    #[Test]
+    #[DataProvider('stringValueInArrayDataProvider')]
     public function getAsStringForExistingNonEmptyFieldInArrayReturnsValueFromField(array $data): void
     {
         $subject = new FlexformsConfiguration($this->buildContentObjectWithArrayFlexformsData($data));
@@ -342,9 +319,7 @@ final class FlexformsConfigurationTest extends UnitTestCase
         self::assertSame('Clyde', $subject->getAsString('catName'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsIntegerForExistingNonEmptyFieldInXmlReturnsValueFromField(): void
     {
         $key = 'size';
@@ -382,12 +357,10 @@ final class FlexformsConfigurationTest extends UnitTestCase
     }
 
     /**
-     * @test
-     *
      * @param array<string, array<string, array<string, array<string, array<string, array<string, mixed>>>>>> $data
-     *
-     * @dataProvider integerValueInArrayDataProvider
      */
+    #[Test]
+    #[DataProvider('integerValueInArrayDataProvider')]
     public function getAsIntegerForExistingNonEmptyFieldInArrayReturnsValueFromField(array $data): void
     {
         $subject = new FlexformsConfiguration($this->buildContentObjectWithArrayFlexformsData($data));
@@ -395,9 +368,7 @@ final class FlexformsConfigurationTest extends UnitTestCase
         self::assertSame(17, $subject->getAsInteger('numberOfCats'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsBooleanForExistingNonEmptyFieldInXmlReturnsValueFromField(): void
     {
         $key = 'hasCats';
@@ -434,12 +405,10 @@ final class FlexformsConfigurationTest extends UnitTestCase
     }
 
     /**
-     * @test
-     *
      * @param array<string, array<string, array<string, array<string, array<string, array<string, string>>>>>> $data
-     *
-     * @dataProvider booleanValueInArrayDataProvider
      */
+    #[Test]
+    #[DataProvider('booleanValueInArrayDataProvider')]
     public function getAsBooleanForExistingNonEmptyFieldInArrayReturnsValueFromField(array $data): void
     {
         $subject = new FlexformsConfiguration($this->buildContentObjectWithArrayFlexformsData($data));

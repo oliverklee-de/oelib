@@ -7,6 +7,7 @@ namespace OliverKlee\Oelib\Tests\Unit\Mapper;
 use OliverKlee\Oelib\Mapper\MapperRegistry;
 use OliverKlee\Oelib\Tests\Unit\Mapper\Fixtures\TestingChildMapper;
 use OliverKlee\Oelib\Tests\Unit\Mapper\Fixtures\TestingMapper;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -23,9 +24,7 @@ final class MapperRegistryTest extends UnitTestCase
         $this->subject = new MapperRegistry();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByClassNameForEmptyKeyThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -36,9 +35,7 @@ final class MapperRegistryTest extends UnitTestCase
         $this->subject->getByClassName('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByClassNameForInexistentClassThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -49,17 +46,13 @@ final class MapperRegistryTest extends UnitTestCase
         $this->subject->getByClassName('InexistentMapper');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByClassNameForExistingClassReturnsObjectOfRequestedClass(): void
     {
         self::assertInstanceOf(TestingMapper::class, $this->subject->getByClassName(TestingMapper::class));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByClassNameForExistingClassCalledTwoTimesReturnsTheSameInstance(): void
     {
         self::assertSame(
@@ -68,9 +61,7 @@ final class MapperRegistryTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByClassNameReturnsMapperSetViaSetByClassName(): void
     {
         $mapper = new TestingMapper();
@@ -82,9 +73,7 @@ final class MapperRegistryTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setByClassNameThrowsExceptionForMismatchingWrapperClass(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -95,9 +84,7 @@ final class MapperRegistryTest extends UnitTestCase
         $this->subject->setByClassName(TestingChildMapper::class, $mapper);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setByClassNameThrowsExceptionIfTheMapperTypeAlreadyIsRegistered(): void
     {
         $this->expectException(\BadMethodCallException::class);

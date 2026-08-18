@@ -9,6 +9,7 @@ use OliverKlee\Oelib\Model\AbstractModel;
 use OliverKlee\Oelib\Tests\Unit\Mapper\Fixtures\TestingMapper;
 use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingChildModel;
 use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingModel;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -53,9 +54,7 @@ final class AbstractModelTest extends FunctionalTestCase
 
     // Tests concerning __clone
 
-    /**
-     * @test
-     */
+    #[Test]
     public function cloneReturnsDirtyModel(): void
     {
         $this->subject->setLoadStatus(AbstractModel::STATUS_GHOST);
@@ -66,9 +65,7 @@ final class AbstractModelTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function cloningVirginModelReturnsVirginModel(): void
     {
         $subject = new TestingModel();
@@ -79,9 +76,7 @@ final class AbstractModelTest extends FunctionalTestCase
         self::assertTrue($clone->isVirgin());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function cloningGhostLoadsModel(): void
     {
         self::assertTrue($this->subject->isGhost());
@@ -91,9 +86,7 @@ final class AbstractModelTest extends FunctionalTestCase
         self::assertTrue($clone->isLoaded());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function cloningLoadedModelReturnsLoadedModel(): void
     {
         self::assertSame(self::TEST_RECORD_TITLE, $this->subject->getTitle());
@@ -104,9 +97,7 @@ final class AbstractModelTest extends FunctionalTestCase
         self::assertTrue($clone->isLoaded());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function clonedModelHasMtoNRelationWithCloneAsParentModel(): void
     {
         $relatedRecord = new TestingModel();
@@ -121,9 +112,7 @@ final class AbstractModelTest extends FunctionalTestCase
         self::assertSame($clone, $clone->getRelatedRecords()->getParentModel());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function clonedModelHasClonesOfModelsFrom1toNRelationFromOriginal(): void
     {
         $childRecord = new TestingChildModel();
@@ -138,9 +127,7 @@ final class AbstractModelTest extends FunctionalTestCase
         self::assertNotSame($childRecord, $firstCloneChild);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function clonedModelHas1toNRelationWithCloneAsParentModel(): void
     {
         $childRecord = new TestingChildModel();

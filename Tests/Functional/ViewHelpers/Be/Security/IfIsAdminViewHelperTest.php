@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace OliverKlee\Oelib\Tests\Functional\ViewHelpers\Be\Security;
 
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\UserAspect;
@@ -41,9 +42,7 @@ final class IfIsAdminViewHelperTest extends FunctionalTestCase
             . $html . '</html>';
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForAdminLoggedInRendersThenChild(): void
     {
         $user = self::createStub(BackendUserAuthentication::class);
@@ -58,9 +57,7 @@ final class IfIsAdminViewHelperTest extends FunctionalTestCase
         self::assertStringContainsString('THEN', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForNonAdminLoggedInRendersElseChild(): void
     {
         $user = self::createStub(BackendUserAuthentication::class);
@@ -75,9 +72,7 @@ final class IfIsAdminViewHelperTest extends FunctionalTestCase
         self::assertStringContainsString('ELSE', $result);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForNoBackendUserRendersElseChild(): void
     {
         unset($GLOBALS['BE_USER']);

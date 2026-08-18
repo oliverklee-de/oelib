@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Tests\Functional\Templating;
 
 use OliverKlee\Oelib\Templating\Template;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -25,9 +26,7 @@ final class TemplateTest extends FunctionalTestCase
         $this->subject = new Template();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function processTemplateFromFileProcessesTemplateFromFile(): void
     {
         $this->subject->processTemplateFromFile('EXT:oelib/Tests/Functional/Templating/Fixtures/Template.html');

@@ -9,6 +9,8 @@ use OliverKlee\Oelib\Exception\NotFoundException;
 use OliverKlee\Oelib\Model\AbstractModel;
 use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingChildModel;
 use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingModel;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\DateTimeAspect;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -47,9 +49,7 @@ final class AbstractModelTest extends UnitTestCase
 
     // Tests concerning __clone
 
-    /**
-     * @test
-     */
+    #[Test]
     public function cloneReturnsInstanceOfSameClass(): void
     {
         self::assertInstanceOf(
@@ -58,9 +58,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function cloneReturnsNewInstance(): void
     {
         self::assertNotSame(
@@ -81,12 +79,10 @@ final class AbstractModelTest extends UnitTestCase
     }
 
     /**
-     * @test
-     *
      * @param AbstractModel::STATUS_* $status
-     *
-     * @dataProvider cloneableStatusDataProvider
      */
+    #[Test]
+    #[DataProvider('cloneableStatusDataProvider')]
     public function cloneReturnsDirtyModel(int $status): void
     {
         $this->subject->setLoadStatus($status);
@@ -97,9 +93,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function cloningVirginModelReturnsVirginModel(): void
     {
         $subject = new TestingModel();
@@ -110,9 +104,7 @@ final class AbstractModelTest extends UnitTestCase
         self::assertTrue($clone->isVirgin());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function cloningModelWithUidReturnsModelWithoutUid(): void
     {
         $this->subject->setData(['uid' => 42]);
@@ -123,9 +115,7 @@ final class AbstractModelTest extends UnitTestCase
         self::assertFalse($clone->hasUid());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function clonedModelHasStringDataFromOriginal(): void
     {
         $this->subject->setTitle('Bon Jovi');
@@ -134,9 +124,7 @@ final class AbstractModelTest extends UnitTestCase
         self::assertSame($this->subject->getTitle(), $clone->getTitle());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function clonedModelHasNto1RelationFromOriginal(): void
     {
         $relatedRecord = new TestingModel();
@@ -149,9 +137,7 @@ final class AbstractModelTest extends UnitTestCase
         self::assertSame($this->subject->getFriend(), $clone->getFriend());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function clonedModelHasModelsFromMtoNRelationFromOriginal(): void
     {
         $this->subject->setData(['related_records' => new Collection()]);
@@ -165,9 +151,7 @@ final class AbstractModelTest extends UnitTestCase
         self::assertSame($relatedRecord, $clone->getRelatedRecords()->first());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function clonedModelHasNewInstanceOfMtoNRelation(): void
     {
         $this->subject->setData(['related_records' => new Collection()]);
@@ -181,9 +165,7 @@ final class AbstractModelTest extends UnitTestCase
         self::assertNotSame($clone->getRelatedRecords(), $this->subject->getRelatedRecords());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function clonedModelHasNewInstanceOf1toNRelation(): void
     {
         $this->subject->setData(['composition' => new Collection()]);
@@ -200,10 +182,7 @@ final class AbstractModelTest extends UnitTestCase
     //////////////////////////////////////
     // Tests for the basic functionality
     //////////////////////////////////////
-
-    /**
-     * @test
-     */
+    #[Test]
     public function getWithNoDataThrowsException(): void
     {
         $this->expectException(
@@ -217,17 +196,13 @@ final class AbstractModelTest extends UnitTestCase
         $this->subject->getTitle();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setDataWithEmptyArrayIsAllowed(): void
     {
         $this->subject->setData([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAfterSetReturnsTheSetValue(): void
     {
         $this->subject->setTitle('bar');
@@ -238,9 +213,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAfterSetDataReturnsTheSetValue(): void
     {
         $this->subject->setData(
@@ -253,9 +226,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setDataCalledTwoTimesThrowsAnException(): void
     {
         $this->expectException(
@@ -273,9 +244,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAfterResetDataReturnsTheSetValue(): void
     {
         $this->subject->resetData(['title' => 'bar']);
@@ -283,18 +252,14 @@ final class AbstractModelTest extends UnitTestCase
         self::assertSame('bar', $this->subject->getTitle());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function resetDataCanBeCalledTwoTimes(): void
     {
         $this->subject->resetData(['title' => 'bar']);
         $this->subject->resetData(['title' => 'foobar']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isHiddenForLoadedHiddenObjectReturnsTrue(): void
     {
         $this->subject->setData(
@@ -306,9 +271,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isHiddenForLoadedNonHiddenObjectReturnsFalse(): void
     {
         $this->subject->setData(
@@ -324,9 +287,7 @@ final class AbstractModelTest extends UnitTestCase
     // Tests concerning existsKey
     ///////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsKeyForInexistentKeyReturnsFalse(): void
     {
         $this->subject->setData([]);
@@ -336,9 +297,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsKeyForExistingKeyWithNonEmptyDataReturnsTrue(): void
     {
         $this->subject->setData(
@@ -350,9 +309,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsKeyForExistingKeyWithEmptyStringDataReturnsTrue(): void
     {
         $this->subject->setData(
@@ -364,9 +321,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsKeyForExistingKeyWithZeroDataReturnsTrue(): void
     {
         $this->subject->setData(
@@ -378,9 +333,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function existsKeyForExistingKeyWithNullDataReturnsTrue(): void
     {
         $this->subject->setData(
@@ -395,10 +348,7 @@ final class AbstractModelTest extends UnitTestCase
     ////////////////////////////////
     // Tests concerning getAsModel
     ////////////////////////////////
-
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsModelWithEmptyKeyThrowsException(): void
     {
         $this->expectException(
@@ -412,9 +362,7 @@ final class AbstractModelTest extends UnitTestCase
         $this->subject->getAsModel('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsModelWithInexistentKeyReturnsNull(): void
     {
         $this->subject->setData([]);
@@ -424,9 +372,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsModelWithKeyForStringDataThrowsException(): void
     {
         $this->expectException(
@@ -441,9 +387,7 @@ final class AbstractModelTest extends UnitTestCase
         $this->subject->getAsModel('foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsModelReturnsNullSetViaSetData(): void
     {
         $this->subject->setData(
@@ -455,9 +399,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsModelReturnsModelSetViaSetData(): void
     {
         $otherModel = new TestingModel();
@@ -471,9 +413,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsModelForSelfReturnsSelf(): void
     {
         $this->subject->setData(
@@ -488,9 +428,7 @@ final class AbstractModelTest extends UnitTestCase
 
     // Tests concerning getAsCollection
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsCollectionWithEmptyKeyThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -500,9 +438,7 @@ final class AbstractModelTest extends UnitTestCase
         $this->subject->getAsCollection('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsCollectionWithInexistentKeyThrowsException(): void
     {
         $this->expectException(\UnexpectedValueException::class);
@@ -513,9 +449,7 @@ final class AbstractModelTest extends UnitTestCase
         $this->subject->getAsCollection('foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsCollectionWithKeyForStringDataThrowsException(): void
     {
         $this->expectException(\UnexpectedValueException::class);
@@ -526,9 +460,7 @@ final class AbstractModelTest extends UnitTestCase
         $this->subject->getAsCollection('foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsCollectionReturnsCollectionSetViaSetData(): void
     {
         $list = new Collection();
@@ -541,9 +473,7 @@ final class AbstractModelTest extends UnitTestCase
     // Tests concerning the UID
     /////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getUidForNoUidReturnsZero(): void
     {
         $this->subject->setData([]);
@@ -554,9 +484,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getUidForSetUidReturnsTheSetUid(): void
     {
         $this->subject->setUid(42);
@@ -567,9 +495,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getUidForSetUidViaSetDataReturnsTheSetUid(): void
     {
         $this->subject->setData(['uid' => 42]);
@@ -580,9 +506,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getUidForSetStringUidViaSetDataReturnsTheSetIntegerUid(): void
     {
         $this->subject->setData(['uid' => '42']);
@@ -593,9 +517,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasUidForNoUidReturnsFalse(): void
     {
         $this->subject->setData([]);
@@ -605,9 +527,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasUidForPositiveUidReturnsTrue(): void
     {
         $this->subject->setUid(42);
@@ -617,9 +537,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setUidTwoTimesThrowsAnException(): void
     {
         $this->expectException(
@@ -632,9 +550,7 @@ final class AbstractModelTest extends UnitTestCase
         $this->subject->setUid(42);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setUidForAModelWithAUidSetViaSetDataThrowsException(): void
     {
         $this->expectException(
@@ -648,9 +564,7 @@ final class AbstractModelTest extends UnitTestCase
         $this->subject->setUid(42);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setUidForAModelWithoutUidDoesNotFail(): void
     {
         $this->subject->setData([]);
@@ -661,9 +575,7 @@ final class AbstractModelTest extends UnitTestCase
     // Tests concerning the model states
     //////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function initiallyHasVirginState(): void
     {
         self::assertTrue(
@@ -671,9 +583,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function afterSettingDataWithoutUidHasLoadedState(): void
     {
         $this->subject->setData([]);
@@ -683,9 +593,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function afterSettingDataWithUidHasLoadedState(): void
     {
         $this->subject->setData(['uid' => 1]);
@@ -695,9 +603,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function afterSettingDataWithUidNotHasDeadState(): void
     {
         $this->subject->setData(['uid' => 1]);
@@ -707,9 +613,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function afterSettingUidWithoutDataHasGhostState(): void
     {
         $this->subject->setUid(1);
@@ -719,9 +623,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function afterMarkAsDeadHasDeadState(): void
     {
         $this->subject->markAsDead();
@@ -731,9 +633,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOnAModelWithoutLoadCallbackThrowsException(): void
     {
         $this->expectException(
@@ -747,9 +647,7 @@ final class AbstractModelTest extends UnitTestCase
         $this->subject->getTitle();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setOnAModelInStatusGhostWithoutLoadCallbackThrowsException(): void
     {
         $this->expectException(
@@ -763,9 +661,7 @@ final class AbstractModelTest extends UnitTestCase
         $this->subject->setTitle('foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getOnDeadModelThrowsException(): void
     {
         $this->expectException(NotFoundException::class);
@@ -774,18 +670,14 @@ final class AbstractModelTest extends UnitTestCase
         $this->subject->getTitle();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getUidOnDeadModelDoesNotFail(): void
     {
         $this->subject->markAsDead();
         $this->subject->getUid();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isHiddenOnDeadModelThrowsException(): void
     {
         $this->expectException(NotFoundException::class);
@@ -797,10 +689,7 @@ final class AbstractModelTest extends UnitTestCase
     //////////////////////
     // Tests for isEmpty
     //////////////////////
-
-    /**
-     * @test
-     */
+    #[Test]
     public function isEmptyForLoadedEmptyObjectReturnsTrue(): void
     {
         $this->subject->setData([]);
@@ -810,9 +699,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isEmptyForLoadedNotEmptyObjectReturnsFalse(): void
     {
         $this->subject->setData(
@@ -824,9 +711,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isEmptyForGhostLoadsModel(): void
     {
         $this->subject->setData([]);
@@ -839,9 +724,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isEmptyForGhostWithLoadedDataReturnsFalse(): void
     {
         $this->subject->setData(
@@ -855,9 +738,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isEmptyForGhostWithoutLoadedDataReturnsTrue(): void
     {
         $this->subject->setUid(1);
@@ -868,9 +749,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isEmptyForVirginStateReturnsTrue(): void
     {
         self::assertTrue(
@@ -881,10 +760,7 @@ final class AbstractModelTest extends UnitTestCase
     //////////////////////
     // Tests for isDirty
     //////////////////////
-
-    /**
-     * @test
-     */
+    #[Test]
     public function isDirtyAfterMarkAsDirtyReturnsTrue(): void
     {
         $this->subject->markAsDirty();
@@ -894,9 +770,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDirtyAfterMarkAsCleanReturnsFalse(): void
     {
         $this->subject->markAsClean();
@@ -906,9 +780,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDirtyAfterSetReturnsTrue(): void
     {
         $this->subject->setTitle('foo');
@@ -918,9 +790,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDirtyAfterSetDataWithUidAndOtherDataReturnsFalse(): void
     {
         $this->subject->setData(['uid' => 42, 'title' => 'foo']);
@@ -930,9 +800,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDirtyAfterSetDataOnlyWithUidReturnsFalse(): void
     {
         $this->subject->setData(['uid' => 42, 'title' => 'foo']);
@@ -942,9 +810,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDirtyAfterSetDataForAModelAlreadyHavingAUidReturnsFalse(): void
     {
         $this->subject->setUid(42);
@@ -955,9 +821,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDirtyAfterSetDataWithoutUidReturnsTrue(): void
     {
         $this->subject->setData(['title' => 'foo']);
@@ -967,9 +831,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDirtyOnModelInVirginStateReturnsFalse(): void
     {
         self::assertTrue(
@@ -980,9 +842,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDirtyOnModelInGhostStateReturnsFalse(): void
     {
         $this->subject->setUid(1);
@@ -995,9 +855,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDirtyOnInitiallyDeadModelReturnsFalse(): void
     {
         $this->subject->markAsDead();
@@ -1007,9 +865,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDirtyOnModelWhichTurnedIntoDeadStateReturnsFalse(): void
     {
         $this->subject->setTitle('foo');
@@ -1031,9 +887,7 @@ final class AbstractModelTest extends UnitTestCase
     // Tests concerning the deleted property
     //////////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setToDeletedOnVirginModelMarksModelAsDead(): void
     {
         self::assertTrue(
@@ -1047,9 +901,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setToDeletedOnGhostModelMarksModelAsDead(): void
     {
         $this->subject->setUid(1);
@@ -1065,9 +917,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setToDeletedOnLoadedModelMarksModelAsDirty(): void
     {
         $this->subject->setData(['uid' => 1]);
@@ -1083,9 +933,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setToDeletedOnLoadedModelMarksModelAsDeleted(): void
     {
         $this->subject->setData(['uid' => 1]);
@@ -1101,9 +949,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function settingDeletedByUsingSetThrowsAnException(): void
     {
         $this->expectException(
@@ -1116,9 +962,7 @@ final class AbstractModelTest extends UnitTestCase
         $this->subject->setDeletedPropertyUsingSet();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDeletedForModelSetToDeletedReturnsTrue(): void
     {
         $this->subject->setData(['uid' => 1]);
@@ -1130,9 +974,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isDeletedForNonDeletedModelReturnsFalse(): void
     {
         $this->subject->setData(['uid' => 1]);
@@ -1146,9 +988,7 @@ final class AbstractModelTest extends UnitTestCase
     // Tests concerning getData
     /////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDataForNoDataSetReturnsEmptyArray(): void
     {
         self::assertSame(
@@ -1157,9 +997,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDataReturnsArrayWithTheSetData(): void
     {
         $data = ['foo' => 'bar'];
@@ -1171,9 +1009,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDataReturnsArrayWithoutKeyUid(): void
     {
         $this->subject->setData(['uid' => 1]);
@@ -1188,9 +1024,7 @@ final class AbstractModelTest extends UnitTestCase
     // Test concerning setTimestamp and setCreationDate
     /////////////////////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModificationDateAsUnixTimeStampByDefaultReturnsZero(): void
     {
         $this->subject->setData([]);
@@ -1198,9 +1032,7 @@ final class AbstractModelTest extends UnitTestCase
         self::assertSame(0, $this->subject->getModificationDateAsUnixTimeStamp());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getModificationDateAsUnixTimeStampReturnsModificationDate(): void
     {
         $date = 124445;
@@ -1209,9 +1041,7 @@ final class AbstractModelTest extends UnitTestCase
         self::assertSame($date, $this->subject->getModificationDateAsUnixTimeStamp());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setTimestampForLoadedModelSetsTheTimestamp(): void
     {
         $this->subject->setData([]);
@@ -1223,9 +1053,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCreationDateAsUnixTimeStampByDefaultReturnsZero(): void
     {
         $this->subject->setData([]);
@@ -1233,9 +1061,7 @@ final class AbstractModelTest extends UnitTestCase
         self::assertSame(0, $this->subject->getCreationDateAsUnixTimeStamp());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCreationDateAsUnixTimeStampReturnsCreationDate(): void
     {
         $date = 124445;
@@ -1244,9 +1070,7 @@ final class AbstractModelTest extends UnitTestCase
         self::assertSame($date, $this->subject->getCreationDateAsUnixTimeStamp());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setCreationDateForLoadedModelWithUidThrowsException(): void
     {
         $this->expectException(
@@ -1260,9 +1084,7 @@ final class AbstractModelTest extends UnitTestCase
         $this->subject->setCreationDate();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setCreationDateForLoadedModelWithoutUidSetsCreation(): void
     {
         $this->subject->setData([]);
@@ -1278,9 +1100,7 @@ final class AbstractModelTest extends UnitTestCase
     // Tests concerning getPageUid
     ////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getPageUidForNoPageUidSetReturnsZero(): void
     {
         $this->subject->setData([]);
@@ -1291,9 +1111,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getPageUidReturnsPageUid(): void
     {
         $this->subject->setData(['pid' => 42]);
@@ -1304,9 +1122,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setPageUidSetsPageUid(): void
     {
         $this->subject->setPageUid(84);
@@ -1317,17 +1133,13 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setPageUidWithZeroPageUidNotThrowsException(): void
     {
         $this->subject->setPageUid(0);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setPageUidWithNegativePageUidThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -1340,9 +1152,7 @@ final class AbstractModelTest extends UnitTestCase
     // Tests concerning the setting of the "hidden" property
     //////////////////////////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function markAsHiddenMarksVisibleModelAsHidden(): void
     {
         $this->subject->setData(['hidden' => false]);
@@ -1354,9 +1164,7 @@ final class AbstractModelTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function markAsVisibleMarksHiddenModelAsNotHidden(): void
     {
         $this->subject->setData(['hidden' => true]);
@@ -1382,12 +1190,10 @@ final class AbstractModelTest extends UnitTestCase
     }
 
     /**
-     * @test
-     *
      * @param AbstractModel::STATUS_* $status
-     *
-     * @dataProvider uncloneableStatusDataProvider
      */
+    #[Test]
+    #[DataProvider('uncloneableStatusDataProvider')]
     public function cloneWithInvalidStatusThrowsException(int $status): void
     {
         $this->expectException(\BadMethodCallException::class);

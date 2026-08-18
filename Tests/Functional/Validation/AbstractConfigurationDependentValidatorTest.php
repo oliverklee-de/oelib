@@ -6,6 +6,7 @@ namespace OliverKlee\Oelib\Tests\Functional\Validation;
 
 use OliverKlee\Oelib\Tests\Functional\Validation\Fixtures\TestingConfigurationDependentValidator;
 use OliverKlee\Oelib\Tests\Functional\Validation\Fixtures\TestingValidatableModel;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
@@ -31,18 +32,14 @@ final class AbstractConfigurationDependentValidatorTest extends FunctionalTestCa
         $this->subject = new TestingConfigurationDependentValidator();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isValidator(): void
     {
         self::assertInstanceOf(ValidatorInterface::class, $this->subject);
         self::assertInstanceOf(AbstractValidator::class, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validateWithOtherObjectReturnsNoErrors(): void
     {
         $result = $this->subject->validate(new \stdClass());
@@ -50,9 +47,7 @@ final class AbstractConfigurationDependentValidatorTest extends FunctionalTestCa
         self::assertFalse($result->hasErrors());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validateWithEmptyModelForOrRequiredFieldsSettingReturnsNoErrors(): void
     {
         $result = $this->subject->validate(new TestingValidatableModel());
@@ -60,9 +55,7 @@ final class AbstractConfigurationDependentValidatorTest extends FunctionalTestCa
         self::assertFalse($result->hasErrors());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validateWithEmptyModelForEmptyRequiredFieldsReturnsNoErrors(): void
     {
         $this->subject->setSettings(['requiredFields' => '']);
@@ -72,9 +65,7 @@ final class AbstractConfigurationDependentValidatorTest extends FunctionalTestCa
         self::assertFalse($result->hasErrors());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validateWithEmptyModelForSingleFieldRequiredAddsErrorForRequiredField(): void
     {
         $field = 'title';
@@ -91,9 +82,7 @@ final class AbstractConfigurationDependentValidatorTest extends FunctionalTestCa
         self::assertSame($expected, $firstError->getMessage());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validateModelWithFullModelForAllFieldsRequiredReturnsNoErrors(): void
     {
         $this->subject->setSettings(['requiredFields' => 'title']);
@@ -103,9 +92,7 @@ final class AbstractConfigurationDependentValidatorTest extends FunctionalTestCa
         self::assertFalse($result->hasErrors());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validateModelWithFullModelForNoFieldsRequiredReturnsNoErrors(): void
     {
         $this->subject->setSettings(['requiredFields' => '']);

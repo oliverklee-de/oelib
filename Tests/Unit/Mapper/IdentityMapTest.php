@@ -7,6 +7,7 @@ namespace OliverKlee\Oelib\Tests\Unit\Mapper;
 use OliverKlee\Oelib\Exception\NotFoundException;
 use OliverKlee\Oelib\Mapper\IdentityMap;
 use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingModel;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -26,10 +27,7 @@ final class IdentityMapTest extends UnitTestCase
     //////////////////////////
     // Tests for get and add
     //////////////////////////
-
-    /**
-     * @test
-     */
+    #[Test]
     public function getWithZeroUidThrowsException(): void
     {
         $this->expectException(
@@ -43,9 +41,7 @@ final class IdentityMapTest extends UnitTestCase
         $this->subject->get(0);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getWithNegativeUidThrowsException(): void
     {
         $this->expectException(
@@ -59,9 +55,7 @@ final class IdentityMapTest extends UnitTestCase
         $this->subject->get(-1);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addWithModelWithoutUidThrowsException(): void
     {
         $this->expectException(
@@ -77,9 +71,7 @@ final class IdentityMapTest extends UnitTestCase
         $this->subject->add($model);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getWithExistingUidAfterAddWithModelHavingAUidReturnsSameObject(): void
     {
         $model = new TestingModel();
@@ -93,9 +85,7 @@ final class IdentityMapTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addForExistingUidReturnsModelWithGivenUidForSeveralUids(): void
     {
         $model1 = new TestingModel();
@@ -118,9 +108,7 @@ final class IdentityMapTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getForExistingUidAfterAddingTwoModelsWithSameUidReturnsTheLastAddedModel(): void
     {
         $model1 = new TestingModel();
@@ -139,9 +127,7 @@ final class IdentityMapTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getForInexistentUidThrowsNotFoundException(): void
     {
         $this->expectException(NotFoundException::class);
@@ -156,17 +142,13 @@ final class IdentityMapTest extends UnitTestCase
     // Tests concerning getNewUid
     ///////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getNewUidForEmptyMapReturnsOne(): void
     {
         self::assertSame(1, $this->subject->getNewUid());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getNewUidForNonEmptyMapReturnsUidNotInMap(): void
     {
         $this->expectException(NotFoundException::class);
@@ -181,9 +163,7 @@ final class IdentityMapTest extends UnitTestCase
         $this->subject->get($newUid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getNewUidForNonEmptyMapReturnsUidGreaterThanGreatestUid(): void
     {
         $model = new TestingModel();
@@ -194,9 +174,7 @@ final class IdentityMapTest extends UnitTestCase
         self::assertGreaterThan(42, $this->subject->getNewUid());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getNewUidForMapWithTwoItemsInReverseOrderReturnsUidGreaterThanTheGreatesUid(): void
     {
         $model2 = new TestingModel();

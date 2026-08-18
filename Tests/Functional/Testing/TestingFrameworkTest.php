@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Tests\Functional\Testing;
 
 use OliverKlee\Oelib\Testing\TestingFramework;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Http\Message\ServerRequestInterface;
 use Symfony\Component\Cache\DataCollector\CacheDataCollector;
 use TYPO3\CMS\Core\Context\Context;
@@ -85,9 +87,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         return (int)$data['sorting'];
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isAvailableFromTheContainer(): void
     {
         $instance = $this->get(TestingFramework::class);
@@ -95,9 +95,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(TestingFramework::class, $instance);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isNotShared(): void
     {
         $instance1 = $this->get(TestingFramework::class);
@@ -107,10 +105,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests regarding createRecord()
-
-    /**
-     * @test
-     */
+    #[Test]
     public function createRecordOnValidTableWithNoData(): void
     {
         self::assertNotSame(
@@ -119,9 +114,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRecordWithValidData(): void
     {
         $title = 'TEST record';
@@ -145,9 +138,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($title, $row['title']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRecordWithUidFails(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -159,9 +150,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRecordCanCreateHiddenRecord(): void
     {
         $uid = $this->subject->createRecord('tx_oelib_test', ['hidden' => 1]);
@@ -174,9 +163,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, (int)$row['count']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRecordCanCreateDeletedRecord(): void
     {
         $uid = $this->subject->createRecord('tx_oelib_test', ['deleted' => 1]);
@@ -201,11 +188,8 @@ final class TestingFrameworkTest extends FunctionalTestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider booleanDataProvider
-     */
+    #[Test]
+    #[DataProvider('booleanDataProvider')]
     public function createRecordPersistsBooleansAsIntegers(bool $value): void
     {
         $this->subject->createRecord('tx_oelib_test', ['bool_data1' => $value]);
@@ -218,10 +202,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests regarding changeRecord()
-
-    /**
-     * @test
-     */
+    #[Test]
     public function changeRecordWithExistingRecord(): void
     {
         $uid = $this->subject->createRecord(
@@ -244,9 +225,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame('bar', $row['title']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function changeRecordOnAllowedSystemTableForPages(): void
     {
         $pid = $this->subject->createFrontEndPage();
@@ -264,9 +243,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function changeRecordFailsWithUidZero(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -275,9 +252,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->changeRecord('tx_oelib_test', 0, ['title' => 'foo']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function changeRecordFailsWithEmptyData(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -288,9 +263,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->changeRecord('tx_oelib_test', $uid, []);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function changeRecordFailsWithUidFieldInRecordData(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -304,11 +277,8 @@ final class TestingFrameworkTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider booleanDataProvider
-     */
+    #[Test]
+    #[DataProvider('booleanDataProvider')]
     public function changeRecordPersistsBooleansAsIntegers(bool $value): void
     {
         $uid = $this->subject->createRecord('tx_oelib_test');
@@ -322,10 +292,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests regarding createRelation()
-
-    /**
-     * @test
-     */
+    #[Test]
     public function createRelationWithValidData(): void
     {
         $uidLocal = $this->subject->createRecord('tx_oelib_test');
@@ -347,9 +314,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, $count);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRelationWithZeroFirstUid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -361,9 +326,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->createRelation('tx_oelib_test_article_mm', 0, $uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRelationWithZeroSecondUid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -375,9 +338,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->createRelation('tx_oelib_test_article_mm', $uid, 0);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRelationWithNegativeFirstUid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -389,9 +350,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->createRelation('tx_oelib_test_article_mm', -1, $uid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRelationWithNegativeSecondUid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -403,9 +362,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->createRelation('tx_oelib_test_article_mm', $uid, -1);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRelationWithAutomaticSorting(): void
     {
         $uidLocal = $this->subject->createRecord('tx_oelib_test');
@@ -435,10 +392,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests regarding createRelationFromTca()
-
-    /**
-     * @test
-     */
+    #[Test]
     public function createRelationAndUpdateCounterIncreasesZeroValueCounterByOne(): void
     {
         $firstRecordUid = $this->subject->createRecord('tx_oelib_test');
@@ -460,9 +414,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, (int)$row['related_records']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRelationAndUpdateCounterIncreasesNonZeroValueCounterToOne(): void
     {
         $firstRecordUid = $this->subject->createRecord(
@@ -487,9 +439,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(2, (int)$row['related_records']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRelationAndUpdateCounterCreatesRecordInRelationTable(): void
     {
         $firstRecordUid = $this->subject->createRecord('tx_oelib_test');
@@ -507,9 +457,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, $count);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRelationAndUpdateCounterWithBidirectionalRelationIncreasesCounter(): void
     {
         $firstRecordUid = $this->subject->createRecord('tx_oelib_test');
@@ -531,9 +479,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, (int)$row['bidirectional']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRelationAndUpdateCounterWithBidirectionalIncreasesOppositeFieldCounterInForeignTable(): void
     {
         $firstRecordUid = $this->subject->createRecord('tx_oelib_test');
@@ -555,9 +501,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, (int)$row['related_records']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createRelationAndUpdateCounterWithBidirectionalRelationCreatesRecordInRelationTable(): void
     {
         $firstRecordUid = $this->subject->createRecord('tx_oelib_test');
@@ -580,10 +524,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests regarding cleanUpWithoutDatabase()
-
-    /**
-     * @test
-     */
+    #[Test]
     public function cleanUpWithoutDatabaseRestoresCurrentScriptAfterCreateFakeFrontEnd(): void
     {
         $previous = Environment::getCurrentScript();
@@ -594,9 +535,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($previous, Environment::getCurrentScript());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function cleanUpWithoutDatabaseUnsetsGlobalRequest(): void
     {
         $this->subject->createFakeFrontEnd($this->subject->createFrontEndPage());
@@ -607,10 +546,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests regarding createFrontEndPage()
-
-    /**
-     * @test
-     */
+    #[Test]
     public function createFrontEndPageCreatesFrontEndPageAndReturnsItsUid(): void
     {
         $uid = $this->subject->createFrontEndPage();
@@ -620,9 +556,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, $connection->count('*', 'pages', ['uid' => $uid]));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFrontEndPageByDefaultPopulatesSlugWithPageUid(): void
     {
         $uid = $this->subject->createFrontEndPage();
@@ -637,9 +571,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame('/' . $uid, $row['slug']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFrontEndPageSavesPageWithProvidedData(): void
     {
         $title = 'Test page';
@@ -655,9 +587,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($title, $row['title']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFrontEndPageCanUseSlugFromProvidedData(): void
     {
         $slug = '/home';
@@ -673,9 +603,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($slug, $row['slug']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFrontEndPageSetsPageDocumentType(): void
     {
         $uid = $this->subject->createFrontEndPage();
@@ -690,9 +618,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, (int)$row['doktype']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFrontEndPageByDefaultCreatesPageOnRootPage(): void
     {
         $uid = $this->subject->createFrontEndPage();
@@ -707,9 +633,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(0, (int)$row['pid']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFrontEndPageCanCreatePageOnOtherPage(): void
     {
         $parentUid = $this->subject->createFrontEndPage();
@@ -724,9 +648,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($parentUid, (int)$row['pid']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndPageHasNoTitleByDefault(): void
     {
         $uid = $this->subject->createFrontEndPage();
@@ -741,10 +663,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests regarding createSystemFolder()
-
-    /**
-     * @test
-     */
+    #[Test]
     public function systemFolderCanBeCreated(): void
     {
         $uid = $this->subject->createSystemFolder();
@@ -755,9 +674,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, $connection->count('*', 'pages', ['uid' => $uid]));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createSystemFolderSetsCorrectDocumentType(): void
     {
         $uid = $this->subject->createSystemFolder();
@@ -772,9 +689,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(254, (int)$row['doktype']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function systemFolderWillBeCreatedOnRootPage(): void
     {
         $uid = $this->subject->createSystemFolder();
@@ -790,9 +705,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(0, (int)$row['pid']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function systemFolderCanBeCreatedOnOtherPage(): void
     {
         $parent = $this->subject->createSystemFolder();
@@ -808,9 +721,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($parent, (int)$row['pid']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function systemFolderHasNoTitleByDefault(): void
     {
         $uid = $this->subject->createSystemFolder();
@@ -825,10 +736,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests regarding createFrontEndUserGroup()
-
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserGroupMustHaveNoZeroUid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -837,9 +745,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->createFrontEndUserGroup(['uid' => 0]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserGroupMustHaveNoNonZeroUid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -848,9 +754,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->createFrontEndUserGroup(['uid' => 99999]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserGroupCanBeCreated(): void
     {
         $uid = $this->subject->createFrontEndUserGroup();
@@ -860,9 +764,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, $connection->count('*', 'fe_groups', ['uid' => $uid]));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserGroupHasNoTitleByDefault(): void
     {
         $uid = $this->subject->createFrontEndUserGroup();
@@ -876,9 +778,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame('', $row['title']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserGroupCanHaveTitle(): void
     {
         $uid = $this->subject->createFrontEndUserGroup(['title' => 'Test title']);
@@ -893,10 +793,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests regarding createFrontEndUser()
-
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserCanBeCreated(): void
     {
         $uid = $this->subject->createFrontEndUser();
@@ -906,9 +803,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, $connection->count('*', 'fe_users', ['uid' => $uid]));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserHasNoUserNameByDefault(): void
     {
         $uid = $this->subject->createFrontEndUser();
@@ -922,9 +817,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame('', $row['username']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserCanHaveUserName(): void
     {
         $uid = $this->subject->createFrontEndUser('', ['username' => 'Test name']);
@@ -938,9 +831,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame('Test name', $row['username']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserCanHaveSeveralUserGroups(): void
     {
         $feUserGroupUidOne = $this->subject->createFrontEndUserGroup();
@@ -955,9 +846,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, $connection->count('*', 'fe_users', ['uid' => $uid]));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserMustHaveNoZeroUid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -966,9 +855,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->createFrontEndUser('', ['uid' => 0]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserMustHaveNoNonZeroUid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -977,9 +864,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->createFrontEndUser('', ['uid' => 99999]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserMustHaveNoZeroUserGroupInTheDataArray(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -988,9 +873,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->createFrontEndUser('', ['usergroup' => 0]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserMustHaveNoNonZeroUserGroupInTheDataArray(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -999,9 +882,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->createFrontEndUser('', ['usergroup' => 99999]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserMustHaveNoUserGroupListInTheDataArray(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -1013,9 +894,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFrontEndUserWithEmptyGroupCreatesGroup(): void
     {
         $this->subject->createFrontEndUser('');
@@ -1024,9 +903,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, $connection->count('*', 'fe_groups', []));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserMustHaveNoZeroUserGroupEvenIfSeveralGroupsAreProvided(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -1043,9 +920,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function frontEndUserMustHaveNoAlphabeticalCharactersInTheUserGroupList(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -1062,9 +937,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
 
     // Tests concerning fakeFrontend
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontThrowsExceptionForNegativePageUid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -1074,9 +947,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->createFakeFrontEnd(-1);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontThrowsExceptionForZeroPageUid(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -1086,9 +957,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         $this->subject->createFakeFrontEnd(0);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndCreatesGlobalFrontEnd(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1097,9 +966,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(TypoScriptFrontendController::class, $GLOBALS['TSFE']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndDisablesFrontEndCaching(): void
     {
         if ((new Typo3Version())->getMajorVersion() >= 13) {
@@ -1114,9 +981,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertTrue($frontEndController->no_cache);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndCreatesFrontEndUser(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1128,9 +993,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndCreatesContentObjectRenderer(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1139,9 +1002,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(ContentObjectRenderer::class, $this->getFrontEndController()->cObj);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndCreatesConfiguration(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1150,9 +1011,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertIsArray($this->getFrontEndController()->config);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function loginUserIsFalseAfterCreateFakeFrontEnd(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1163,9 +1022,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertFalse($isLoggedIn);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndUsesProvidedPageUidAsFrontEndId(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1174,9 +1031,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($pageUid, (int)$this->getFrontEndController()->id);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndUsesSetsRootline(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1186,17 +1041,13 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($pageUid, (int)$rootline[0]['uid']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getFakeFrontEndDomainReturnsDevDomain(): void
     {
         self::assertSame('typo3-test.dev', $this->subject->getFakeFrontEndDomain());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getFakeSiteUrlReturnsSiteUrlOfDevDomain(): void
     {
         self::assertSame('http://typo3-test.dev/', $this->subject->getFakeSiteUrl());
@@ -1221,12 +1072,10 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     /**
-     * @test
-     *
      * @param non-empty-string $key
-     *
-     * @dataProvider serverGlobalsDataProvider
      */
+    #[Test]
+    #[DataProvider('serverGlobalsDataProvider')]
     public function createFakeFrontEndPopulatesServerGlobals(string $key, string $expected): void
     {
         $this->subject->createFakeFrontEnd($this->subject->createFrontEndPage());
@@ -1265,12 +1114,10 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     /**
-     * @test
-     *
      * @param non-empty-string $key
-     *
-     * @dataProvider indEnvDataProvider
      */
+    #[Test]
+    #[DataProvider('indEnvDataProvider')]
     public function createFakeFrontEndPopulatesGlobalsAccessibleViaGetIndEnv(string $key, string|bool $expected): void
     {
         $this->subject->createFakeFrontEnd($this->subject->createFrontEndPage());
@@ -1289,11 +1136,8 @@ final class TestingFrameworkTest extends FunctionalTestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider pageSpecificGlobalsWithPageUidDataProvider
-     */
+    #[Test]
+    #[DataProvider('pageSpecificGlobalsWithPageUidDataProvider')]
     public function createFakeFrontWithWithPageUsesGivenPageInUri(string $key, string $expectedWithPlaceholder): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1303,9 +1147,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($expected, GeneralUtility::getIndpEnv($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fakeFrontEndAllowsCreatingTypoLinkToRootPage(): void
     {
         $rootPageUid = $this->subject->createFrontEndPage();
@@ -1316,9 +1158,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame('/' . $rootPageUid, $typolinkUrl);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fakeFrontEndAllowsCreatingTypoLinkToSubpageOfRootPage(): void
     {
         $rootPageUid = $this->subject->createFrontEndPage();
@@ -1330,9 +1170,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame('/' . $subpageUid, $typolinkUrl);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function fakeFrontEndAllowsLocationHeaderUrlWithLinkCreatedViaTypolink(): void
     {
         $rootPageUid = $this->subject->createFrontEndPage();
@@ -1344,9 +1182,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($expectedUrl, GeneralUtility::locationHeaderUrl($typolinkUrl));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequest(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1355,9 +1191,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(ServerRequest::class, $GLOBALS['TYPO3_REQUEST'] ?? null);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndReplacesExistingGlobalRequest(): void
     {
         $previousRequest = self::createStub(ServerRequestInterface::class);
@@ -1368,9 +1202,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertNotSame($previousRequest, $GLOBALS['TYPO3_REQUEST'] ?? null);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestServerParameters(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1382,9 +1214,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($_SERVER, $request->getServerParams());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestApplicationTypeToFrontEnd(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1395,9 +1225,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(SystemEnvironmentBuilder::REQUESTTYPE_FE, $request->getAttribute('applicationType'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestCurrentContentObject(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1408,9 +1236,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(ContentObjectRenderer::class, $request->getAttribute('currentContentObject'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestFrontendCacheCollector(): void
     {
         if ((new Typo3Version())->getMajorVersion() < 13) {
@@ -1425,9 +1251,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(CacheDataCollector::class, $request->getAttribute('frontend.cache.collector'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestFrontendCacheInstruction(): void
     {
         if ((new Typo3Version())->getMajorVersion() < 13) {
@@ -1442,9 +1266,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(CacheInstruction::class, $request->getAttribute('frontend.cache.instruction'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndDisablesCachingInRequestFrontendCacheInstruction(): void
     {
         if ((new Typo3Version())->getMajorVersion() < 13) {
@@ -1461,9 +1283,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertFalse($cacheInstruction->isCachingAllowed());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestFrontendController(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1474,9 +1294,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(TypoScriptFrontendController::class, $request->getAttribute('frontend.controller'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestFrontendPageInformation(): void
     {
         if ((new Typo3Version())->getMajorVersion() < 13) {
@@ -1491,9 +1309,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(PageInformation::class, $request->getAttribute('frontend.page.information'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestTypoScript(): void
     {
         $this->importCSVDataSet(__DIR__ . '/Fixtures/createFakeFrontEnd/Page.csv');
@@ -1505,9 +1321,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(FrontendTypoScript::class, $request->getAttribute('frontend.typoscript'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndProvidesRequestTypoScriptWithTypoScriptSetupFromPage(): void
     {
         if ((new Typo3Version())->getMajorVersion() !== 12) {
@@ -1531,9 +1345,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame('bar', $setupArray['plugin.']['tx_oelib.']['foo']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndUsesGlobalFrontendControllerForRequest(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1546,9 +1358,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($globalFrontendController, $request->getAttribute('frontend.controller'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestFrontendUser(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1559,9 +1369,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(FrontendUserAuthentication::class, $request->getAttribute('frontend.user'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestLanguage(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1572,9 +1380,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(SiteLanguage::class, $request->getAttribute('language'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestLanguageToEnglish(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1587,9 +1393,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame('en-US', $language->getHreflang());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestNormalizedParameters(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1600,9 +1404,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(NormalizedParams::class, $request->getAttribute('normalizedParams'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndPopulatesRequestNormalizedParameters(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1615,9 +1417,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame('/' . $pageUid, $normalizedParameters->getRequestUri());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestRouting(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1628,9 +1428,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertInstanceOf(PageArguments::class, $request->getAttribute('routing'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestRoutingPageUid(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1643,9 +1441,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($pageUid, $pageArguments->getPageId());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createFakeFrontEndSetsRequestSite(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1657,10 +1453,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     // Tests regarding user login and logout
-
-    /**
-     * @test
-     */
+    #[Test]
     public function createAndLoginFrontEndUserCreatesFrontEndUser(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1671,9 +1464,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, $connection->count('*', 'fe_users', []));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createAndLoginFrontEndUserWithRecordDataCreatesFrontEndUserWithThatData(): void
     {
         $name = 'John Doe';
@@ -1686,9 +1477,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, $connection->count('*', 'fe_users', ['name' => $name]));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createAndLoginFrontEndUserLogsInFrontEndUser(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1699,9 +1488,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertTrue($isLoggedIn);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createAndLoginFrontEndUserWithFrontEndUserGroupCreatesFrontEndUser(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1713,9 +1500,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, $connection->count('*', 'fe_users', []));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createAndLoginFrontEndUserWithFrontEndUserGroupCreatesFrontEndUserWithGivenGroup(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1734,9 +1519,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame($frontEndUserGroupUid, (int)$row['usergroup']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createAndLoginFrontEndUserWithFrontEndUserGroupDoesNotCreateFrontEndUserGroup(): void
     {
         $pageUid = $this->subject->createFrontEndPage();
@@ -1749,9 +1532,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
         self::assertSame(1, $connection->count('*', 'fe_groups', []));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createAndLoginFrontEndUserWithFrontEndUserGroupLogsInFrontEndUser(): void
     {
         $pageUid = $this->subject->createFrontEndPage();

@@ -6,6 +6,7 @@ namespace OliverKlee\Oelib\Tests\Unit\DataStructures;
 
 use OliverKlee\Oelib\DataStructures\Collection;
 use OliverKlee\Oelib\Tests\Unit\Model\Fixtures\TestingModel;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -58,9 +59,7 @@ final class CollectionTest extends UnitTestCase
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function sortByTitleAscendingForFirstModelTitleAlphaAndSecondModelTitleBetaReturnsMinusOne(): void
     {
         $firstModel = new TestingModel();
@@ -75,9 +74,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function sortByTitleAscendingForFirstModelTitleBetaAndSecondModelTitleAlphaReturnsOne(): void
     {
         $firstModel = new TestingModel();
@@ -92,9 +89,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function sortByTitleAscendingForFirstAndSecondModelTitleSameReturnsZero(): void
     {
         $firstModel = new TestingModel();
@@ -113,9 +108,7 @@ final class CollectionTest extends UnitTestCase
     // Tests concerning sortByTitleDescending
     ///////////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function sortByTitleDescendingForFirstModelTitleAlphaAndSecondModelTitleBetaReturnsOne(): void
     {
         $firstModel = new TestingModel();
@@ -130,9 +123,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function sortByTitleDescendingForFirstModelTitleBetaAndSecondModelTitleAlphaReturnsMinusOne(): void
     {
         $firstModel = new TestingModel();
@@ -147,9 +138,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function sortByTitleDescendingForFirstAndSecondModelTitleSameReturnsZero(): void
     {
         $firstModel = new TestingModel();
@@ -164,9 +153,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addModelsToFixtureForOneGivenTitleAddsOneModelToFixture(): void
     {
         $this->addModelsToFixture(['foo']);
@@ -174,9 +161,7 @@ final class CollectionTest extends UnitTestCase
         self::assertCount(1, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addModelsToFixtureForOneGivenTitleAddsModelWithTitleGiven(): void
     {
         $this->addModelsToFixture(['foo']);
@@ -189,9 +174,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addModelsToFixtureForTwoGivenTitlesAddsTwoModelsToFixture(): void
     {
         $this->addModelsToFixture(['foo', 'bar']);
@@ -199,9 +182,7 @@ final class CollectionTest extends UnitTestCase
         self::assertCount(2, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addModelsToFixtureForTwoGivenTitlesAddsFirstTitleToFirstModelFixture(): void
     {
         $this->addModelsToFixture(['bar', 'foo']);
@@ -214,9 +195,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addModelsToFixtureForThreeGivenTitlesAddsThreeModelsToFixture(): void
     {
         $this->addModelsToFixture(['foo', 'bar', 'fooBar']);
@@ -224,9 +203,7 @@ final class CollectionTest extends UnitTestCase
         self::assertCount(3, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isEmptyForEmptyListReturnsTrue(): void
     {
         self::assertTrue(
@@ -234,9 +211,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isEmptyAfterAddingModelReturnsFalse(): void
     {
         $this->addModelsToFixture();
@@ -246,17 +221,13 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countForEmptyListReturnsZero(): void
     {
         self::assertCount(0, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countWithOneModelWithoutUidReturnsOne(): void
     {
         $this->addModelsToFixture();
@@ -264,9 +235,7 @@ final class CollectionTest extends UnitTestCase
         self::assertCount(1, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countWithOneModelWithUidReturnsOne(): void
     {
         $model = new TestingModel();
@@ -277,9 +246,7 @@ final class CollectionTest extends UnitTestCase
         self::assertCount(1, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countWithTwoDifferentModelsReturnsTwo(): void
     {
         $this->addModelsToFixture(['', '']);
@@ -287,9 +254,7 @@ final class CollectionTest extends UnitTestCase
         self::assertCount(2, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function countAfterAddingTheSameModelTwiceReturnsOne(): void
     {
         $model = new TestingModel();
@@ -299,9 +264,7 @@ final class CollectionTest extends UnitTestCase
         self::assertCount(1, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function currentWithOneItemReturnsThatItem(): void
     {
         $model = new TestingModel();
@@ -313,9 +276,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function currentWithTwoItemsInitiallyReturnsTheFirstItem(): void
     {
         $model1 = new TestingModel();
@@ -329,9 +290,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function keyInitiallyReturnsZero(): void
     {
         self::assertSame(
@@ -340,9 +299,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function keyAfterNextInListWithOneElementReturnsOne(): void
     {
         $this->addModelsToFixture();
@@ -354,9 +311,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function currentWithTwoItemsAfterNextReturnsTheSecondItem(): void
     {
         $model1 = new TestingModel();
@@ -372,9 +327,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function rewindAfterNextResetsKeyToZero(): void
     {
         $this->subject->next();
@@ -386,9 +339,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function rewindAfterNextForOneItemsResetsCurrentToTheOnlyItem(): void
     {
         $model = new TestingModel();
@@ -403,9 +354,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function firstForEmptyListReturnsNull(): void
     {
         self::assertNull(
@@ -413,9 +362,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function firstForListWithOneItemReturnsThatItem(): void
     {
         $model = new TestingModel();
@@ -427,9 +374,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function firstWithTwoItemsReturnsTheFirstItem(): void
     {
         $model1 = new TestingModel();
@@ -443,9 +388,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function firstWithTwoItemsAfterNextReturnsTheFirstItem(): void
     {
         $model1 = new TestingModel();
@@ -461,9 +404,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validForEmptyListReturnsFalse(): void
     {
         self::assertFalse(
@@ -471,9 +412,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validForOneElementInitiallyReturnsTrue(): void
     {
         $this->addModelsToFixture();
@@ -483,9 +422,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validForOneElementAfterNextReturnsFalse(): void
     {
         $this->addModelsToFixture();
@@ -497,9 +434,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function validForOneElementAfterNextAndRewindReturnsTrue(): void
     {
         $this->addModelsToFixture();
@@ -512,17 +447,13 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isIterator(): void
     {
         self::assertInstanceOf(\Iterator::class, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getUidsForEmptyListReturnsEmptyString(): void
     {
         self::assertSame(
@@ -531,9 +462,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getUidsForOneItemsWithoutUidReturnsEmptyString(): void
     {
         $this->addModelsToFixture();
@@ -544,9 +473,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getUidsForOneItemsWithUidReturnsThatUid(): void
     {
         $model = new TestingModel();
@@ -560,9 +487,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getUidsForTwoItemsWithUidReturnsCommaSeparatedItems(): void
     {
         $model1 = new TestingModel();
@@ -580,9 +505,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getUidsForTwoItemsWithDecreasingUidReturnsItemsInOrdnerOfInsertion(): void
     {
         $model1 = new TestingModel();
@@ -600,9 +523,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getUidsForDuplicateUidsReturnsUidsInOrdnerOfFirstInsertion(): void
     {
         $model1 = new TestingModel();
@@ -622,9 +543,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getUidsForElementThatGotItsUidAfterAddingItReturnsItsUid(): void
     {
         $model = new TestingModel();
@@ -637,9 +556,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasUidForInexistentUidReturnsFalse(): void
     {
         self::assertFalse(
@@ -647,9 +564,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasUidForExistingUidReturnsTrue(): void
     {
         $model = new TestingModel();
@@ -662,9 +577,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasUidForElementThatGotItsUidAfterAddingItReturnsTrue(): void
     {
         $model = new TestingModel();
@@ -676,9 +589,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function sortWithTwoModelsAndSortByTitleAscendingFunctionSortsModelsByTitleAscending(): void
     {
         $this->addModelsToFixture(['Beta', 'Alpha']);
@@ -696,9 +607,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function sortWithThreeModelsAndSortByTitleAscendingFunctionSortsModelsByTitleAscending(): void
     {
         $this->addModelsToFixture(['Zeta', 'Beta', 'Alpha']);
@@ -716,9 +625,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function sortWithTwoModelsAndSortByTitleDescendingFunctionSortsModelsByTitleDescending(): void
     {
         $this->addModelsToFixture(['Alpha', 'Beta']);
@@ -736,9 +643,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function sortMakesListDirty(): void
     {
         $subject = $this->createPartialMock(Collection::class, ['markAsDirty']);
@@ -751,9 +656,7 @@ final class CollectionTest extends UnitTestCase
             => $this->sortByTitleAscending($firstModel, $secondModel));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function appendEmptyListToEmptyListMakesEmptyList(): void
     {
         /** @var Collection<TestingModel> $otherList */
@@ -765,9 +668,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function appendTwoItemListToEmptyListMakesTwoItemList(): void
     {
         /** @var Collection<TestingModel> $otherList */
@@ -782,9 +683,7 @@ final class CollectionTest extends UnitTestCase
         self::assertCount(2, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function appendEmptyListToTwoItemListMakesTwoItemList(): void
     {
         $this->addModelsToFixture(['First', 'Second']);
@@ -796,9 +695,7 @@ final class CollectionTest extends UnitTestCase
         self::assertCount(2, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function appendOneItemListToOneItemListWithTheSameItemMakesOneItemList(): void
     {
         $model = new TestingModel();
@@ -815,9 +712,7 @@ final class CollectionTest extends UnitTestCase
         self::assertCount(1, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function appendTwoItemListKeepsOrderOfAppendedItems(): void
     {
         /** @var Collection<TestingModel> $otherList */
@@ -835,9 +730,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function appendAppendsItemAfterExistingItems(): void
     {
         $model = new TestingModel();
@@ -856,17 +749,13 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function purgeCurrentWithEmptyListDoesNotFail(): void
     {
         $this->subject->purgeCurrent();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function purgeCurrentWithRewoundOneElementListMakesListEmpty(): void
     {
         $this->addModelsToFixture();
@@ -879,9 +768,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function purgeCurrentWithRewoundOneElementListMakesPointerInvalid(): void
     {
         $this->addModelsToFixture();
@@ -894,9 +781,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function purgeCurrentWithOneElementListAndPointerAfterLastItemLeavesListUntouched(): void
     {
         $this->addModelsToFixture();
@@ -910,9 +795,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function purgeCurrentForFirstOfTwoElementsMakesOneItemList(): void
     {
         $this->addModelsToFixture(['', '']);
@@ -923,9 +806,7 @@ final class CollectionTest extends UnitTestCase
         self::assertCount(1, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function purgeCurrentForSecondOfTwoElementsMakesOneItemList(): void
     {
         $this->addModelsToFixture(['', '']);
@@ -937,9 +818,7 @@ final class CollectionTest extends UnitTestCase
         self::assertCount(1, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function purgeCurrentForFirstOfTwoElementsSetsPointerToFormerSecondElement(): void
     {
         $this->addModelsToFixture();
@@ -956,9 +835,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function purgeCurrentForSecondOfTwoElementsInWhileLoopDoesNotChangeNumberOfIterations(): void
     {
         $this->addModelsToFixture(['', '']);
@@ -980,9 +857,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function purgeCurrentForModelWithUidRemovesModelFromGetUids(): void
     {
         $model = new TestingModel();
@@ -999,9 +874,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function toArrayForNoElementsReturnsEmptyArray(): void
     {
         self::assertSame(
@@ -1010,9 +883,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function toArrayWithOneElementReturnsArrayWithElement(): void
     {
         $model = new TestingModel();
@@ -1024,9 +895,7 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function toArrayWithTwoElementsReturnsArrayWithBothElementsInAddingOrder(): void
     {
         $model1 = new TestingModel();
@@ -1040,17 +909,13 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function parentModelByDefaultIsNull(): void
     {
         self::assertNull($this->subject->getParentModel());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setParentModelSetsParentModel(): void
     {
         $model = new TestingModel();
@@ -1062,18 +927,14 @@ final class CollectionTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addWithoutParentModelIsNoProblem(): void
     {
         $model = new TestingModel();
         $this->subject->add($model);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addWithoutParentModelMarksParentModelAsDirty(): void
     {
         $parentModel = new TestingModel();
@@ -1086,17 +947,13 @@ final class CollectionTest extends UnitTestCase
         self::assertTrue($parentModel->isDirty());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isRelationOwnedByParentByDefaultIsFalse(): void
     {
         self::assertFalse($this->subject->isRelationOwnedByParent());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isRelationOwnedByParentCanBeSetToTrue(): void
     {
         $this->subject->markAsOwnedByParent();

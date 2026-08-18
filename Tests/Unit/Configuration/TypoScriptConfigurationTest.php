@@ -7,6 +7,7 @@ namespace OliverKlee\Oelib\Tests\Unit\Configuration;
 use OliverKlee\Oelib\Configuration\TypoScriptConfiguration;
 use OliverKlee\Oelib\DataStructures\AbstractReadOnlyObjectWithPublicAccessors;
 use OliverKlee\Oelib\Interfaces\Configuration as ConfigurationInterface;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -23,17 +24,13 @@ final class TypoScriptConfigurationTest extends UnitTestCase
         $this->subject = new TypoScriptConfiguration();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function implementsConfigurationInterface(): void
     {
         self::assertInstanceOf(ConfigurationInterface::class, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasTypoScriptName(): void
     {
         $subject = new TypoScriptConfiguration();
@@ -41,9 +38,7 @@ final class TypoScriptConfigurationTest extends UnitTestCase
         self::assertSame('in your TypoScript template', $subject->getSourceName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isObjectWithPublicAccessors(): void
     {
         self::assertInstanceOf(AbstractReadOnlyObjectWithPublicAccessors::class, $this->subject);
@@ -51,17 +46,13 @@ final class TypoScriptConfigurationTest extends UnitTestCase
 
     // Tests for the basic functionality
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setDataWithEmptyArrayIsAllowed(): void
     {
         $this->subject->setData([]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAfterSetDataReturnsTheSetValue(): void
     {
         $this->subject->setData(
@@ -74,9 +65,7 @@ final class TypoScriptConfigurationTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setDataCalledTwoTimesDoesNotFail(): void
     {
         $this->subject->setData(
@@ -90,10 +79,7 @@ final class TypoScriptConfigurationTest extends UnitTestCase
     ////////////////////////////////////
     // Tests regarding getArrayKeys().
     ////////////////////////////////////
-
-    /**
-     * @test
-     */
+    #[Test]
     public function getArrayKeysWithEmptyKeyReturnsKeysOfDataArray(): void
     {
         $this->subject->setData(['first' => 'test', 'second' => 'test']);
@@ -104,9 +90,7 @@ final class TypoScriptConfigurationTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getArrayKeysForInexistentKeyReturnEmptyArray(): void
     {
         self::assertSame(
@@ -115,9 +99,7 @@ final class TypoScriptConfigurationTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getArrayKeysForKeyOfStringDataItemReturnsEmptyArray(): void
     {
         $this->subject->setData(['key' => 'blub']);
@@ -128,9 +110,7 @@ final class TypoScriptConfigurationTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getArrayKeysForKeyOfDataItemWithOneArrayElementReturnsKeyOfArrayElement(): void
     {
         $this->subject->setData(['key' => ['test' => 'child']]);
@@ -141,9 +121,7 @@ final class TypoScriptConfigurationTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getArrayKeysForKeyOfDataItemWithTwoArrayElementsReturnsKeysOfArrayElements(): void
     {
         $this->subject->setData(
@@ -156,9 +134,7 @@ final class TypoScriptConfigurationTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsMultidimensionalArrayReturnsMultidimensionalArray(): void
     {
         $this->subject->setData(
@@ -171,9 +147,7 @@ final class TypoScriptConfigurationTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsMultidimensionalArrayForInexistentKeyReturnsEmptyArray(): void
     {
         $this->subject->setData([]);
@@ -184,9 +158,7 @@ final class TypoScriptConfigurationTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsMultidimensionalArrayForStringReturnsEmptyArray(): void
     {
         $this->subject->setData(
@@ -199,9 +171,7 @@ final class TypoScriptConfigurationTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsMultidimensionalArrayForIntegerReturnsEmptyArray(): void
     {
         $this->subject->setData(
@@ -214,9 +184,7 @@ final class TypoScriptConfigurationTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsMultidimensionalArrayForFloatReturnsEmptyArray(): void
     {
         $this->subject->setData(

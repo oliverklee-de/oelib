@@ -9,6 +9,8 @@ use OliverKlee\Oelib\Configuration\DummyConfiguration;
 use OliverKlee\Oelib\Configuration\PageFinder;
 use OliverKlee\Oelib\Configuration\TypoScriptConfiguration;
 use OliverKlee\Oelib\Testing\TestingFramework;
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -40,28 +42,21 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
         parent::tearDown();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isAvailableViaContainer(): void
     {
         self::assertInstanceOf(ConfigurationRegistry::class, $this->subject);
     }
 
-    /**
-     * @test
-     *
-     * @doesNotPerformAssertions
-     */
+    #[Test]
+    #[DoesNotPerformAssertions]
     public function setTwoTimesForTheSameNamespaceDoesNotFail(): void
     {
         $this->subject->set('foo', new DummyConfiguration());
         $this->subject->set('foo', new DummyConfiguration());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByNamespaceForEmptyNamespaceThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -72,9 +67,7 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
         $this->subject->getByNamespace('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByNamespaceAfterSetWithTypoScriptConfigurationReturnsTheSetInstance(): void
     {
         $configuration = new TypoScriptConfiguration();
@@ -84,9 +77,7 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
         self::assertSame($configuration, $this->subject->getByNamespace('foo'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByNamespaceAfterSetWithDummyConfigurationReturnsTheSetInstance(): void
     {
         $configuration = new DummyConfiguration();
@@ -96,9 +87,7 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
         self::assertSame($configuration, $this->subject->getByNamespace('foo'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByNamespaceForNonEmptyNamespaceReturnsConfigurationInstance(): void
     {
         $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
@@ -110,9 +99,7 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByNamespaceForTheSameNamespaceCalledTwoTimesReturnsTheSameInstance(): void
     {
         $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
@@ -124,9 +111,7 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByNamespaceReturnsDataFromTypoScriptSetupFromManuallySetPage(): void
     {
         $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
@@ -138,9 +123,7 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByNamespaceReturnsDataFromTypoScriptSetupFromBackEndPage(): void
     {
         $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');
@@ -154,9 +137,7 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByNamespaceReturnsDataFromTypoScriptSetupFromFrontEndPage(): void
     {
         if ((new Typo3Version())->getMajorVersion() >= 13) {
@@ -179,9 +160,8 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
     /**
      * This is the same as the previous test, but we are testing that the previous test does not leave any locks
      * in our way.
-     *
-     * @test
      */
+    #[Test]
     public function getByNamespaceReturnsDataFromTypoScriptSetupFromFrontEndPageAgain(): void
     {
         if ((new Typo3Version())->getMajorVersion() >= 13) {
@@ -201,9 +181,7 @@ final class ConfigurationRegistryTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByNamespaceAfterSetReturnsManuallySetConfigurationEvenIfThereIsAPage(): void
     {
         $this->importCSVDataSet(__DIR__ . '/Fixtures/ConfigurationRegistry/PageWithTemplate.csv');

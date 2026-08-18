@@ -6,6 +6,7 @@ namespace OliverKlee\Oelib\Tests\Functional\Email;
 
 use OliverKlee\Oelib\Email\GeneralEmailRole;
 use OliverKlee\Oelib\Email\SystemEmailBuilder;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -26,9 +27,7 @@ final class SystemEmailBuilderTest extends FunctionalTestCase
         $this->subject = new SystemEmailBuilder();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isAvailableViaContainer(): void
     {
         $instance = $this->get(SystemEmailBuilder::class);
@@ -36,9 +35,7 @@ final class SystemEmailBuilderTest extends FunctionalTestCase
         self::assertInstanceOf(SystemEmailBuilder::class, $instance);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function buildWithConfiguredFromAddressReturnsGeneralEmailRoleWithDefaultFromAddress(): void
     {
         self::assertIsArray($GLOBALS['TYPO3_CONF_VARS']);
@@ -52,9 +49,7 @@ final class SystemEmailBuilderTest extends FunctionalTestCase
         self::assertSame($fromAddress, $result->getEmailAddress());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function buildWithoutConfiguredFromAddressReturnsGeneralEmailRoleWithNoReplyAddress(): void
     {
         self::assertIsArray($GLOBALS['TYPO3_CONF_VARS']);
@@ -67,9 +62,7 @@ final class SystemEmailBuilderTest extends FunctionalTestCase
         self::assertStringStartsWith('no-reply@', $result->getEmailAddress());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function buildWithConfiguredFromNameReturnsGeneralEmailRoleWithDefaultFromName(): void
     {
         self::assertIsArray($GLOBALS['TYPO3_CONF_VARS']);
@@ -83,9 +76,7 @@ final class SystemEmailBuilderTest extends FunctionalTestCase
         self::assertSame($fromName, $result->getName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function buildWithoutConfiguredFromNameReturnsGeneralEmailRoleWithEmptyFromName(): void
     {
         self::assertIsArray($GLOBALS['TYPO3_CONF_VARS']);

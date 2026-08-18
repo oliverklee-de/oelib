@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Tests\Unit\Exception;
 
 use OliverKlee\Oelib\Exception\NotFoundException;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -12,9 +13,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class NotFoundExceptionTest extends UnitTestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function isException(): void
     {
         self::assertInstanceOf(\RuntimeException::class, new NotFoundException());

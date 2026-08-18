@@ -7,6 +7,7 @@ namespace OliverKlee\Oelib\Tests\Unit\Mapper;
 use OliverKlee\Oelib\Mapper\AbstractDataMapper;
 use OliverKlee\Oelib\Mapper\CurrencyMapper;
 use OliverKlee\Oelib\Model\Currency;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -23,17 +24,13 @@ final class CurrencyMapperTest extends UnitTestCase
         $this->subject = new CurrencyMapper();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isMapper(): void
     {
         self::assertInstanceOf(AbstractDataMapper::class, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function createsCurrencyModel(): void
     {
         $model = $this->subject->getNewGhost();
