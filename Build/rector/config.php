@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
 use Rector\Php71\Rector\FuncCall\RemoveExtraParametersRector;
-use Rector\PHPUnit\Set\PHPUnitSetList;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\ValueObject\PhpVersion;
@@ -38,12 +37,6 @@ return RectorConfig::configure()
         // SetList::PRIVATIZATION,
         // SetList::STRICT_BOOLEANS,
         SetList::TYPE_DECLARATION,
-
-        // PHPUnit sets
-
-        PHPUnitSetList::PHPUNIT_100,
-        // PHPUnitSetList::PHPUNIT_110,
-        // PHPUnitSetList::PHPUNIT_CODE_QUALITY,
 
         // TYPO3 Sets
         // https://github.com/sabbelasichon/typo3-rector/blob/main/src/Set/Typo3LevelSetList.php
