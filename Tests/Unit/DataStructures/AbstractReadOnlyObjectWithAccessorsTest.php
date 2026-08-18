@@ -80,11 +80,9 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param mixed $inputValue
-     *
      * @dataProvider stringDataProvider
      */
-    public function getAsStringReturnsDataCastToString($inputValue, string $expected): void
+    public function getAsStringReturnsDataCastToString(string|int|bool $inputValue, string $expected): void
     {
         $key = 'foo';
         $this->subject->setData([$key => $inputValue]);
@@ -143,11 +141,9 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param mixed $inputValue
-     *
      * @dataProvider integerDataProvider
      */
-    public function getAsIntegerReturnsDataCastToInteger($inputValue, int $expected): void
+    public function getAsIntegerReturnsDataCastToInteger(int|string|float|bool $inputValue, int $expected): void
     {
         $key = 'foo';
         $this->subject->setData([$key => $inputValue]);
@@ -351,11 +347,9 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param mixed $inputValue
-     *
      * @dataProvider integerDataProvider
      */
-    public function getAsIntegerArrayCastsValuesToInteger($inputValue, int $expected): void
+    public function getAsIntegerArrayCastsValuesToInteger(int|string|float|bool $inputValue, int $expected): void
     {
         $key = 'foo';
         $this->subject->setData([$key => $inputValue]);
@@ -437,11 +431,9 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param mixed $inputValue
-     *
      * @dataProvider booleanDataProvider
      */
-    public function getAsBooleanCastsDataToBoolean($inputValue, bool $expected): void
+    public function getAsBooleanCastsDataToBoolean(bool|int|string $inputValue, bool $expected): void
     {
         $key = 'foo';
         $this->subject->setData([$key => $inputValue]);
@@ -497,11 +489,9 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param mixed $inputValue
-     *
      * @dataProvider floatDataProvider
      */
-    public function getAsFloatCastsDataToFloat($inputValue, float $expected): void
+    public function getAsFloatCastsDataToFloat(float|string|int|bool $inputValue, float $expected): void
     {
         $key = 'foo';
         $this->subject->setData([$key => $inputValue]);
