@@ -1909,11 +1909,9 @@ final class AbstractDataMapperTest extends FunctionalTestCase
     /**
      * @test
      *
-     * @param non-empty-string|float $expectedValue
-     *
      * @dataProvider floatDataTypeDataProvider
      */
-    public function savePersistsFloatDataTypes(string $propertyName, $expectedValue): void
+    public function savePersistsFloatDataTypes(string $propertyName, string|float $expectedValue): void
     {
         $model = new TestingModel();
         $model->setData(

@@ -93,11 +93,9 @@ final class AbstractObjectWithPublicAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param string|int|bool $inputValue
-     *
      * @dataProvider stringDataProvider
      */
-    public function getAsStringReturnsDataCastToString($inputValue, string $expected): void
+    public function getAsStringReturnsDataCastToString(string|int|bool $inputValue, string $expected): void
     {
         $key = 'foo';
         $this->subject->setData([$key => $inputValue]);
@@ -108,11 +106,9 @@ final class AbstractObjectWithPublicAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param string|int|bool $inputValue
-     *
      * @dataProvider stringDataProvider
      */
-    public function setAsStringSetsDataToString($inputValue, string $expected): void
+    public function setAsStringSetsDataToString(string|int|bool $inputValue, string $expected): void
     {
         $key = 'foo';
         $this->subject->setAsString($key, $inputValue);
@@ -210,11 +206,9 @@ final class AbstractObjectWithPublicAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param int|string|float|bool $inputValue
-     *
      * @dataProvider integerDataProvider
      */
-    public function getAsIntegerReturnsDataCastToInteger($inputValue, int $expected): void
+    public function getAsIntegerReturnsDataCastToInteger(int|string|float|bool $inputValue, int $expected): void
     {
         $key = 'foo';
         $this->subject->setData([$key => $inputValue]);
@@ -328,11 +322,9 @@ final class AbstractObjectWithPublicAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param int|string|float|bool $inputValue
-     *
      * @dataProvider integerDataProvider
      */
-    public function setAsIntegerSetsDataToInteger($inputValue, int $expected): void
+    public function setAsIntegerSetsDataToInteger(int|string|float|bool $inputValue, int $expected): void
     {
         $key = 'foo';
         $this->subject->setAsInteger($key, $inputValue);
@@ -420,11 +412,9 @@ final class AbstractObjectWithPublicAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param mixed $inputValue
-     *
      * @dataProvider integerDataProvider
      */
-    public function getAsIntegerArrayCastsValuesToInteger($inputValue, int $expected): void
+    public function getAsIntegerArrayCastsValuesToInteger(int|string|bool|float $inputValue, int $expected): void
     {
         $key = 'foo';
         $this->subject->setData([$key => $inputValue]);
@@ -435,12 +425,12 @@ final class AbstractObjectWithPublicAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param mixed $inputValue
-     *
      * @dataProvider integerDataProvider
      */
-    public function getAsIntegerArrayCastsValuesFromSetAsArrayToInteger($inputValue, int $expected): void
-    {
+    public function getAsIntegerArrayCastsValuesFromSetAsArrayToInteger(
+        int|string|bool|float $inputValue,
+        int $expected,
+    ): void {
         $key = 'foo';
         $this->subject->setAsArray($key, [$inputValue]);
 
@@ -546,11 +536,9 @@ final class AbstractObjectWithPublicAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param bool|int|string $inputValue
-     *
      * @dataProvider booleanDataProvider
      */
-    public function getAsBooleanCastsDataToBoolean($inputValue, bool $expected): void
+    public function getAsBooleanCastsDataToBoolean(bool|int|string $inputValue, bool $expected): void
     {
         $key = 'foo';
         $this->subject->setData([$key => $inputValue]);
@@ -561,11 +549,9 @@ final class AbstractObjectWithPublicAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param bool|int|string $inputValue
-     *
      * @dataProvider booleanDataProvider
      */
-    public function setAsBooleanSetsAndCastsDataToBoolean($inputValue, bool $expected): void
+    public function setAsBooleanSetsAndCastsDataToBoolean(bool|int|string $inputValue, bool $expected): void
     {
         $key = 'foo';
         $this->subject->setAsBoolean($key, $inputValue);
@@ -634,11 +620,9 @@ final class AbstractObjectWithPublicAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param float|string|int|bool $inputValue
-     *
      * @dataProvider floatDataProvider
      */
-    public function getAsFloatCastsDataToFloat($inputValue, float $expected): void
+    public function getAsFloatCastsDataToFloat(float|string|int|bool $inputValue, float $expected): void
     {
         $key = 'foo';
         $this->subject->setData([$key => $inputValue]);
@@ -649,11 +633,9 @@ final class AbstractObjectWithPublicAccessorsTest extends UnitTestCase
     /**
      * @test
      *
-     * @param float|string|int|bool $inputValue
-     *
      * @dataProvider floatDataProvider
      */
-    public function setAsFloatSetsAndCastsDataToFloat($inputValue, float $expected): void
+    public function setAsFloatSetsAndCastsDataToFloat(float|string|int|bool $inputValue, float $expected): void
     {
         $key = 'foo';
         $this->subject->setAsFloat($key, $inputValue);

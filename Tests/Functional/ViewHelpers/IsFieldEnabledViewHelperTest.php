@@ -73,7 +73,7 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
     }
 
     /**
-     * @return array<string, array{0: list<mixed>|positive-int}>
+     * @return array<string, array{0: array{}|positive-int}>
      */
     public static function nonStringSettingDataProvider(): array
     {
@@ -86,11 +86,11 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
     /**
      * @test
      *
-     * @param array{0: list<mixed>|positive-int} $value
+     * @param array{}|positive-int $value
      *
      * @dataProvider nonStringSettingDataProvider
      */
-    public function renderForNonStringSettingNameInSettingsThrowsException($value): void
+    public function renderForNonStringSettingNameInSettingsThrowsException(int|array $value): void
     {
         $this->expectException(\UnexpectedValueException::class);
         $this->expectExceptionMessage('The setting "fieldsToShow" needs to be a string.');

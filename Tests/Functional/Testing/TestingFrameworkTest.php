@@ -1235,7 +1235,7 @@ final class TestingFrameworkTest extends FunctionalTestCase
     }
 
     /**
-     * @return array<non-empty-string, array{0: non-empty-string, 1: string|bool|null}>
+     * @return array<non-empty-string, array{0: non-empty-string, 1: string|bool}>
      */
     public static function indEnvDataProvider(): array
     {
@@ -1268,11 +1268,10 @@ final class TestingFrameworkTest extends FunctionalTestCase
      * @test
      *
      * @param non-empty-string $key
-     * @param string|bool|null $expected
      *
      * @dataProvider indEnvDataProvider
      */
-    public function createFakeFrontEndPopulatesGlobalsAccessibleViaGetIndEnv(string $key, $expected): void
+    public function createFakeFrontEndPopulatesGlobalsAccessibleViaGetIndEnv(string $key, string|bool $expected): void
     {
         $this->subject->createFakeFrontEnd($this->subject->createFrontEndPage());
 
