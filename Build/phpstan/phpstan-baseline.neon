@@ -781,7 +781,7 @@ parameters:
 			path: ../../Tests/Unit/Configuration/FlexformsConfigurationTest.php
 
 		-
-			rawMessage: 'Parameter #2 $value of method OliverKlee\Oelib\DataStructures\AbstractObjectWithPublicAccessors::setAsArray() expects array<int|string>, array<int, mixed> given.'
+			rawMessage: 'Parameter #2 $value of method OliverKlee\Oelib\DataStructures\AbstractObjectWithPublicAccessors::setAsArray() expects array<bool|float|int|string>, array<int, mixed> given.'
 			identifier: argument.type
 			count: 1
 			path: ../../Tests/Unit/DataStructures/AbstractObjectWithPublicAccessorsTest.php

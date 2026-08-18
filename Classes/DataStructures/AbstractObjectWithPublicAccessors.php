@@ -132,7 +132,7 @@ abstract class AbstractObjectWithPublicAccessors extends AbstractObjectWithAcces
      * limitation.
      *
      * @param non-empty-string $key
-     * @param array<string|int> $value the value to set, may be empty
+     * @param array<string|int|bool|float> $value the value to set
      *
      * @see getAsTrimmedArray
      * @see getAsIntegerArray

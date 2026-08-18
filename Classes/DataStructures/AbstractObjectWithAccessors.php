@@ -53,7 +53,7 @@ abstract class AbstractObjectWithAccessors extends AbstractReadOnlyObjectWithAcc
      * limitation.
      *
      * @param non-empty-string $key
-     * @param array<string|int> $value the value to set, may be empty
+     * @param array<string|int|bool|float> $value the value to set
      *
      * @see getAsIntegerArray
      * @see getAsTrimmedArray
