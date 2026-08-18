@@ -115,7 +115,7 @@ abstract class AbstractDataMapper
         try {
             /** @var M $model */
             $model = $this->map->get($uid);
-        } catch (NotFoundException $notFoundException) {
+        } catch (NotFoundException) {
             $model = $this->createGhost($uid);
         }
 
@@ -255,7 +255,7 @@ abstract class AbstractDataMapper
         try {
             $data = $this->retrieveRecordByUid($uid);
             $this->fillModel($model, $data);
-        } catch (NotFoundException $notFoundException) {
+        } catch (NotFoundException) {
             $model->markAsDead();
         }
     }
@@ -1129,7 +1129,7 @@ abstract class AbstractDataMapper
     {
         try {
             $model = $this->findOneByKeyFromCache($key, $value);
-        } catch (NotFoundException $notFoundException) {
+        } catch (NotFoundException) {
             $model = $this->findSingleByWhereClause([$key => $value]);
         }
 
