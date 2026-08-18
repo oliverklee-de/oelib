@@ -42,8 +42,8 @@ final class IsFieldEnabledViewHelperTest extends FunctionalTestCase
 
     private function embedInHtmlWithNamespace(string $html): string
     {
-        return '<html xmlns:oelib="OliverKlee\Oelib\ViewHelpers" data-namespace-typo3-fluid="true">' .
-            $html . '</html>';
+        return '<html xmlns:oelib="OliverKlee\Oelib\ViewHelpers" data-namespace-typo3-fluid="true">'
+            . $html . '</html>';
     }
 
     /**

@@ -357,7 +357,7 @@ class Template
     public function unhideSubparts(
         string $subparts,
         string $permanentlyHiddenSubparts = '',
-        string $prefix = ''
+        string $prefix = '',
     ): void {
         $subpartNames = GeneralUtility::trimExplode(',', $subparts, true);
 
@@ -391,7 +391,7 @@ class Template
     public function unhideSubpartsArray(
         array $subparts,
         array $permanentlyHiddenSubparts = [],
-        string $prefix = ''
+        string $prefix = '',
     ): void {
         foreach ($subparts as $currentSubpartName) {
             // Only unhide the current subpart if it is not on the list of
@@ -426,7 +426,7 @@ class Template
         bool $condition,
         $content,
         string $markerPrefix = '',
-        string $wrapperPrefix = ''
+        string $wrapperPrefix = '',
     ): bool {
         if ($condition) {
             $this->setMarker($markerName, $content, $markerPrefix);
@@ -462,7 +462,7 @@ class Template
         string $markerName,
         $content,
         string $markerPrefix = '',
-        string $wrapperPrefix = ''
+        string $wrapperPrefix = '',
     ): bool {
         return $this->setOrDeleteMarker(
             $markerName,
@@ -502,7 +502,7 @@ class Template
         string $markerName,
         $content,
         string $markerPrefix = '',
-        string $wrapperPrefix = ''
+        string $wrapperPrefix = '',
     ): bool {
         $contentIsNonEmpty = (string)$content !== '';
 
@@ -599,8 +599,8 @@ class Template
         if (!isset($this->subparts[$subpartKey])) {
             throw new NotFoundException(
                 '$key contained the subpart name "' . $subpartKey
-                . '", but only the following subparts are available: (' .
-                implode(', ', array_keys($this->subparts)) . ')',
+                . '", but only the following subparts are available: ('
+                . implode(', ', array_keys($this->subparts)) . ')',
                 1_632_760_625,
             );
         }

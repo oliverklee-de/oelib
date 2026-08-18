@@ -902,16 +902,16 @@ abstract class AbstractDataMapper
             foreach ($relatedModels->toArray() as $relatedModel) {
                 if (!method_exists($relatedModel, $getter)) {
                     throw new \BadMethodCallException(
-                        'The class ' . \get_class($relatedModel) . ' is missing the function ' . $getter .
-                        ' which is needed for saving a 1:n relation.',
+                        'The class ' . \get_class($relatedModel) . ' is missing the function ' . $getter
+                        . ' which is needed for saving a 1:n relation.',
                         1_331_319_751,
                     );
                 }
 
                 if (!method_exists($relatedModel, $setter)) {
                     throw new \BadMethodCallException(
-                        'The class ' . \get_class($relatedModel) . ' is missing the function ' . $setter .
-                        ' which is needed for saving a 1:n relation.',
+                        'The class ' . \get_class($relatedModel) . ' is missing the function ' . $setter
+                        . ' which is needed for saving a 1:n relation.',
                         1_331_319_803,
                     );
                 }
@@ -1148,7 +1148,7 @@ abstract class AbstractDataMapper
     public function findAllByRelation(
         AbstractModel $model,
         string $relationKey,
-        ?Collection $ignoreList = null
+        ?Collection $ignoreList = null,
     ): Collection {
         if (!$model->hasUid()) {
             throw new \InvalidArgumentException('$model must have a UID.', 1_331_319_915);

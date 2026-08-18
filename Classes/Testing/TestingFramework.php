@@ -373,7 +373,7 @@ final class TestingFramework
         string $tableName,
         int $uidLocal,
         int $uidForeign,
-        string $columnName
+        string $columnName,
     ): void {
         // @phpstan-ignore-next-line We're testing for a contract violation here.
         if ($uidLocal <= 0) {
@@ -396,8 +396,8 @@ final class TestingFramework
 
         if (!isset($relationConfiguration['config']['MM']) || ($relationConfiguration['config']['MM'] === '')) {
             throw new \BadMethodCallException(
-                'The column ' . $columnName . ' in the table ' . $tableName .
-                ' is not configured to contain m:n relations using a m:n table.',
+                'The column ' . $columnName . ' in the table ' . $tableName
+                . ' is not configured to contain m:n relations using a m:n table.',
                 1_331_490_434,
             );
         }
@@ -807,7 +807,7 @@ routes: {  }";
     private function addTypoScriptToRequest(
         TypoScriptFrontendController $controller,
         array $rootline,
-        ServerRequest $request
+        ServerRequest $request,
     ): ServerRequestInterface {
         $sysTemplateRepository = GeneralUtility::makeInstance(SysTemplateRepository::class);
         $sysTemplateRows = $sysTemplateRepository->getSysTemplateRowsByRootline($rootline, $request);

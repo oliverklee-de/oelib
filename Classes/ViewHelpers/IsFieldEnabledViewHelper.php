@@ -125,7 +125,7 @@ class IsFieldEnabledViewHelper extends AbstractConditionViewHelper
      */
     private static function getEnabledFields(
         RenderingContextInterface $renderingContext,
-        string $configurationKey
+        string $configurationKey,
     ): array {
         $settings = $renderingContext->getVariableProvider()->get('settings');
         if (!\is_array($settings)) {

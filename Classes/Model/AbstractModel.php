@@ -285,8 +285,8 @@ abstract class AbstractModel extends AbstractObjectWithAccessors implements Iden
         $this->load();
         if ($this->isDead()) {
             throw new NotFoundException(
-                'The ' . static::class . ' with the UID ' . $this->getUid() .
-                ' either has been deleted (or has never existed), but still is accessed.',
+                'The ' . static::class . ' with the UID ' . $this->getUid()
+                . ' either has been deleted (or has never existed), but still is accessed.',
                 1_332_446_332,
             );
         }

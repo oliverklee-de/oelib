@@ -77,8 +77,8 @@ class MapperRegistry
 
         if (isset($this->mappers[$className])) {
             throw new \BadMethodCallException(
-                'There already is a ' . $className . ' mapper registered. ' .
-                'Overwriting existing mappers is not allowed.',
+                'There already is a ' . $className . ' mapper registered. '
+                . 'Overwriting existing mappers is not allowed.',
                 1_331_488_928,
             );
         }

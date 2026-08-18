@@ -684,7 +684,7 @@ final class CollectionTest extends UnitTestCase
         $this->addModelsToFixture(['Beta', 'Alpha']);
         $this->subject->sort(fn(
             TestingModel $firstModel,
-            TestingModel $secondModel
+            TestingModel $secondModel,
         ): int
             => $this->sortByTitleAscending($firstModel, $secondModel));
 
@@ -704,7 +704,7 @@ final class CollectionTest extends UnitTestCase
         $this->addModelsToFixture(['Zeta', 'Beta', 'Alpha']);
         $this->subject->sort(fn(
             TestingModel $firstModel,
-            TestingModel $secondModel
+            TestingModel $secondModel,
         ): int
             => $this->sortByTitleAscending($firstModel, $secondModel));
 
@@ -724,7 +724,7 @@ final class CollectionTest extends UnitTestCase
         $this->addModelsToFixture(['Alpha', 'Beta']);
         $this->subject->sort(fn(
             TestingModel $firstModel,
-            TestingModel $secondModel
+            TestingModel $secondModel,
         ): int
             => $this->sortByTitleDescending($firstModel, $secondModel));
 
@@ -746,7 +746,7 @@ final class CollectionTest extends UnitTestCase
 
         $subject->sort(fn(
             TestingModel $firstModel,
-            TestingModel $secondModel
+            TestingModel $secondModel,
         ): int
             => $this->sortByTitleAscending($firstModel, $secondModel));
     }
