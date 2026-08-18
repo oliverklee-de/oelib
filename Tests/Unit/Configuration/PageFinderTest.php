@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Tests\Unit\Configuration;
 
 use OliverKlee\Oelib\Configuration\PageFinder;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -25,9 +26,7 @@ final class PageFinderTest extends UnitTestCase
     // Tests concerning the Singleton property
     ////////////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getInstanceReturnsPageFinderInstance(): void
     {
         self::assertInstanceOf(
@@ -36,9 +35,7 @@ final class PageFinderTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getInstanceTwoTimesReturnsSameInstance(): void
     {
         self::assertSame(
@@ -47,9 +44,7 @@ final class PageFinderTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getInstanceAfterPurgeInstanceReturnsNewInstance(): void
     {
         $firstInstance = PageFinder::getInstance();
@@ -65,9 +60,7 @@ final class PageFinderTest extends UnitTestCase
     // tests concerning setPageUid
     ////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getPageUidWithSetPageUidViaSetPageUidReturnsSetPageUid(): void
     {
         $this->subject->setPageUid(42);
@@ -78,9 +71,7 @@ final class PageFinderTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setPageUidWithZeroGivenThrowsException(): void
     {
         $this->expectException(
@@ -94,9 +85,7 @@ final class PageFinderTest extends UnitTestCase
         $this->subject->setPageUid(0);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function setPageUidWithNegativeNumberGivenThrowsException(): void
     {
         $this->expectException(

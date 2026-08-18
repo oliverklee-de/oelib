@@ -6,6 +6,7 @@ namespace OliverKlee\Oelib\Tests\Functional\Mapper;
 
 use OliverKlee\Oelib\Mapper\CurrencyMapper;
 use OliverKlee\Oelib\Model\Currency;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -43,10 +44,7 @@ final class CurrencyMapperTest extends FunctionalTestCase
     /////////////////////////////////////////
     // Tests regarding findByIsoAlpha3Code.
     /////////////////////////////////////////
-
-    /**
-     * @test
-     */
+    #[Test]
     public function findByIsoAlpha3CodeWithIsoAlpha3CodeOfExistingRecordReturnsCurrencyInstance(): void
     {
         self::assertInstanceOf(
@@ -55,9 +53,7 @@ final class CurrencyMapperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findByIsoAlpha3CodeWithIsoAlpha3CodeOfExistingRecordReturnsRecordAsModel(): void
     {
         self::assertSame(

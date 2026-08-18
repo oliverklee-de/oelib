@@ -6,6 +6,7 @@ namespace OliverKlee\Oelib\Tests\Unit\Email;
 
 use OliverKlee\Oelib\Email\GeneralEmailRole;
 use OliverKlee\Oelib\Email\SystemEmailFromBuilder;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -30,9 +31,7 @@ final class SystemEmailFromBuilderTest extends UnitTestCase
         parent::tearDown();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canBuildForEmptyAddressAndNameReturnsFalse(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'] = '';
@@ -41,9 +40,7 @@ final class SystemEmailFromBuilderTest extends UnitTestCase
         self::assertFalse($this->subject->canBuild());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canBuildForNullAddressAndNameReturnsFalse(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'] = null;
@@ -52,9 +49,7 @@ final class SystemEmailFromBuilderTest extends UnitTestCase
         self::assertFalse($this->subject->canBuild());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canBuildForNonEmptyValidAddressAndEmptyNameReturnsTrue(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'] = 'admin@example.com';
@@ -63,9 +58,7 @@ final class SystemEmailFromBuilderTest extends UnitTestCase
         self::assertTrue($this->subject->canBuild());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canBuildForNonEmptyValidAddressAndNullNameReturnsTrue(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'] = 'admin@example.com';
@@ -74,9 +67,7 @@ final class SystemEmailFromBuilderTest extends UnitTestCase
         self::assertTrue($this->subject->canBuild());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canBuildForNonEmptyInvalidAddressAndEmptyNameReturnsFalse(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'] = '78345uirefdx';
@@ -85,9 +76,7 @@ final class SystemEmailFromBuilderTest extends UnitTestCase
         self::assertFalse($this->subject->canBuild());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function buildForInvalidDataThrowsException(): void
     {
         $GLOBALS['TYPO3_CONF_VARS']['MAIL']['defaultMailFromAddress'] = '';
@@ -98,9 +87,7 @@ final class SystemEmailFromBuilderTest extends UnitTestCase
         $this->subject->build();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function buildForValidDataReturnSystemEmailSubjectWithGivenData(): void
     {
         $emailAddress = 'elena@example.com';

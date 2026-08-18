@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Tests\Unit\DataStructures;
 
 use OliverKlee\Oelib\Tests\Unit\DataStructures\Fixtures\TestingReadOnlyObjectWithPublicAccessors;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -22,9 +24,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         $this->subject = new TestingReadOnlyObjectWithPublicAccessors();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function checkForNonEmptyKeyWithEmptyKeyThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -34,17 +34,13 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         $this->subject->checkForNonEmptyKey('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function checkForNonEmptyKeyWithNonEmptyKeyIsAllowed(): void
     {
         $this->subject->checkForNonEmptyKey('foo');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsStringWithEmptyKeyThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -55,9 +51,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         $this->subject->getAsString('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsStringWithInexistentKeyReturnsEmptyString(): void
     {
         self::assertSame('', $this->subject->getAsString('foo'));
@@ -77,11 +71,8 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider stringDataProvider
-     */
+    #[Test]
+    #[DataProvider('stringDataProvider')]
     public function getAsStringReturnsDataCastToString(string|int|bool $inputValue, string $expected): void
     {
         $key = 'foo';
@@ -90,9 +81,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame($expected, $this->subject->getAsString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsStringReturnsTrimmedValue(): void
     {
         $key = 'foo';
@@ -101,9 +90,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame('bar', $this->subject->getAsString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsIntegerWithEmptyKeyThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -114,9 +101,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         $this->subject->getAsInteger('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsIntegerWithInexistentKeyReturnsZero(): void
     {
         self::assertSame(0, $this->subject->getAsInteger('foo'));
@@ -138,11 +123,8 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider integerDataProvider
-     */
+    #[Test]
+    #[DataProvider('integerDataProvider')]
     public function getAsIntegerReturnsDataCastToInteger(int|string|float|bool $inputValue, int $expected): void
     {
         $key = 'foo';
@@ -151,9 +133,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame($expected, $this->subject->getAsInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsNonNegativeIntegerWithEmptyKeyThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -164,9 +144,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         $this->subject->getAsNonNegativeInteger('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsPositiveIntegerWithEmptyKeyThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -177,9 +155,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         $this->subject->getAsPositiveInteger('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsNonNegativeIntegerForZeroReturnsSetValue(): void
     {
         $key = 'foo';
@@ -189,9 +165,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame($value, $this->subject->getAsNonNegativeInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsNonNegativeIntegerForPositiveValueReturnsSetValue(): void
     {
         $key = 'foo';
@@ -201,9 +175,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame($value, $this->subject->getAsNonNegativeInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsNonNegativeIntegerForPositiveStringValueReturnsSetIntegerValue(): void
     {
         $key = 'foo';
@@ -212,9 +184,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame(2, $this->subject->getAsNonNegativeInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsNonNegativeIntegerForNegativeValueThrowsException(): void
     {
         $key = 'foo';
@@ -227,9 +197,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         $this->subject->getAsNonNegativeInteger($key);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsPositiveIntegerForPositiveIntegerValueReturnsSetValue(): void
     {
         $key = 'foo';
@@ -239,9 +207,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame($value, $this->subject->getAsPositiveInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsPositiveIntegerForPositiveStringValueReturnsSetIntegerValue(): void
     {
         $key = 'foo';
@@ -250,9 +216,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame(2, $this->subject->getAsPositiveInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsPositiveIntegerForZeroThrowsException(): void
     {
         $key = 'foo';
@@ -265,9 +229,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         $this->subject->getAsPositiveInteger($key);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsPositiveIntegerForNegativeValueThrowsException(): void
     {
         $key = 'foo';
@@ -280,9 +242,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         $this->subject->getAsPositiveInteger($key);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsTrimmedArrayWithEmptyKeyThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -293,9 +253,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         $this->subject->getAsTrimmedArray('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsIntegerArrayWithEmptyKeyThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -306,25 +264,19 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         $this->subject->getAsIntegerArray('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsTrimmedArrayWithInexistentKeyReturnsEmptyArray(): void
     {
         self::assertSame([], $this->subject->getAsTrimmedArray('foo'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsIntegerArrayWithInexistentKeyReturnsEmptyArray(): void
     {
         self::assertSame([], $this->subject->getAsIntegerArray('foo'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsIntegerArrayWithEmptyDataReturnsEmptyArray(): void
     {
         $key = 'foo';
@@ -333,9 +285,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame([], $this->subject->getAsIntegerArray($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsIntegerArraySplitsCommaSeparatedString(): void
     {
         $key = 'foo';
@@ -344,11 +294,8 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame([7, 4], $this->subject->getAsIntegerArray($key));
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider integerDataProvider
-     */
+    #[Test]
+    #[DataProvider('integerDataProvider')]
     public function getAsIntegerArrayCastsValuesToInteger(int|string|float|bool $inputValue, int $expected): void
     {
         $key = 'foo';
@@ -357,9 +304,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame([$expected], $this->subject->getAsIntegerArray($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsTrimmedArrayWithEmptyDataReturnsEmptyArray(): void
     {
         $key = 'foo';
@@ -368,9 +313,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame([], $this->subject->getAsTrimmedArray($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsTrimmedArraySplitsCommaSeparatedString(): void
     {
         $key = 'foo';
@@ -379,9 +322,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame(['hey', 'ho'], $this->subject->getAsTrimmedArray($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsTrimmedArrayTrimsValues(): void
     {
         $key = 'foo';
@@ -390,9 +331,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame(['hey', 'ho'], $this->subject->getAsTrimmedArray($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsBooleanWithEmptyKeyThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -403,9 +342,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         $this->subject->getAsBoolean('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsBooleanWithInexistentKeyReturnsFalse(): void
     {
         self::assertFalse($this->subject->getAsBoolean('foo'));
@@ -428,11 +365,8 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider booleanDataProvider
-     */
+    #[Test]
+    #[DataProvider('booleanDataProvider')]
     public function getAsBooleanCastsDataToBoolean(bool|int|string $inputValue, bool $expected): void
     {
         $key = 'foo';
@@ -441,9 +375,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertSame($expected, $this->subject->getAsBoolean($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsFloatWithEmptyKeyThrowsException(): void
     {
         $this->expectException(\InvalidArgumentException::class);
@@ -454,9 +386,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         $this->subject->getAsFloat('');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getAsFloatWithInexistentKeyReturnsZero(): void
     {
         self::assertSame(0.0, $this->subject->getAsFloat('foo'));
@@ -486,11 +416,8 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider floatDataProvider
-     */
+    #[Test]
+    #[DataProvider('floatDataProvider')]
     public function getAsFloatCastsDataToFloat(float|string|int|bool $inputValue, float $expected): void
     {
         $key = 'foo';
@@ -499,9 +426,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertEqualsWithDelta($expected, $this->subject->getAsFloat($key), 0.001);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasStringForNonEmptyStringReturnsTrue(): void
     {
         $key = 'foo';
@@ -510,9 +435,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertTrue($this->subject->hasString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasStringForEmptyStringReturnsFalse(): void
     {
         $key = 'foo';
@@ -521,9 +444,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertFalse($this->subject->hasString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasIntegerForPositiveIntegerReturnsTrue(): void
     {
         $key = 'foo';
@@ -532,9 +453,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertTrue($this->subject->hasInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasIntegerForNegativeIntegerReturnsTrue(): void
     {
         $key = 'foo';
@@ -543,9 +462,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertTrue($this->subject->hasInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasIntegerForZeroReturnsFalse(): void
     {
         $key = 'foo';
@@ -554,9 +471,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertFalse($this->subject->hasInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasFloatForPositiveFloatReturnsTrue(): void
     {
         $key = 'foo';
@@ -565,9 +480,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertTrue($this->subject->hasFloat($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasFloatForNegativeFloatReturnsTrue(): void
     {
         $key = 'foo';
@@ -576,9 +489,7 @@ final class AbstractReadOnlyObjectWithAccessorsTest extends UnitTestCase
         self::assertTrue($this->subject->hasFloat($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasFloatForZeroReturnsFalse(): void
     {
         $key = 'foo';

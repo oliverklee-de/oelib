@@ -6,6 +6,7 @@ namespace OliverKlee\Oelib\Tests\Functional\Configuration;
 
 use OliverKlee\Oelib\Configuration\PageFinder;
 use OliverKlee\Oelib\Testing\TestingFramework;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -38,9 +39,7 @@ final class PageFinderTest extends FunctionalTestCase
     // Tests concerning getPageUid
     ////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getPageUidWithFrontEndPageUidReturnsFrontEndPageUid(): void
     {
         $frontEndPageUid = $this->testingFramework->createFrontEndPage();
@@ -49,9 +48,7 @@ final class PageFinderTest extends FunctionalTestCase
         self::assertSame($frontEndPageUid, $this->subject->getPageUid());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getPageUidWithoutFrontEndAndWithBackendPageUidReturnsBackEndPageUid(): void
     {
         $_GET['id'] = 42;
@@ -65,9 +62,7 @@ final class PageFinderTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getPageUidWithFrontEndAndBackendPageUidReturnsFrontEndPageUid(): void
     {
         $frontEndPageUid = $this->testingFramework->createFrontEndPage();
@@ -84,9 +79,7 @@ final class PageFinderTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getPageUidForManuallySetPageUidAndSetFrontEndPageUidReturnsManuallySetPageUid(): void
     {
         $frontEndPageUid = $this->testingFramework->createFrontEndPage();
@@ -103,9 +96,7 @@ final class PageFinderTest extends FunctionalTestCase
     // Tests concerning forceSource
     /////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function forceSourceWithSourceSetToFrontEndAndManuallySetPageUidReturnsFrontEndPageUid(): void
     {
         $this->subject->forceSource(PageFinder::SOURCE_FRONT_END);
@@ -120,9 +111,7 @@ final class PageFinderTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function forceSourceWithSourceSetToBackEndAndSetFrontEndUidReturnsBackEndEndPageUid(): void
     {
         $this->subject->forceSource(PageFinder::SOURCE_BACK_END);
@@ -136,9 +125,7 @@ final class PageFinderTest extends FunctionalTestCase
         self::assertSame($frontEndPageUid + 1, $pageUid);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function forceSourceWithSourceSetToFrontEndAndManuallySetPageUidButNoFrontEndUidSetReturnsZero(): void
     {
         $this->subject->forceSource(PageFinder::SOURCE_FRONT_END);
@@ -155,9 +142,7 @@ final class PageFinderTest extends FunctionalTestCase
     // Tests concerning getCurrentSource
     //////////////////////////////////////
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCurrentSourceForNoSourceForcedAndNoPageUidSetReturnsNoSourceFound(): void
     {
         self::assertSame(
@@ -166,9 +151,7 @@ final class PageFinderTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCurrentSourceForSourceForcedToFrontEndReturnsSourceFrontEnd(): void
     {
         $this->subject->forceSource(PageFinder::SOURCE_FRONT_END);
@@ -179,9 +162,7 @@ final class PageFinderTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCurrentSourceForSourceForcedToBackEndReturnsSourceBackEnd(): void
     {
         $this->subject->forceSource(PageFinder::SOURCE_BACK_END);
@@ -192,9 +173,7 @@ final class PageFinderTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCurrentSourceForManuallySetPageIdReturnsSourceManual(): void
     {
         $this->subject->setPageUid(42);
@@ -205,9 +184,7 @@ final class PageFinderTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCurrentSourceForSetFrontEndPageUidReturnsSourceFrontEnd(): void
     {
         $frontEndPageUid = $this->testingFramework->createFrontEndPage();
@@ -219,9 +196,7 @@ final class PageFinderTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getCurrentSourceForSetBackEndPageUidReturnsSourceBackEnd(): void
     {
         $_GET['id'] = 42;

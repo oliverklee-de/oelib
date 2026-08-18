@@ -6,6 +6,7 @@ namespace OliverKlee\Oelib\Tests\Unit\Email;
 
 use OliverKlee\Oelib\Email\GeneralEmailRole;
 use OliverKlee\Oelib\Interfaces\MailRole;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -13,9 +14,7 @@ use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
  */
 final class GeneralEmailRoleTest extends UnitTestCase
 {
-    /**
-     * @test
-     */
+    #[Test]
     public function implementsMailRole(): void
     {
         $subject = new GeneralEmailRole('jade@example.com');
@@ -23,9 +22,7 @@ final class GeneralEmailRoleTest extends UnitTestCase
         self::assertInstanceOf(MailRole::class, $subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function usesEmailAddressFromConstructor(): void
     {
         $emailAddress = 'jade@example.com';
@@ -34,9 +31,7 @@ final class GeneralEmailRoleTest extends UnitTestCase
         self::assertSame($emailAddress, $subject->getEmailAddress());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function usesNameFromConstructor(): void
     {
         $name = 'Jade Jennings';
@@ -45,9 +40,7 @@ final class GeneralEmailRoleTest extends UnitTestCase
         self::assertSame($name, $subject->getName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasEmptyNameByDefault(): void
     {
         $subject = new GeneralEmailRole('jade@example.com');

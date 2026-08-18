@@ -6,6 +6,7 @@ namespace OliverKlee\Oelib\Tests\Functional\Templating;
 
 use OliverKlee\Oelib\Templating\Template;
 use OliverKlee\Oelib\Templating\TemplateRegistry;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -26,17 +27,13 @@ final class TemplateRegistryTest extends FunctionalTestCase
         $this->subject = $this->get(TemplateRegistry::class);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isAvailableViaContainer(): void
     {
         self::assertInstanceOf(TemplateRegistry::class, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByFileNameForExistingTemplateFileNameReturnsTemplate(): void
     {
         self::assertInstanceOf(
@@ -45,9 +42,7 @@ final class TemplateRegistryTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByFileNameForExistingTemplateFileNameCalledTwoTimesReturnsNewInstance(): void
     {
         self::assertNotSame(
@@ -56,9 +51,7 @@ final class TemplateRegistryTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByFileNameForExistingTemplateFileNameReturnsProcessedTemplate(): void
     {
         $template = $this->subject->getByFileName('EXT:oelib/Tests/Functional/Templating/Fixtures/Template.html');

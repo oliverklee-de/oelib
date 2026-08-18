@@ -7,6 +7,7 @@ namespace OliverKlee\Oelib\Tests\Unit\Configuration;
 use OliverKlee\Oelib\Configuration\DummyConfiguration;
 use OliverKlee\Oelib\DataStructures\AbstractObjectWithPublicAccessors;
 use OliverKlee\Oelib\Interfaces\Configuration as ConfigurationInterface;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -23,17 +24,13 @@ final class DummyConfigurationTest extends UnitTestCase
         $this->subject = new DummyConfiguration();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function implementsConfigurationInterface(): void
     {
         self::assertInstanceOf(ConfigurationInterface::class, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function byDefaultHasDummySourceName(): void
     {
         $subject = new DummyConfiguration();
@@ -41,9 +38,7 @@ final class DummyConfigurationTest extends UnitTestCase
         self::assertSame('dummy configuration for testing', $subject->getSourceName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canOverwriteSourceName(): void
     {
         $sourceName = 'set via setter';
@@ -54,41 +49,31 @@ final class DummyConfigurationTest extends UnitTestCase
         self::assertSame($sourceName, $subject->getSourceName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isObjectWithPublicAccessors(): void
     {
         self::assertInstanceOf(AbstractObjectWithPublicAccessors::class, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasEmptyStringAsDefaultValueForInexistentString(): void
     {
         self::assertSame('', $this->subject->getAsString('nothing'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasZeroAsDefaultValueForInexistentInteger(): void
     {
         self::assertSame(0, $this->subject->getAsInteger('nothing'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasFalseAsDefaultValueForInexistentBoolean(): void
     {
         self::assertFalse($this->subject->getAsBoolean('nothing'));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canProvideDataViaConstructor(): void
     {
         $key = 'name';
@@ -98,9 +83,7 @@ final class DummyConfigurationTest extends UnitTestCase
         self::assertSame($value, $subject->getAsString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canGetString(): void
     {
         $key = 'name';
@@ -110,9 +93,7 @@ final class DummyConfigurationTest extends UnitTestCase
         self::assertSame($value, $this->subject->getAsString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canGetInteger(): void
     {
         $key = 'size';
@@ -122,9 +103,7 @@ final class DummyConfigurationTest extends UnitTestCase
         self::assertSame($value, $this->subject->getAsInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canGetBoolean(): void
     {
         $key = 'isActive';
@@ -133,9 +112,7 @@ final class DummyConfigurationTest extends UnitTestCase
         self::assertTrue($this->subject->getAsBoolean($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canSetString(): void
     {
         $key = 'name';
@@ -146,9 +123,7 @@ final class DummyConfigurationTest extends UnitTestCase
         self::assertSame($value, $this->subject->getAsString($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canSetInteger(): void
     {
         $key = 'size';
@@ -159,9 +134,7 @@ final class DummyConfigurationTest extends UnitTestCase
         self::assertSame($value, $this->subject->getAsInteger($key));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function canSetBoolean(): void
     {
         $key = 'isActive';

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Tests\Functional\Mapper;
 
 use OliverKlee\Oelib\Mapper\MapperRegistry;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -25,9 +26,7 @@ final class MapperRegistryTest extends FunctionalTestCase
         $this->subject = $this->get(MapperRegistry::class);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isAvailableViaContainer(): void
     {
         self::assertInstanceOf(MapperRegistry::class, $this->subject);

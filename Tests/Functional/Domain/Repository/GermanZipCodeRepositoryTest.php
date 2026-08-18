@@ -6,6 +6,8 @@ namespace OliverKlee\Oelib\Tests\Functional\Domain\Repository;
 
 use OliverKlee\Oelib\Domain\Model\GermanZipCode;
 use OliverKlee\Oelib\Domain\Repository\GermanZipCodeRepository;
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Extbase\Persistence\Repository;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
@@ -28,17 +30,13 @@ final class GermanZipCodeRepositoryTest extends FunctionalTestCase
         $this->importCSVDataSet(__DIR__ . '/Fixtures/ZipCodes.csv');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function isRepository(): void
     {
         self::assertInstanceOf(Repository::class, $this->subject);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function addThrowsException(): void
     {
         $this->expectException(\BadMethodCallException::class);
@@ -46,9 +44,7 @@ final class GermanZipCodeRepositoryTest extends FunctionalTestCase
         $this->subject->add(new GermanZipCode());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function removeThrowsException(): void
     {
         $this->expectException(\BadMethodCallException::class);
@@ -56,9 +52,7 @@ final class GermanZipCodeRepositoryTest extends FunctionalTestCase
         $this->subject->remove(new GermanZipCode());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function updateThrowsException(): void
     {
         $this->expectException(\BadMethodCallException::class);
@@ -66,9 +60,7 @@ final class GermanZipCodeRepositoryTest extends FunctionalTestCase
         $this->subject->update(new GermanZipCode());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function removeAllThrowsException(): void
     {
         $this->expectException(\BadMethodCallException::class);
@@ -76,9 +68,7 @@ final class GermanZipCodeRepositoryTest extends FunctionalTestCase
         $this->subject->removeAll();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function mapsAllModelFields(): void
     {
         $result = $this->subject->findByUid(9000);
@@ -90,9 +80,7 @@ final class GermanZipCodeRepositoryTest extends FunctionalTestCase
         self::assertSame(51.060036, $result->getLatitude());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findOneByZipCodeWithMatchReturnsMatch(): void
     {
         $zipCode = '01067';
@@ -103,9 +91,7 @@ final class GermanZipCodeRepositoryTest extends FunctionalTestCase
         self::assertSame('Dresden', $result->getCityName());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function findOneByZipCodeWithMatchCalledTwoTimesReturnsTheSameModel(): void
     {
         $zipCode = '01067';
@@ -129,11 +115,8 @@ final class GermanZipCodeRepositoryTest extends FunctionalTestCase
         ];
     }
 
-    /**
-     * @test
-     *
-     * @dataProvider nonMatchedZipCodesDataProvider
-     */
+    #[Test]
+    #[DataProvider('nonMatchedZipCodesDataProvider')]
     public function findOneByZipCodeWithoutMatchReturnsNull(string $zipCode): void
     {
         $result = $this->subject->findOneByZipCode($zipCode);

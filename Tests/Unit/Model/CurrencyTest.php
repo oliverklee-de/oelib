@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Tests\Unit\Model;
 
 use OliverKlee\Oelib\Model\Currency;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -21,9 +22,7 @@ final class CurrencyTest extends UnitTestCase
         $this->subject = new Currency();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getIsoAlpha3CodeReturnsIsoAlpha3Code(): void
     {
         $code = 'EUR';
@@ -32,9 +31,7 @@ final class CurrencyTest extends UnitTestCase
         self::assertSame($code, $this->subject->getIsoAlpha3Code());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasLeftSymbolForCurrencyWithLeftSymbolReturnsTrue(): void
     {
         $this->subject->setData(['cu_symbol_left' => '€']);
@@ -42,9 +39,7 @@ final class CurrencyTest extends UnitTestCase
         self::assertTrue($this->subject->hasLeftSymbol());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasLeftSymbolForCurrencyWithoutLeftSymbolReturnsFalse(): void
     {
         $this->subject->setData(['cu_symbol_left' => '']);
@@ -52,9 +47,7 @@ final class CurrencyTest extends UnitTestCase
         self::assertFalse($this->subject->hasLeftSymbol());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLeftSymbolByDefaultReturnsEmptyString(): void
     {
         $this->subject->setData([]);
@@ -62,9 +55,7 @@ final class CurrencyTest extends UnitTestCase
         self::assertSame('', $this->subject->getLeftSymbol());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getLeftSymbolByDefaultReturnsLeftSymbol(): void
     {
         $symbol = '€';
@@ -73,9 +64,7 @@ final class CurrencyTest extends UnitTestCase
         self::assertSame($symbol, $this->subject->getLeftSymbol());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasRightSymbolForCurrencyWithRightSymbolReturnsTrue(): void
     {
         $this->subject->setData(['cu_symbol_right' => '€']);
@@ -83,9 +72,7 @@ final class CurrencyTest extends UnitTestCase
         self::assertTrue($this->subject->hasRightSymbol());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function hasRightSymbolForCurrencyWithoutRightSymbolReturnsFalse(): void
     {
         $this->subject->setData(['cu_symbol_right' => '']);
@@ -93,9 +80,7 @@ final class CurrencyTest extends UnitTestCase
         self::assertFalse($this->subject->hasRightSymbol());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getRightSymbolByDefaultReturnsEmptyString(): void
     {
         $this->subject->setData([]);
@@ -103,9 +88,7 @@ final class CurrencyTest extends UnitTestCase
         self::assertSame('', $this->subject->getRightSymbol());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getRightSymbolByDefaultReturnsRightSymbol(): void
     {
         $symbol = '€';
@@ -114,9 +97,7 @@ final class CurrencyTest extends UnitTestCase
         self::assertSame($symbol, $this->subject->getRightSymbol());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getThousandsSeparatorReturnsThousandsSeparator(): void
     {
         $separator = '.';
@@ -125,9 +106,7 @@ final class CurrencyTest extends UnitTestCase
         self::assertSame($separator, $this->subject->getThousandsSeparator());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDecimalSeparatorReturnsDecimalSeparator(): void
     {
         $separator = ',';
@@ -136,9 +115,7 @@ final class CurrencyTest extends UnitTestCase
         self::assertSame($separator, $this->subject->getDecimalSeparator());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getDecimalDigitsReturnsDecimalDigits(): void
     {
         $digits = 2;

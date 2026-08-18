@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace OliverKlee\Oelib\Tests\Functional\ViewHelpers;
 
 use OliverKlee\Oelib\ViewHelpers\PriceViewHelper;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 
 /**
@@ -38,9 +39,7 @@ class PriceViewHelperTest extends FunctionalTestCase
         }
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderAfterSettingAnInvalidCurrencyUsesDecimalPointAndTwoDecimalDigits(): void
     {
         $this->subject->setValue(12345.678);
@@ -52,9 +51,7 @@ class PriceViewHelperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForCurrencyWithLeftSymbolRendersCurrencySymbolLeftOfPrice(): void
     {
         $this->subject->setValue(123.45);
@@ -66,9 +63,7 @@ class PriceViewHelperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForCurrencyWithRightSymbolRendersCurrencySymbolRightOfPrice(): void
     {
         $this->subject->setValue(123.45);
@@ -80,9 +75,7 @@ class PriceViewHelperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForCurrencyWithoutDecimalDigitsReturnsPriceWithoutDecimalDigits(): void
     {
         $this->subject->setValue(123.45);
@@ -94,9 +87,7 @@ class PriceViewHelperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForCurrencyWithOneDecimalDigitReturnsPriceWithOneDecimalDigit(): void
     {
         $this->subject->setValue(123.45);
@@ -108,9 +99,7 @@ class PriceViewHelperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForCurrencyWithTwoDecimalDigitsReturnsPriceWithTwoDecimalDigits(): void
     {
         $this->subject->setValue(123.45);
@@ -122,9 +111,7 @@ class PriceViewHelperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForCurrencyWithCommaAsDecimalSeparatorReturnsPriceWithCommaAsDecimalSeparator(): void
     {
         $this->subject->setValue(123.45);
@@ -136,9 +123,7 @@ class PriceViewHelperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForCurrencyWithPointAsDecimalSeparatorReturnsPriceWithPointAsDecimalSeparator(): void
     {
         $this->subject->setValue(123.45);
@@ -150,9 +135,7 @@ class PriceViewHelperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForCurrencyWithPointAsThousandsSeparatorReturnsPriceWithPointAsThousandsSeparator(): void
     {
         $this->subject->setValue(1234.56);
@@ -164,9 +147,7 @@ class PriceViewHelperTest extends FunctionalTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function renderForCurrencyWithCommaAsThousandsSeparatorReturnsPriceWithCommaAsThousandsSeparator(): void
     {
         $this->subject->setValue(1234.56);

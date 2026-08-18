@@ -6,6 +6,7 @@ namespace OliverKlee\Oelib\Tests\Unit\Templating;
 
 use OliverKlee\Oelib\Templating\Template;
 use OliverKlee\Oelib\Templating\TemplateRegistry;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Unit\UnitTestCase;
 
 /**
@@ -22,9 +23,7 @@ final class TemplateRegistryTest extends UnitTestCase
         $this->subject = new TemplateRegistry();
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByFileNameForEmptyTemplateFileNameReturnsTemplateInstance(): void
     {
         self::assertInstanceOf(
@@ -33,9 +32,7 @@ final class TemplateRegistryTest extends UnitTestCase
         );
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function getByFileNameForEmptyTemplateFileNameCalledTwoTimesReturnsNewInstance(): void
     {
         self::assertNotSame(
