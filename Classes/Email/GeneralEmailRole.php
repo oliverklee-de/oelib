@@ -11,15 +11,7 @@ use OliverKlee\Oelib\Interfaces\MailRole;
  */
 class GeneralEmailRole implements MailRole
 {
-    protected string $emailAddress;
-
-    protected string $name;
-
-    public function __construct(string $emailAddress, string $name = '')
-    {
-        $this->emailAddress = $emailAddress;
-        $this->name = $name;
-    }
+    public function __construct(protected string $emailAddress, protected string $name = '') {}
 
     /**
      * Returns the email address of the email role.
