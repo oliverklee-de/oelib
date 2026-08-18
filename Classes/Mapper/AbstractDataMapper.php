@@ -902,7 +902,7 @@ abstract class AbstractDataMapper
             foreach ($relatedModels->toArray() as $relatedModel) {
                 if (!method_exists($relatedModel, $getter)) {
                     throw new \BadMethodCallException(
-                        'The class ' . \get_class($relatedModel) . ' is missing the function ' . $getter
+                        'The class ' . $relatedModel::class . ' is missing the function ' . $getter
                         . ' which is needed for saving a 1:n relation.',
                         1_331_319_751,
                     );
@@ -910,7 +910,7 @@ abstract class AbstractDataMapper
 
                 if (!method_exists($relatedModel, $setter)) {
                     throw new \BadMethodCallException(
-                        'The class ' . \get_class($relatedModel) . ' is missing the function ' . $setter
+                        'The class ' . $relatedModel::class . ' is missing the function ' . $setter
                         . ' which is needed for saving a 1:n relation.',
                         1_331_319_803,
                     );

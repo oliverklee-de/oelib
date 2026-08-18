@@ -53,7 +53,7 @@ final class AbstractModelTest extends UnitTestCase
     public function cloneReturnsInstanceOfSameClass(): void
     {
         self::assertInstanceOf(
-            \get_class($this->subject),
+            $this->subject::class,
             clone $this->subject,
         );
     }
@@ -210,7 +210,7 @@ final class AbstractModelTest extends UnitTestCase
             \BadMethodCallException::class,
         );
         $this->expectExceptionMessage(
-            \get_class($this->subject) . '#' . $this->subject->getUid()
+            $this->subject::class . '#' . $this->subject->getUid()
             . ': Please call setData() directly after instantiation first.',
         );
 
