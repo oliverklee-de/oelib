@@ -18,17 +18,12 @@ use TYPO3\CMS\Extbase\Configuration\BackendConfigurationManager;
  */
 class ConfigurationRegistry
 {
-    private BackendConfigurationManager $backendConfigurationManager;
-
     /**
      * @var array<non-empty-string, ConfigurationInterface> already created configurations (by namespace)
      */
     private array $configurations = [];
 
-    public function __construct(BackendConfigurationManager $backendConfigurationManager)
-    {
-        $this->backendConfigurationManager = $backendConfigurationManager;
-    }
+    public function __construct(private BackendConfigurationManager $backendConfigurationManager) {}
 
     /**
      * Destructs a configuration for a given namespace and drops the reference to it.

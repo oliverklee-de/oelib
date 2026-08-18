@@ -39,10 +39,6 @@ final class TestingFramework
     private const FAKE_FRONTEND_DOMAIN_NAME = 'typo3-test.dev';
     private const SITE_IDENTIFIER = 'testing-framework';
 
-    private ConnectionPool $connectionPool;
-
-    private Context $context;
-
     /**
      * sorting values of all relation tables
      *
@@ -55,11 +51,7 @@ final class TestingFramework
      */
     private bool $hasFakeFrontEnd = false;
 
-    public function __construct(ConnectionPool $connectionPool, Context $context)
-    {
-        $this->connectionPool = $connectionPool;
-        $this->context = $context;
-    }
+    public function __construct(private ConnectionPool $connectionPool, private Context $context) {}
 
     /**
      * Creates a new dummy record for unit tests.

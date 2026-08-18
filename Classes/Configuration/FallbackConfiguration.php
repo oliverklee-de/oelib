@@ -12,15 +12,7 @@ use OliverKlee\Oelib\Interfaces\Configuration as ConfigurationInterface;
  */
 class FallbackConfiguration implements ConfigurationInterface
 {
-    private ConfigurationInterface $primary;
-
-    private ConfigurationInterface $secondary;
-
-    public function __construct(ConfigurationInterface $primary, ConfigurationInterface $secondary)
-    {
-        $this->primary = $primary;
-        $this->secondary = $secondary;
-    }
+    public function __construct(private ConfigurationInterface $primary, private ConfigurationInterface $secondary) {}
 
     /**
      * Returns the name of the configuration source, e.g., "TypoScript setup" or "Flexforms".

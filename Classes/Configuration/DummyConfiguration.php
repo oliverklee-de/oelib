@@ -13,11 +13,6 @@ use OliverKlee\Oelib\Interfaces\Configuration;
 final class DummyConfiguration extends AbstractObjectWithPublicAccessors implements Configuration
 {
     /**
-     * @var array<string, mixed>
-     */
-    private array $data = [];
-
-    /**
      * @var non-empty-string
      */
     private string $sourceName = 'dummy configuration for testing';
@@ -25,10 +20,7 @@ final class DummyConfiguration extends AbstractObjectWithPublicAccessors impleme
     /**
      * @param array<string, mixed> $data
      */
-    public function __construct(array $data = [])
-    {
-        $this->data = $data;
-    }
+    public function __construct(private array $data = []) {}
 
     /**
      * Sets all data.
