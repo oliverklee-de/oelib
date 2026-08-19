@@ -51,7 +51,7 @@ final class TestingFramework
      */
     private bool $hasFakeFrontEnd = false;
 
-    public function __construct(private ConnectionPool $connectionPool, private Context $context) {}
+    public function __construct(private readonly ConnectionPool $connectionPool, private readonly Context $context) {}
 
     /**
      * Creates a new dummy record for unit tests.
