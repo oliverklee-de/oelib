@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use Rector\Config\RectorConfig;
 use Rector\Php71\Rector\FuncCall\RemoveExtraParametersRector;
+use Rector\PHPUnit\PHPUnit60\Rector\ClassMethod\AddDoesNotPerformAssertionToNonAssertingTestRector;
 use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
 use Rector\ValueObject\PhpVersion;
@@ -19,14 +20,10 @@ return RectorConfig::configure()
         __DIR__ . '/../../Tests/',
         __DIR__ . '/../../ext_emconf.php',
     ])
-    ->withPhpVersion(PhpVersion::PHP_81)
     ->withPhpSets()
+    ->withComposerBased(phpunit: true)
     ->withSets([
         // Rector sets
-
-        LevelSetList::UP_TO_PHP_81,
-        // LevelSetList::UP_TO_PHP_82,
-        // LevelSetList::UP_TO_PHP_83,
 
         // SetList::CODE_QUALITY,
         // SetList::CODING_STYLE,
@@ -68,4 +65,6 @@ return RectorConfig::configure()
             'Tests/Functional/Mapper/AbstractDataMapperTest.php',
             'Tests/Functional/Model/AbstractModelTest.php',
         ],
+        // This rule creates false positives as the TYPO3 testing framework always adds assertions.
+        AddDoesNotPerformAssertionToNonAssertingTestRector::class,
     ]);
