@@ -57,6 +57,8 @@ return RectorConfig::configure()
         ExtEmConfRector::ADDITIONAL_VALUES_TO_BE_REMOVED => [],
     ])
     ->withSkip([
+        // This rule creates false positives as the TYPO3 testing framework always adds assertions.
+        AddDoesNotPerformAssertionToNonAssertingTestRector::class,
         // can be removed when we drop support for TYPO3 12LTS
         RemoveExtraParametersRector::class => [
             'Classes/Configuration/ConfigurationRegistry.php',
@@ -65,6 +67,4 @@ return RectorConfig::configure()
             'Tests/Functional/Mapper/AbstractDataMapperTest.php',
             'Tests/Functional/Model/AbstractModelTest.php',
         ],
-        // This rule creates false positives as the TYPO3 testing framework always adds assertions.
-        AddDoesNotPerformAssertionToNonAssertingTestRector::class,
     ]);
