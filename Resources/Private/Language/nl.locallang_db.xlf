@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="messages" target-language="nl">
+    <header/>
+    <body>
+      <trans-unit id="tx_oelib_domain_model_germanzipcode" approved="yes">
+        <source>German ZIP codes</source>
+        <target state="final">Duitse postcodes</target>
+      </trans-unit>
+      <trans-unit id="tx_oelib_domain_model_germanzipcode.zip_code" approved="yes">
+        <source>ZIP code</source>
+        <target state="final">Postcode</target>
+      </trans-unit>
+      <trans-unit id="tx_oelib_domain_model_germanzipcode.city_name" approved="yes">
+        <source>City</source>
+        <target state="final">Stad</target>
+      </trans-unit>
+      <trans-unit id="tx_oelib_domain_model_germanzipcode.longitude" approved="yes">
+        <source>Longitude</source>
+        <target state="final">Lengtegraad</target>
+      </trans-unit>
+      <trans-unit id="tx_oelib_domain_model_germanzipcode.latitude" approved="yes">
+        <source>Latitude</source>
+        <target state="final">Breedtegraad</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
