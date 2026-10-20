@@ -31,7 +31,7 @@ final class TestingReadOnlyObjectWithPublicAccessors extends AbstractReadOnlyObj
      *
      * @return mixed the data for the key $key, will be null if the key has not been set yet
      */
-    protected function get(string $key)
+    protected function get(string $key): mixed
     {
         return $this->data[$key] ?? null;
     }

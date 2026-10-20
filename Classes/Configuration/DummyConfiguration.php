@@ -59,7 +59,7 @@ final class DummyConfiguration extends AbstractObjectWithPublicAccessors impleme
      *
      * @return mixed the data for the given key, will be null if the key has not been set yet
      */
-    protected function get(string $key)
+    protected function get(string $key): mixed
     {
         return $this->data[$key] ?? null;
     }
@@ -70,7 +70,7 @@ final class DummyConfiguration extends AbstractObjectWithPublicAccessors impleme
      * Use `setData` if you want to set all data in one step.
      *
      * @param non-empty-string $key
-     * @param mixed $value the data for the given key
+     * @param string|int|float|bool|object|null $value the data for the given key
      */
     protected function set(string $key, $value): void
     {

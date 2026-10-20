@@ -16,10 +16,8 @@ abstract class AbstractReadOnlyObjectWithAccessors
      * Gets the value of the data item for the given key.
      *
      * @param non-empty-string $key
-     *
-     * @return mixed the data for the given key, will be null or an empty string if the key has not been set yet
      */
-    abstract protected function get(string $key);
+    abstract protected function get(string $key): mixed;
 
     /**
      * Checks that `$key` is not empty.
