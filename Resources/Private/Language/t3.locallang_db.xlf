@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="messages" target-language="t3">
+    <header/>
+    <body>
+      <trans-unit id="tx_oelib_domain_model_germanzipcode">
+        <source>German ZIP codes</source>
+        <target>crwdns301718:0crwdne301718:0</target>
+      </trans-unit>
+      <trans-unit id="tx_oelib_domain_model_germanzipcode.zip_code">
+        <source>ZIP code</source>
+        <target>crwdns301720:0crwdne301720:0</target>
+      </trans-unit>
+      <trans-unit id="tx_oelib_domain_model_germanzipcode.city_name">
+        <source>City</source>
+        <target>crwdns301722:0crwdne301722:0</target>
+      </trans-unit>
+      <trans-unit id="tx_oelib_domain_model_germanzipcode.longitude">
+        <source>Longitude</source>
+        <target>crwdns301724:0crwdne301724:0</target>
+      </trans-unit>
+      <trans-unit id="tx_oelib_domain_model_germanzipcode.latitude">
+        <source>Latitude</source>
+        <target>crwdns301726:0crwdne301726:0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
