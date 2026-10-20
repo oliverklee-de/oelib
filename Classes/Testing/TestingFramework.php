@@ -748,9 +748,7 @@ routes: {  }";
      */
     private function getRelationSorting(string $table, int $uidLocal): int
     {
-        if (!isset($this->relationSorting[$table][$uidLocal])) {
-            $this->relationSorting[$table][$uidLocal] = 0;
-        }
+        $this->relationSorting[$table][$uidLocal] ??= 0;
 
         ++$this->relationSorting[$table][$uidLocal];
 

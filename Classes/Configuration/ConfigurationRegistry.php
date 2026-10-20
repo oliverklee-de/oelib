@@ -47,9 +47,7 @@ class ConfigurationRegistry
     {
         $this->checkForNonEmptyNamespace($namespace);
 
-        if (!isset($this->configurations[$namespace])) {
-            $this->configurations[$namespace] = $this->retrieveConfigurationFromTypoScriptSetup($namespace);
-        }
+        $this->configurations[$namespace] ??= $this->retrieveConfigurationFromTypoScriptSetup($namespace);
 
         return $this->configurations[$namespace];
     }
