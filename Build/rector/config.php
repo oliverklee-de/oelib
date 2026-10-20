@@ -19,6 +19,7 @@ return RectorConfig::configure()
         __DIR__ . '/../../ext_emconf.php',
     ])
     ->withPhpSets()
+    ->withComposerBased(phpunit: true)
     ->withSets([
         // Rector sets
 
