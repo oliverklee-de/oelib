@@ -475,12 +475,6 @@ parameters:
 			path: ../../Classes/Testing/TestingFramework.php
 
 		-
-			rawMessage: Mixed property fetch in a "$frontEndUser->..." can skip important errors. Make sure the type is known
-			identifier: typePerfect.noMixedPropertyFetcher
-			count: 1
-			path: ../../Classes/Testing/TestingFramework.php
-
-		-
 			rawMessage: 'Parameter #1 $table of method OliverKlee\Oelib\Testing\TestingFramework::createRelation() expects non-empty-string, mixed given.'
 			identifier: argument.type
 			count: 1
