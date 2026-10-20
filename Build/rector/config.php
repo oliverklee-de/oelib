@@ -5,9 +5,7 @@ declare(strict_types=1);
 use Rector\Config\RectorConfig;
 use Rector\Php71\Rector\FuncCall\RemoveExtraParametersRector;
 use Rector\PHPUnit\PHPUnit60\Rector\ClassMethod\AddDoesNotPerformAssertionToNonAssertingTestRector;
-use Rector\Set\ValueObject\LevelSetList;
 use Rector\Set\ValueObject\SetList;
-use Rector\ValueObject\PhpVersion;
 use Ssch\TYPO3Rector\CodeQuality\General\ExtEmConfRector;
 use Ssch\TYPO3Rector\Configuration\Typo3Option;
 use Ssch\TYPO3Rector\Set\Typo3LevelSetList;
@@ -21,7 +19,6 @@ return RectorConfig::configure()
         __DIR__ . '/../../ext_emconf.php',
     ])
     ->withPhpSets()
-    ->withComposerBased(phpunit: true)
     ->withSets([
         // Rector sets
 
