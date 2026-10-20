@@ -45,10 +45,8 @@ class TypoScriptConfiguration extends AbstractReadOnlyObjectWithPublicAccessors 
      * Gets the value of the data item for the given key.
      *
      * @param non-empty-string $key
-     *
-     * @return string|mixed the data for the given key, will be an empty string if the key has not been set yet
      */
-    protected function get(string $key)
+    protected function get(string $key): mixed
     {
         if (!$this->existsKey($key)) {
             return '';

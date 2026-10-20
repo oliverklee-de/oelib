@@ -166,10 +166,9 @@ class Template
      *
      * @param non-empty-string $markerName the marker's name without the ### signs, case-insensitive,
      *        will get uppercased
-     * @param mixed $content the marker's content, may be empty
      * @param string $prefix prefix to the marker name (may be empty, case-insensitive, will get uppercased)
      */
-    public function setMarker(string $markerName, $content, string $prefix = ''): void
+    public function setMarker(string $markerName, mixed $content, string $prefix = ''): void
     {
         $unifiedMarkerName = $this->createMarkerName($markerName, $prefix);
 
@@ -203,10 +202,9 @@ class Template
      * "###ONE###" will be written.
      *
      * @param non-empty-string $subpartName name without the ### signs, case-insensitive, will get uppercased
-     * @param mixed $content the subpart's content, may be empty
      * @param string $prefix prefix to the subpart name (may be empty, case-insensitive, will get uppercased)
      */
-    public function setSubpart(string $subpartName, $content, string $prefix = ''): void
+    public function setSubpart(string $subpartName, mixed $content, string $prefix = ''): void
     {
         $subpartName = $this->createMarkerNameWithoutHashes($subpartName, $prefix);
 
@@ -225,7 +223,6 @@ class Template
      *
      * @param non-empty-string $markerName the marker's name without the ### signs, case-insensitive,
      *        will get uppercased
-     * @param mixed $content content with which the marker will be filled, may be empty
      * @param string $markerPrefix prefix to the marker name for setting
      *        (may be empty, case-insensitive, will get uppercased)
      *
@@ -233,7 +230,7 @@ class Template
      *
      * @see setMarkerIfNotEmpty
      */
-    public function setMarkerIfNotZero(string $markerName, $content, string $markerPrefix = ''): bool
+    public function setMarkerIfNotZero(string $markerName, mixed $content, string $markerPrefix = ''): bool
     {
         $condition = ((int)$content) !== 0;
         if ($condition) {
@@ -250,7 +247,6 @@ class Template
      *
      * @param non-empty-string $markerName the marker's name without the ### signs, case-insensitive,
      *        will get uppercased
-     * @param mixed $content content with which the marker will be filled, may be empty
      * @param string $markerPrefix prefix to the marker name for setting
      *        (may be empty, case-insensitive, will get uppercased)
      *
@@ -258,7 +254,7 @@ class Template
      *
      * @see setMarkerIfNotZero
      */
-    public function setMarkerIfNotEmpty(string $markerName, $content, string $markerPrefix = ''): bool
+    public function setMarkerIfNotEmpty(string $markerName, mixed $content, string $markerPrefix = ''): bool
     {
         $condition = (string)$content !== '';
         if ($condition) {
@@ -412,7 +408,6 @@ class Template
      *
      * @param non-empty-string $markerName the marker's name without the ### signs, case-insensitive
      * @param bool $condition if this is TRUE, the marker will be filled, otherwise the wrapped marker will be hidden
-     * @param mixed $content content with which the marker will be filled, may be empty
      * @param string $markerPrefix prefix to the marker name for setting (may be empty, case-insensitive)
      * @param string $wrapperPrefix prefix to the subpart name for hiding (may be empty, case-insensitive)
      *
@@ -424,7 +419,7 @@ class Template
     public function setOrDeleteMarker(
         string $markerName,
         bool $condition,
-        $content,
+        mixed $content,
         string $markerPrefix = '',
         string $wrapperPrefix = '',
     ): bool {
@@ -447,7 +442,6 @@ class Template
      * subpart, working exactly like hideSubparts($markerName, $wrapperPrefix).
      *
      * @param non-empty-string $markerName the marker's name without the ### signs, case-insensitive
-     * @param mixed $content content with which the marker will be filled, may be empty
      * @param string $markerPrefix prefix to the marker name for setting (may be empty, case-insensitive)
      * @param string $wrapperPrefix prefix to the subpart name for hiding (may be empty, case-insensitive)
      *
@@ -460,7 +454,7 @@ class Template
      */
     public function setOrDeleteMarkerIfNotZero(
         string $markerName,
-        $content,
+        mixed $content,
         string $markerPrefix = '',
         string $wrapperPrefix = '',
     ): bool {
@@ -484,7 +478,6 @@ class Template
      *
      * @param non-empty-string $markerName the marker's name without the ### signs, case-insensitive,
      *        will get uppercased
-     * @param mixed $content content with which the marker will be filled, may be empty
      * @param string $markerPrefix prefix to the marker name for setting
      *        (may be empty, case-insensitive, will get uppercased)
      * @param string $wrapperPrefix prefix to the subpart name for hiding
@@ -500,7 +493,7 @@ class Template
      */
     public function setOrDeleteMarkerIfNotEmpty(
         string $markerName,
-        $content,
+        mixed $content,
         string $markerPrefix = '',
         string $wrapperPrefix = '',
     ): bool {

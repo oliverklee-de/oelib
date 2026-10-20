@@ -273,7 +273,7 @@ abstract class AbstractModel extends AbstractObjectWithAccessors implements Iden
      *
      * @throws NotFoundException if this model is dead
      */
-    protected function get(string $key)
+    protected function get(string $key): mixed
     {
         if ($key === 'uid') {
             throw new \InvalidArgumentException(

@@ -119,12 +119,7 @@ class FlexformsConfiguration extends AbstractReadOnlyObjectWithPublicAccessors i
         return $value;
     }
 
-    /**
-     * @param mixed $array
-     *
-     * @return mixed
-     */
-    private function getFirstElementOfPotentialArray($array)
+    private function getFirstElementOfPotentialArray(mixed $array): mixed
     {
         if (!\is_array($array)) {
             return null;
