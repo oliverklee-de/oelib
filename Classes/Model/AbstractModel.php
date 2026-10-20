@@ -554,7 +554,7 @@ abstract class AbstractModel extends AbstractObjectWithAccessors implements Iden
      *
      * @internal
      *
-     * @deprecated #1678 will be removed in version 7.0
+     * @deprecated #1678 will be removed in version 8.0
      */
     public function setToDeleted(): void
     {
@@ -579,7 +579,7 @@ abstract class AbstractModel extends AbstractObjectWithAccessors implements Iden
     /**
      * @return int<0, max>
      *
-     * @deprecated with be removed in version 7.0 with #1971
+     * @deprecated with be removed in version 8.0 with #1971
      */
     public function getModificationDateAsUnixTimeStamp(): int
     {
@@ -589,7 +589,7 @@ abstract class AbstractModel extends AbstractObjectWithAccessors implements Iden
     /**
      * Sets the modification date and time.
      *
-     * @deprecated #1678 will be removed in version 7.0
+     * @deprecated #1678 will be removed in version 8.0
      */
     public function setTimestamp(): void
     {
@@ -601,7 +601,7 @@ abstract class AbstractModel extends AbstractObjectWithAccessors implements Iden
     /**
      * @return int<0, max>
      *
-     * @deprecated with be removed in version 7.0 with #1971
+     * @deprecated with be removed in version 8.0 with #1971
      */
     public function getCreationDateAsUnixTimeStamp(): int
     {
@@ -611,7 +611,7 @@ abstract class AbstractModel extends AbstractObjectWithAccessors implements Iden
     /**
      * Sets the creation date and time.
      *
-     * @deprecated #1678 will be removed in version 7.0
+     * @deprecated #1678 will be removed in version 8.0
      */
     public function setCreationDate(): void
     {

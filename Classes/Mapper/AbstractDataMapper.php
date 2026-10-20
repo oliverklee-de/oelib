@@ -58,7 +58,7 @@ abstract class AbstractDataMapper
     /**
      * @var array<non-empty-string> the column names of additional string keys
      *
-     * @deprecated #1992 will be removed in version 7.0
+     * @deprecated #1992 will be removed in version 8.0
      */
     protected $additionalKeys = [];
 
@@ -66,7 +66,7 @@ abstract class AbstractDataMapper
      * @var array<string, array<string, M>> two-dimensional cache for the objects by key:
      *            `[key name][key value] => model`
      *
-     * @deprecated #1992 will be removed in version 7.0
+     * @deprecated #1992 will be removed in version 8.0
      */
     private array $cacheByKey = [];
 
@@ -664,7 +664,7 @@ abstract class AbstractDataMapper
      *
      * @param M $model the model to write to the database
      *
-     * @deprecated #1678 will be removed in version 7.0
+     * @deprecated #1678 will be removed in version 8.0
      */
     public function save(AbstractModel $model): void
     {
@@ -718,7 +718,7 @@ abstract class AbstractDataMapper
      *
      * @return DatabaseRow the model's data prepared for the database, will not be empty
      *
-     * @deprecated #1678 will be removed in version 7.0
+     * @deprecated #1678 will be removed in version 8.0
      */
     private function getPreparedModelData(AbstractModel $model): array
     {
@@ -768,7 +768,7 @@ abstract class AbstractDataMapper
      * @param AbstractModel $model the model to save
      * @param AbstractDataMapper $mapper the mapper to use for saving
      *
-     * @deprecated #1678 will be removed in version 7.0
+     * @deprecated #1678 will be removed in version 8.0
      */
     private function saveManyToOneRelatedModels(AbstractModel $model, AbstractDataMapper $mapper): void
     {
@@ -781,7 +781,7 @@ abstract class AbstractDataMapper
      * @param Collection<AbstractModel> $list the list of models to save
      * @param AbstractDataMapper $mapper the mapper to use for saving
      *
-     * @deprecated #1678 will be removed in version 7.0
+     * @deprecated #1678 will be removed in version 8.0
      */
     private function saveManyToManyAndCommaSeparatedRelatedModels(Collection $list, AbstractDataMapper $mapper): void
     {
@@ -797,7 +797,7 @@ abstract class AbstractDataMapper
      *
      * @param M $model the model to delete the records in the intermediate table of m:n relations for
      *
-     * @deprecated #1678 will be removed in version 7.0
+     * @deprecated #1678 will be removed in version 8.0
      */
     private function deleteManyToManyRelationIntermediateRecords(AbstractModel $model): void
     {
@@ -822,7 +822,7 @@ abstract class AbstractDataMapper
      *
      * @param M $model the model to create the records in the intermediate table of m:n relations for
      *
-     * @deprecated #1678 will be removed in version 7.0
+     * @deprecated #1678 will be removed in version 8.0
      */
     private function createManyToManyRelationIntermediateRecords(AbstractModel $model): void
     {
@@ -863,7 +863,7 @@ abstract class AbstractDataMapper
      *
      * @param M $model the model to save the related records for
      *
-     * @deprecated #1678 will be removed in version 7.0
+     * @deprecated #1678 will be removed in version 8.0
      */
     private function saveOneToManyRelationRecords(AbstractModel $model): void
     {
@@ -955,7 +955,7 @@ abstract class AbstractDataMapper
      *
      * @internal
      *
-     * @deprecated #1678 will be removed in version 7.0
+     * @deprecated #1678 will be removed in version 8.0
      */
     public function delete(AbstractModel $model): void
     {
@@ -988,7 +988,7 @@ abstract class AbstractDataMapper
      *
      * @param M $model the model for which to delete the related models
      *
-     * @deprecated #1678 will be removed in version 7.0
+     * @deprecated #1678 will be removed in version 8.0
      */
     private function deleteOneToManyRelations(AbstractModel $model): void
     {
@@ -1123,7 +1123,7 @@ abstract class AbstractDataMapper
      *
      * @throws NotFoundException if there is no match (neither in the cache nor in the database)
      *
-     * @deprecated #1992 will be removed in version 7.0
+     * @deprecated #1992 will be removed in version 8.0
      */
     public function findOneByKey(string $key, string $value): AbstractModel
     {

@@ -19,7 +19,7 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
  * view helper to render different values in the same currency by changing the
  * value via `setValue()`.
  *
- * @deprecated #1572 will be removed in version 7.0
+ * @deprecated #1572 will be removed in version 8.0
  */
 class PriceViewHelper extends AbstractViewHelper
 {
