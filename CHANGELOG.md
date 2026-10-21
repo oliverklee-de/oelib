@@ -7,6 +7,18 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+## 7.0.0: Add support for TYPO3 13LTS and PHP 8.5, drop deprecated things
+
+### Added
+
 - Add support for PHP 8.5 (#2431)
 - Add support for TYPO3 13LTS (#2427, #2430, #2432, #2464)
 
