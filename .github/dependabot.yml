@@ -6,7 +6,7 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    milestone: 25
+    milestone: 44
 
   - package-ecosystem: "composer"
     directory: "/"
@@ -19,10 +19,10 @@ updates:
       - dependency-name: "phpunit/phpcov"
         versions: [ ">= 10.0" ]
       - dependency-name: "phpunit/phpunit"
-        versions: [ ">= 10" ]
+        versions: [ ">= 11" ]
       - dependency-name: "sjbr/static-info-tables"
       - dependency-name: "symfony/*"
       - dependency-name: "typo3/cms-*"
       - dependency-name: "typo3/coding-standards"
     versioning-strategy: "increase"
-    milestone: 25
+    milestone: 44
